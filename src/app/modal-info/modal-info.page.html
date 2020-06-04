@@ -1,0 +1,85 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Historial médico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="contenedor animated fadeIn delay-1s">
+  <div class="ion-text-center">
+    <p style="opacity: 0.7px;"> Padece de algunas de estas dolencia</p>
+  </div>
+
+  <ion-list lines="none" class="itemcustom">
+    <ion-item>
+      <ion-label>No presento ninguna de la siguientes</ion-label>
+      <ion-checkbox (ionChange)="historialmedico('enfermedad')"  color="medium" slot="start" name="noEnfermedad" [(ngModel)]="datoEnfermedades.noEnfermedad"></ion-checkbox>
+    </ion-item>
+
+    <ion-item-divider color="dark"></ion-item-divider>
+
+    <ion-item>
+      <ion-label>Hipertension</ion-label>
+      <ion-toggle (ionChange)="historialmedico(datoEnfermedades.hipertension)" slot="start" name="hipertension" [(ngModel)]="datoEnfermedades.hipertension"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hipotension</ion-label>
+      <ion-toggle (ionChange)="historialmedico(datoEnfermedades.hipotension)" slot="start" name="hipotension" [(ngModel)]="datoEnfermedades.hipotension"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Desvanecimiento</ion-label>
+      <ion-toggle (ionChange)="historialmedico(datoEnfermedades.desvanecimiento)" slot="start" name="desvanecimiento" [(ngModel)]="datoEnfermedades.desvanecimiento"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Diabetes insulinodependiente</ion-label>
+      <ion-toggle (ionChange)="historialmedico(datoEnfermedades.diabete)" slot="start" name="diabete" [(ngModel)]="datoEnfermedades.diabete"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Dolores en el pecho</ion-label>
+      <ion-toggle (ionChange)="historialmedico(datoEnfermedades.dolorPecho)" slot="start" name="dolorPecho" [(ngModel)]="datoEnfermedades.dolorPecho"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fatiga insual en actividades</ion-label>
+      <ion-toggle (ionChange)="historialmedico(datoEnfermedades.fatiga)" slot="start" name="fatiga" [(ngModel)]="datoEnfermedades.fatiga"></ion-toggle>
+    </ion-item>
+    <ion-item-divider color="dark"></ion-item-divider>
+    <ion-item>
+      <ion-label>Patologia cardiacas</ion-label>
+      <ion-select interface="action-sheet" (ionChange)="historialmedico(datoEnfermedades.patologiaCardiaca)" 
+      name="patologiaCardiaca" [(ngModel)]="datoEnfermedades.patologiaCardiaca" cancel-text="salir">
+        <ion-select-option [value]="1">Aritmias</ion-select-option>
+        <ion-select-option [value]="1">Taquicardia</ion-select-option>
+        <ion-select-option [value]="1">Insuficiencia cardiaca</ion-select-option>
+        <ion-select-option [value]="1">Infartos</ion-select-option>
+        <ion-select-option [value]="1">Soplo en el corazon</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Enfermedades pulmonares</ion-label>
+      <ion-select interface="action-sheet" 
+      name="enfermedadPulmonar" (ionChange)="historialmedico(datoEnfermedades.enfermedadPulmonar)" [(ngModel)]="datoEnfermedades.enfermedadPulmonar" cancel-text="salir">
+        <ion-select-option [value]="1">Influenza</ion-select-option>
+        <ion-select-option [value]="1">Asma</ion-select-option>
+        <ion-select-option [value]="1">Bronquiti</ion-select-option>
+        <ion-select-option [value]="1">Hipertension pulmonar</ion-select-option>
+        <ion-select-option [value]="1">Enfermedad pulmonar obstructiva cronica</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer class="contenedor animated fadeIn delay-1s">
+  <ion-toolbar>
+    <ion-buttons slot="start"  (click)="salir()" color="black">
+      <ion-button id="changeText" >
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" >
+      <ion-button id="changeText" (click)="avanzar()"  color="danger">
+        Aceptar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

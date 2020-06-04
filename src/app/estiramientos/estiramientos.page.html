@@ -1,0 +1,60 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar  >
+    <div class="cabezera">
+      <img src="assets/img/logo-app.png" class="logo">
+    </div>
+    <ion-buttons slot="start" style="position: absolute;">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+<ng-container *ngIf="!estiramientos">
+
+
+  <div  class="ion-padding ion-text-justify aumentartitulo">
+   <H2><B> ESTIRAMIENTOS</B></H2>
+  </div> 
+  <div  class="ion-padding ion-text-justify">
+    <h3 style="color: red;"> <b> Ahora por favor realiza estos estiramientos</b></h3>
+
+  </div>   
+  <div class="ion-padding ion-text-justify">
+
+   Estirar siempre será importante para relajar tus músculos y hacerte más flexible, ayuda a prevenir lesiones y estrés muscular el día de mañana.
+  </div>
+
+  <ion-grid class="ion-padding">
+    <ion-row >
+      <ion-col  size="12">   
+        <div>
+          <ion-card style="    background: grey;color: white;" (click)="iniciar()">
+            <h2 class="ion-text-center">
+             <b> CONTINUAR</b> </h2>  
+          </ion-card>
+        </div>   
+      </ion-col>
+      
+    </ion-row>
+
+  </ion-grid>   
+</ng-container>
+
+<ng-container *ngIf="estiramientos">
+  <div  class="ion-padding ion-text-center aumentartitulo">
+    <H1><B> ESTIRAMIENTOS</B></H1>
+   </div> 
+  <ion-grid>
+    <ion-row >
+      <ion-col  size="12">   
+        <div  class="ion-padding-horizontal">
+          <img src="assets/img/casa.jpg"/>
+        </div>   
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+</ng-container>
+
+
+</ion-content>
