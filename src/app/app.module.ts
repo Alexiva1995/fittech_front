@@ -24,6 +24,8 @@ import { File } from '@ionic-native/file/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyC05iYDOCHztv5ujJBlVY05SO7WURpGtc0",
@@ -61,7 +63,8 @@ var firebaseConfig = {
     SplashScreen,
     Camera,
     WebView,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    PreviewAnyFile
   ],
   bootstrap: [AppComponent]
 })
