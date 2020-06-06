@@ -49,8 +49,8 @@ export class TerminosPage implements OnInit {
     await loading.present();
   }
 
-  VisualizarPDF(){
-    let url ="http://www.africau.edu/images/default/sample.pdf";
+  VisualizarPDF(link){
+    let url = link;
     this.previewAnyFile.preview(url).then(()=>{
         
     },err=>{
