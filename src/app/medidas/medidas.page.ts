@@ -29,29 +29,28 @@ export class MedidasPage implements OnInit {
   imgUri: any;
   constructor(private ruta: NavController, private fb: FormBuilder, private service: UsuarioService, private utilities: MensajesService, private camera: Camera, private webView: WebView, private alertCtrl: AlertController) {
     this.form = this.fb.group({
-      min_waist:[0, Validators.required],
+      min_waist:[0, Validators.min(10)],
       max_waist:[0,
-        Validators.required],
+        Validators.min(10)],
       hip:[0,
-        Validators.required],
+        Validators.min(10)],
       neck:[0,
-        Validators.required],
+        Validators.min(10)],
       right_thigh:[0,
-        Validators.required],
+        Validators.min(10)],
       left_thigh:[0,
-        Validators.required],
+        Validators.min(10)],
       right_arm:[0,
-        Validators.required],
+        Validators.min(10)],
       left_arm:[0,
-        Validators.required],
+        Validators.min(10)],
       right_calf:[0,
-        Validators.required],
+        Validators.min(10)],
       left_calf:[0,
-        Validators.required],
+        Validators.min(10)],
       torax:[0,
-        Validators.required],
-      waist_hip:[0,
-        Validators.required],
+        Validators.min(10)],
+      waist_hip:[0],
       profile_photo:[''],
       back_photo:[''],
       min_waist_:['Cm', Validators.required],
@@ -97,14 +96,13 @@ export class MedidasPage implements OnInit {
     console.log(this.form.controls[controller+'_'].value);
     if(this.form.controls[controller+'_'].value === 'Pulgadas'){
       this.form.controls[controller].setValue(Math.round(this.form.controls[controller].value/2.54));
-
       console.log(this.form.controls[controller+'_'].value);
       
     }else{
       this.form.controls[controller].setValue(Math.round(this.form.controls[controller].value*2.54));
 
     }
-    this.convertToCm();
+    //this.convertToCm();
   }
 
   convertToCm(){
@@ -196,6 +194,10 @@ export class MedidasPage implements OnInit {
 
       await alert.present();
     });
+  }
+
+  get forms(){
+    return this.form;
   }
 
 }

@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ApiFitechService } from './api-fitech.service';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
+
+
+const URL  = environment.url
 
 @Injectable({
   providedIn: 'root'
