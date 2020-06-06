@@ -269,9 +269,8 @@
         --background:#EF4044;
         color:white;
         "
-      
-      (click)="test()">
-      <h2 style="margin: 10px; text-align: center;" (click)="measurement_record()">
+      (click)="measurement_record()" [disabled]="!forms.valid">
+      <h2 style="margin: 10px; text-align: center;">
         <b> SIGUIENTE</b></h2> 
      </ion-card>
 
