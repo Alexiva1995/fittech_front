@@ -10,26 +10,35 @@ import { MensajesService } from '../services/mensajes.service';
 })
 export class AlimentosSeleccionPage implements OnInit {
   dataRecibida:any
-
+  alimentos:any
+  datosUsuario:any = [];
+  foods: string;
+  carbo = 0;
+  protein = 0;
+  grasa = 0;
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService) { }
 
   ngOnInit() {
     //  parametros del id
-    this.dataRecibida = this.capturar.snapshot.paramMap.get('id')
+    this.dataRecibida = this.capturar.snapshot.paramMap.get('id');
     switch (this.dataRecibida) {
       case 'Desayuno':
         this.getFoods(0)
+        this.foods = './assets/img/desayuno-grande.jpg'
         break
       case 'Almuerzo':
         this.getFoods(2)
+        this.foods = './assets/img/almuerzo-grande.jpg'
         break
       case  'Snack':
         this.getFoods(1)
+        this.foods = './assets/img/snack-grande.jpg'
         break
       default:
         this.getFoods(3)
+        this.foods = './assets/img/cena-grande.jpg'
         break
     }
   }
@@ -39,8 +48,43 @@ export class AlimentosSeleccionPage implements OnInit {
       if(valor == false ){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
-        console.log("que recibo" , valor)
+        console.log(valor)
+        this.alimentos = valor['Foods']
+        this.alimentos.forEach(element => {
+          element['cantidad'] = 0;
+        });
+        this.datosUsuario = valor['Menu']
       }
   }
 
+  ucFirst(str) {
+    /*   str = str.replace(/ /g, "."); */
+         return str.substring(0, 1).toUpperCase() + str.substring(1); 
+     }
+
+     add(index){
+     this.alimentos[index].cantidad++;
+     this.calculateStats();
+     }  
+
+     decrease(index){
+      this.alimentos[index].cantidad--;
+      this.calculateStats();
+      }
+
+      calculateStats(){
+        this.carbo = 0;
+        this.grasa = 0;
+        this.protein = 0;
+        this.alimentos.forEach(element => {
+          if(element.cantidad > 0){
+            this.carbo += element.carbo*element.cantidad;
+            this.grasa += element.greases*element.cantidad;
+            this.protein += element.protein*element.cantidad;
+          }
+        });
+        this.carbo = Math.round(this.carbo*100)/100;
+        this.grasa = Math.round(this.grasa*100)/100;
+        this.protein = Math.round(this.protein*100)/100;
+      }
 }

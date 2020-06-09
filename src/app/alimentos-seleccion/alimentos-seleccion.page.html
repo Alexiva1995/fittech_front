@@ -11,6 +11,47 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <p>En construcion</p>
+  <img [src]="foods" alt="">
+
+  <ion-item>
+    <div class="ion-padding ion-text-center titulo">
+      Total a consumir
+    </div> 
+  </ion-item>
+  <ion-item>
+ 
+    <div class="contenedorMenu">
+      <div class="contenedorMenuItem">
+          <p style="color: white;">Total <br> carbohidratos</p>
+          <ion-progress-bar value="0.2" color="dark"></ion-progress-bar>
+          <p style="color: white;">{{carbo}}/{{datosUsuario.carbo}}</p>
+      </div>
+     
+        <div class="contenedorMenuItem">
+            <p style="color: white;">Total <br> grasa</p>
+            <ion-progress-bar value="0.5" color="dark"></ion-progress-bar>
+            <p style="color: white;">{{protein}}/{{datosUsuario.grease}}</p>
+        </div>
+       
+          <div class="contenedorMenuItem">
+              <p style="color: white;">Total <br> proteina</p>
+              <ion-progress-bar value="0.5" color="dark"></ion-progress-bar>
+              <p style="color: white;">{{grasa}}/{{datosUsuario.protein}}</p>
+          </div>
+        </div>
+  </ion-item>
+  <ion-item *ngFor="let alimento of alimentos; let i=index">
+    <ion-label class="ion-text-wrap">
+      {{ucFirst(alimento.name)}} 
+      <ion-label class="ion-text-wrap" style="color: #ef4044;">  {{alimento.cant}} = {{alimento.calories}}Kcal  </ion-label>
+    </ion-label>
+    <ion-buttons slot="end">
+       <ion-button color="danger" (click)="add(i)">+</ion-button>
+      <p>{{alimento.cantidad}}</p>
+      <ion-button color="danger" (click)="decrease(i)" [disabled]='alimento.cantidad == 0'>-</ion-button> 
+    </ion-buttons>  
+  </ion-item>
+
+
 </ion-content>
 
