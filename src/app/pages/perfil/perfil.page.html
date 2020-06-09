@@ -1,14 +1,81 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar>
+
+  <ion-buttons slot="primary">
+    <ion-button>
+      <div class="cabezera">
+        <img src="assets/img/logo-app.png" class="logo">
+      </div>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title>Perfil</ion-title>
+</ion-toolbar>
 
 <ion-content>
-  <!-- por lo momento se dejara asi hasta que el diseñador pase diseño del PERFIL -->
-  <div class="ion-text-center">
-     <ion-button color="primary" (click)="desconectar()" i>Desconectar</ion-button>
-  </div>
 
+  <ion-toolbar>
+    <ion-segment value="all">
+      <ion-segment-button value="all">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        Mi perfil
+      </ion-segment-button>
+      <ion-segment-button value="all">
+        <ion-icon name="bar-chart-outline"></ion-icon>
+        Indicadores
+      </ion-segment-button>
+      <ion-segment-button value="all">
+        <ion-icon name="bar-chart-outline"></ion-icon>
+        Medidas
+      </ion-segment-button>
+      <ion-segment-button value="all">
+        <ion-icon name="bar-chart-outline"></ion-icon>
+        Progreso
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ng-container>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="5">
+          <ion-avatar>
+            <img src="" onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
+            <ion-fab-button size="small">
+              <ion-icon name="camera"></ion-icon>
+            </ion-fab-button>
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="7">
+          
+            <ion-label position="stacked">Nombre y Apellido</ion-label>
+            <ion-input></ion-input>
+         
+          
+            <ion-label position="stacked">Genero</ion-label>
+            <ion-select placeholder="Select One">
+              <ion-select-option value="f">Female</ion-select-option>
+              <ion-select-option value="m">Male</ion-select-option>
+            </ion-select>
+         
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label position="stacked">Correo Electronico</ion-label>
+            <ion-input></ion-input>
+            <ion-label position="stacked">Contrasena</ion-label>
+            <ion-input></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+  
+  <!-- por lo momento se dejara asi hasta que el diseñador pase diseño del PERFIL -->
+<!--    -->
 
 </ion-content>
+<ion-footer>
+  <div class="ion-text-center">
+    <ion-button (click)="desconectar()" >Desconectar</ion-button>
+ </div>
+</ion-footer>
