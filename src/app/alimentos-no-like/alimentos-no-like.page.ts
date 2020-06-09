@@ -20,11 +20,15 @@ export class AlimentosNoLikePage implements OnInit {
               private utilities: MensajesService) { }
 
    ngOnInit() {
+
     this.getFoods()
+
   }
 
   async getFoods(){
+    this.presentLoading()
     const valor = await this.service.getFoods()
+    this.loadingController.dismiss()
       if(valor == false ){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
@@ -52,7 +56,7 @@ export class AlimentosNoLikePage implements OnInit {
          const validar2 = await this.service.calculate_menu()
          this.loadingController.dismiss()
            if(validar2){
-              this.ruta.navigateForward(['/indicadores'])
+              this.ruta.navigateForward(['/bateria-alimento'])
            }else{
             this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
            }
@@ -83,5 +87,6 @@ export class AlimentosNoLikePage implements OnInit {
       });
       await loading.present();
     }
+
 
 }

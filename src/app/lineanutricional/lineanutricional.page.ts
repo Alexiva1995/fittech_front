@@ -32,17 +32,17 @@ export class LineanutricionalPage implements OnInit {
       switch (id) {
         case 0:
           {
-            this.option1 = true;
+            this.option1 = false;
             this.option2 = false;
             this.option3 = false;
-            this.option4 = false;
+            this.option4 = true;
              this.formNutrition.controls.name.setValue(id);
             break;
         }
         case 1:
           {
-            this.option1 = false;
-            this.option2 = true;
+            this.option1 = true;
+            this.option2 = false;
             this.option3 = false;
             this.option4 = false;
              this.formNutrition.controls.name.setValue(id);
@@ -53,7 +53,7 @@ export class LineanutricionalPage implements OnInit {
           {
             this.option1 = false;
             this.option2 = false;
-            this.option3 = true;
+            this.option3 = false;
             this.option4 = false;
              this.formNutrition.controls.name.setValue(id);
             break;
@@ -61,10 +61,10 @@ export class LineanutricionalPage implements OnInit {
 
         case 3:
           {
-            this.option4 = true;
+            this.option4 = false;
             this.option1 = false;
             this.option2 = false;
-            this.option3 = false;
+            this.option3 = true;
              this.formNutrition.controls.name.setValue(id);
             break;
         }

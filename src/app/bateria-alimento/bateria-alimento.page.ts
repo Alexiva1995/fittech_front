@@ -33,4 +33,9 @@ export class BateriaAlimentoPage implements OnInit {
     this.ruta.navigateForward([`/alimentos-seleccion/${url}`])
   }
 
+
+  devolver(){
+    this.ruta.navigateForward([`/tabs/dashboard`])
+  }
+
 }

@@ -21,14 +21,14 @@
         font-size: 1.2rem;
     }
     ion-input{
-        background: white;
+        background: #dcdcdc;
         border-radius: 10px;
         color: black;
         margin-bottom: 1rem;
     }
 
     ion-select{
-        background: white;
+        background: #dcdcdc;
         border-radius: 10px;
         color: black;
         margin-bottom: 1rem;
@@ -56,7 +56,7 @@
   }
 
   ion-segment-button{
-    color: white;
+    color: black;
     .active{
         background: #ef4044;
         border-top-right-radius: 20px;
