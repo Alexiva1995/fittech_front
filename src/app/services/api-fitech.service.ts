@@ -121,6 +121,7 @@ export class ApiFitechService {
           chest_pains : persona.dolorPecho,
           cardiac_pathologies : persona.patologiaCardiaca,
           unusual_fatigue : persona.fatiga,
+          renal_insufficiency : persona.insuficiencia_renal,
           none:persona.noEnfermedad
         }
   
@@ -165,6 +166,7 @@ export class ApiFitechService {
           chest_pains : persona.dolorPecho,
           cardiac_pathologies : persona.patologiaCardiaca,
           unusual_fatigue : persona.fatiga,
+          renal_insufficiency : persona.insuficiencia_renal,
           none:persona.noEnfermedad
         }
   
@@ -319,6 +321,7 @@ export class ApiFitechService {
       early_death : persona.muerte_prematura,
       high_blood_pressure : persona.presion_corazon,
       diabetes : persona.diabete_corazon,
+      renal_insufficiency : persona.insuficiencia_renal,
       none : persona.ninguna,
     }
 

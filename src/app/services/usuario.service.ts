@@ -31,6 +31,7 @@ export class UsuarioService {
     dolorPecho:0,
     fatiga:0,
     noEnfermedad:0,
+    insuficiencia_renal:0,
     password:null
   }
 
@@ -43,6 +44,7 @@ export class UsuarioService {
     presion_corazon:null,
     diabete_corazon:null,
     muerte_prematura:null,
+    insuficiencia_renal:null,
     ninguna:null
   }
 
@@ -99,6 +101,7 @@ export class UsuarioService {
     this.datosPersonales.desvanecimiento = valor.desvanecimiento
     this.datosPersonales.diabete = valor.diabete
     this.datosPersonales.dolorPecho = valor.dolorPecho
+    this.datosPersonales.insuficiencia_renal = valor.insuficiencia_renal
     if(valor.noEnfermedad){
       this.datosPersonales.noEnfermedad = 1 
     }else{
@@ -165,6 +168,12 @@ export class UsuarioService {
       this.condicionPersona.muerte_prematura = 0
     }
 
+    if(valor.insuficiencia_renal){
+      this.condicionPersona.insuficiencia_renal = 1
+    }else{
+      this.condicionPersona.insuficiencia_renal = 0
+    }
+
     if(valor.ninguna){
       this.condicionPersona.ninguna = 1
     }else{
@@ -207,9 +216,9 @@ export class UsuarioService {
         let data:Observable<any> = this.http.post(`${URL}/auth/measurement_record`, record, {headers});
 
         data.subscribe(resp=>{
-          resolve(resp)
+          resolve(true)
         },err=>{
-          reject(err)
+          resolve(false)
         })
        
         
