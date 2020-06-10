@@ -23,20 +23,20 @@
     <div class="contenedorMenu">
       <div class="contenedorMenuItem">
           <p style="color: black;">Total <br> carbohidratos</p>
-          <ion-progress-bar value="0.2" color="dark"></ion-progress-bar>
+          <ion-progress-bar [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
           <p style="color: black;">{{carbo}}/{{datosUsuario.carbo}}</p>
       </div>
      
         <div class="contenedorMenuItem">
             <p style="color: black;">Total <br> grasa</p>
-            <ion-progress-bar value="0.5" color="dark"></ion-progress-bar>
-            <p style="color: black;">{{protein}}/{{datosUsuario.grease}}</p>
+            <ion-progress-bar [value]="progressBar(protein, datosUsuario.grease)"></ion-progress-bar>
+            <p style="color: black;">{{grasa}}/{{datosUsuario.grease}}</p>
         </div>
        
           <div class="contenedorMenuItem">
               <p style="color: black;">Total <br> proteina</p>
-              <ion-progress-bar value="0.5" color="dark"></ion-progress-bar>
-              <p style="color: black;">{{grasa}}/{{datosUsuario.protein}}</p>
+              <ion-progress-bar [value]="progressBar(grasa, datosUsuario.protein)"></ion-progress-bar>
+              <p style="color: black;">{{protein}}/{{datosUsuario.protein}}</p>
           </div>
         </div>
   </ion-item>
@@ -46,7 +46,7 @@
       <ion-label class="ion-text-wrap" style="color: #ef4044;">  {{alimento.cant}} = {{alimento.calories}}Kcal  </ion-label>
     </ion-label>
     <ion-buttons slot="end">
-       <ion-button color="danger" (click)="add(i)">+</ion-button>
+        <ion-button color="danger" (click)="add(i)" [disabled]='carbo >= totalCarbo || grease >= totalgrease || protein >= totalprotein'>+</ion-button>
       <p>{{alimento.cantidad}}</p>
       <ion-button color="danger" (click)="decrease(i)" [disabled]='alimento.cantidad == 0'>-</ion-button> 
     </ion-buttons>  
@@ -54,4 +54,18 @@
 
 
 </ion-content>
+<ion-footer>
+  <ion-card style="  
+  background: #EF4044;
+  color: white;
+  width: 286px; 
+  border-radius: 10px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  font-family: 'Open Sans';" (click)="saltarCalentamiento()" [disabled]='carbo >= totalCarbo || grease >= totalgrease || protein >= totalprotein'>
+  <h2 style="text-align: center; margin: 10px;">
+   <b> Guardar </b>
+  </h2>  
+</ion-card>
+</ion-footer>
 

@@ -16,6 +16,9 @@ export class AlimentosSeleccionPage implements OnInit {
   carbo = 0;
   protein = 0;
   grasa = 0;
+  totalCarbo: any;
+  totalgrease: any;
+  totalprotein: any;
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService) { }
@@ -53,7 +56,11 @@ export class AlimentosSeleccionPage implements OnInit {
         this.alimentos.forEach(element => {
           element['cantidad'] = 0;
         });
-        this.datosUsuario = valor['Menu']
+        this.datosUsuario = valor['Menu'];
+        this.totalCarbo = this.datosUsuario.carbo+5;
+        this.totalgrease = this.datosUsuario.grease+5;
+        this.totalprotein = this.datosUsuario.protein+5;
+
       }
   }
 
@@ -83,8 +90,21 @@ export class AlimentosSeleccionPage implements OnInit {
             this.protein += element.protein*element.cantidad;
           }
         });
+       
         this.carbo = Math.round(this.carbo*100)/100;
         this.grasa = Math.round(this.grasa*100)/100;
         this.protein = Math.round(this.protein*100)/100;
+        console.log(this.totalCarbo);
+        console.log(this.totalgrease);
+        console.log(this.totalprotein);
+        
+      }
+
+      progressBar(data, total){
+        if((data*100/total)/100 >= 1){
+          return 1;
+        }else{
+          return (data*100/total)/100;
+        }
       }
 }
