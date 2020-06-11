@@ -14,6 +14,9 @@ import { PopmensajeComponent } from './popmensaje/popmensaje.component';
 import { FormsModule } from '@angular/forms';
 import { AntecedentefmliarComponent } from '../antecedentefmliar/antecedentefmliar.component';
 import { BackBtnComponent } from '../back-btn/back-btn.component';
+import { IndicadoresComponent } from './indicadores/indicadores.component';
+import { MedidasComponent } from './medidas/medidas.component';
+import { ProgresoComponent } from './progreso/progreso.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { BackBtnComponent } from '../back-btn/back-btn.component';
     PopremplazarComponent,
     PopmensajeComponent,
     AntecedentefmliarComponent,
-    BackBtnComponent
+    IndicadoresComponent,
+    BackBtnComponent,
+    MedidasComponent,
+    ProgresoComponent
   ],
   exports:[
     EdadComponent,
@@ -40,7 +46,11 @@ import { BackBtnComponent } from '../back-btn/back-btn.component';
     PopremplazarComponent,
     PopmensajeComponent,
     AntecedentefmliarComponent,
-    BackBtnComponent
+    BackBtnComponent,
+    IndicadoresComponent,
+    MedidasComponent,
+    ProgresoComponent
+
   ],
   imports: [
     FormsModule,
