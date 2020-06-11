@@ -29,13 +29,13 @@
      
         <div class="contenedorMenuItem">
             <p style="color: black;">Total <br> grasa</p>
-            <ion-progress-bar [value]="progressBar(protein, datosUsuario.grease)"></ion-progress-bar>
+            <ion-progress-bar [value]="progressBar(grasa, datosUsuario.grease)"></ion-progress-bar>
             <p style="color: black;">{{grasa}}/{{datosUsuario.grease}}</p>
         </div>
        
           <div class="contenedorMenuItem">
               <p style="color: black;">Total <br> proteina</p>
-              <ion-progress-bar [value]="progressBar(grasa, datosUsuario.protein)"></ion-progress-bar>
+              <ion-progress-bar [value]="progressBar(protein, datosUsuario.protein)"></ion-progress-bar>
               <p style="color: black;">{{protein}}/{{datosUsuario.protein}}</p>
           </div>
         </div>
@@ -46,7 +46,7 @@
       <ion-label class="ion-text-wrap" style="color: #ef4044;">  {{alimento.cant}} = {{alimento.calories}}Kcal  </ion-label>
     </ion-label>
     <ion-buttons slot="end">
-        <ion-button color="danger" (click)="add(i)" [disabled]='carbo >= totalCarbo || grease >= totalgrease || protein >= totalprotein'>+</ion-button>
+        <ion-button color="danger" (click)="add(i)" [disabled]='carbo >= datosUsuario.carbo || grasa >= datosUsuario.grease || protein >= datosUsuario.protein'>+</ion-button>
       <p>{{alimento.cantidad}}</p>
       <ion-button color="danger" (click)="decrease(i)" [disabled]='alimento.cantidad == 0'>-</ion-button> 
     </ion-buttons>  
@@ -62,7 +62,7 @@
   border-radius: 10px;
   text-transform: uppercase;
   margin: 0 auto;
-  font-family: 'Open Sans';" (click)="saltarCalentamiento()" [disabled]='carbo >= totalCarbo || grease >= totalgrease || protein >= totalprotein'>
+  font-family: 'Open Sans';" (click)="guardarMenu()" [disabled]='carbo >= totalCarbo || grease >= totalgrease || protein >= totalprotein'>
   <h2 style="text-align: center; margin: 10px;">
    <b> Guardar </b>
   </h2>  

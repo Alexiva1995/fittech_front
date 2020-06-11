@@ -119,6 +119,22 @@ export class NutricionService {
 
   }
 
+  storeMenu(menu){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })   
+      this.http.post(`${URL}/auth/store-menu`, menu, {headers})
+          .subscribe(resp=>{
+            resolve(resp)
+          },err=>{
+            reject(err)
+          })
+      })
+
+  }
+
   //Calculos de indicadores
   indicadores(){
     return new Promise( async (resolve, reject)  => {
