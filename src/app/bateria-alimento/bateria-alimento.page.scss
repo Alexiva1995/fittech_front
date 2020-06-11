@@ -57,6 +57,9 @@
     background-color: #f1f1f1;
     position: relative;
     border-radius: 15px;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+    background-size: cover;
     &Titulo{
       position: absolute;
       top: 10%;

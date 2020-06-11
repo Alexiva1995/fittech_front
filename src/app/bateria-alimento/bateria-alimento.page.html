@@ -21,21 +21,23 @@
 
   <div class="contenedorMenu">
     <div class="contenedorMenuItem">
-        <p style="color: white;">Total Calorias</p>
-        <ion-progress-bar value="0.5" color="dark"></ion-progress-bar>
-        <p style="color: white;">999</p>
+        <p style="color: black;">Total <br> carbohidratos</p>
+        <ion-progress-bar [value]="progressBar(carbo, totalFoods.total_carbo)"></ion-progress-bar>
+        <p style="color: black;">{{carbo}}/{{totalFoods.total_carbo}}</p>
     </div>
-    <!-- <div class="contenedorMenuItem">
-      <p style="color: white;">Proteínas</p>
-      <ion-progress-bar value="0.5" color="dark"></ion-progress-bar>
-      <p style="color: white;">66/22g</p>
-    </div>
-    <div class="contenedorMenuItem">
-      <p style="color: white;">Grasas</p>
-      <ion-progress-bar value="0.5" color="dark"></ion-progress-bar>
-      <p style="color: white;">66/22g</p>
-    </div> -->
-  </div>
+   
+      <div class="contenedorMenuItem">
+          <p style="color: black;">Total <br> grasa</p>
+          <ion-progress-bar [value]="progressBar(grasa, totalFoods.total_greases)"></ion-progress-bar>
+          <p style="color: black;">{{grasa}}/{{totalFoods.total_greases}}</p>
+      </div>
+     
+        <div class="contenedorMenuItem">
+            <p style="color: black;">Total <br> proteina</p>
+            <ion-progress-bar [value]="progressBar(protein, totalFoods.total_protein)"></ion-progress-bar>
+            <p style="color: black;">{{protein}}/{{totalFoods.total_protein}}</p>
+        </div>
+      </div>
 
   <div class="ion-padding ion-text-left titulo">
     Alimentación
@@ -43,47 +45,63 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6" (click)="seleccion('Desayuno')">   
-         <div class="ContenedorTarjeta">
+      <ion-col size="6" (click)="seleccion('Desayuno')" >   
+         <div class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno-grande.jpg);">
             <div class="ContenedorTarjetaTitulo">
               Desayuno
             </div>
-            <div class="ContenedorTarjetaIcono">
-              <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-              <p style="margin: 0;">Añadir</p>
+            <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(0)">
+              <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark" ></ion-icon>
+              <p style="margin: 0; ">Añadir</p>
+            </div>
+            <div class="ContenedorTarjetaIcono" *ngIf="validateFood(0)">
+              <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark" ></ion-icon>
+              <p style="margin: 0;" >Añadido</p>
             </div>
          </div>
       </ion-col>
-      <ion-col size="6" (click)="seleccion('Almuerzo')">   
-        <div class="ContenedorTarjeta">
+      <ion-col size="6" (click)="seleccion('Almuerzo')" >   
+        <div class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo-grande.jpg);">
            <div class="ContenedorTarjetaTitulo">
             Almuerzo
            </div>
-           <div class="ContenedorTarjetaIcono">
+           <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(1)">
             <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-            <p style="margin: 0;">Añadir</p>
+            <p style="margin: 0;" >Añadir</p>
+           </div>
+           <div class="ContenedorTarjetaIcono" *ngIf="validateFood(1)">
+            <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+            <p style="margin: 0;" >Añadido</p>
            </div>
         </div>
      </ion-col>
-     <ion-col size="6" (click)="seleccion('Snack')">   
-      <div class="ContenedorTarjeta">
+     <ion-col size="6" (click)="seleccion('Snack')" >   
+      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/snack-grande.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Snack
          </div>
-         <div class="ContenedorTarjetaIcono">
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(3)">
           <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;">Añadir</p>
+          <p style="margin: 0;" >Añadir</p>
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(3)">
+          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadido</p>
          </div>
       </div>
      </ion-col>
-     <ion-col size="6" (click)="seleccion('Cena')">   
-      <div class="ContenedorTarjeta">
+     <ion-col size="6" (click)="seleccion('Cena')" >   
+      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/cena-grande.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Cena
          </div>
-         <div class="ContenedorTarjetaIcono">
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(2)">
           <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;">Añadir</p>
+          <p style="margin: 0;" >Añadir</p>
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(2)">
+          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadido</p>
          </div>
       </div>
    </ion-col>
