@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NutricionService } from '../services/nutricion.service';
 import { MensajesService } from '../services/mensajes.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-alimentos-seleccion',
@@ -21,7 +22,8 @@ export class AlimentosSeleccionPage implements OnInit {
   totalprotein: any;
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
-              private utilities: MensajesService) { }
+              private utilities: MensajesService,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
     //  parametros del id
@@ -47,7 +49,7 @@ export class AlimentosSeleccionPage implements OnInit {
   }
 
   async getFoods(comida:any){
-    const valor = await this.service.menu(comida)
+    const valor = await this.service.menu(comida);
       if(valor == false ){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
@@ -106,5 +108,31 @@ export class AlimentosSeleccionPage implements OnInit {
         }else{
           return (data*100/total)/100;
         }
+      }
+
+      guardarMenu(){
+        let menu = {
+          "type_food": this.datosUsuario.type_food,
+          "total_proteins": this.totalprotein,
+          "total_greases": this.totalgrease,
+          "total_carbos": this.totalCarbo,
+          "total_calories": 0,
+          "foods": []
+        }
+
+        this.alimentos.forEach(element => {
+          if(element.cantidad > 0){
+            menu.total_calories += element.calories;
+            let food = [ element.id, element.cantidad]
+            menu.foods.push(food);
+          }
+        });
+          this.service.storeMenu(menu).then((res) => {
+           console.log(res);
+           this.utilities.alertaInformatica(this.dataRecibida+ ' Guardado');
+            this.navCtrl.navigateRoot('/bateria-alimento')
+         }).catch((err) => {
+          this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+         });
       }
 }
