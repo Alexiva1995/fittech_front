@@ -14,23 +14,23 @@ export class MedidasComponent implements OnInit {
               public loadingController: LoadingController,) { }
 
   medidasUser:any = {
-    peso:'1',
-    altura: '2',
-    cintura_min:'3',
-    cintura_max:'4',
-    cadera:'5',
-    cuello:'6',
-    muslo_d: '7',
-    muslo_i:'8',
-    brazo_d:'9',
-    brazo_i:'10',
-    pantorrilla_d:'11',
-    pantorrilla_i:'12',
-    torax:'13',
+    peso:null,
+    altura:null,
+    cintura_min:null,
+    cintura_max:null,
+    cadera:null,
+    cuello:null,
+    muslo_d:null,
+    muslo_i:null,
+    brazo_d:null,
+    brazo_i:null,
+    pantorrilla_d:null,
+    pantorrilla_i:null,
+    torax:null,
   }
 
   ngOnInit() {
-    // this.getData()
+    this.getData()
   }
 
   async getData(){
@@ -40,7 +40,19 @@ export class MedidasComponent implements OnInit {
       if(valor == false ){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
-        console.log("que recibo" , valor)
+         this.medidasUser.altura = valor['user'].stature
+         this.medidasUser.peso = valor['user'].weight
+         this.medidasUser.cintura_min = valor['measurement_record'].min_waist
+         this.medidasUser.cintura_max = valor['measurement_record'].max_waist
+         this.medidasUser.cadera = valor['measurement_record'].hip
+         this.medidasUser.cuello = valor['measurement_record'].neck
+         this.medidasUser.muslo_d = valor['measurement_record'].right_thigh
+         this.medidasUser.muslo_i = valor['measurement_record'].left_thigh
+         this.medidasUser.brazo_d = valor['measurement_record'].right_arm
+         this.medidasUser.brazo_i = valor['measurement_record'].left_arm
+         this.medidasUser.pantorrilla_d = valor['measurement_record'].right_calf
+         this.medidasUser.pantorrilla_i = valor['measurement_record'].left_calf
+         this.medidasUser.torax = valor['measurement_record'].torax
       }
   }
 

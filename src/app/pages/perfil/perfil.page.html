@@ -14,20 +14,20 @@
 <ion-content>
 
   <ion-toolbar>
-    <ion-segment value="all">
-      <ion-segment-button value="all">
+    <ion-segment value="1" (ionChange)="cambiar($event)" color="danger">
+      <ion-segment-button value="1">
         <ion-icon name="person-circle-outline"></ion-icon>
         Mi perfil
       </ion-segment-button>
-      <ion-segment-button value="all">
+      <ion-segment-button value="2">
         <ion-icon name="bar-chart-outline"></ion-icon>
         Indicadores
       </ion-segment-button>
-      <ion-segment-button value="all">
+      <ion-segment-button value="3">
         <ion-icon name="bar-chart-outline"></ion-icon>
         Medidas
       </ion-segment-button>
-      <ion-segment-button value="all">
+      <ion-segment-button value="4">
         <ion-icon name="bar-chart-outline"></ion-icon>
         Progreso
       </ion-segment-button>
@@ -35,8 +35,9 @@
   </ion-toolbar>
 
    
-  <ng-container> 
+  <ng-container *ngIf="comparar ==='1' "> 
     <ion-grid>
+    <form [formGroup]="form">
       <ion-row>
         <ion-col size="5">
           <ion-avatar>
@@ -49,7 +50,7 @@
         <ion-col size="7">
           
             <ion-label position="stacked">Nombre y Apellido</ion-label>
-            <ion-input></ion-input>
+            <ion-input formControlName="nombre"></ion-input>
          
           
             <ion-label position="stacked">Genero</ion-label>
@@ -63,18 +64,25 @@
       <ion-row>
         <ion-col size="12">
           <ion-label position="stacked">Correo Electronico</ion-label>
-            <ion-input></ion-input>
-            <ion-label position="stacked">Contrasena</ion-label>
-            <ion-input></ion-input>
+            <ion-input formControlName="email"></ion-input>
+            <ion-label position="stacked">Contraseña</ion-label>
+            <ion-input formControlName="pass"></ion-input>
         </ion-col>
       </ion-row>
+    </form>
     </ion-grid>
   </ng-container>
 
 
+  <ng-container *ngIf="comparar ==='2' ">
+    <app-indicadores></app-indicadores>
+  </ng-container>
 
-
-
+  <ng-container *ngIf="comparar ==='3' ">
+    <app-medidas></app-medidas>
+  </ng-container>
+    
+ 
 </ion-content>
 <ion-footer>
   <div class="ion-text-center">
