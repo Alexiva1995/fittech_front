@@ -14,7 +14,7 @@ ion-card{
    }
    .text-percent{
     text-align: center;
-    color: red;
+    color: black;
     font-size: 1.1rem;
     font-weight: bold;
    }
@@ -65,3 +65,7 @@ ion-content{
     font-weight: bold;
     opacity: 0.7;
   }
+
+.border{
+  border: 2px solid red;
+}

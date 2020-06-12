@@ -10,7 +10,7 @@ import { MensajesService } from 'src/app/services/mensajes.service';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  comparar:any = '1'
+  comparar:any = 'perfil'
   form: FormGroup;
   constructor(private fb: FormBuilder, private apiService:ApiFitechService,
             private ruta:NavController,public alertController: AlertController,
@@ -28,7 +28,7 @@ export class PerfilPage implements OnInit {
     this.getData()
   }
 
-  cambiar(valor){
+  segmentChanged(valor){
    this.comparar = valor.target.value
   }
 

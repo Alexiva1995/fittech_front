@@ -128,13 +128,13 @@ font-family: 'Roboto', sans-serif;
   color: white;
   position: absolute;
   top: 50%;
-  left: 45%;
+  left: 42%;
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .centered3 {
-    left: 35%;
+    left: 32.5%;
   }
 }
 
