@@ -21,7 +21,7 @@ export class PerfilPage implements OnInit {
         nombre:[null, Validators.required],
         email:[null,Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
         pass:['123456',Validators.compose([Validators.required, Validators.minLength(5)])],
-        imagen:['*',Validators.required],
+        imagen:['*',Validators.required]
       });
   }
   
@@ -60,6 +60,7 @@ export class PerfilPage implements OnInit {
 
 
   changeData(){
+    console.log("HOLAAAA MUNDOOOOOOOOOOO")
     console.log(this.form.controls.pass.value)
   }
 
