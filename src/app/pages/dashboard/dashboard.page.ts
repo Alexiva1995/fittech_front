@@ -122,8 +122,13 @@ export class DashboardPage implements OnInit {
 
     }
 
-  nutricion(){
-    this.ruta.navigateForward('actividad')
+  async nutricion(){
+    const data = await this.apiService.cargarnutricion()
+      if(data  === 'activado'){
+        this.ruta.navigateForward('bateria-alimento')
+      }else{
+        this.ruta.navigateForward('actividad')
+      }
   }
 
 

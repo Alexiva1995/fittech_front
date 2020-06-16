@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NutricionService } from '../services/nutricion.service';
 import { MensajesService } from '../services/mensajes.service';
 import { NavController, LoadingController } from '@ionic/angular';
+import { ApiFitechService } from '../services/api-fitech.service';
 
 @Component({
   selector: 'app-alimentos-no-like',
@@ -17,6 +18,7 @@ export class AlimentosNoLikePage implements OnInit {
   constructor(private service: NutricionService,
               private ruta: NavController,
               public loadingController: LoadingController,
+              private apiService:ApiFitechService,
               private utilities: MensajesService) { }
 
    ngOnInit() {
@@ -56,6 +58,7 @@ export class AlimentosNoLikePage implements OnInit {
          const validar2 = await this.service.calculate_menu()
          this.loadingController.dismiss()
            if(validar2){
+              this.apiService.guardarnutricion()
               this.ruta.navigateForward(['/bateria-alimento'])
            }else{
             this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')

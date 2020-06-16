@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from './guards/login.guard';
+import { NutricionGuard } from './guards/nutricion.guard';
 const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)},
   {
@@ -247,6 +248,7 @@ const routes: Routes = [
   {
     path: 'bateria-alimento',
     loadChildren: () => import('./bateria-alimento/bateria-alimento.module').then( m => m.BateriaAlimentoPageModule)
+   
   },
   {
     path: 'alimentos-seleccion/:id',

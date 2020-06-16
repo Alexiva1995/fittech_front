@@ -242,8 +242,8 @@ export class ApiFitechService {
     await this.storage.set('examencapacidad',capacidad)
   }
 
-  async guardaractividad(actividad:string){
-    await this.storage.set('actividad',actividad)
+  async guardarnutricion(){
+    await this.storage.set('nutricion',"activado")
   }
 
   /*Actualziar storgae */
@@ -279,8 +279,8 @@ export class ApiFitechService {
   cargarExamenCapacidad(){
     return this.storage.get('examencapacidad')
   }
-  cargaractividad(){
-    return this.storage.get('actividad')
+  cargarnutricion(){
+    return this.storage.get('nutricion')
   }
 
   
@@ -787,7 +787,7 @@ export class ApiFitechService {
   }
 
   desconectarUsuario(){
-    this.storage.clear()
+    this.storage.clear();
   }
 
   obtenerCalentamiento(){
