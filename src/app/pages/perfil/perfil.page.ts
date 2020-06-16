@@ -60,7 +60,6 @@ export class PerfilPage implements OnInit {
 
 
   changeData(){
-    console.log("HOLAAAA MUNDOOOOOOOOOOO")
     console.log(this.form.controls.pass.value)
   }
 
