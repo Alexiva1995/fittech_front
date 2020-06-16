@@ -12,15 +12,16 @@ import { MensajesService } from 'src/app/services/mensajes.service';
 export class PerfilPage implements OnInit {
   comparar:any = 'perfil'
   image:any;
+  genero:any
   form: FormGroup;
   constructor(private fb: FormBuilder, private apiService:ApiFitechService,
             private ruta:NavController,public alertController: AlertController,
             private service: ApiFitechService,private utilities: MensajesService,){ 
       this.form = this.fb.group({
         nombre:[null, Validators.required],
-        email:[null,Validators.required],
-        pass:['*****',Validators.required],
-        imagen:[null,Validators.required],
+        email:[null,Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+        pass:['123456',Validators.compose([Validators.required, Validators.minLength(5)])],
+        imagen:['*',Validators.required],
       });
   }
   
@@ -47,10 +48,19 @@ export class PerfilPage implements OnInit {
       if(valor == false ){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
-        
+          if(valor['user'].gender == '1'){
+            this.genero = "Hombre"
+          }else{
+            this.genero = "Mujer"
+          }
          this.form.controls.nombre.setValue(valor['user'].name)
          this.form.controls.email.setValue(valor['user'].email)
       }
+  }
+
+
+  changeData(){
+    console.log(this.form.controls.pass.value)
   }
 
 
