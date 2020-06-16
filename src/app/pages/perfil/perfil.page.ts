@@ -11,6 +11,7 @@ import { MensajesService } from 'src/app/services/mensajes.service';
 })
 export class PerfilPage implements OnInit {
   comparar:any = 'perfil'
+  image:any;
   form: FormGroup;
   constructor(private fb: FormBuilder, private apiService:ApiFitechService,
             private ruta:NavController,public alertController: AlertController,
@@ -46,6 +47,7 @@ export class PerfilPage implements OnInit {
       if(valor == false ){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
+        
          this.form.controls.nombre.setValue(valor['user'].name)
          this.form.controls.email.setValue(valor['user'].email)
       }

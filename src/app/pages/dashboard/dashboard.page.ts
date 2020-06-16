@@ -123,8 +123,9 @@ export class DashboardPage implements OnInit {
     }
 
   async nutricion(){
+    
     const data = await this.apiService.cargarnutricion()
-      if(data  === 'activado'){
+      if(data  === 'activado' || this.week['food_measures']!= null){
         this.ruta.navigateForward('bateria-alimento')
       }else{
         this.ruta.navigateForward('actividad')

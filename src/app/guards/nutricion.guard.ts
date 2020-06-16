@@ -14,12 +14,12 @@ export class NutricionGuard implements CanActivate {
 ) { }
 
   async canActivate() {
+    const comprobar = await this.service.obtenerUsuario()
 
     //Validamos que exista la nutricion 
     const nutricion = await this.service.cargarnutricion()
-      console.log(nutricion)
     
-        if(nutricion === 'activado'){
+        if(nutricion === 'activado' || comprobar['food_measures']!=null){
             console.log("puede pasar")
             return true;
         }else{

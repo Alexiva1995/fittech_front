@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NutricionService } from '../services/nutricion.service';
 import { MensajesService } from '../services/mensajes.service';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-bateria-alimento',
@@ -17,6 +17,7 @@ export class BateriaAlimentoPage implements OnInit {
   totalFoods: any = [];
   constructor(private service: NutricionService,
               private ruta: NavController,
+              public loadingController: LoadingController,
               private utilities: MensajesService) { }
 
   ngOnInit() {
@@ -25,8 +26,10 @@ export class BateriaAlimentoPage implements OnInit {
 
   
   async getResume(){
+    this.presentLoading()
     const valor = await this.service.getResumes()
       if(valor == false ){
+        this.loadingController.dismiss()
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
         this.alimentos = valor;
@@ -37,6 +40,7 @@ export class BateriaAlimentoPage implements OnInit {
           this.grasa += element.total_greases;
           this.protein += element.total_proteins;
         });
+        this.loadingController.dismiss()
         console.log("que recibo" , valor)
       }
   }
@@ -60,5 +64,14 @@ export class BateriaAlimentoPage implements OnInit {
   devolver(){
     this.ruta.navigateForward([`/tabs/dashboard`])
   }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+    });
+    await loading.present();
+  }
+
+
 
 }
