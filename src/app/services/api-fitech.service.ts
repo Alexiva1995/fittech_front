@@ -841,5 +841,46 @@ export class ApiFitechService {
       })
   }
 
+  cambiarPassword(data:any){
+
+    return new Promise( async resolve => {
+
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.cargarToken() ,
+        'Content-Type':'application/json',
+      })
+
+
+      this.http.post(`${URL}/auth/changepassword`,data,{headers})
+          .subscribe(resp=>{
+            console.log("respuesta",resp)
+            resolve(true)
+          },err=>{
+            resolve(false)
+          })
+      })
+
+  }
+
+  actualizarPerfil(data:any){
+
+    return new Promise( async resolve => {
+
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.cargarToken() ,
+        'Content-Type':'application/json',
+      })
+
+
+      this.http.post(`${URL}/auth/update-client`,data,{headers})
+          .subscribe(resp=>{
+            console.log("respuesta",resp)
+            resolve(true)
+          },err=>{
+            resolve(false)
+          })
+      })
+
+  }
 
 }
