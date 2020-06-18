@@ -24,12 +24,18 @@ export class BateriaAlimentoPage implements OnInit {
     this.getResume()
   }
 
+  ionViewDidEnter(){
+    this.getResume()
+  }
+
+
+
   
   async getResume(){
-    this.presentLoading()
+   /*  this.presentLoading() */
     const valor = await this.service.getResumes()
       if(valor == false ){
-        this.loadingController.dismiss()
+       /*  this.loadingController.dismiss() */
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
         this.alimentos = valor;
@@ -40,7 +46,7 @@ export class BateriaAlimentoPage implements OnInit {
           this.grasa += element.total_greases;
           this.protein += element.total_proteins;
         });
-        this.loadingController.dismiss()
+       /*  this.loadingController.dismiss() */
         console.log("que recibo" , valor)
       }
   }

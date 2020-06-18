@@ -21,21 +21,21 @@
 
   <div class="contenedorMenu">
     <div class="contenedorMenuItem">
-        <p style="color: black;">Total <br> carbohidratos</p>
-        <ion-progress-bar [value]="progressBar(carbo, totalFoods.total_carbo)"></ion-progress-bar>
-        <p style="color: black;">{{carbo}}/{{totalFoods.total_carbo}}</p>
+        <p style="color: white;">Carbohidratos</p>
+        <ion-progress-bar [value]="progressBar(carbo, totalFoods.total_carbo)" [ngClass]="{'complete': progressBar(carbo, totalFoods.total_carbo) == '1'}"></ion-progress-bar>
+        <p style="color: white;">{{carbo}}/{{totalFoods.total_carbo}}</p>
     </div>
    
       <div class="contenedorMenuItem">
-          <p style="color: black;">Total <br> grasa</p>
-          <ion-progress-bar [value]="progressBar(grasa, totalFoods.total_greases)"></ion-progress-bar>
-          <p style="color: black;">{{grasa}}/{{totalFoods.total_greases}}</p>
+          <p style="color: white;">Grasa</p>
+          <ion-progress-bar [value]="progressBar(grasa, totalFoods.total_greases)" [ngClass]="{'complete': progressBar(grasa, totalFoods.total_greases) == '1'}"></ion-progress-bar>
+          <p style="color: white;">{{grasa}}/{{totalFoods.total_greases}}</p>
       </div>
      
         <div class="contenedorMenuItem">
-            <p style="color: black;">Total <br> proteina</p>
-            <ion-progress-bar [value]="progressBar(protein, totalFoods.total_protein)"></ion-progress-bar>
-            <p style="color: black;">{{protein}}/{{totalFoods.total_protein}}</p>
+            <p style="color: white;">Proteína</p>
+            <ion-progress-bar [value]="progressBar(protein, totalFoods.total_protein)" [ngClass]="{'complete': progressBar(protein, totalFoods.total_protein) == '1'}"></ion-progress-bar>
+            <p style="color: white;">{{protein}}/{{totalFoods.total_protein}}</p>
         </div>
       </div>
 
@@ -45,7 +45,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6"  >   
+      <ion-col size="6"  *ngIf="validateFood(0)">   
          <div class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno-grande.jpg);">
             <div class="ContenedorTarjetaTitulo">
               Desayuno
@@ -60,7 +60,22 @@
             </div>
          </div>
       </ion-col>
-      <ion-col size="6"  >   
+      <ion-col size="6"  *ngIf="!validateFood(0)">   
+        <div class="ContenedorTarjeta">
+           <div class="ContenedorTarjetaTitulo">
+             Desayuno
+           </div>
+           <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(0)" (click)="seleccion('Desayuno')">
+             <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark" ></ion-icon>
+             <p style="margin: 0; ">Añadir</p>
+           </div>
+           <div class="ContenedorTarjetaIcono" *ngIf="validateFood(0)">
+             <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark" ></ion-icon>
+             <p style="margin: 0;" >Añadido</p>
+           </div>
+        </div>
+     </ion-col>
+      <ion-col size="6"  *ngIf="validateFood(1)">   
         <div class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo-grande.jpg);">
            <div class="ContenedorTarjetaTitulo">
             Almuerzo
@@ -75,7 +90,22 @@
            </div>
         </div>
      </ion-col>
-     <ion-col size="6"  >   
+     <ion-col size="6"  *ngIf="!validateFood(1)">   
+      <div class="ContenedorTarjeta" >
+         <div class="ContenedorTarjetaTitulo">
+          Almuerzo
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(1)" (click)="seleccion('Almuerzo')">
+          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadir</p>
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(1)">
+          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadido</p>
+         </div>
+      </div>
+   </ion-col>
+     <ion-col size="6"  *ngIf="validateFood(3)">   
       <div class="ContenedorTarjeta" style="background-image: url(./assets/img/snack-grande.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Snack
@@ -90,7 +120,22 @@
          </div>
       </div>
      </ion-col>
-     <ion-col size="6"  >   
+     <ion-col size="6"  *ngIf="!validateFood(3)">   
+      <div class="ContenedorTarjeta" >
+         <div class="ContenedorTarjetaTitulo">
+          Snack
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(3)" (click)="seleccion('Snack')">
+          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadir</p>
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(3)">
+          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadido</p>
+         </div>
+      </div>
+     </ion-col>
+     <ion-col size="6"  *ngIf="validateFood(2)">   
       <div class="ContenedorTarjeta" style="background-image: url(./assets/img/cena-grande.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Cena
@@ -105,6 +150,21 @@
          </div>
       </div>
    </ion-col>
+   <ion-col size="6"  *ngIf="!validateFood(2)">   
+    <div class="ContenedorTarjeta">
+       <div class="ContenedorTarjetaTitulo">
+        Cena
+       </div>
+       <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(2)" (click)="seleccion('Cena')">
+        <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+        <p style="margin: 0;" >Añadir</p>
+       </div>
+       <div class="ContenedorTarjetaIcono" *ngIf="validateFood(2)">
+        <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+        <p style="margin: 0;" >Añadido</p>
+       </div>
+    </div>
+ </ion-col>
     </ion-row>
   </ion-grid>
 
