@@ -26,6 +26,7 @@ export class LineanutricionalPage implements OnInit {
   }
 
   ngOnInit() {
+   
   } 
 
     show(id){
