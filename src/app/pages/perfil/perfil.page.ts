@@ -31,7 +31,7 @@ export class PerfilPage implements OnInit {
 
       this.formpass = this.fb.group(
         {
-        password:['***',Validators.compose([Validators.required, Validators.minLength(5)])],
+        password:[null,Validators.compose([Validators.required, Validators.minLength(5)])],
         repassword:[null,Validators.required]},
         { 
         validator: this.ConfirmedValidator('password', 'repassword')
