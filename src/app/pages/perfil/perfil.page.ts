@@ -29,9 +29,15 @@ export class PerfilPage implements OnInit {
         avatar:[null]
       });
 
-      this.formpass = this.fb.group({
+      this.formpass = this.fb.group(
+        {
         password:['***',Validators.compose([Validators.required, Validators.minLength(5)])],
-      });
+        repassword:[null,Validators.required]},
+        { 
+        validator: this.ConfirmedValidator('password', 'repassword')
+      })
+
+        
   }
   
 
@@ -73,7 +79,7 @@ export class PerfilPage implements OnInit {
   async changeData(){
     const data = await this.apiService.actualizarPerfil(this.form.value)
       if(data){
-        this.utilities.notificacionUsuario("Su perfil ha sido actualizado ","primary")
+        this.utilities.notificacionUsuario("Su perfil ha sido actualizado ","dark")
         this.getData()
       }else{
         this.utilities.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
@@ -81,9 +87,12 @@ export class PerfilPage implements OnInit {
   }
 
   async changepass(){
+    
+
+
     const data = await this.apiService.cambiarPassword(this.formpass.value)
       if(data){
-        this.utilities.notificacionUsuario("Su contraseña ha sido actualizada ","primary")
+        this.utilities.notificacionUsuario("Su contraseña ha sido actualizada ","dark")
       }else{
         this.utilities.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
       }
@@ -149,5 +158,21 @@ export class PerfilPage implements OnInit {
       console.log("cameraE", err);
      });
   }
+
+
+  ConfirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+        if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+            return;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ confirmedValidator: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
 
 }

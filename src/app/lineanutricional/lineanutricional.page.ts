@@ -52,7 +52,7 @@ export class LineanutricionalPage implements OnInit {
         case 2:
           {
             this.option1 = false;
-            this.option2 = false;
+            this.option2 = true;
             this.option3 = false;
             this.option4 = false;
              this.formNutrition.controls.name.setValue(id);
