@@ -19,6 +19,7 @@ max-height: 150px;
     @media (max-height:640px) {
         @content;
     }
+    
   }
 
 // ajustar imagen de carga a video
@@ -37,6 +38,7 @@ max-height: 150px;
 .contenedor{
     width: 100%;
     height:100%; 
+    margin-bottom: 3rem;
  }
 
  .contenedor-cuerpo{
@@ -44,7 +46,7 @@ max-height: 150px;
      max-height: 70%;
      height:60%; 
      display: flex;
-     margin-top: .5rem;
+     margin-top: .9rem;
      justify-content: center;
      align-items: center;
      flex-direction: column;
