@@ -8,6 +8,12 @@ const URL  = environment.url
   providedIn: 'root'
 })
 export class NutricionService {
+  listadocomida={
+    desayuno:null,
+    almuerzo:null,
+    cena:null,
+    snack:null
+  }
 
   constructor(private http: HttpClient, private service: ApiFitechService) { }
   // nivel de grasa
@@ -199,27 +205,24 @@ export class NutricionService {
 
   }
 
+  // TREA EL LISTADO DE ALIMENTOS GUARDADOS ( ACTUALIZAR A FUTURO)
+  Listadomenu(tipodealimento,menu){
+      if(tipodealimento == 2){
+        this.listadocomida.almuerzo = menu
+      }
 
+      if(tipodealimento == 1){
+        this.listadocomida.snack = menu
+      }
 
+      if(tipodealimento == 3){
+        this.listadocomida.cena = menu
+      }
 
-  storemenu(){
-    return new Promise( (resolve, reject)  => {
-      const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.service.cargarToken(),
-        'Content-Type':'application/json',
-      })
-
-      //      this.http.get(`${URL}/auth/routine`,{headers})
-      
-      this.http.get(`${URL}/auth/routine`,{headers})
-          .subscribe(resp=>{
-          
-            resolve(true)
-          },err=>{
-            reject(false)
-          })
-      })
-
+      if(tipodealimento == 0){
+        this.listadocomida.desayuno = menu
+      }
+      console.log("guardado", this.listadocomida)
   }
 
 

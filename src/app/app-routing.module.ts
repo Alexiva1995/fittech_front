@@ -254,6 +254,11 @@ const routes: Routes = [
     path: 'alimentos-seleccion/:id',
     loadChildren: () => import('./alimentos-seleccion/alimentos-seleccion.module').then( m => m.AlimentosSeleccionPageModule)
   },
+  {
+    path: 'listadoalimento/:id',
+    loadChildren: () => import('./listadoalimento/listadoalimento.module').then( m => m.ListadoalimentoPageModule)
+  },
+
 
 
 ];

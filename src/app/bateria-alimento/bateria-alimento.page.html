@@ -54,7 +54,7 @@
               <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark" ></ion-icon>
               <p style="margin: 0; ">Añadir</p>
             </div>
-            <div class="ContenedorTarjetaIcono" *ngIf="validateFood(0)">
+            <div class="ContenedorTarjetaIcono" *ngIf="validateFood(0)" (click)="listado('Desayuno')">
               <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark" ></ion-icon>
               <p style="margin: 0;" >Añadido</p>
             </div>
@@ -75,72 +75,27 @@
            </div>
         </div>
      </ion-col>
-      <ion-col size="6"  *ngIf="validateFood(1)">   
+      <ion-col size="6"  *ngIf="validateFood(2)">   
         <div class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo-grande.jpg);">
            <div class="ContenedorTarjetaTitulo">
             Almuerzo
            </div>
-           <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(1)" (click)="seleccion('Almuerzo')">
+           <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(2)" (click)="seleccion('Almuerzo')">
             <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
             <p style="margin: 0;" >Añadir</p>
            </div>
-           <div class="ContenedorTarjetaIcono" *ngIf="validateFood(1)">
+           <div class="ContenedorTarjetaIcono" *ngIf="validateFood(2)" (click)="listado('Almuerzo')">
             <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
             <p style="margin: 0;" >Añadido</p>
            </div>
         </div>
      </ion-col>
-     <ion-col size="6"  *ngIf="!validateFood(1)">   
+     <ion-col size="6"  *ngIf="!validateFood(2)">   
       <div class="ContenedorTarjeta" >
          <div class="ContenedorTarjetaTitulo">
           Almuerzo
          </div>
-         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(1)" (click)="seleccion('Almuerzo')">
-          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;" >Añadir</p>
-         </div>
-         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(1)">
-          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;" >Añadido</p>
-         </div>
-      </div>
-   </ion-col>
-     <ion-col size="6"  *ngIf="validateFood(3)">   
-      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/snack-grande.jpg);">
-         <div class="ContenedorTarjetaTitulo">
-          Snack
-         </div>
-         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(3)" (click)="seleccion('Snack')">
-          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;" >Añadir</p>
-         </div>
-         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(3)">
-          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;" >Añadido</p>
-         </div>
-      </div>
-     </ion-col>
-     <ion-col size="6"  *ngIf="!validateFood(3)">   
-      <div class="ContenedorTarjeta" >
-         <div class="ContenedorTarjetaTitulo">
-          Snack
-         </div>
-         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(3)" (click)="seleccion('Snack')">
-          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;" >Añadir</p>
-         </div>
-         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(3)">
-          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
-          <p style="margin: 0;" >Añadido</p>
-         </div>
-      </div>
-     </ion-col>
-     <ion-col size="6"  *ngIf="validateFood(2)">   
-      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/cena-grande.jpg);">
-         <div class="ContenedorTarjetaTitulo">
-          Cena
-         </div>
-         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(2)" (click)="seleccion('Cena')">
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(2)" (click)="seleccion('Almuerzo')">
           <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
           <p style="margin: 0;" >Añadir</p>
          </div>
@@ -150,16 +105,61 @@
          </div>
       </div>
    </ion-col>
-   <ion-col size="6"  *ngIf="!validateFood(2)">   
+     <ion-col size="6"  *ngIf="validateFood(1)">   
+      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/snack-grande.jpg);">
+         <div class="ContenedorTarjetaTitulo">
+          Snack
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(1)" (click)="seleccion('Snack')">
+          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadir</p>
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(1)" (click)="listado('Snack')">
+          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadido</p>
+         </div>
+      </div>
+     </ion-col>
+     <ion-col size="6"  *ngIf="!validateFood(1)">   
+      <div class="ContenedorTarjeta" >
+         <div class="ContenedorTarjetaTitulo">
+          Snack
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(1)" (click)="seleccion('Snack')">
+          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadir</p>
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(1)">
+          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadido</p>
+         </div>
+      </div>
+     </ion-col>
+     <ion-col size="6"  *ngIf="validateFood(3)">   
+      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/cena-grande.jpg);">
+         <div class="ContenedorTarjetaTitulo">
+          Cena
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(3)" (click)="seleccion('Cena')">
+          <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadir</p>
+         </div>
+         <div class="ContenedorTarjetaIcono" *ngIf="validateFood(3)" (click)="listado('Cena')">
+          <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
+          <p style="margin: 0;" >Añadido</p>
+         </div>
+      </div>
+   </ion-col>
+   <ion-col size="6"  *ngIf="!validateFood(3)">   
     <div class="ContenedorTarjeta">
        <div class="ContenedorTarjetaTitulo">
         Cena
        </div>
-       <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(2)" (click)="seleccion('Cena')">
+       <div class="ContenedorTarjetaIcono" *ngIf="!validateFood(3)" (click)="seleccion('Cena')">
         <ion-icon name="add-circle-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
         <p style="margin: 0;" >Añadir</p>
        </div>
-       <div class="ContenedorTarjetaIcono" *ngIf="validateFood(2)">
+       <div class="ContenedorTarjetaIcono" *ngIf="validateFood(3)">
         <ion-icon name="shield-checkmark-outline"  style="font-size: 35px; margin-top: 22px;" color="dark"></ion-icon>
         <p style="margin: 0;" >Añadido</p>
        </div>

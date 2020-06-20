@@ -28,9 +28,6 @@ export class BateriaAlimentoPage implements OnInit {
     this.getResume()
   }
 
-
-
-  
   async getResume(){
    /*  this.presentLoading() */
     const valor = await this.service.getResumes()
@@ -78,6 +75,8 @@ export class BateriaAlimentoPage implements OnInit {
     await loading.present();
   }
 
-
+  listado(url:string){
+    this.ruta.navigateForward([`/listadoalimento/${url}`])
+  }
 
 }
