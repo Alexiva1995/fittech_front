@@ -120,25 +120,14 @@ export class AlimentosSeleccionPage implements OnInit {
           "foods": []
         }
 
-        // guardar el listado de alimentos selecionados
-        let comida = []
-
-
         this.alimentos.forEach(element => {
           if(element.cantidad > 0){
             menu.total_calories += element.calories;
             let food = [ element.id, element.cantidad]
-            // alimentos selecionado
-            let alimentos = [ element.name, element.cantidad];
             menu.foods.push(food);
-            comida.push(alimentos);
           }
         });
       
-        // retiene los alimentos enviados
-        console.log("datos",comida)
-        this.service.Listadomenu(menu.type_food,comida)
-
           this.service.storeMenu(menu).then((res) => {
            console.log(res);
            this.utilities.alertaInformatica(this.dataRecibida+ ' Guardado');

@@ -43,19 +43,13 @@ switch (this.dataRecibida) {
   }
 }
 async getFoods(comida:any){
-      if(comida == 0){
-        this.alimentos = this.service.listadocomida.desayuno
+  const data = await this.service.ListadoComida(comida)
+      if(data == false){
+        this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+      }else{
+        this.alimentos = data['food']
+        console.log(this.alimentos)
       }
-      if(comida == 1){
-        this.alimentos = this.service.listadocomida.snack
-      }
-      if(comida == 2){
-        this.alimentos = this.service.listadocomida.desayuno
-      }
-      if(comida == 3){
-        this.alimentos = this.service.listadocomida.cena
-      }
-
 }
 
   ucFirst(str) {

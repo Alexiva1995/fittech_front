@@ -206,23 +206,26 @@ export class NutricionService {
   }
 
   // TREA EL LISTADO DE ALIMENTOS GUARDADOS ( ACTUALIZAR A FUTURO)
-  Listadomenu(tipodealimento,menu){
-      if(tipodealimento == 2){
-        this.listadocomida.almuerzo = menu
-      }
+  ListadoComida(comida:any){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
 
-      if(tipodealimento == 1){
-        this.listadocomida.snack = menu
-      }
+      // si no se envia un dato no  funciona la ruta
+      const data = {
+        type_food : comida
+      }   
+      
+      this.http.post(`${URL}/auth/ready-food`,data,{headers})
+          .subscribe(resp=>{
+            resolve(resp)
+          },err=>{
+            reject(false)
+          })
+      })
 
-      if(tipodealimento == 3){
-        this.listadocomida.cena = menu
-      }
-
-      if(tipodealimento == 0){
-        this.listadocomida.desayuno = menu
-      }
-      console.log("guardado", this.listadocomida)
   }
 
 
