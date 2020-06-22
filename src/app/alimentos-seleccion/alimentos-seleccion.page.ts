@@ -127,13 +127,17 @@ export class AlimentosSeleccionPage implements OnInit {
             menu.foods.push(food);
           }
         });
-      
+        if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
+          this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
+        } else {
           this.service.storeMenu(menu).then((res) => {
-           console.log(res);
-           this.utilities.alertaInformatica(this.dataRecibida+ ' Guardado');
-            this.navCtrl.navigateRoot('/bateria-alimento')
-         }).catch((err) => {
-          this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
-         });
+            console.log(res);
+            this.utilities.alertaInformatica(this.dataRecibida+ ' Guardado');
+             this.navCtrl.navigateRoot('/bateria-alimento')
+          }).catch((err) => {
+           this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+          });
+        }
+          
       }
 }
