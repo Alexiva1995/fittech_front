@@ -156,9 +156,12 @@ export class NutricionService {
           .subscribe(resp=>{
             resolve(resp)
           },err=>{
-            reject(false)
+            resolve(false)
           })
-      })
+      }).catch(function(e) {
+        console.log("se ejecuta el catch",e); 
+        return false
+      });
 
   }
 

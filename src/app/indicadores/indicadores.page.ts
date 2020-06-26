@@ -10,10 +10,10 @@ import { MensajesService } from '../services/mensajes.service';
 })
 export class IndicadoresPage implements OnInit {
     dato:any
+    detectar:boolean = true
   constructor(private ruta: NavController,
               private service: NutricionService,
-              public loadingController: LoadingController,
-              private utilities: MensajesService) { }
+              public loadingController: LoadingController,) { }
 
   ngOnInit() {
     this.getIndicators()
@@ -24,7 +24,7 @@ export class IndicadoresPage implements OnInit {
     const valor = await this.service.indicadores()
     this.loadingController.dismiss()
       if(valor == false ){
-      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+        this.detectar = false
       }else{
         this.dato = valor
         console.log("que recibo" , valor)

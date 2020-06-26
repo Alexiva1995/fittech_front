@@ -22,7 +22,7 @@
       <ion-col  size="12">   
 
        
-          <ion-slides  [options]="slideOpts" #slide class="animated fadeIn delay-1s">
+          <ion-slides (ionSlideDidChange)="carrusel()"  [options]="slideOpts" #slide class="animated fadeIn delay-1s">
             <ion-fab vertical="center"  horizontal="end" slot="fixed" >
               <ion-fab-button color="dark" (click)="siguiente()" size="small">
                 <ion-icon name="arrow-forward-outline"></ion-icon>

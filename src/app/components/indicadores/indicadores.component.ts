@@ -10,6 +10,8 @@ import { MensajesService } from 'src/app/services/mensajes.service';
 })
 export class IndicadoresComponent implements OnInit {
   dato:any
+  detectar:boolean = true
+
   constructor(
               private service: NutricionService,
               public loadingController: LoadingController,
@@ -24,7 +26,7 @@ export class IndicadoresComponent implements OnInit {
     const valor = await this.service.indicadores()
     this.loadingController.dismiss()
       if(valor == false ){
-      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+        this.detectar = false
       }else{
         this.dato = valor
         console.log("que recibo" , valor)

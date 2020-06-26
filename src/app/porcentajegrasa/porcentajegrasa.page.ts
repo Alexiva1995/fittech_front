@@ -35,23 +35,16 @@ export class PorcentajegrasaPage implements OnInit {
     this.genero = valor['gender'];
     console.log("genero",this.genero)
   }
+
+
   siguiente(){
-    if(this.contador == 8 && this.genero == 1){
-      return
-    }
-
-    if(this.contador == 9 && this.genero == 0){
-      return
-    }
-
-    this.slides.getActiveIndex().then(resp=>{
-     this.cambiarborder = this.contador
-    })
-
-    this.contador++;
-    this.slides.slideNext();
-    this.progressBar()
+    this.slides.slideNext()
   }
+
+  atras(){
+    this.slides.slidePrev()
+  }
+
 
   async goTo(url:string){
     // esperar
@@ -67,25 +60,6 @@ export class PorcentajegrasaPage implements OnInit {
        }else{
         this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
        }
-  }
-
-  atras(){
-    if(this.contador <= 1){
-      return
-    }
-
-    this.slides.getActiveIndex().then(resp=>{
-      this.cambiarborder = this.contador
-     })
-
-    this.contador--;
-    console.log(this.contador)
-    this.slides.slidePrev();
-  }
-
-  async getPercent(){
-    this.index = await this.slides.getActiveIndex();
-    return this.index ;
   }
 
   nivelGrasa(){
@@ -132,6 +106,7 @@ export class PorcentajegrasaPage implements OnInit {
 
   progressBar(){
     if(this.genero == 1){
+      console.log("que recibe el progre",this.contador)
       if((this.contador*100/8)/100 >= 1){
         return 1;
       }else{
@@ -146,5 +121,15 @@ export class PorcentajegrasaPage implements OnInit {
     }
 
   }
+
+
+  async carrusel(){
+    this.index = await this.slides.getActiveIndex();
+    console.log(this.index)
+    this.cambiarborder = this.index + 1;
+    this.contador = this.cambiarborder
+    this.progressBar()
+  }
+
 
 }
