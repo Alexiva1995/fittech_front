@@ -21,7 +21,7 @@ export class LineanutricionalPage implements OnInit {
               private service: NutricionService,
               private utilities: MensajesService) { 
     this.formNutrition = this.fb.group({
-      name: ['', Validators.required],
+      feeding_type: ['', Validators.required],
     });
   }
 
@@ -37,7 +37,7 @@ export class LineanutricionalPage implements OnInit {
             this.option2 = false;
             this.option3 = false;
             this.option4 = true;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(id);
             break;
         }
         case 1:
@@ -46,7 +46,7 @@ export class LineanutricionalPage implements OnInit {
             this.option2 = false;
             this.option3 = false;
             this.option4 = false;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(id);
             break;
         }
 
@@ -56,7 +56,7 @@ export class LineanutricionalPage implements OnInit {
             this.option2 = true;
             this.option3 = false;
             this.option4 = false;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(id);
             break;
         }
 
@@ -66,7 +66,7 @@ export class LineanutricionalPage implements OnInit {
             this.option1 = false;
             this.option2 = false;
             this.option3 = true;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(id);
             break;
         }
       }

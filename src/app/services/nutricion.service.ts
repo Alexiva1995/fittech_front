@@ -38,19 +38,16 @@ export class NutricionService {
   }
   // tipo de alimento
   updateTypeFood(valor){
+    console.log("que se esta enviando a la ruta typefood",valor)
     return new Promise( async (resolve, reject)  => {
       const headers = new HttpHeaders({
         'Authorization': 'Bearer ' + await this.service.cargarToken(),
         'Content-Type':'application/json',
       })
-
-      const data = {
-        feeding_type : valor
-      }  
-
+  
       //      this.http.get(`${URL}/auth/routine`,{headers})
-      
-      this.http.post(`${URL}/auth/update-type-food`, data, {headers})
+
+      this.http.post(`${URL}/auth/update-type-food`, valor, {headers})
           .subscribe(resp=>{
             console.log(resp)
             resolve(true)
@@ -208,7 +205,7 @@ export class NutricionService {
 
   }
 
-  // TREA EL LISTADO DE ALIMENTOS GUARDADOS ( ACTUALIZAR A FUTURO)
+  // TREA EL LISTADO DE ALIMENTOS GUARDADOS 
   ListadoComida(comida:any){
     return new Promise( async (resolve, reject)  => {
       const headers = new HttpHeaders({
