@@ -24,7 +24,7 @@
         <p style="color: white;">Carbohidratos</p>
         <ion-progress-bar   [value]="progressBar(carbo, totalFoods.total_carbo)" [ngClass]="{'complete': progressBar(carbo, totalFoods.total_carbo) == '1'}"></ion-progress-bar>
         <ng-container *ngIf=" carbo <= totalFoods.total_carbo ">
-          <p style="color: white;">{{carbo}}/{{totalFoods.total_carbo}}</p>
+          <p style="color: white;">{{carbo | number:'3.2-2'}}/{{totalFoods.total_carbo}}</p>
         </ng-container>
         <ng-container *ngIf=" carbo > totalFoods.total_carbo ">
           <p style="color: white;">{{totalFoods.total_carbo}}/{{totalFoods.total_carbo}}</p>
@@ -35,7 +35,7 @@
           <p style="color: white;">Grasa</p>
           <ion-progress-bar [value]="progressBar(grasa, totalFoods.total_greases)" [ngClass]="{'complete': progressBar(grasa, totalFoods.total_greases) == '1'}"></ion-progress-bar>
           <ng-container *ngIf=" grasa <= totalFoods.total_greases ">
-            <p style="color: white;">{{grasa}}/{{totalFoods.total_greases}}</p>
+            <p style="color: white;">{{grasa | number:'3.2-2'}}/{{totalFoods.total_greases}}</p>
           </ng-container>
           <ng-container *ngIf=" grasa > totalFoods.total_greases ">
             <p style="color: white;">{{totalFoods.total_greases}}/{{totalFoods.total_greases}}</p>
@@ -46,7 +46,7 @@
             <p style="color: white;">Proteína</p>
             <ion-progress-bar [value]="progressBar(protein, totalFoods.total_protein)" [ngClass]="{'complete': progressBar(protein, totalFoods.total_protein) == '1'}"></ion-progress-bar>
             <ng-container *ngIf=" protein <= totalFoods.total_protein ">
-              <p style="color: white;">{{protein}}/{{totalFoods.total_protein}}</p>
+              <p style="color: white;">{{protein | number:'3.2-2'}}/{{totalFoods.total_protein}}</p>
             </ng-container>
             <ng-container *ngIf=" protein > totalFoods.total_protein ">
               <p style="color: white;">{{totalFoods.total_protein}}/{{totalFoods.total_protein}}</p>

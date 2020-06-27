@@ -35,14 +35,25 @@ export class BateriaAlimentoPage implements OnInit {
        /*  this.loadingController.dismiss() */
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
+        this.alimentos = null
+        this.totalFoods = null
+        this.menu = []
+        this.carbo = null
+        this.grasa = null
+        this.protein = null
+
         this.alimentos = valor;
         this.totalFoods = valor['Calories que dederia consumir al dia'];
         this.menu = valor['calorias que ha consumido en el dia'];
-        this.menu.forEach(element => {    
+
+        this.menu.forEach(element => { 
+          console.log("sumatoria foreach",element.total_carbos)   
           this.carbo += element.total_carbos;
           this.grasa += element.total_greases;
           this.protein += element.total_proteins;
         });
+
+
        /*  this.loadingController.dismiss() */
         console.log("que recibo" , valor)
       }
@@ -78,5 +89,6 @@ export class BateriaAlimentoPage implements OnInit {
   listado(url:string){
     this.ruta.navigateForward([`/listadoalimento/${url}`])
   }
+
 
 }
