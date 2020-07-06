@@ -86,6 +86,7 @@ export class AlimentosSeleccionPage implements OnInit {
         this.grasa = 0;
         this.protein = 0;
         this.alimentos.forEach(element => {
+          console.log(element);
           if(element.cantidad > 0){
             this.carbo += element.carbo*element.cantidad;
             this.grasa += element.greases*element.cantidad;
@@ -96,9 +97,9 @@ export class AlimentosSeleccionPage implements OnInit {
         this.carbo = Math.round(this.carbo*100)/100;
         this.grasa = Math.round(this.grasa*100)/100;
         this.protein = Math.round(this.protein*100)/100;
-        console.log(this.totalCarbo);
-        console.log(this.totalgrease);
-        console.log(this.totalprotein);
+        console.log(this.carbo);
+        console.log(this.grasa);
+        console.log(this.protein);
         
       }
 
@@ -113,9 +114,9 @@ export class AlimentosSeleccionPage implements OnInit {
       guardarMenu(){
         let menu = {
           "type_food": this.datosUsuario.type_food,
-          "total_proteins": this.totalprotein,
-          "total_greases": this.totalgrease,
-          "total_carbos": this.totalCarbo,
+          "total_proteins": this.protein,
+          "total_greases": this.grasa,
+          "total_carbos": this.carbo,
           "total_calories": 0,
           "foods": []
         }
