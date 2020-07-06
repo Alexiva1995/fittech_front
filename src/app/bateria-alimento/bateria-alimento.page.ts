@@ -38,9 +38,9 @@ export class BateriaAlimentoPage implements OnInit {
         this.alimentos = null
         this.totalFoods = null
         this.menu = []
-        this.carbo = null
-        this.grasa = null
-        this.protein = null
+        this.carbo = 0
+        this.grasa = 0
+        this.protein = 0
 
         this.alimentos = valor;
         this.totalFoods = valor['Calories que dederia consumir al dia'];

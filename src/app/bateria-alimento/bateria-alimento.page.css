@@ -25,10 +25,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  flex-wrap: wrap;
   background-color: #EF4044;
-  width: 95%;
-  margin: 0 auto;
+  width: 100%;
   border-radius: 12px;
   box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.09);
 }
@@ -49,9 +47,14 @@
 .ContenedorTarjeta {
   width: 95%;
   height: 200px;
-  background-color: #f1f1f1;
+  background-color: grey;
   position: relative;
+  margin: 0 auto;
   border-radius: 15px;
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .ContenedorTarjetaTitulo {
@@ -65,7 +68,7 @@
   float: right;
   border-radius: 6px;
   padding: 5px;
-  width: 71px;
+  width: 72px;
   text-align: center;
 }
 
@@ -73,5 +76,16 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  text-align: center;
   transform: translate(-50%, -50%);
+}
+
+ion-progress-bar {
+  --progress-background: white;
+  --background: grey;
+}
+
+.complete {
+  --progress-background: black !important;
+  --background: grey;
 }

@@ -46,7 +46,7 @@ ion-col ion-avatar ion-fab-button {
   position: absolute;
   right: 0;
   bottom: 30%;
-  --background: #ef4044;
+  --background: #FFBB00;
 }
 
 ion-col ion-avatar img {
