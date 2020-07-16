@@ -1,7 +1,17 @@
 <ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" style="    padding: 0px !important;
+    margin: 0px !important;">
+      <ion-fab  horizontal="start" slot="fixed" class="animated fadeInUp delay-2s" >
+        <ion-fab-button style="--background:#ef4044" (click)="confirmation()" size="small">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-buttons>
   <div class="cabezera">
     <img src="assets/img/logo-app.png" class="logo">
   </div>
+</ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="status == 'descanso'" style="--background:black;">

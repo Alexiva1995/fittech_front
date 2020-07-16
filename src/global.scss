@@ -63,16 +63,42 @@
    color: red;
  }
 }
-
-.customMensaje1{
+.customMensaje2{
    h2{
       text-align: center;
+      margin: 0 auto;
+      display: block;
    }
    button.confirmButton{
      color: red;
+     text-align: center;
+    margin: 0 auto;
+    display: block;
    }
    button.cancelButton{
       color: black;
+      text-align: center;
+    margin: 0 auto;
+    display: block;
+    }
+}
+.customMensaje1{
+   h2{
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+   }
+   button.confirmButton{
+     color: red;
+     text-align: center;
+    margin: 0 auto;
+    display: block;
+   }
+   button.cancelButton{
+      color: black;
+      text-align: center;
+    margin: 0 auto;
+    display: block;
     }
   }
 
