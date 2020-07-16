@@ -11,6 +11,7 @@ import {
   NavController, AlertController
 } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
+import { threadId } from 'worker_threads';
 
 
 @Component({
@@ -66,6 +67,10 @@ export class RutinaEntrenamientoPage implements OnInit {
     this.total = this.rutinas.length;
     this.stages = this.data['stages'];
   }
+
+/*   atras(){
+    this.navCtrl.navigateRoot('/tabs/dashboard');
+  } */
 
   async startVideo() {
     this.ready = false;
@@ -231,7 +236,33 @@ export class RutinaEntrenamientoPage implements OnInit {
     this.startVideo();
   }
 
+async confirmation(){
+  this.pauseTimer();
+  const alert = await this.alertController.create({
+    header: '¿Está seguro de terminar su entrenamiento?',
+    cssClass: 'customMensaje2',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel',
+        cssClass: 'cancelButton',
+        handler: (blah) => {
+         this.playTimer();
+        }
+      }, {
+        text: 'Si',
+        cssClass: 'confirmButton',
+        handler: () => {
+          clearInterval(this.tiemposegundo) 
+          this.navCtrl.navigateRoot("tabs/dashboard")
+        }
+      }
+    ]
 
+  });
+
+  await alert.present();
+}
 
 
 
