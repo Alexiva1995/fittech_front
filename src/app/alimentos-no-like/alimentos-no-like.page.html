@@ -15,15 +15,36 @@
 <ion-content>
 
   <div  class="ion-padding ion-text-center titulo">
-    De los siguientes alimentos elige lo que NO TE GUSTA y NUNCA lo incluiremos en tu plan nutricional:
+    De los siguientes alimentos elige lo que NO te gustan:
   </div> 
 
-      <ion-list >
+
+  <p style="margin-left: 25px;">
+    <ion-chip outline color="dark"         
+    [ngClass]="getClass(i)" 
+    *ngFor="let item of alimentos | slice:0:totalalimentos ; let i = index" >
+      <ion-label style="font-size: 17px;"
+        (click)="agrupar(item.id , i)">{{ucFirst(item.name)}}
+      </ion-label>
+    </ion-chip>
+  </p>
+
+  <p style="color: #EF4044; text-align: center;" (click)="total()" *ngIf="verMas">Ver más</p>
+
+
+
+  
+
+      <!-- <ion-list>
           <ion-item *ngFor="let item of alimentos">
+            <ion-chip outline color="primary">
+              <ion-label>{{ucFirst(item.name)}}</ion-label>
+            </ion-chip>
+
             <ion-label class="titulopeque2">{{ucFirst(item.name)}}</ion-label>
-            <ion-toggle color="dark" slot="start" name="{{item.id}}" (ionChange)="agrupar($event.target.checked, item.id)"></ion-toggle>
+            <ion-toggle color="dark" slot="start" name="{{item.id}}" (ionChange)="agrupar($event.target.checked, item.id)"></ion-toggle> 
           </ion-item>
-        </ion-list>
+        </ion-list> -->
  
 
 

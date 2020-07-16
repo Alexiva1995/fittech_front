@@ -30,43 +30,28 @@ export class LineanutricionalPage implements OnInit {
   } 
 
     show(id){
+      console.log(id)
       switch (id) {
         case 0:
           {
-            this.option1 = false;
-            this.option2 = false;
-            this.option3 = false;
-            this.option4 = true;
-             this.formNutrition.controls.feeding_type.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(0);
             break;
         }
         case 1:
           {
-            this.option1 = true;
-            this.option2 = false;
-            this.option3 = false;
-            this.option4 = false;
-             this.formNutrition.controls.feeding_type.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(1);
             break;
         }
 
         case 2:
           {
-            this.option1 = false;
-            this.option2 = true;
-            this.option3 = false;
-            this.option4 = false;
-             this.formNutrition.controls.feeding_type.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(2);
             break;
         }
 
         case 3:
           {
-            this.option4 = false;
-            this.option1 = false;
-            this.option2 = false;
-            this.option3 = true;
-             this.formNutrition.controls.feeding_type.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(3);
             break;
         }
       }

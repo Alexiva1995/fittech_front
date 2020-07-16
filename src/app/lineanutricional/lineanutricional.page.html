@@ -15,30 +15,73 @@
 <ion-content>
 
   <div  class="ion-padding ion-text-center titulo">
-    ¿Con cuál lunes nutricional te identificas?
+    ¿Con que linea nutricional te identificas?
   </div> 
 
-      <ion-list >
-          <ion-item>
-            <ion-label class="titulopeque2">Vegetariano</ion-label>
-            <ion-toggle color="dark"  slot="start" name="vegetariano" [(ngModel)]="option1" (ngModelChange)="show(1)"></ion-toggle>
-          </ion-item>
-  
-          <ion-item>
-            <ion-label class="titulopeque2">Pescetario</ion-label>
-            <ion-toggle color="dark" slot="start" name="pescetario" [(ngModel)]="option2" (ngModelChange)="show(2)"></ion-toggle>
-          </ion-item>
-  
-          <ion-item>
-            <ion-label class="titulopeque2">Vegano</ion-label>
-            <ion-toggle color="dark" slot="start" name="vegano" [(ngModel)]="option3" (ngModelChange)="show(3)"></ion-toggle>
-          </ion-item>
-  
-          <ion-item>
-            <ion-label class="titulopeque2">Omnivoro</ion-label>
-            <ion-toggle color="dark" slot="start" name="omnivoro" [(ngModel)]="option4" (ngModelChange)="show(0)"></ion-toggle>
-          </ion-item>
-        </ion-list>
+  <ion-grid class="my-grid">
+    <ion-row class="parent-row">
+      <ion-col size="12">
+        <ion-card  style="
+        width: 286px; 
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-family: 'Open Sans';
+        "
+        color="dark"
+        (click)="show(1)">
+        <h2 style="margin: 10px;">
+          <b>Vegetariano</b>
+        </h2> 
+        </ion-card> 
+      </ion-col>
+
+      <ion-col size="12">
+          <ion-card  style="
+          width: 286px; 
+          border-radius: 10px;
+          text-transform: uppercase;
+          font-family: 'Open Sans';
+          "
+          color="dark"
+        (click)="show(3)">
+          <h2 style="margin: 10px;">
+            <b>Vegano</b>
+          </h2> 
+          </ion-card>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-card  style="
+        width: 286px; 
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-family: 'Open Sans';
+        "
+        color="dark"
+      (click)="show(2)">
+        <h2 style="margin: 10px;">
+          <b>Pescetariano  </b>
+        </h2> 
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12">
+          <ion-card  style="
+          width: 286px; 
+          border-radius: 10px;
+          text-transform: uppercase;
+          font-family: 'Open Sans';
+          "
+          color="dark"
+        (click)="show(0)">
+          <h2 style="margin: 10px;">
+            <b>Como de todo</b>
+          </h2> 
+          </ion-card>
+        </ion-col>
+
+    </ion-row>
+  </ion-grid>
  
 
 
@@ -55,7 +98,7 @@
         color:white;
         "
       
-      (click)="updateTypeFood()" [disabled]="!formNutrition.valid || !option1 && !option2 && !option3 && !option4">
+      (click)="updateTypeFood()" [disabled]="!formNutrition.valid">
       <h2 style="margin: 10px; text-align: center;">
         <b> SIGUIENTE</b></h2> 
      </ion-card>
