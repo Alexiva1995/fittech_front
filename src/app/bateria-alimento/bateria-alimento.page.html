@@ -15,42 +15,48 @@
 
 <ion-content>
 
-  <div class="ion-padding ion-text-left titulo">
-    Resumen
+  <div  *ngIf="nombre" class="ion-padding ion-text-left titulo2">
+    Hola {{nombre}}, qué bueno que estés dándole a tu cuerpo todos los nutrientes que necesita.
   </div> 
 
   <div style="margin: 0 10px;">
     <div class="contenedorMenu">
-      <div class="contenedorMenuItem">
+      <div class="contenedorMenuItem1">
           <p style="color: white;">Carbohidratos</p>
-          <ion-progress-bar   [value]="progressBar(carbo, totalFoods.total_carbo)" [ngClass]="{'complete': progressBar(carbo, totalFoods.total_carbo) == '1'}"></ion-progress-bar>
+          <ion-progress-bar   [value]="progressBar(carbo, totalFoods.total_carbo)" 
+          [ngClass]="{ 'progress-bar1' :true ,
+                       'complete': progressBar(carbo, totalFoods.total_carbo) == '1'}"></ion-progress-bar>
           <ng-container *ngIf=" carbo <= totalFoods.total_carbo ">
-            <p style="color: white;">{{carbo.toFixed(2)}}/{{totalFoods.total_carbo}}</p>
+            <p style="color: white;">{{carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}</p>
           </ng-container>
           <ng-container *ngIf=" carbo > totalFoods.total_carbo ">
-            <p style="color: white;">{{totalFoods.total_carbo}}/{{totalFoods.total_carbo}}</p>
+            <p style="color: white;"> {{totalFoods.total_carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}  </p>
           </ng-container>
       </div>
      
-        <div class="contenedorMenuItem">
-            <p style="color: white;">Grasa</p>
-            <ion-progress-bar [value]="progressBar(grasa, totalFoods.total_greases)" [ngClass]="{'complete': progressBar(grasa, totalFoods.total_greases) == '1'}"></ion-progress-bar>
+        <div class="contenedorMenuItem2">
+            <p style="color: white;">Grasas</p>
+            <ion-progress-bar [value]="progressBar(grasa, totalFoods.total_greases)"
+            [ngClass]="{ 'progress-bar2' :true ,
+            'complete': progressBar(grasa, totalFoods.total_grasa) == '1'}"></ion-progress-bar>
             <ng-container *ngIf=" grasa <= totalFoods.total_greases ">
-              <p style="color: white;">{{grasa.toFixed(2)}}/{{totalFoods.total_greases}}</p>
+              <p style="color: white;">{{grasa.toFixed()}}/{{totalFoods.total_greases.toFixed()}}</p>
             </ng-container>
             <ng-container *ngIf=" grasa > totalFoods.total_greases ">
-              <p style="color: white;">{{totalFoods.total_greases}}/{{totalFoods.total_greases}}</p>
+              <p style="color: white;">{{totalFoods.total_greases.toFixed()}}/{{totalFoods.total_greases.toFixed()}}</p>
             </ng-container>
         </div>
        
-          <div class="contenedorMenuItem">
-              <p style="color: white;">Proteína</p>
-              <ion-progress-bar [value]="progressBar(protein, totalFoods.total_protein)" [ngClass]="{'complete': progressBar(protein, totalFoods.total_protein) == '1'}"></ion-progress-bar>
+          <div class="contenedorMenuItem3">
+              <p style="color: white;">Proteínas</p>
+              <ion-progress-bar [value]="progressBar(protein, totalFoods.total_protein)"
+               [ngClass]="{ 'progress-bar3' :true ,
+                           'complete': progressBar(protein, totalFoods.total_protein) == '1'}"></ion-progress-bar>
               <ng-container *ngIf=" protein <= totalFoods.total_protein ">
-                <p style="color: white;">{{protein.toFixed(2)}}/{{totalFoods.total_protein}}</p>
+                <p style="color: white;">{{protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}</p>
               </ng-container>
               <ng-container *ngIf=" protein > totalFoods.total_protein ">
-                <p style="color: white;">{{totalFoods.total_protein}}/{{totalFoods.total_protein}}</p>
+                <p style="color: white;">{{totalFoods.total_protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}</p>
               </ng-container>
           </div>
     </div>
@@ -64,7 +70,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6"  *ngIf="validateFood(0)">   
-         <div class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno-grande.jpg);">
+         <div class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno.jpeg);">
             <div class="ContenedorTarjetaTitulo">
               Desayuno
             </div>
@@ -94,7 +100,7 @@
         </div>
      </ion-col>
       <ion-col size="6"  *ngIf="validateFood(2)">   
-        <div class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo-grande.jpg);">
+        <div class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo.jpeg);">
            <div class="ContenedorTarjetaTitulo">
             Almuerzo
            </div>
@@ -154,7 +160,7 @@
       </div>
      </ion-col>
      <ion-col size="6"  *ngIf="validateFood(3)">   
-      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/cena-grande.jpg);">
+      <div class="ContenedorTarjeta" style="background-image: url(./assets/img/cena.jpeg);">
          <div class="ContenedorTarjetaTitulo">
           Cena
          </div>
