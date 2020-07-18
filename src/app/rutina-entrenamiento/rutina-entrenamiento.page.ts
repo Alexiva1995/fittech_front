@@ -35,6 +35,7 @@ export class RutinaEntrenamientoPage implements OnInit {
   mostrar: boolean = true;
   audio: HTMLAudioElement;
   sonido = "../../../assets/sonido/reloj.mp3";
+  sonido2 = "../../../assets/sonido/campana.mp3";
   imagen: string;
   data: any = [];
   final: any;
@@ -101,8 +102,8 @@ export class RutinaEntrenamientoPage implements OnInit {
         this.zero = 0
       }
 
-      if (this.timeLeft >= 1 && this.timeLeft < 10) {
-        // this.playSonido()
+      if (this.timeLeft === 1) {
+        this.playSonido(2)
       }
 
       if (this.timeLeft > 0) {
@@ -127,13 +128,16 @@ export class RutinaEntrenamientoPage implements OnInit {
     this.txtVideo.nativeElement.play()
   }
 
-  playSonido() {
+  playSonido(valor) {
     this.audio = new Audio();
-    this.audio.src = this.sonido;
+    if(valor == 1){   
+      this.audio.src = this.sonido;
+    }else{
+      this.audio.src = this.sonido2;
+    }
     this.audio.load();
     this.audio.play();
   }
-
 
 
   siguiente() {
@@ -191,7 +195,7 @@ export class RutinaEntrenamientoPage implements OnInit {
       }
 
       if (this.timeLeft >= 1 && this.timeLeft < 10) {
-        this.playSonido()
+        this.playSonido(1)
       }
       if (this.timeLeft > 0) {
         this.timeLeft--;
