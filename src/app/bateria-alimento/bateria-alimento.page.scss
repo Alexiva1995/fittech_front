@@ -39,8 +39,10 @@
     // hacerlo todo del mismo tamaño
     flex: 1; 
     // espacio entre ambos items
-    margin: 0 10px;
+   /*  margin: 0 10px; */
     // centrar
+  
+    
     text-align: center;
 }
 
@@ -138,16 +140,18 @@
   --progress-background: black;
   --background: grey;
 }
-
-.progress-bar3{
-  width: 80%;
-  margin: 0 auto;
+.carboP{
   --progress-background: white;
+  --background: #EF4044;
+}
+.proteP{
+  --progress-background: red;
   --background: black;
 }
-
-
-
+.grasaP{
+  --progress-background: black;
+  --background: white;
+}
 .complete{
   --progress-background: black !important;
   --background: grey;
