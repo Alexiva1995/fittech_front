@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NutricionService } from '../services/nutricion.service';
 import { MensajesService } from '../services/mensajes.service';
 import { NavController, LoadingController } from '@ionic/angular';
+import { ApiFitechService } from '../services/api-fitech.service';
 
 @Component({
   selector: 'app-bateria-alimento',
@@ -15,13 +16,21 @@ export class BateriaAlimentoPage implements OnInit {
   grasa: any = 0;
   protein: any = 0;
   totalFoods: any = [];
+  nombre:any
   constructor(private service: NutricionService,
               private ruta: NavController,
+              private serviceUser: ApiFitechService,
               public loadingController: LoadingController,
               private utilities: MensajesService) { }
 
   ngOnInit() {
     this.getResume()
+    this.getUser()
+  }
+
+  public async getUser(){
+    const valor = await this.serviceUser.obtenerUsuario()
+      this.nombre = valor['user'].name
   }
 
   ionViewDidEnter(){
