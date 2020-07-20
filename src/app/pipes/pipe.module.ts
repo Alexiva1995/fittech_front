@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CapitalizadoPipe } from './capitalizado.pipe';
 import { CommonModule } from '@angular/common';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -8,10 +9,12 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
   declarations: [
-    CapitalizadoPipe
+    CapitalizadoPipe,
+    FilterPipe
   ],
   exports:[
-    CapitalizadoPipe
+    CapitalizadoPipe,
+    FilterPipe
   ]
 })
 export class PipesModule {}

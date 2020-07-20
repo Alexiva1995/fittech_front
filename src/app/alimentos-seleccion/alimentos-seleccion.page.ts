@@ -14,9 +14,10 @@ export class AlimentosSeleccionPage implements OnInit {
   alimentos:any
   datosUsuario:any = [];
   foods: string;
-  carbo = 0;
-  protein = 0;
-  grasa = 0;
+  carbo:any = 0;
+  protein:any = 0;
+  grasa:any = 0;
+  typefoods:number = 1
   totalCarbo: any;
   totalgrease: any;
   totalprotein: any;
@@ -146,4 +147,28 @@ export class AlimentosSeleccionPage implements OnInit {
         }
           
       }
+
+
+
+    selecionartarjeta(tipo){
+
+      switch (tipo) {
+        case 0:
+          this.typefoods = 0
+          break;
+
+        case 1:
+          this.typefoods = 1
+         break;
+
+        case 2:
+          this.typefoods = 2
+          break;
+      
+          default:
+            break;
+      }
+
+    }
+
 }

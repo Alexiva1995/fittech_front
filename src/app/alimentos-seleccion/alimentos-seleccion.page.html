@@ -18,32 +18,38 @@
       Total a consumir
     </div> 
   </ion-item>
+
   <ion-item>
- 
     <div class="contenedorMenu">
-      <div class="contenedorMenuItem">
-          <p style="color: black;">Total <br> carbohidratos</p>
-          <ion-progress-bar [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
-          <p style="color: black;">{{carbo}}/{{datosUsuario.carbo}}</p>
+      <div class="contenedorMenuItem" (click)="selecionartarjeta(1)" style="border-bottom-left-radius: 12px;border-top-left-radius: 12px;background:black;">
+        <p style="color: white; margin-top: 0;"> <br> Carbohidratos</p>
+        <ion-progress-bar class="carboP" [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.carbo">
+          {{carbo.toFixed()}}/{{datosUsuario.carbo.toFixed()}}</p>
+      </div>    
+      <div class="contenedorMenuItem" (click)="selecionartarjeta(0)" style="  background: #EF4044;">
+        <p style="color: white;  margin-top: 0;"> <br> Proteinas</p>
+        <ion-progress-bar  class="proteP" [value]="progressBar(protein, datosUsuario.protein)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.protein">
+          {{protein.toFixed()}}/{{datosUsuario.protein.toFixed()}}</p>
       </div>
-     
-        <div class="contenedorMenuItem">
-            <p style="color: black;">Total <br> grasa</p>
-            <ion-progress-bar [value]="progressBar(grasa, datosUsuario.grease)"></ion-progress-bar>
-            <p style="color: black;">{{grasa}}/{{datosUsuario.grease}}</p>
-        </div>
-       
-          <div class="contenedorMenuItem">
-              <p style="color: black;">Total <br> proteina</p>
-              <ion-progress-bar [value]="progressBar(protein, datosUsuario.protein)"></ion-progress-bar>
-              <p style="color: black;">{{protein}}/{{datosUsuario.protein}}</p>
-          </div>
-        </div>
+      <div class="contenedorMenuItem" (click)="selecionartarjeta(2)" style="border-bottom-right-radius: 12px;border-top-right-radius: 12px;background: grey;">
+        <p style="color: white;  margin-top: 0;"> <br> Grasas</p>
+        <ion-progress-bar class="grasaP" [value]="progressBar(grasa, datosUsuario.grease)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.grease">
+          {{grasa.toFixed()}}/{{datosUsuario.grease.toFixed()}}</p>
+      </div>
+    </div>
   </ion-item>
-  <ion-item *ngFor="let alimento of alimentos; let i=index">
+
+
+
+
+  
+  <ion-item *ngFor="let alimento of alimentos | filter:typefoods; let i=index">
     <ion-label class="ion-text-wrap">
       {{ucFirst(alimento.name)}} 
-      <ion-label class="ion-text-wrap" style="color: #ef4044;">  {{alimento.cant}} = {{alimento.calories}}Kcal  </ion-label>
+      <!-- <ion-label class="ion-text-wrap" style="color: #ef4044;">  {{alimento.cant}} = {{alimento.calories}}Kcal  </ion-label> -->
     </ion-label>
     <ion-buttons slot="end">
         <ion-button color="danger" (click)="add(i)" [disabled]='carbo >= datosUsuario.carbo || grasa >= datosUsuario.grease || protein >= datosUsuario.protein'>+</ion-button>
