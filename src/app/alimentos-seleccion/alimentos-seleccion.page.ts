@@ -97,12 +97,26 @@ export class AlimentosSeleccionPage implements OnInit {
               this.grasa += element.greases*element.cantidad;
               this.protein += element.protein*element.cantidad;
             }else{
+              this.carbo += this.convertion(1, element.carbo, element.cantidad)
+              this.grasa += this.convertion(1, element.greases, element.cantidad)
+              this.protein += this.convertion(1, element.protein, element.cantidad)
               console.log(element)
               console.log('Aplicar la regla de 3')
+
             }
           }
           });
     
+      }
+
+      convertion(a, b, c){
+        //A es el valor unitario
+        //B es el equivalente en grasa/proteina/carbo de ese valor unitario
+        //C es la incognita a encontrar
+        let x;
+        x = b*c/a;
+        console.log(x)
+        return x;
       }
 
       progressBar(data, total){
@@ -123,11 +137,18 @@ export class AlimentosSeleccionPage implements OnInit {
           "foods": []
         }
 
+  
+
         this.alimentos.forEach(element => {
           if(element.cantidad > 0){
             menu.total_calories += element.calories;
+            if(element.measurement == 'gr'){//Unidad en gramos, ml, kg etc.
+            let food = [ element.id, element.cantidad, element.type_measure]
+            menu.foods.push(food);
+            }else{//Valor unitario casero.
             let food = [ element.id, element.cantidad]
             menu.foods.push(food);
+            }
           }
         });
         if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
