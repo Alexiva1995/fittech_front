@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/bateria-alimento"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <img src="assets/img/logo-app.png" class="imagenmodificada">    
+    </ion-buttons>
+    <ion-title class="ion-text-center" mode="ios">{{dataRecibida}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <img [src]="foods" alt="">
+
+  <ion-item>
+    <div class="ion-padding ion-text-center titulo">
+      Total a consumir
+    </div> 
+  </ion-item>
+
+  <ion-item>
+    <div class="contenedorMenu">
+      <div class="contenedorMenuItem" (click)="selecionartarjeta(1)" style="border-bottom-left-radius: 12px;border-top-left-radius: 12px;background:black;">
+        <p style="color: white; margin-top: 0;"> <br> Carbohidratos</p>
+        <ion-progress-bar class="carboP" [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.carbo">
+          {{carbo.toFixed()}}/{{datosUsuario.carbo.toFixed()}}</p>
+      </div>    
+      <div class="contenedorMenuItem" (click)="selecionartarjeta(0)" style="  background: #EF4044;">
+        <p style="color: white;  margin-top: 0;"> <br> Proteinas</p>
+        <ion-progress-bar  class="proteP" [value]="progressBar(protein, datosUsuario.protein)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.protein">
+          {{protein.toFixed()}}/{{datosUsuario.protein.toFixed()}}</p>
+      </div>
+      <div class="contenedorMenuItem" (click)="selecionartarjeta(2)" style="border-bottom-right-radius: 12px;border-top-right-radius: 12px;background: grey;">
+        <p style="color: white;  margin-top: 0;"> <br> Grasas</p>
+        <ion-progress-bar class="grasaP" [value]="progressBar(grasa, datosUsuario.grease)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.grease">
+          {{grasa.toFixed()}}/{{datosUsuario.grease.toFixed()}}</p>
+      </div>
+    </div>
+  </ion-item>
+
+
+
+
+  
+  <ion-item *ngFor="let alimento of alimentos | filter:typefoods; let i=index">
+    <ion-col size="6">
+      <ion-label class="ion-text-wrap">
+        {{ucFirst(alimento.name)}} 
+         <ion-label class="ion-text-wrap" style="color: #ef4044;">  {{alimento.cant}} = {{alimento.calories}}Kcal  </ion-label> 
+      </ion-label>
+    </ion-col>
+ 
+    <ion-col size="6">
+      <ion-col size="12">
+      <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" (ionChange)="calculateStats()" clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
+      </ion-col>
+      <ion-col size="12">
+        <ion-segment [(ngModel)]="alimento.measurement" mode="ios" style="margin: 0 auto;">
+          <ion-segment-button value="gr" >
+             <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
+           </ion-segment-button>
+           <ion-segment-button value="unidad" *ngIf="alimento.measure">
+             <ion-label class="titulopeque">{{alimento.measure}}</ion-label>
+           </ion-segment-button>
+         </ion-segment>
+      </ion-col>
+    </ion-col>
+
+  
+   
+  </ion-item>
+
+</ion-content>
+<ion-footer>
+  <ion-card style="  
+  background: #EF4044;
+  color: white;
+  width: 286px; 
+  border-radius: 10px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  font-family: 'Open Sans';" (click)="guardarMenu()">
+  <h2 style="text-align: center; margin: 10px;">
+   <b> Actualizar </b>
+  </h2>  
+</ion-card>
+</ion-footer>
+

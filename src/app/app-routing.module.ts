@@ -258,6 +258,11 @@ const routes: Routes = [
     path: 'listadoalimento/:id',
     loadChildren: () => import('./listadoalimento/listadoalimento.module').then( m => m.ListadoalimentoPageModule)
   },
+  {
+    path: 'alimentos-editar/:id',
+    loadChildren: () => import('./alimentos-editar/alimentos-editar.module').then( m => m.AlimentosEditarPageModule)
+  },
+
 
 
 

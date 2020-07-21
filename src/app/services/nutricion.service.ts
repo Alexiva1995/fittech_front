@@ -248,6 +248,30 @@ export class NutricionService {
       })
 
   }
+  
+  // borrar el menu
+  BorrarMenu(id:any){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+
+      // si no se envia un dato no  funciona la ruta
+      const data = {
+        id: id,
+      }   
+      
+      this.http.post(`${URL}/auth/delete-menu`,data,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            resolve(resp)
+          },err=>{
+            reject(false)
+          })
+      })
+
+  }
 
 
 }

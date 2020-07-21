@@ -25,7 +25,7 @@
      </ion-label>
   </ion-item>
 
-  <ion-item *ngIf="mostraragregar">
+  <ion-item [hidden]="!mostraragregar" >
     <ion-label  style="font-size: 20px;"   class="ion-text-wrap">
       Agregar Comidas
     </ion-label>
@@ -43,6 +43,7 @@
     <ion-icon slot="end" name="create-outline" (click)="agregar()" class="edit"></ion-icon>
   </ion-item>
 
+
   <!-- <ion-item *ngFor="let item of alimentos">
     <ion-label class="ion-text-wrap">
       {{item.food.name}}
@@ -51,12 +52,14 @@
       {{item.quantity}}
     </ion-buttons>
   </ion-item> -->
-
+  <ion-button (click)="comidaharcode()" expand="block" fill="clear" shape="round">
+    GUADAR COMIDA HARCODEADA
+  </ion-button>
 
 </ion-content>
 
 
-<ion-footer>
+<ion-footer [hidden]="mostraragregar">
   <ion-card style="  
   background: #EF4044;
   color: white;
