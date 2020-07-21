@@ -11,7 +11,7 @@ import { NavController } from '@ionic/angular';
 })
 export class AlimentosSeleccionPage implements OnInit {
   dataRecibida:any
-  alimentos:any
+  alimentos:any = [];
   datosUsuario:any = [];
   foods: string;
   carbo:any = 0;
@@ -21,6 +21,7 @@ export class AlimentosSeleccionPage implements OnInit {
   totalCarbo: any;
   totalgrease: any;
   totalprotein: any;
+  measurement: string = 'gr';
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
@@ -58,11 +59,16 @@ export class AlimentosSeleccionPage implements OnInit {
         this.alimentos = valor['Foods']
         this.alimentos.forEach(element => {
           element['cantidad'] = 0;
+          if(element.measure == null){
+            element['measurement'] =  'unidad';
+          }else{
+            element['measurement'] =  'gr';
+          }
         });
         this.datosUsuario = valor['Menu'];
-        this.totalCarbo = this.datosUsuario.carbo+5;
-        this.totalgrease = this.datosUsuario.grease+5;
-        this.totalprotein = this.datosUsuario.protein+5;
+        this.totalCarbo = this.datosUsuario.carbo;
+        this.totalgrease = this.datosUsuario.grease;
+        this.totalprotein = this.datosUsuario.protein;
 
       }
   }
@@ -72,36 +78,31 @@ export class AlimentosSeleccionPage implements OnInit {
          return str.substring(0, 1).toUpperCase() + str.substring(1); 
      }
 
-     add(index){
-     this.alimentos[index].cantidad++;
-     this.calculateStats();
-     }  
-
-     decrease(index){
-      this.alimentos[index].cantidad--;
-      this.calculateStats();
-      }
+   
 
       calculateStats(){
         this.carbo = 0;
         this.grasa = 0;
         this.protein = 0;
-        this.alimentos.forEach(element => {
-          console.log(element);
-          if(element.cantidad > 0){
-            this.carbo += element.carbo*element.cantidad;
-            this.grasa += element.greases*element.cantidad;
-            this.protein += element.protein*element.cantidad;
-          }
-        });
-       
-        this.carbo = Math.round(this.carbo*100)/100;
-        this.grasa = Math.round(this.grasa*100)/100;
-        this.protein = Math.round(this.protein*100)/100;
-        console.log(this.carbo);
-        console.log(this.grasa);
-        console.log(this.protein);
+
         
+          this.alimentos.forEach(element => {
+            
+            if(element.cantidad > 0){
+              if(element.measurement === 'unidad'){
+              console.log(element);
+              console.log('medida casera')
+
+              this.carbo += element.carbo*element.cantidad;
+              this.grasa += element.greases*element.cantidad;
+              this.protein += element.protein*element.cantidad;
+            }else{
+              console.log(element)
+              console.log('Aplicar la regla de 3')
+            }
+          }
+          });
+    
       }
 
       progressBar(data, total){
@@ -169,6 +170,14 @@ export class AlimentosSeleccionPage implements OnInit {
             break;
       }
 
+    }
+
+    calculador(){
+
+    }
+
+    change(index){
+      this.alimentos[index].cantidad = 0;
     }
 
 }
