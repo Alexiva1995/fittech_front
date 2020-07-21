@@ -3,25 +3,24 @@
   height: 50px;
 }
 
-ion-button {
-  font-size: 2rem;
-  margin: 1rem;
-  text-align: center;
+.edit {
+  fill: red;
 }
 
 .contenedorMenu {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.09);
+  color: white;
 }
 
 .contenedorMenuItem {
   flex: 1;
-  margin: 0 10px;
+  /*  margin: 0 10px; */
   text-align: center;
-  width: 10rem;
 }
 
 .titulo {
@@ -29,5 +28,21 @@ ion-button {
 }
 
 ion-progress-bar {
-  --progress-background: #ef4044;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.carboP {
+  --progress-background: white;
+  --background: #EF4044;
+}
+
+.proteP {
+  --progress-background: red;
+  --background: black;
+}
+
+.grasaP {
+  --progress-background: black;
+  --background: white;
 }

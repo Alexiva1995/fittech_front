@@ -206,7 +206,7 @@ export class NutricionService {
   }
 
   // TREA EL LISTADO DE ALIMENTOS GUARDADOS 
-  ListadoComida(comida:any){
+  ListadoComida(comida:any,day:any){
     return new Promise( async (resolve, reject)  => {
       const headers = new HttpHeaders({
         'Authorization': 'Bearer ' + await this.service.cargarToken(),
@@ -215,11 +215,32 @@ export class NutricionService {
 
       // si no se envia un dato no  funciona la ruta
       const data = {
-        type_food : comida
+        type_food : comida,
+        day:day
       }   
       
       this.http.post(`${URL}/auth/ready-food`,data,{headers})
           .subscribe(resp=>{
+            console.log(resp)
+            resolve(resp)
+          },err=>{
+            reject(false)
+          })
+      })
+
+  }
+
+  // Actualizar el LISTADO DE ALIMENTOS GUARDADOS 
+  ActualizarComida(data:any){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+ 
+      this.http.post(`${URL}/auth/update-menu`,data,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
             resolve(resp)
           },err=>{
             reject(false)

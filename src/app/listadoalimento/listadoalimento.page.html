@@ -13,25 +13,60 @@
 <ion-content fullscreen>
   <img [src]="foods" alt="">
 
+
   <ion-item>
-    <ion-label class="ion-text-wrap">
-     Comidas
+    <ion-label  style="font-size: 20px;"   class="ion-text-wrap">
+      Menú de hoy
     </ion-label>
     <ion-label class="ion-text-end">
-      Cantidad
+       <ion-button (click)="B_todo()"  color="danger" expand="block" fill="clear" shape="round">
+         Borrar todo
+       </ion-button>
      </ion-label>
   </ion-item>
 
-  <ion-item *ngFor="let item of alimentos">
+  <ion-item *ngIf="mostraragregar">
+    <ion-label  style="font-size: 20px;"   class="ion-text-wrap">
+      Agregar Comidas
+    </ion-label>
+    <ion-icon slot="end"  name="add-outline" (click)="agregar()"></ion-icon>
+  </ion-item>
+
+  <ion-item *ngFor="let item of alimentos ; let i = index">
+    <ion-label class="ion-text-wrap" style="font-size: 18px;">
+      {{ucFirst(item.food.name)}} 
+      <ion-label class="ion-text-wrap" style="color: #ef4044;">  
+        {{item.quantity}} / {{item.food.type_measure}}
+       </ion-label>
+    </ion-label>
+    <ion-icon slot="end"  name="trash-outline" (click)="borrar(item.food_id)" class="remove"></ion-icon>
+    <ion-icon slot="end" name="create-outline" (click)="agregar()" class="edit"></ion-icon>
+  </ion-item>
+
+  <!-- <ion-item *ngFor="let item of alimentos">
     <ion-label class="ion-text-wrap">
       {{item.food.name}}
     </ion-label>
     <ion-buttons slot="end">
       {{item.quantity}}
     </ion-buttons>
-  </ion-item>
+  </ion-item> -->
 
 
 </ion-content>
 
 
+<ion-footer>
+  <ion-card style="  
+  background: #EF4044;
+  color: white;
+  width: 286px; 
+  border-radius: 10px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  font-family: 'Open Sans';" (click)="guardarMenu()">
+  <h2 style="text-align: center; margin: 10px;">
+   <b> Actualizar </b>
+  </h2>  
+</ion-card>
+</ion-footer>
