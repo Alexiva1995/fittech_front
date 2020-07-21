@@ -19,6 +19,7 @@ export class ListadoalimentoPage implements OnInit {
   protein: any = 0;
   id:any
   typefood:any
+  mostraragregar:boolean = false
 
   constructor(private capturar:ActivatedRoute,
     private service: NutricionService,
@@ -61,7 +62,9 @@ async getFoods(comida:any){
       }else{
         this.alimentos = data['menu'].menu_food
         this.id = data['menu'].id
-
+        if(this.alimentos.length == 0){
+           this.mostraragregar = true
+        }
       }
 }
 
@@ -115,7 +118,9 @@ async getFoods(comida:any){
     }
   
 
-
+  agregar(){
+    console.log("clickeado")
+  }
 
 
 

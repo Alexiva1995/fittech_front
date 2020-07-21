@@ -25,6 +25,13 @@
      </ion-label>
   </ion-item>
 
+  <ion-item *ngIf="mostraragregar">
+    <ion-label  style="font-size: 20px;"   class="ion-text-wrap">
+      Agregar Comidas
+    </ion-label>
+    <ion-icon slot="end"  name="add-outline" (click)="agregar()"></ion-icon>
+  </ion-item>
+
   <ion-item *ngFor="let item of alimentos ; let i = index">
     <ion-label class="ion-text-wrap" style="font-size: 18px;">
       {{ucFirst(item.food.name)}} 
@@ -33,7 +40,7 @@
        </ion-label>
     </ion-label>
     <ion-icon slot="end"  name="trash-outline" (click)="borrar(item.food_id)" class="remove"></ion-icon>
-    <ion-icon slot="end" name="create-outline" class="edit"></ion-icon>
+    <ion-icon slot="end" name="create-outline" (click)="agregar()" class="edit"></ion-icon>
   </ion-item>
 
   <!-- <ion-item *ngFor="let item of alimentos">
