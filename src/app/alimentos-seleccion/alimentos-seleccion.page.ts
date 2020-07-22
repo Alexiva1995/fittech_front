@@ -22,6 +22,7 @@ export class AlimentosSeleccionPage implements OnInit {
   totalgrease: any;
   totalprotein: any;
   measurement: string = 'gr';
+  today:any
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
@@ -51,6 +52,8 @@ export class AlimentosSeleccionPage implements OnInit {
   }
 
   async getFoods(comida:any){
+    this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+
     const valor = await this.service.menu(comida);
       if(valor == false ){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
@@ -129,6 +132,7 @@ export class AlimentosSeleccionPage implements OnInit {
 
       guardarMenu(){
         let menu = {
+          "day":this.today,
           "type_food": this.datosUsuario.type_food,
           "total_proteins": this.protein,
           "total_greases": this.grasa,
