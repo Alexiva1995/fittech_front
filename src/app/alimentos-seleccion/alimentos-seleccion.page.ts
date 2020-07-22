@@ -61,7 +61,7 @@ export class AlimentosSeleccionPage implements OnInit {
         console.log(valor)
         this.alimentos = valor['Foods']
         this.alimentos.forEach(element => {
-          element['cantidad'] = 0;
+          element['cantidad'] = null;
           if(element.measure == null){
             element['measurement'] =  'unidad';
           }else{
