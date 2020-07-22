@@ -25,7 +25,7 @@ export class ListadoalimentoPage implements OnInit {
     private service: NutricionService,
     private utilities: MensajesService,
     public alertController: AlertController,
-    private navCtrl: NavController) { }
+    private ruta: NavController) { }
 
 ngOnInit() {
 //  parametros del id
@@ -87,41 +87,54 @@ async getFoods(comida:any){
   }
 
   guardarMenu(){
-    let menu = {
-      "menu_id" : this.id,
-      "type_food": this.typefood,
-      "total_proteins": 0,
-      "total_greases": 0,
-      "total_carbos": 0,
-      "total_calories": 0,
-      "foods": []
-    }
 
-    this.alimentos.forEach(element => {
-        menu.total_calories += element.food.calories;
-        menu.total_proteins += element.food.protein;
-        menu.total_greases += element.food.greases;
-        menu.total_carbos += element.food.carbo;
-        let food = [ element.food.id, parseInt(element.quantity)]
-        menu.foods.push(food);
-    });
+    if(this.alimentos.length == 0){
+      // borrar todo 
+      this.service.BorrarMenu(this.id).then((res) => {
+        console.log(res);
+        this.utilities.alertaInformatica(this.dataRecibida+ ' Actualizado');
+         this.ruta.navigateRoot('/bateria-alimento')
+      }).catch((err) => {
+       this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+      });
+   }else{
+      let menu = {
+        "menu_id" : this.id,
+        "type_food": this.typefood,
+        "total_proteins": 0,
+        "total_greases": 0,
+        "total_carbos": 0,
+        "total_calories": 0,
+        "foods": []
+      }
+
+      this.alimentos.forEach(element => {
+          menu.total_calories += element.food.calories;
+          menu.total_proteins += element.food.protein;
+          menu.total_greases += element.food.greases;
+          menu.total_carbos += element.food.carbo;
+          let food = [ element.food.id, parseInt(element.quantity)]
+          menu.foods.push(food);
+      });
           
       // Actualizar 
       this.service.ActualizarComida(menu).then((res) => {
         console.log(res);
         this.utilities.alertaInformatica(this.dataRecibida+ ' Actualizado');
-         this.navCtrl.navigateRoot('/bateria-alimento')
+         this.ruta.navigateRoot('/bateria-alimento')
       }).catch((err) => {
        this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
       });
 
-    }
+   }
+
+
+  }
   
 
   agregar(){
-    console.log("clickeado")
+    this.ruta.navigateForward([`/alimentos-editar/${this.dataRecibida}`])
   }
-
 
 
 }
