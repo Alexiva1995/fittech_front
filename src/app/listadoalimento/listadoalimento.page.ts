@@ -137,28 +137,4 @@ async getFoods(comida:any){
   }
 
 
-  comidaharcode(){
-    let today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-
-    let menu = {
-      "menu_id" : 91,
-      "type_food": 0,
-      "total_proteins": 100,
-      "total_greases": 100,
-      "total_carbos": 100,
-      "total_calories": 100,
-      "day": today,
-      "foods": [[4,1]]
-    }
-
-    this.service.ActualizarComida(menu).then((res) => {
-      console.log(res);
-      this.utilities.alertaInformatica(this.dataRecibida+ ' Actualizado');
-       this.ruta.navigateRoot('/bateria-alimento')
-    }).catch((err) => {
-     this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
-    });
-
-  }
-
 }

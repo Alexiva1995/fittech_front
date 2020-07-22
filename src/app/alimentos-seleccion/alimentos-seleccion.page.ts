@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NutricionService } from '../services/nutricion.service';
 import { MensajesService } from '../services/mensajes.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-alimentos-seleccion',
@@ -12,6 +12,7 @@ import { NavController } from '@ionic/angular';
 export class AlimentosSeleccionPage implements OnInit {
   dataRecibida:any
   alimentos:any = [];
+  alimentosAyer:any = []
   datosUsuario:any = [];
   foods: string;
   carbo:any = 0;
@@ -26,6 +27,7 @@ export class AlimentosSeleccionPage implements OnInit {
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
+              public alertController: AlertController,
               private navCtrl: NavController) { }
 
   ngOnInit() {
@@ -34,18 +36,24 @@ export class AlimentosSeleccionPage implements OnInit {
     switch (this.dataRecibida) {
       case 'Desayuno':
         this.getFoods(0)
+        this.comprobarMenu(0)
         this.foods = './assets/img/desayuno-grande.jpg'
         break
       case 'Almuerzo':
         this.getFoods(2)
+        this.comprobarMenu(2)
+
         this.foods = './assets/img/almuerzo-grande.jpg'
         break
       case  'Snack':
         this.getFoods(1)
+        this.comprobarMenu(1)
+
         this.foods = './assets/img/snack-grande.jpg'
         break
       default:
         this.getFoods(3)
+        this.comprobarMenu(3)
         this.foods = './assets/img/cena-grande.jpg'
         break
     }
@@ -53,6 +61,7 @@ export class AlimentosSeleccionPage implements OnInit {
 
   async getFoods(comida:any){
     this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    console.log("fecha de hoy" , this.today)
 
     const valor = await this.service.menu(comida);
       if(valor == false ){
@@ -204,5 +213,78 @@ export class AlimentosSeleccionPage implements OnInit {
     change(index){
       this.alimentos[index].cantidad = 0;
     }
+
+
+  
+    async comprobarMenu(comida:any){
+      let yesterday  = new Date(Date.now() - 86400000).toJSON().slice(0,10).replace(/-/g,'/');
+      console.log("fecha de ayer" , yesterday)
+      const data = await this.service.ListadoComida(comida,yesterday)
+        if(data == false || data['menu'] == null ){
+          return
+        }
+         this.alimentosAyer  = data
+         this.alerta(comida)
+    }
+
+
+    // mensaje de reanudar
+    async alerta(mensaje:any) {
+      const alert = await this.alertController.create({
+        header: `Deseas cargar el menú anterior`,
+        cssClass: 'customMensaje1',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'cancelButton',
+            handler: (blah) => {
+              return
+            }
+          }, {
+            text: 'Confirmar',
+            cssClass: 'confirmButton',
+            handler: () => {
+              // mensaje confirmacion
+              this.MenuAnterior()
+            }
+          }
+        ]
+  
+      });
+  
+      await alert.present();
+    }
+
+  
+    // cargar menu anterior
+    MenuAnterior(){
+      let menu = {
+        "day":this.today,
+        "type_food": this.alimentosAyer.menu.type_food,
+        "total_proteins": this.alimentosAyer.menu.total_proteins,
+        "total_greases": this.alimentosAyer.menu.total_greases,
+        "total_carbos": this.alimentosAyer.menu.total_carbos,
+        "total_calories": this.alimentosAyer.menu.total_calories,
+        "foods": []
+      }
+
+       this.alimentosAyer.menu.menu_food.forEach(element => {
+        let food = [ element.food_id, parseInt(element.quantity) , 'gr']
+        menu.foods.push(food);
+       });  
+
+       this.service.storeMenu(menu).then((res) => {
+        console.log(res);
+        this.utilities.alertaInformatica(this.dataRecibida+ ' Guardado');
+         this.navCtrl.navigateRoot('/bateria-alimento')
+      }).catch((err) => {
+       this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+      });
+
+    }
+
+
+
 
 }
