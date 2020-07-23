@@ -72,9 +72,9 @@ export class AlimentosSeleccionPage implements OnInit {
         this.alimentos.forEach(element => {
           element['cantidad'] = null;
           if(element.measure == null){
-            element['measurement'] =  'unidad';
+            element['measurement'] =  'casera';
           }else{
-            element['measurement'] =  'gr';
+            element['measurement'] =  'unidad';
           }
         });
         this.datosUsuario = valor['Menu'];
@@ -101,7 +101,7 @@ export class AlimentosSeleccionPage implements OnInit {
           this.alimentos.forEach(element => {
             
             if(element.cantidad > 0){
-              if(element.measurement === 'unidad'){
+              if(element.measurement === 'casera'){
               console.log(element);
               console.log('medida casera')
 
@@ -109,9 +109,9 @@ export class AlimentosSeleccionPage implements OnInit {
               this.grasa += element.greases*element.cantidad;
               this.protein += element.protein*element.cantidad;
             }else{
-              this.carbo += this.convertion(1, element.carbo, element.cantidad)
-              this.grasa += this.convertion(1, element.greases, element.cantidad)
-              this.protein += this.convertion(1, element.protein, element.cantidad)
+              this.carbo += this.convertion(element.eq, element.carbo, element.cantidad)
+              this.grasa += this.convertion(element.eq, element.greases, element.cantidad)
+              this.protein += this.convertion(element.eq, element.protein, element.cantidad)
               console.log(element)
               console.log('Aplicar la regla de 3')
 

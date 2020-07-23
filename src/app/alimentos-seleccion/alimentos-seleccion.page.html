@@ -60,10 +60,10 @@
       </ion-col>
       <ion-col size="12">
         <ion-segment [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = 0" mode="ios" style="margin: 0 auto;">
-          <ion-segment-button value="gr" >
+          <ion-segment-button value="unidad" >
              <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
            </ion-segment-button>
-           <ion-segment-button value="unidad" *ngIf="alimento.measure">
+           <ion-segment-button value="casera" *ngIf="alimento.measure">
              <ion-label class="titulopeque">{{alimento.measure}}</ion-label>
            </ion-segment-button>
          </ion-segment>
