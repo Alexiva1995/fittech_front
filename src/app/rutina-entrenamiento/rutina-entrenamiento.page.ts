@@ -257,7 +257,8 @@ async confirmation(){
         text: 'Si',
         cssClass: 'confirmButton',
         handler: () => {
-          clearInterval(this.tiemposegundo) 
+          clearInterval(this.tiemposegundo);
+          this.timeLeft = -1;
           this.navCtrl.navigateRoot("tabs/dashboard")
         }
       }
@@ -267,7 +268,32 @@ async confirmation(){
 
   await alert.present();
 }
+async confirmation2(){
+  clearInterval(this.tiemposegundo);
+  const alert = await this.alertController.create({
+    header: '¿Está seguro de terminar su entrenamiento?',
+    cssClass: 'customMensaje2',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel',
+        cssClass: 'cancelButton',
+        handler: (blah) => {
+         this.timerDescanse();
+        }
+      }, {
+        text: 'Si',
+        cssClass: 'confirmButton',
+        handler: () => {
+          this.navCtrl.navigateRoot("tabs/dashboard")
+        }
+      }
+    ]
 
+  });
+
+  await alert.present();
+}
 
 
   // mensaje de reanudar
