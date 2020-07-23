@@ -128,3 +128,11 @@ ion-select{
     color: white;
     background: red;
   }
+
+  ion-chip{
+    background: none;
+  }
+
+  ion-chip:focus{
+    background: none;
+  }

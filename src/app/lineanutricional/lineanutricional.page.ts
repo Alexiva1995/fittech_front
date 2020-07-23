@@ -35,23 +35,27 @@ export class LineanutricionalPage implements OnInit {
         case 0:
           {
              this.formNutrition.controls.feeding_type.setValue(0);
+             this.updateTypeFood()
             break;
         }
         case 1:
           {
              this.formNutrition.controls.feeding_type.setValue(1);
+             this.updateTypeFood()
             break;
         }
 
         case 2:
           {
              this.formNutrition.controls.feeding_type.setValue(2);
+             this.updateTypeFood()
             break;
         }
 
         case 3:
           {
              this.formNutrition.controls.feeding_type.setValue(3);
+             this.updateTypeFood()
             break;
         }
       }

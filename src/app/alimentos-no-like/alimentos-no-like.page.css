@@ -133,3 +133,11 @@ ion-list {
   color: white;
   background: red;
 }
+
+ion-chip {
+  background: none;
+}
+
+ion-chip:focus {
+  background: none;
+}

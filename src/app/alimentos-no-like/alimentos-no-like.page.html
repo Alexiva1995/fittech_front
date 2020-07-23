@@ -20,7 +20,7 @@
 
 
   <p style="text-align: center;">
-    <ion-chip outline color="dark"         
+    <ion-chip outline="true" mode="ios" color="dark"  
     [ngClass]="getClass(i)" 
     *ngFor="let item of alimentos | slice:0:totalalimentos ; let i = index" >
       <ion-label style="font-size: 17px;"
@@ -29,7 +29,7 @@
     </ion-chip>
   </p>
 
-  <p style="color: #EF4044; text-align: center;" (click)="total()" *ngIf="verMas">Ver más</p>
+  <p style="color: #EF4044; text-align: center;" (click)="total()" *ngIf="verMas"> Ver todos</p>
 
 
 
