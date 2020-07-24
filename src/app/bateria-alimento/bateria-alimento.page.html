@@ -16,7 +16,7 @@
 <ion-content>
 
   <div  *ngIf="nombre" class="ion-padding ion-text-left titulo2">
-    Hola {{nombre}}, qué bueno que estés dándole a tu cuerpo todos los nutrientes que necesita.
+    Hola {{nombre}}, estos son tus requerimientos nutricionales que deberías consumir cada día.
   </div> 
 
   <div style="margin: 0 10px;">
@@ -25,30 +25,30 @@
           <p style="color: white;">Carbohidratos</p>
           <ion-progress-bar class="carboP"   [value]="progressBar(carbo, totalFoods.total_carbo)" [ngClass]="{'complete': progressBar(carbo, totalFoods.total_carbo) == '1'}" style="width: 90%;margin: 0 auto;"></ion-progress-bar>
           <ng-container *ngIf=" carbo <= totalFoods.total_carbo ">
-            <p style="color: white;">{{carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}</p>
+            <p style="color: white;">{{carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}gr</p>
           </ng-container>
           <ng-container *ngIf=" carbo > totalFoods.total_carbo ">
-            <p style="color: white;"> {{totalFoods.total_carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}  </p>
+            <p style="color: white;"> {{totalFoods.total_carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}  gr</p>
           </ng-container>
       </div>
       <div class="contenedorMenuItem" style="  background: #EF4044;">
           <p style="color: white;">Proteína</p>
           <ion-progress-bar style="width: 90%;margin: 0 auto;" [value]="progressBar(protein, totalFoods.total_protein)" [ngClass]="{'complete': progressBar(protein, totalFoods.total_protein) == '1'}" class="proteP"></ion-progress-bar>
           <ng-container *ngIf=" protein <= totalFoods.total_protein ">
-            <p style="color: white;">{{protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}</p>
+            <p style="color: white;">{{protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}gr</p>
           </ng-container>
           <ng-container *ngIf=" protein > totalFoods.total_protein ">
-            <p style="color: white;">{{totalFoods.total_protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}</p>
+            <p style="color: white;">{{totalFoods.total_protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}gr</p>
           </ng-container>
       </div>
       <div class="contenedorMenuItem" style="border-bottom-right-radius: 12px;border-top-right-radius: 12px;background: grey;">
             <p style="color: white;">Grasa</p>
             <ion-progress-bar style="width: 90%;margin: 0 auto;" [value]="progressBar(grasa, totalFoods.total_greases)" [ngClass]="{'complete': progressBar(grasa, totalFoods.total_greases) == '1'}" class="grasaP"></ion-progress-bar>
             <ng-container *ngIf=" grasa <= totalFoods.total_greases ">
-              <p style="color: white;">{{grasa.toFixed()}}/{{totalFoods.total_greases.toFixed()}}</p>
+              <p style="color: white;">{{grasa.toFixed()}}/{{totalFoods.total_greases.toFixed()}}gr</p>
             </ng-container>
             <ng-container *ngIf=" grasa > totalFoods.total_greases ">
-              <p style="color: white;">{{totalFoods.total_greases}}/{{totalFoods.total_greases}}</p>
+              <p style="color: white;">{{totalFoods.total_greases}}/{{totalFoods.total_greases}}gr</p>
             </ng-container>
         </div>
     </div>
@@ -56,7 +56,7 @@
 
 
   <div class="ion-padding ion-text-left titulo">
-    Alimentación
+    Resumen Nutricional
   </div> 
 
   <ion-grid>

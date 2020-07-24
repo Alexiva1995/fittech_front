@@ -19,63 +19,58 @@
     </div> 
   </ion-item>
 
-  <ion-item>
+  <ion-item lines="none">
     <div class="contenedorMenu">
       <div class="contenedorMenuItem" (click)="selecionartarjeta(1)" style="border-bottom-left-radius: 12px;border-top-left-radius: 12px;background:black;">
         <p style="color: white; margin-top: 0;"> <br> Carbohidratos</p>
         <ion-progress-bar class="carboP" [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
         <p style="color: white;" *ngIf="datosUsuario.carbo">
-          {{carbo.toFixed()}}/{{datosUsuario.carbo.toFixed()}}</p>
+          {{carbo.toFixed()}}/{{datosUsuario.carbo.toFixed()}}gr</p>
       </div>    
       <div class="contenedorMenuItem" (click)="selecionartarjeta(0)" style="  background: #EF4044;">
         <p style="color: white;  margin-top: 0;"> <br> Proteinas</p>
         <ion-progress-bar  class="proteP" [value]="progressBar(protein, datosUsuario.protein)"></ion-progress-bar>
         <p style="color: white;" *ngIf="datosUsuario.protein">
-          {{protein.toFixed()}}/{{datosUsuario.protein.toFixed()}}</p>
+          {{protein.toFixed()}}/{{datosUsuario.protein.toFixed()}}gr</p>
       </div>
       <div class="contenedorMenuItem" (click)="selecionartarjeta(2)" style="border-bottom-right-radius: 12px;border-top-right-radius: 12px;background: grey;">
         <p style="color: white;  margin-top: 0;"> <br> Grasas</p>
         <ion-progress-bar class="grasaP" [value]="progressBar(grasa, datosUsuario.grease)"></ion-progress-bar>
         <p style="color: white;" *ngIf="datosUsuario.grease">
-          {{grasa.toFixed()}}/{{datosUsuario.grease.toFixed()}}</p>
+          {{grasa.toFixed()}}/{{datosUsuario.grease.toFixed()}}gr</p>
       </div>
     </div>
   </ion-item>
 
 
-
-
-  
-  <ion-item *ngFor="let alimento of alimentos | filter:typefoods; let i=index">
-    <ion-col size="6">
-      <ion-label class="ion-text-wrap">
-        {{ucFirst(alimento.name)}} 
-       <!--   <ion-label class="ion-text-wrap" style="color: #ef4044;">  {{alimento.cant}} = {{alimento.calories}}Kcal  </ion-label>  -->
-      </ion-label>
-    </ion-col>
- 
-    <ion-col size="6">
-      <ion-col size="12">
-      <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" (ionChange)="calculateStats()" clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
-      </ion-col>
-      <ion-col size="12">
+  <ion-grid class="ion-text-center">
+    <ion-row>
+      <ion-col class="raya"  size="6" *ngFor="let alimento of alimentos | filter:typefoods; let i=index">
+        <!-- cabeza -->
+        <ion-label class="ion-text-wrap" style="font-weight: 600; text-transform: uppercase; display: flex;
+        justify-content: center; font-size: 15px;"> {{ucFirst(alimento.name)}} 
+          <sup>
+            <ion-icon name="help-circle" style="font-size: 1.25rem;"></ion-icon> 
+          </sup> 
+        </ion-label>
+        <!-- input cuerpo -->
+        <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" (ionChange)="calculateStats()" clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
+        <!-- footer boton -->
         <ion-segment [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = 0" mode="ios" style="margin: 0 auto;">
-          <ion-segment-button value="gr" >
+          <ion-segment-button value="unidad" >
              <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
            </ion-segment-button>
-           <ion-segment-button value="unidad" *ngIf="alimento.measure">
+           <ion-segment-button value="casera" *ngIf="alimento.measure">
              <ion-label class="titulopeque">{{alimento.measure}}</ion-label>
            </ion-segment-button>
          </ion-segment>
       </ion-col>
-    </ion-col>
- 
-   
-  </ion-item>
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>
-<ion-footer>
+<ion-footer  class="ion-no-border">
   <ion-card style="  
   background: #EF4044;
   color: white;

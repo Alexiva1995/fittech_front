@@ -92,10 +92,10 @@ async getFoods(comida:any){
       // borrar todo 
       this.service.BorrarMenu(this.id).then((res) => {
         console.log(res);
-        this.utilities.alertaInformatica(this.dataRecibida+ ' Actualizado');
+        this.utilities.notificacionUsuario( this.dataRecibida + ' actualizado' , "dark" );
          this.ruta.navigateRoot('/bateria-alimento')
       }).catch((err) => {
-       this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+        this.utilities.notificacionUsuario( 'Error al guardar ' + this.dataRecibida , "danger" );
       });
    }else{
       let menu = {
@@ -120,10 +120,10 @@ async getFoods(comida:any){
       // Actualizar 
       this.service.ActualizarComida(menu).then((res) => {
         console.log(res);
-        this.utilities.alertaInformatica(this.dataRecibida+ ' Actualizado');
+        this.utilities.notificacionUsuario( this.dataRecibida + ' actualizado' , "dark" );
          this.ruta.navigateRoot('/bateria-alimento')
       }).catch((err) => {
-       this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+        this.utilities.notificacionUsuario( 'Error al guardar ' + this.dataRecibida , "danger" );
       });
 
    }

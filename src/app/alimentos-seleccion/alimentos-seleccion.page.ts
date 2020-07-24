@@ -173,7 +173,7 @@ export class AlimentosSeleccionPage implements OnInit {
               }else{
                 this.service.storeMenu(menu).then((res) => {
                   console.log(res);
-                  this.utilities.alertaInformatica(this.dataRecibida+ ' Guardado');
+                  this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
                    this.navCtrl.navigateRoot('/bateria-alimento')
                 }).catch((err) => {
                  this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)

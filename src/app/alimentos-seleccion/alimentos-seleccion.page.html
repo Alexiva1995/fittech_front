@@ -25,19 +25,19 @@
         <p style="color: white; margin-top: 0;"> <br> Carbohidratos</p>
         <ion-progress-bar class="carboP" [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
         <p style="color: white;" *ngIf="datosUsuario.carbo">
-          {{carbo.toFixed()}}/{{datosUsuario.carbo.toFixed()}}</p>
+          {{carbo.toFixed()}}/{{datosUsuario.carbo.toFixed()}}gr</p>
       </div>    
       <div class="contenedorMenuItem" (click)="selecionartarjeta(0)" style="  background: #EF4044;">
         <p style="color: white;  margin-top: 0;"> <br> Proteinas</p>
         <ion-progress-bar  class="proteP" [value]="progressBar(protein, datosUsuario.protein)"></ion-progress-bar>
         <p style="color: white;" *ngIf="datosUsuario.protein">
-          {{protein.toFixed()}}/{{datosUsuario.protein.toFixed()}}</p>
+          {{protein.toFixed()}}/{{datosUsuario.protein.toFixed()}}gr</p>
       </div>
       <div class="contenedorMenuItem" (click)="selecionartarjeta(2)" style="border-bottom-right-radius: 12px;border-top-right-radius: 12px;background: grey;">
         <p style="color: white;  margin-top: 0;"> <br> Grasas</p>
         <ion-progress-bar class="grasaP" [value]="progressBar(grasa, datosUsuario.grease)"></ion-progress-bar>
         <p style="color: white;" *ngIf="datosUsuario.grease">
-          {{grasa.toFixed()}}/{{datosUsuario.grease.toFixed()}}</p>
+          {{grasa.toFixed()}}/{{datosUsuario.grease.toFixed()}}gr</p>
       </div>
     </div>
   </ion-item>
@@ -47,7 +47,8 @@
     <ion-row>
       <ion-col class="raya"  size="6" *ngFor="let alimento of alimentos | filter:typefoods; let i=index">
         <!-- cabeza -->
-        <ion-label class="ion-text-wrap" style="font-weight: 600;"> {{ucFirst(alimento.name)}} 
+        <ion-label class="ion-text-wrap" style="font-weight: 600; text-transform: uppercase; display: flex;
+        justify-content: center; font-size: 15px;"> {{ucFirst(alimento.name)}} 
           <sup>
             <ion-icon name="help-circle" style="font-size: 1.25rem;"></ion-icon> 
           </sup> 

@@ -32,7 +32,7 @@
 
 .contenedorMenuItem {
   flex: 1;
-  margin: 0 10px;
+  /*  margin: 0 10px; */
   text-align: center;
 }
 
@@ -113,11 +113,19 @@
   --background: grey;
 }
 
-.progress-bar3 {
-  width: 80%;
-  margin: 0 auto;
-  --progress-background: white;
-  --background: black;
+.carboP {
+  --progress-background: red;
+  --background: white;
+}
+
+.proteP {
+  --progress-background: red;
+  --background: white;
+}
+
+.grasaP {
+  --progress-background: red;
+  --background: white;
 }
 
 .complete {

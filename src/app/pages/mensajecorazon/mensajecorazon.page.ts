@@ -16,63 +16,33 @@ export class MensajecorazonPage implements OnInit {
   ngOnInit() {
     console.log(this.ApiService.latidocorazon)
 
-    if(this.ApiService.latidocorazon === 6){
-      this.titulo = "¡Felicidades!",
-      this.mensaje ="Tú frecuencia cardiaca está entre las mejores de acuerdo a tu edad y género."
+    if(this.ApiService.latidocorazon === 3){
+      this.titulo = "Excelente!",
+      this.mensaje ="Felicidades, tú frecuencia cardíaca está excelente según tu edad y tú género"
       // ¡Felicitaciones!
     }
 
-    if(this.ApiService.latidocorazon === 5){
+    if(this.ApiService.latidocorazon === 2){
       this.titulo = "Buena",
-      this.mensaje ="Tú frecuencia cardiaca está entre las buenas de acuerdo a tu edad y género."
+      this.mensaje ="Felicidades, tú frecuencia cardíaca en reposo es buena según tu edad y tú género."
       // ¡Estupendo! 
     }
 
-    if(this.ApiService.latidocorazon === 4){
-      this.titulo = "Por encima de la media",
-      this.mensaje ="Tú frecuencia cardiaca está por encima del promedio de acuerdo a tu edad y género."
-      // ¡Muy bien!, 
-    }
-
-    if(this.ApiService.latidocorazon === 3){
-      this.titulo = "Media",
-      this.mensaje ="Tú frecuencia cardiaca está en promedio de acuerdo a tu edad y género."
-      // ¡Muy bien!, 
-    }
-
-    if(this.ApiService.latidocorazon === 2){
-      this.titulo = "Por de bajo de la media",
-      this.mensaje ="Tú frecuencia cardiaca está por debajo del promedio de acuerdo a tu edad y género."
-      // ¡No hay problema!, Vamos a mejorar! 
-    }
-
     if(this.ApiService.latidocorazon === 1){
-      this.titulo = "Mala",
-      this.mensaje = "Tú frecuencia cardiaca es malo de acuerdo a tu edad y género."
-      // Con esfuerzo todo se puede, ¡A trabajar!, 
+      this.titulo = "Normal",
+      this.mensaje ="Tú frecuencia cardíaca es promedio según tu edad y tú género."
+      // ¡Muy bien!, 
     }
 
     if(this.ApiService.latidocorazon === 0){
-      this.titulo = "Muy mala",
-      this.mensaje = "Te recomendamos ir al médico, tu frecuencia cardíaca es muy mala de acuerdo a tu edad y género."
+      this.titulo = "Mala",
+      this.mensaje = "Tú frecuencia cardíaca está mal según tu edad y tú género."
+      // Con esfuerzo todo se puede, ¡A trabajar!, 
     }
-
 
   }
 
   siguiente(){
-    if(this.ApiService.latidocorazon === 6){
-      this.ruta.navigateRoot(['/tabs/dashboard'])
-    }
-
-    if(this.ApiService.latidocorazon === 5){
-      this.ruta.navigateRoot(['/tabs/dashboard'])
-    }
-
-    if(this.ApiService.latidocorazon === 4){
-      this.ruta.navigateRoot(['/tabs/dashboard'])
-    }
-
     if(this.ApiService.latidocorazon === 3){
       this.ruta.navigateRoot(['/tabs/dashboard'])
     }
@@ -82,9 +52,7 @@ export class MensajecorazonPage implements OnInit {
     }
 
     if(this.ApiService.latidocorazon === 1){
-      this.ApiService.desconectarUsuario()
-      this.presentAlert()
-      this.ruta.navigateRoot(['/'])
+      this.ruta.navigateRoot(['/tabs/dashboard'])
     }
 
     if(this.ApiService.latidocorazon === 0){

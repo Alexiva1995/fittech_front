@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NutricionService } from '../services/nutricion.service';
 import { MensajesService } from '../services/mensajes.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-alimentos-editar',
@@ -13,7 +13,8 @@ export class AlimentosEditarPage implements OnInit {
   dataRecibida:any
   alimentos:any = [];
   alimentos2:any = [];
-  alimentos3:any = [];
+  id:any;
+  alimentosAyer:any = []
   datosUsuario:any = [];
   foods: string;
   carbo:any = 0;
@@ -24,12 +25,11 @@ export class AlimentosEditarPage implements OnInit {
   totalgrease: any;
   totalprotein: any;
   measurement: string = 'gr';
-  today:any;
-  id:any;
+  today:any
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
-              private cdRef: ChangeDetectorRef,
+              public alertController: AlertController,
               private navCtrl: NavController) { }
 
   ngOnInit() {
@@ -38,18 +38,24 @@ export class AlimentosEditarPage implements OnInit {
     switch (this.dataRecibida) {
       case 'Desayuno':
         this.getFoods(0)
+        this.comprobarMenu(0)
         this.foods = './assets/img/desayuno-grande.jpg'
         break
       case 'Almuerzo':
         this.getFoods(2)
+        this.comprobarMenu(2)
+
         this.foods = './assets/img/almuerzo-grande.jpg'
         break
       case  'Snack':
         this.getFoods(1)
+        this.comprobarMenu(1)
+
         this.foods = './assets/img/snack-grande.jpg'
         break
       default:
         this.getFoods(3)
+        this.comprobarMenu(3)
         this.foods = './assets/img/cena-grande.jpg'
         break
     }
@@ -84,10 +90,17 @@ export class AlimentosEditarPage implements OnInit {
 
             if(e.id == element.food_id){
               e.cantidad = parseInt( element.quantity) 
+            }else{
+              e.cantidad = 0
             }
 
            })
           });
+
+
+        console.log("this.alimenot" ,this.alimentos)
+        console.log("this.alimenot2" ,this.alimentos2)
+
 
         this.datosUsuario = valor['Menu'];
         this.totalCarbo = this.datosUsuario.carbo;
@@ -96,8 +109,12 @@ export class AlimentosEditarPage implements OnInit {
       }
 
 
-      this.calculateStats()
+  this.calculateStats()   
   }
+
+
+
+
 
 
 
@@ -106,6 +123,8 @@ export class AlimentosEditarPage implements OnInit {
     /*   str = str.replace(/ /g, "."); */
          return str.substring(0, 1).toUpperCase() + str.substring(1); 
      }
+
+   
 
       calculateStats(){
         this.carbo = 0;
@@ -116,7 +135,7 @@ export class AlimentosEditarPage implements OnInit {
           this.alimentos.forEach(element => {
             
             if(element.cantidad > 0){
-              if(element.measurement === 'unidad'){
+              if(element.measurement === 'casera'){
               console.log(element);
               console.log('medida casera')
 
@@ -124,9 +143,9 @@ export class AlimentosEditarPage implements OnInit {
               this.grasa += element.greases*element.cantidad;
               this.protein += element.protein*element.cantidad;
             }else{
-              this.carbo += this.convertion(1, element.carbo, element.cantidad)
-              this.grasa += this.convertion(1, element.greases, element.cantidad)
-              this.protein += this.convertion(1, element.protein, element.cantidad)
+              this.carbo += this.convertion(element.eq, element.carbo, element.cantidad)
+              this.grasa += this.convertion(element.eq, element.greases, element.cantidad)
+              this.protein += this.convertion(element.eq, element.protein, element.cantidad)
               console.log(element)
               console.log('Aplicar la regla de 3')
 
@@ -156,7 +175,6 @@ export class AlimentosEditarPage implements OnInit {
 
       guardarMenu(){
         let menu = {
-          "menu_id" : this.id,
           "day":this.today,
           "type_food": this.datosUsuario.type_food,
           "total_proteins": this.protein,
@@ -180,7 +198,6 @@ export class AlimentosEditarPage implements OnInit {
             }
           }
         });
-        console.log(menu)
         if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
           this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
         } else {
@@ -188,9 +205,9 @@ export class AlimentosEditarPage implements OnInit {
               if(!menu.foods.length){
                 this.utilities.alertaInformatica('Debe seleccionar un alimento')
               }else{
-                this.service.ActualizarComida(menu).then((res) => {
+                this.service.storeMenu(menu).then((res) => {
                   console.log(res);
-                  this.utilities.alertaInformatica(this.dataRecibida+ ' Actualizado');
+                  this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
                    this.navCtrl.navigateRoot('/bateria-alimento')
                 }).catch((err) => {
                  this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
@@ -229,6 +246,76 @@ export class AlimentosEditarPage implements OnInit {
 
     change(index){
       this.alimentos[index].cantidad = 0;
+    }
+
+
+  
+    async comprobarMenu(comida:any){
+      let yesterday  = new Date(Date.now() - 86400000).toJSON().slice(0,10).replace(/-/g,'/');
+      console.log("fecha de ayer" , yesterday)
+      const data = await this.service.ListadoComida(comida,yesterday)
+        if(data == false || data['menu'] == null ){
+          return
+        }
+         this.alimentosAyer  = data
+         this.alerta(comida)
+    }
+
+
+    // mensaje de reanudar
+    async alerta(mensaje:any) {
+      const alert = await this.alertController.create({
+        header: `Deseas cargar el menú anterior`,
+        cssClass: 'customMensaje1',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'cancelButton',
+            handler: (blah) => {
+              return
+            }
+          }, {
+            text: 'Confirmar',
+            cssClass: 'confirmButton',
+            handler: () => {
+              // mensaje confirmacion
+              this.MenuAnterior()
+            }
+          }
+        ]
+  
+      });
+  
+      await alert.present();
+    }
+
+  
+    // cargar menu anterior
+    MenuAnterior(){
+      let menu = {
+        "day":this.today,
+        "type_food": this.alimentosAyer.menu.type_food,
+        "total_proteins": this.alimentosAyer.menu.total_proteins,
+        "total_greases": this.alimentosAyer.menu.total_greases,
+        "total_carbos": this.alimentosAyer.menu.total_carbos,
+        "total_calories": this.alimentosAyer.menu.total_calories,
+        "foods": []
+      }
+
+       this.alimentosAyer.menu.menu_food.forEach(element => {
+        let food = [ element.food_id, parseInt(element.quantity) , 'gr']
+        menu.foods.push(food);
+       });  
+
+       this.service.storeMenu(menu).then((res) => {
+        console.log(res);
+        this.utilities.alertaInformatica(this.dataRecibida+ ' Guardado');
+         this.navCtrl.navigateRoot('/bateria-alimento')
+      }).catch((err) => {
+       this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+      });
+
     }
 
 }

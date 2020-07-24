@@ -26,15 +26,15 @@ ion-button {
 }
 
 .contenedorMenuItem:nth-child(1):hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .contenedorMenuItem:nth-child(2):hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .contenedorMenuItem:nth-child(3):hover {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .titulo {
@@ -50,18 +50,18 @@ ion-progress-bar {
 }
 
 .carboP {
-  --progress-background: #EF4044;
+  --progress-background: red;
   --background: white;
 }
 
 .proteP {
-  --progress-background: black;
-  --background: red;
+  --progress-background: red;
+  --background: white;
 }
 
 .grasaP {
-  --progress-background: white;
-  --background: black;
+  --progress-background: red;
+  --background: white;
 }
 
 .complete {
