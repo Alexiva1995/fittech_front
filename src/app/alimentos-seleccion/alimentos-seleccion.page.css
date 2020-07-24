@@ -25,6 +25,18 @@ ion-button {
   text-align: center;
 }
 
+.contenedorMenuItem:nth-child(1):hover {
+  opacity: 0.7;
+}
+
+.contenedorMenuItem:nth-child(2):hover {
+  opacity: 0.7;
+}
+
+.contenedorMenuItem:nth-child(3):hover {
+  opacity: 0.7;
+}
+
 .titulo {
   margin: 0 auto;
   font-weight: 600;
@@ -38,21 +50,29 @@ ion-progress-bar {
 }
 
 .carboP {
-  --progress-background: white;
-  --background: #EF4044;
+  --progress-background: #EF4044;
+  --background: white;
 }
 
 .proteP {
-  --progress-background: red;
-  --background: black;
+  --progress-background: black;
+  --background: red;
 }
 
 .grasaP {
-  --progress-background: black;
-  --background: white;
+  --progress-background: white;
+  --background: black;
 }
 
 .complete {
   --progress-background: black !important;
   --background: grey;
+}
+
+.raya:nth-child(odd) {
+  border-right: 1px solid #cecece;
+}
+
+ion-item {
+  --inner-border-width: 0;
 }
