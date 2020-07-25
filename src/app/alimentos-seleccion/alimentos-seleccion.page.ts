@@ -14,6 +14,7 @@ export class AlimentosSeleccionPage implements OnInit {
   alimentos:any = [];
   alimentosAyer:any = []
   datosUsuario:any = [];
+  alimentos2:any = [];
   foods: string;
   carbo:any = 0;
   protein:any = 0;
@@ -24,6 +25,7 @@ export class AlimentosSeleccionPage implements OnInit {
   totalprotein: any;
   measurement: string = 'gr';
   today:any
+  id: any;
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
@@ -60,8 +62,16 @@ export class AlimentosSeleccionPage implements OnInit {
   }
 
   async getFoods(comida:any){
-    this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-    console.log("fecha de hoy" , this.today)
+   this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    console.log(this.today)
+    const data = await this.service.ListadoComida(comida,this.today)
+    if( data == false ){
+      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+      }else{
+        this.alimentos2 = data['menu'].menu_food 
+        this.id = data['menu'].id
+      }
+
 
     const valor = await this.service.menu(comida);
       if(valor == false ){
@@ -69,21 +79,37 @@ export class AlimentosSeleccionPage implements OnInit {
       }else{
         console.log(valor)
         this.alimentos = valor['Foods']
-        this.alimentos.forEach(element => {
-          element['cantidad'] = null;
-          if(element.measure == null){
-            element['measurement'] =  'casera';
-          }else{
-            element['measurement'] =  'unidad';
-          }
-        });
+
+        this.alimentos2.forEach(element => {
+          this.alimentos.forEach( e => {
+            if(e.measure == null){
+              e['measurement'] =  'unidad';
+            }else{
+              e['measurement'] =  'gr';
+            }
+
+            if(e.id == element.food_id){
+              e.cantidad = parseInt( element.quantity) 
+            }else{
+              e.cantidad = 0
+            }
+
+           })
+          });
+
+
+        console.log("this.alimenot" ,this.alimentos)
+        console.log("this.alimenot2" ,this.alimentos2)
+
+
         this.datosUsuario = valor['Menu'];
         this.totalCarbo = this.datosUsuario.carbo;
         this.totalgrease = this.datosUsuario.grease;
         this.totalprotein = this.datosUsuario.protein;
-
       }
-  }
+    }
+
+
 
   ucFirst(str) {
     /*   str = str.replace(/ /g, "."); */
@@ -105,13 +131,16 @@ export class AlimentosSeleccionPage implements OnInit {
               console.log(element);
               console.log('medida casera')
 
-              this.carbo += element.carbo*element.cantidad;
+/*               this.carbo += element.carbo*element.cantidad;
               this.grasa += element.greases*element.cantidad;
-              this.protein += element.protein*element.cantidad;
+              this.protein += element.protein*element.cantidad; */
+              this.carbo += this.convertion(element.cant, element.carbo, element.cantidad*element.eq)
+              this.grasa += this.convertion(element.cant, element.greases, element.cantidad*element.eq)
+              this.protein += this.convertion(element.cant, element.protein, element.cantidad*element.eq)
             }else{
-              this.carbo += this.convertion(element.eq, element.carbo, element.cantidad)
-              this.grasa += this.convertion(element.eq, element.greases, element.cantidad)
-              this.protein += this.convertion(element.eq, element.protein, element.cantidad)
+              this.carbo += this.convertion(element.cant, element.carbo, element.cantidad)
+              this.grasa += this.convertion(element.cant, element.greases, element.cantidad)
+              this.protein += this.convertion(element.cant, element.protein, element.cantidad)
               console.log(element)
               console.log('Aplicar la regla de 3')
 
