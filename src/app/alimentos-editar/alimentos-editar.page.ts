@@ -12,20 +12,23 @@ import { NavController, AlertController } from '@ionic/angular';
 export class AlimentosEditarPage implements OnInit {
   dataRecibida:any
   alimentos:any = [];
-  alimentos2:any = [];
-  id:any;
   alimentosAyer:any = []
   datosUsuario:any = [];
+  alimentos2:any = [];
   foods: string;
   carbo:any = 0;
   protein:any = 0;
   grasa:any = 0;
   typefoods:number = 1
+  comidaenviar:number
   totalCarbo: any;
   totalgrease: any;
   totalprotein: any;
   measurement: string = 'gr';
   today:any
+  id: any;
+  activar:boolean = true
+
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
@@ -38,24 +41,22 @@ export class AlimentosEditarPage implements OnInit {
     switch (this.dataRecibida) {
       case 'Desayuno':
         this.getFoods(0)
-        this.comprobarMenu(0)
+        this.comidaenviar = 0
         this.foods = './assets/img/desayuno-grande.jpg'
         break
       case 'Almuerzo':
         this.getFoods(2)
-        this.comprobarMenu(2)
-
+        this.comidaenviar = 2
         this.foods = './assets/img/almuerzo-grande.jpg'
         break
       case  'Snack':
         this.getFoods(1)
-        this.comprobarMenu(1)
-
+        this.comidaenviar = 1
         this.foods = './assets/img/snack-grande.jpg'
         break
       default:
         this.getFoods(3)
-        this.comprobarMenu(3)
+        this.comidaenviar = 3
         this.foods = './assets/img/cena-grande.jpg'
         break
     }
@@ -90,8 +91,6 @@ export class AlimentosEditarPage implements OnInit {
 
             if(e.id == element.food_id){
               e.cantidad = parseInt( element.quantity) 
-            }else{
-              e.cantidad = 0
             }
 
            })
@@ -111,11 +110,6 @@ export class AlimentosEditarPage implements OnInit {
 
   this.calculateStats()   
   }
-
-
-
-
-
 
 
 
@@ -139,13 +133,16 @@ export class AlimentosEditarPage implements OnInit {
               console.log(element);
               console.log('medida casera')
 
-              this.carbo += element.carbo*element.cantidad;
+/*               this.carbo += element.carbo*element.cantidad;
               this.grasa += element.greases*element.cantidad;
-              this.protein += element.protein*element.cantidad;
+              this.protein += element.protein*element.cantidad; */
+              this.carbo += this.convertion(element.cant, element.carbo, element.cantidad*element.eq)
+              this.grasa += this.convertion(element.cant, element.greases, element.cantidad*element.eq)
+              this.protein += this.convertion(element.cant, element.protein, element.cantidad*element.eq)
             }else{
-              this.carbo += this.convertion(element.eq, element.carbo, element.cantidad)
-              this.grasa += this.convertion(element.eq, element.greases, element.cantidad)
-              this.protein += this.convertion(element.eq, element.protein, element.cantidad)
+              this.carbo += this.convertion(element.cant, element.carbo, element.cantidad)
+              this.grasa += this.convertion(element.cant, element.greases, element.cantidad)
+              this.protein += this.convertion(element.cant, element.protein, element.cantidad)
               console.log(element)
               console.log('Aplicar la regla de 3')
 
@@ -175,16 +172,14 @@ export class AlimentosEditarPage implements OnInit {
 
       guardarMenu(){
         let menu = {
-          "day":this.today,
-          "type_food": this.datosUsuario.type_food,
+          "menu_id":this.id,
+          "type_food": this.comidaenviar,
           "total_proteins": this.protein,
           "total_greases": this.grasa,
           "total_carbos": this.carbo,
           "total_calories": 0,
           "foods": []
         }
-
-  
 
         this.alimentos.forEach(element => {
           if(element.cantidad > 0){
@@ -198,6 +193,8 @@ export class AlimentosEditarPage implements OnInit {
             }
           }
         });
+
+  
         if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
           this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
         } else {
@@ -205,12 +202,12 @@ export class AlimentosEditarPage implements OnInit {
               if(!menu.foods.length){
                 this.utilities.alertaInformatica('Debe seleccionar un alimento')
               }else{
-                this.service.storeMenu(menu).then((res) => {
+                this.service.ActualizarComida(menu).then((res) => {
                   console.log(res);
-                  this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
+                  this.utilities.notificacionUsuario( this.dataRecibida + ' actualizado' , "dark" );
                    this.navCtrl.navigateRoot('/bateria-alimento')
                 }).catch((err) => {
-                 this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+                 this.utilities.notificacionUsuario('Error al actualizar '+ this.dataRecibida , "danger")
                 });
               }
         }
@@ -223,6 +220,7 @@ export class AlimentosEditarPage implements OnInit {
 
       switch (tipo) {
         case 0:
+          this.activar = false
           this.typefoods = 0
           break;
 
@@ -231,6 +229,7 @@ export class AlimentosEditarPage implements OnInit {
          break;
 
         case 2:
+          this.activar = false
           this.typefoods = 2
           break;
       
@@ -318,4 +317,4 @@ export class AlimentosEditarPage implements OnInit {
 
     }
 
-}
+  }

@@ -21,7 +21,7 @@
 
   <ion-item lines="none">
     <div class="contenedorMenu">
-      <div class="contenedorMenuItem" (click)="selecionartarjeta(1)" style="border-bottom-left-radius: 12px;border-top-left-radius: 12px;background:black;">
+      <div class="contenedorMenuItem"  [ngClass]="{'customtarjeta': activar}"   (click)="selecionartarjeta(1)" style="border-bottom-left-radius: 12px;border-top-left-radius: 12px;background:black;">
         <p style="color: white; margin-top: 0;"> <br> Carbohidratos</p>
         <ion-progress-bar class="carboP" [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
         <p style="color: white;" *ngIf="datosUsuario.carbo">
@@ -49,9 +49,6 @@
         <!-- cabeza -->
         <ion-label class="ion-text-wrap" style="font-weight: 600; text-transform: uppercase; display: flex;
         justify-content: center; font-size: 15px;"> {{ucFirst(alimento.name)}} 
-          <sup>
-            <ion-icon name="help-circle" style="font-size: 1.25rem;"></ion-icon> 
-          </sup> 
         </ion-label>
         <!-- input cuerpo -->
         <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" (ionChange)="calculateStats()" clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>

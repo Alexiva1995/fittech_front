@@ -15,13 +15,13 @@
 <ion-content>
 
   <div  class="ion-padding ion-text-center titulo2">
-    Medir es vital para registrar tu progreso, más importante que el change, tus medidas harán más visibles los resultados de tu esfuerzo y disciplina.
+    Medir es <b>vital</b> para registrar tu progreso, más importante que el peso, tus medidas harán más visibles los <b>resultados</b> de tu esfuerzo y disciplina.
   </div> 
   <ion-grid>
     <ion-row >
       <ion-col  size="12">   
         <div>
-          <img src="assets/img/calentamientodos.jpg"/>
+          <img src="assets/img/medidas.jpg"/>
         </div>   
       </ion-col>
     </ion-row>
@@ -241,16 +241,25 @@
    </ion-col>
   
  </ion-row>
-     <ion-row>
-         <ion-col size="6">
-           <img src="assets/img/fotofrente1.png" (click)="captureImage(1)">
-           <p style="color: red;">Foto de frente</p>
-       </ion-col>
-         <ion-col size="6">
-           <img src="assets/img/fotoperfil1.png" (click)="captureImage(2)">
-           <p  style="color: red;">Foto de perfil</p>
-       </ion-col>
-     </ion-row>
+  <ion-row  class="ion-justify-content-center">
+      <ion-col size="6">
+        <img  class="opacidad" src="assets/img/fotofrente1.png" (click)="captureImage(1)">
+        <p style="color: red;">Foto de frente</p>
+      </ion-col>
+      <ion-col size="6">
+        <img class="opacidad" src="assets/img/fotoperfil1.png" (click)="captureImage(2)">
+        <p  style="color: red;">Foto de perfil</p>
+      </ion-col>
+      <ion-col size="6">
+        <img class="opacidad" src="assets/img/fotoespalda1.png" (click)="captureImage(3)">
+        <p  style="color: red;">Foto de espalda</p>
+        </ion-col>
+  </ion-row>
+
+  <div  class="ion-padding ion-text-center titulo2">
+    Anímate a subir una foto de frente, perfil y espalda para compararlas cada 8 semanas.
+  </div>
+
    </ion-grid>
  <!--  </form> -->
  </form>

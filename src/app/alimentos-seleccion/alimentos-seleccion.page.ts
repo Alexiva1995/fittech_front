@@ -24,6 +24,7 @@ export class AlimentosSeleccionPage implements OnInit {
   totalgrease: any;
   totalprotein: any;
   measurement: string = 'gr';
+  activar:boolean = true
   today:any
   id: any;
   constructor(private capturar:ActivatedRoute,
@@ -62,16 +63,8 @@ export class AlimentosSeleccionPage implements OnInit {
   }
 
   async getFoods(comida:any){
-   this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-    console.log(this.today)
-    const data = await this.service.ListadoComida(comida,this.today)
-    if( data == false ){
-      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
-      }else{
-        this.alimentos2 = data['menu'].menu_food 
-        this.id = data['menu'].id
-      }
-
+    this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    console.log("fecha de hoy" , this.today)
 
     const valor = await this.service.menu(comida);
       if(valor == false ){
@@ -79,35 +72,21 @@ export class AlimentosSeleccionPage implements OnInit {
       }else{
         console.log(valor)
         this.alimentos = valor['Foods']
-
-        this.alimentos2.forEach(element => {
-          this.alimentos.forEach( e => {
-            if(e.measure == null){
-              e['measurement'] =  'unidad';
-            }else{
-              e['measurement'] =  'gr';
-            }
-
-            if(e.id == element.food_id){
-              e.cantidad = parseInt( element.quantity) 
-            }else{
-              e.cantidad = 0
-            }
-
-           })
-          });
-
-
-        console.log("this.alimenot" ,this.alimentos)
-        console.log("this.alimenot2" ,this.alimentos2)
-
-
+        this.alimentos.forEach(element => {
+          element['cantidad'] = null;
+          if(element.measure == null){
+            element['measurement'] =  'casera';
+          }else{
+            element['measurement'] =  'unidad';
+          }
+        });
         this.datosUsuario = valor['Menu'];
         this.totalCarbo = this.datosUsuario.carbo;
         this.totalgrease = this.datosUsuario.grease;
         this.totalprotein = this.datosUsuario.protein;
+
       }
-    }
+  }
 
 
 
@@ -218,6 +197,7 @@ export class AlimentosSeleccionPage implements OnInit {
 
       switch (tipo) {
         case 0:
+          this.activar = false
           this.typefoods = 0
           break;
 
@@ -226,6 +206,7 @@ export class AlimentosSeleccionPage implements OnInit {
          break;
 
         case 2:
+          this.activar = false
           this.typefoods = 2
           break;
       

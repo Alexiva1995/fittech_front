@@ -14,6 +14,9 @@
 </ion-header>
 
 <ion-content>
+  <div style="padding-bottom: 0;"   class="ion-padding ion-text-left titulo">
+    Resumen Nutricional
+  </div> 
 
   <div  *ngIf="nombre" class="ion-padding ion-text-left titulo2">
     Hola {{nombre}}, estos son tus requerimientos nutricionales que deberías consumir cada día.
@@ -55,11 +58,9 @@
   </div>
 
 
-  <div class="ion-padding ion-text-left titulo">
-    Resumen Nutricional
-  </div> 
 
-  <ion-grid>
+
+  <ion-grid style="padding-top: 1rem;">
     <ion-row>
       <ion-col size="6"  *ngIf="validateFood(0)">   
          <div class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno.jpeg);">

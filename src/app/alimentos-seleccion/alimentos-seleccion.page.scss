@@ -30,16 +30,24 @@ ion-button{
  /*  margin: 0 10px; */
   // centrar
   text-align: center;
+  filter: brightness(0.8);
+  transition: all ease .2s;
+}
+
+.customtarjeta{
+  filter: brightness(1);
 }
 
 .contenedorMenuItem:nth-child(1):hover{
-  opacity:0.8;
+  filter: brightness(1);
 }
+
 .contenedorMenuItem:nth-child(2):hover{
-  opacity:0.8;
+  filter: brightness(1);
 }
+
 .contenedorMenuItem:nth-child(3):hover{
-  opacity:0.9;
+  filter: brightness(1);
 }
 
 
