@@ -114,3 +114,12 @@
 *{
    font-family: 'Oswald', sans-serif;
 }
+
+// MODAL DE PEDIDOS
+// modal
+.medida-modal .modal-wrapper{
+   transition: all ease .3s;
+   --height: 70% !important;
+   --width:80% !important;
+   // position: absolute;
+}

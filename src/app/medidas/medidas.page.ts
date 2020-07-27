@@ -204,8 +204,9 @@ export class MedidasPage implements OnInit {
   
     const modal = await this.modalController.create({
       component: ModalMedidasPage,
+      cssClass: 'medida-modal',
       componentProps:{
-        nombre:'Fernando'
+        nombre: event
       }
     })
   
