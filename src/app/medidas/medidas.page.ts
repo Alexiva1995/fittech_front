@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  NavController, AlertController, LoadingController
+  NavController, AlertController, LoadingController, ModalController
 } from '@ionic/angular';
 import {
   Validators,
@@ -15,6 +15,7 @@ import { UsuarioService } from '../services/usuario.service';
 import { MensajesService } from '../services/mensajes.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
+import { ModalMedidasPage } from '../modal-medidas/modal-medidas.page';
 @Component({
   selector: 'app-medidas',
   templateUrl: './medidas.page.html',
@@ -31,6 +32,7 @@ export class MedidasPage implements OnInit {
   constructor(private ruta: NavController, private fb: FormBuilder, 
               private service: UsuarioService, private utilities: MensajesService, 
               public loadingController: LoadingController,private camera: Camera, 
+              public modalController: ModalController,
               private webView: WebView, private alertCtrl: AlertController) {
     this.form = this.fb.group({
       min_waist:[null, Validators.required],
@@ -196,6 +198,20 @@ export class MedidasPage implements OnInit {
     await loading.present();
   }
 
+
+  async modal(event){
+    // console.log(event)
+  
+    const modal = await this.modalController.create({
+      component: ModalMedidasPage,
+      componentProps:{
+        nombre:'Fernando'
+      }
+    })
+  
+    await modal.present();
+
+  }
 
 
 }

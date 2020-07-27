@@ -94,6 +94,9 @@ ion-input {
     text-align: center;
     margin: 0 auto;
     font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
 }   
 ion-col{
     text-align: center;

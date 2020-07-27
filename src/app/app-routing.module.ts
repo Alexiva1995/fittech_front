@@ -261,7 +261,11 @@ const routes: Routes = [
   {
     path: 'alimentos-editar/:id',
     loadChildren: () => import('./alimentos-editar/alimentos-editar.module').then( m => m.AlimentosEditarPageModule)
+  },  {
+    path: 'modal-medidas',
+    loadChildren: () => import('./modal-medidas/modal-medidas.module').then( m => m.ModalMedidasPageModule)
   },
+
 
 
 
