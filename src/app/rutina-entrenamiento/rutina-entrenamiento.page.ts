@@ -182,12 +182,16 @@ export class RutinaEntrenamientoPage implements OnInit {
     }
   }
 
-  async timerDescanse() {
+  async timerDescanse(timerContinue = null) {
     this.zero = null;
     // this.imagen = `http://fittech247.com/fittech/imagenes/${this.rutinas[this.actual].cod}/${this.rutinas[this.actual].id}.jpg`;
     this.video2 = `http://fittech247.com/fittech/videos/${this.rutinas[this.actual].cod}/${this.rutinas[this.actual].url}`;
-    console.log(this.video2)
-    this.timeLeft = this.data['ratio_r'];
+    console.log(this.video2);
+    if(timerContinue){
+      this.timeLeft = timerContinue;
+    }else{
+      this.timeLeft = this.data['ratio_r'];
+    }
     this.tiemposegundo = setInterval(() => {
       if (this.timeLeft <= 10) {
         console.log("activate")
@@ -279,7 +283,7 @@ async confirmation2(){
         role: 'cancel',
         cssClass: 'cancelButton',
         handler: (blah) => {
-         this.timerDescanse();
+         this.timerDescanse(this.timeLeft);
         }
       }, {
         text: 'Si',
