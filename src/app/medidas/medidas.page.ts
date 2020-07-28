@@ -28,6 +28,7 @@ export class MedidasPage implements OnInit {
   imgSelected2: any;
   imgSelected: any;
   imgUri: any;
+  imgSelected3: string;
 
   constructor(private ruta: NavController, private fb: FormBuilder, 
               private service: UsuarioService, private utilities: MensajesService, 
@@ -154,6 +155,14 @@ export class MedidasPage implements OnInit {
         console.log("imagen" , imageData)
         console.log("image frente",this.form)
       }
+
+      if(index == 3){//perfil
+        this.imgSelected3 = this.webView.convertFileSrc(imageData);
+        this.form.controls.profile_photo.setValue(imageData)
+        this.imgUri = imageData;
+        console.log("imagen" , imageData)
+        console.log("image frente",this.form)
+      }
       // this.form.controls['fotoPerfil'].setValue(imageData);
      }, (err) => {
       // Handle error
@@ -166,16 +175,19 @@ export class MedidasPage implements OnInit {
 
       const alert = await this.alertCtrl.create({
         header: 'Seleccionar Imágen',
+        cssClass: 'uploadmessage',
         message: '¿Qué desea hacer?',
         buttons: [
           {
             text: "Tomar Foto",
+            cssClass: 'btn_alert',
             handler: () => {
               resolve(true);
             }
           },
           {
             text: "Buscar en Galería",
+            cssClass: 'btn_alert',
             handler: () => {
               resolve(false);
             }

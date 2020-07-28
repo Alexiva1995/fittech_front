@@ -11,6 +11,7 @@ import { ComponentsModule } from '../components/components.module';
 import { ModalMedidasPage } from '../modal-medidas/modal-medidas.page';
 import { ModalInfoPageModule } from '../modal-info/modal-info.module';
 import { ModalMedidasPageModule } from '../modal-medidas/modal-medidas.module';
+import { TwoDigitDecimaNumberDirective } from '../decimals.directive';
 
 @NgModule({
   entryComponents:[

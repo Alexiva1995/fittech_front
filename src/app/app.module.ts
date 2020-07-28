@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+import { TwoDigitDecimaNumberDirective } from './decimals.directive';
 
 
 var firebaseConfig = {
@@ -40,7 +41,7 @@ var firebaseConfig = {
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TwoDigitDecimaNumberDirective],
   entryComponents: [],
   imports: [
     BrowserModule, 
