@@ -36,18 +36,18 @@ export class MedidasPage implements OnInit {
               public modalController: ModalController,
               private webView: WebView, private alertCtrl: AlertController) {
     this.form = this.fb.group({
-      min_waist:[null, Validators.required],
-      max_waist:[null,Validators.required],
-      hip:[null,Validators.required],
-      neck:[null,Validators.required],
-      right_thigh:[null,Validators.required],
-      left_thigh:[null,Validators.required],
-      right_arm:[null, Validators.required],
-      left_arm:[null,Validators.required],
-      right_calf:[null,Validators.required],
-      left_calf:[null,Validators.required],
-      torax:[null, Validators.required],
-      waist_hip:[0],
+      min_waist:[0.0, Validators.required],
+      max_waist:[0.0,Validators.required],
+      hip:[0.0,Validators.required],
+      neck:[0.0,Validators.required],
+      right_thigh:[0.0,Validators.required],
+      left_thigh:[0.0,Validators.required],
+      right_arm:[0.0, Validators.required],
+      left_arm:[0.0,Validators.required],
+      right_calf:[0.0,Validators.required],
+      left_calf:[0.0,Validators.required],
+      torax:[0.0, Validators.required],
+      waist_hip:[0.0],
       profile_photo:[null,Validators.required],
       front_photo:[null,Validators.required],
       back_photo:[null,Validators.required],
@@ -91,6 +91,38 @@ export class MedidasPage implements OnInit {
     }
     //this.convertToCm();
   }
+  decimalFormat(e: KeyboardEvent){  //evita el ingreso de caracteres no numericos
+    let telefono : string;
+    telefono = this.form.controls.min_waist.value;
+ console.log(e.key);
+  if(e.key == "Backspace" || e.key == "ArrowLeft" || e.key == "ArrowRight" || e.key == ","){
+       return;
+   }
+   if(e.key == "." && telefono.includes('.')){
+    this.phoneFormatView(parseFloat(telefono).toFixed(1));
+   }
+   console.log(parseFloat(telefono).toFixed(1));
+   
+   if(e.key == "."){
+     this.phoneFormatView(parseFloat(telefono).toFixed(1));
+   }
+   if(telefono.includes('.')){
+    this.phoneFormatView(parseFloat(telefono).toFixed(1));
+   }
+}
+
+phoneFormatView(num:any){  //formatea la vista del número
+  var multiplier = Math.pow(10, 1 );
+/*     return ; */
+/*   console.log()
+  ; */
+
+  console.log((Math.round(num * multiplier) / multiplier));
+   this.form.controls["min_waist"].setValue((Math.round(num * multiplier) / multiplier).toFixed(1));
+   
+    // this.telefono = format;
+}
+
 
   convertToCm(){
     let objects = Object.keys(this.form.value);
