@@ -102,6 +102,26 @@
     }
   }
 
+  .customMensaje2{
+   h2{
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+   }
+   button.confirmButton{
+     color: red;
+     text-align: center;
+    margin: 0 auto;
+    display: block;
+   }
+   button.cancelButton{
+      color: red;
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
   ion-loading.custom-loading {
    --spinner-color:red;	
    .loading-wrapper {
@@ -121,5 +141,6 @@
    transition: all ease .3s;
    --height: 70% !important;
    --width:80% !important;
+   --border-radius:15px;
    // position: absolute;
 }

@@ -21,7 +21,7 @@ export class ModalMedidasPage implements OnInit {
         this.image = './assets/img/cintura_maxima.jpg'
         break
       case  'Cadera':
-        this.image = './assets/img/snack-grande.jpg'
+        this.image = null
         break
       case  'Cuello':
         this.image = './assets/img/cuello.jpg'
@@ -32,10 +32,10 @@ export class ModalMedidasPage implements OnInit {
       case  'Muslo izquierdo':
         this.image = './assets/img/muslo_izquierdo.jpg'
         break
-      case  'Brazo derecho':
+      case  'Brazo relajado derecho':
         this.image = './assets/img/brazo_relajado_derecho.jpg'
         break
-      case  'Brazo izquierdo':
+      case  'Brazo relajado izquierdo':
         this.image = './assets/img/brazo_relajado_izquierdo.jpg'
         break
       case  'Pantorrilla derecho':

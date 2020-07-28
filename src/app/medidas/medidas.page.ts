@@ -215,4 +215,16 @@ export class MedidasPage implements OnInit {
   }
 
 
+    // mensaje de reanudar
+    // async confirmarSalida() {
+    //   const alert = await this.alertController.create({
+    //     header: 'Si finalizas aquí no contará la sesión ¿seguro quieres finalizar?',
+    //     cssClass: 'customMensaje1',
+
+    //   });
+  
+    //   await alert.present();
+    // }
+
+
 }
