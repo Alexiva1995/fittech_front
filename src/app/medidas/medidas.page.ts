@@ -49,6 +49,7 @@ export class MedidasPage implements OnInit {
       torax:[null, Validators.required],
       waist_hip:[0],
       profile_photo:[null,Validators.required],
+      front_photo:[null,Validators.required],
       back_photo:[null,Validators.required],
       min_waist_:['Cm', Validators.required],
       max_waist_:['Cm',Validators.required],
@@ -142,10 +143,10 @@ export class MedidasPage implements OnInit {
       if(index == 1){//frente
         this.imgSelected = this.webView.convertFileSrc(imageData);
         // 'data:image/jpeg;base64'
-        this.form.controls.back_photo.setValue(imageData)
+        this.form.controls.front_photo.setValue(imageData)
         this.imgUri = imageData;
         console.log("imagen" , imageData)
-        console.log("image espalda",this.form)
+        console.log("image frente",this.form)
 
       }
       if(index == 2){//perfil
@@ -153,15 +154,15 @@ export class MedidasPage implements OnInit {
         this.form.controls.profile_photo.setValue(imageData)
         this.imgUri = imageData;
         console.log("imagen" , imageData)
-        console.log("image frente",this.form)
+        console.log("image perfil",this.form)
       }
 
-      if(index == 3){//perfil
+      if(index == 3){//espalda
         this.imgSelected3 = this.webView.convertFileSrc(imageData);
-        this.form.controls.profile_photo.setValue(imageData)
+        this.form.controls.back_photo.setValue(imageData)
         this.imgUri = imageData;
         console.log("imagen" , imageData)
-        console.log("image frente",this.form)
+        console.log("image espalda",this.form)
       }
       // this.form.controls['fotoPerfil'].setValue(imageData);
      }, (err) => {
