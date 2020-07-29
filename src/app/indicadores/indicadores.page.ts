@@ -27,7 +27,7 @@ export class IndicadoresPage implements OnInit {
         this.detectar = false
       }else{
         this.dato = valor
-        console.log("que recibo" , valor)
+        console.log("BLAH BLAH BLAH BLAH" , this.dato.tmb)
       }
   }
 

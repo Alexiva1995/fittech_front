@@ -14,21 +14,17 @@
 <ion-content>
 
     <ion-segment (ionChange)="segmentChanged($event)" scrollable color="danger" value="perfil" mode="md">
-      <ion-segment-button value="perfil">
-        <ion-label>Mi perfil</ion-label>
-        <ion-icon name="person-outline"></ion-icon>
+      <ion-segment-button value="perfil" [ngClass]="{'perfil': clase == 'perfil' ? true : false}">
+        <ion-label style="color: white;">Mi perfil</ion-label>
+        <ion-icon name="person-outline" style="color: white;"></ion-icon>
       </ion-segment-button>
-      <ion-segment-button value="indicadores">
-        <ion-label>Indicadores</ion-label>
-        <ion-icon name="heart-outline"></ion-icon>
+      <ion-segment-button value="indicadores" [ngClass]="{'indicadores': clase == 'indicadores' ? true : false}">
+        <ion-label style="color: white;">Indicadores</ion-label>
+        <ion-icon name="heart-outline" style="color: white;"></ion-icon>
       </ion-segment-button>
-      <ion-segment-button value="medidas">
-        <ion-label>Medidas</ion-label>
-        <ion-icon name="body-outline"></ion-icon>
-      </ion-segment-button>
-      <ion-segment-button value="progreso">
-        <ion-label>Contraseña</ion-label>
-        <ion-icon name="build-outline"></ion-icon>
+      <ion-segment-button value="medidas" [ngClass]="{'medidas': clase == 'medidas' ? true : false}">
+        <ion-label style="color: white;">Medidas</ion-label>
+        <ion-icon name="body-outline" style="color: white;"></ion-icon>
       </ion-segment-button>
     </ion-segment>
 
@@ -38,31 +34,55 @@
     <ion-grid>
     <form [formGroup]="form">
       <ion-row>
-        <ion-col size="5">
+        <ion-col size="5" offset="4">
           <ion-avatar>
             <img [src]="image" (click)="captureImage(1)" onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
             <ion-fab-button size="small">
               <ion-icon name="camera"></ion-icon>
             </ion-fab-button>
+            <h1 style="margin: 0; text-align: center; color: white;">{{titulo}}</h1>
           </ion-avatar>
-        </ion-col>
-        <ion-col size="7">
           
-            <ion-label position="stacked" >Nombre y Apellido</ion-label>
-            <ion-input formControlName="name"></ion-input>
-         
-          
-            <ion-label position="stacked">Genero</ion-label>
-            <ion-input [value]="genero" readonly></ion-input>
-
-         
         </ion-col>
       </ion-row>
+      <ion-row>         
+        <ion-col size="12">
+          
+          <ion-label position="stacked" >Nombre y Apellido</ion-label>
+          <ion-input formControlName="name">
+            <ion-icon style="position: absolute;right: 1rem;color: red;font-size: 1.2rem;" name="pencil-outline"></ion-icon>
+          </ion-input>
+          <ion-label position="stacked">Género</ion-label>
+          <ion-input [value]="genero" readonly></ion-input>
+          <ion-label position="stacked">Correo Electrónico</ion-label>
+          <ion-input formControlName="email" readonly></ion-input>
+
+          <ion-label>Objetivo</ion-label>
+          <ion-item>
+            <ion-label style="font-size: 1rem; font-weight: 300;" *ngIf="!valor">{{objetivo}}</ion-label>
+            <ion-select interface="action-sheet" (ionChange)="obje($event)">
+              <ion-select-option value="2" style="color: white;">Adelgazar</ion-select-option>
+              <ion-select-option value="0" style="color: white;">Estar en forma</ion-select-option>
+              <ion-select-option value="1" style="color: white;"> Ganar musculatura</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <form [formGroup]="formpass">
       <ion-row>
         <ion-col size="12">
-          <ion-label position="stacked">Correo Electronico</ion-label>
-            <ion-input formControlName="email" readonly></ion-input>
-            <ion-card  style="
+          <ion-label position="stacked">Nueva Contraseña</ion-label>
+          <ion-input formControlName="password" type="password">
+            <ion-icon style="position: absolute;right: 1rem;color: red;font-size: 1.2rem;" name="pencil-outline"></ion-icon>
+          </ion-input>
+          <ion-label position="stacked">Confirmar Contraseña</ion-label>
+          <ion-input formControlName="repassword" type="password">
+            <ion-icon style="position: absolute;right: 1rem;color: red;font-size: 1.2rem;" name="pencil-outline"></ion-icon>
+          </ion-input>
+            <!-- <ion-card  style="
             width: 254px; 
             border-radius: 10px;
             text-transform: uppercase;
@@ -73,18 +93,23 @@
             margin-bottom: 5px;
             "
           
-          [disabled]="form.status == 'INVALID'"
-          (click)="changeData()">
+          [disabled]="formpass.status == 'INVALID'"
+          (click)="changepass()">
           <h4 style="margin: 10px; text-align: center;"> 
-            <b>Guardar</b>
+            <b>Actualizar</b>
           </h4> 
-            </ion-card>
+            </ion-card> -->
         </ion-col>
       </ion-row>
     </form>
-
     </ion-grid>
+
+    <h4 style=" color:red; text-align: center; margin: 0; text-decoration: underline;"
+    (click)="desconectar()">CERRAR SESIÓN</h4>
+
   </div>
+
+  
 
 
   <div *ngIf="comparar ==='indicadores' ">
@@ -95,7 +120,7 @@
     <app-medidas></app-medidas>
   </div>
     
-  <div *ngIf="comparar ==='progreso' "> 
+  <!-- <div *ngIf="comparar ==='progreso' "> 
     <ion-grid>
     <form [formGroup]="formpass">
       <ion-row>
@@ -126,28 +151,8 @@
     </form>
 
     </ion-grid>
-  </div>
+  </div> -->
  
 </ion-content>
 
 
-<ion-footer>
-
-  <ion-card  style="
-  width: 254px; 
-  border-radius: 10px;
-  text-transform: uppercase;
-  font-family: 'Open Sans';
-  --background:#EF4044;
-  color:white;
-  margin: 0 auto;
-  margin-bottom: 5px;
-  "
-
-(click)="desconectar()">
-<h4 style="margin: 10px; text-align: center;"> 
-  <b>Desconectar</b>
-</h4> 
-  </ion-card>
-
-</ion-footer>

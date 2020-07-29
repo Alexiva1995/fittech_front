@@ -21,7 +21,7 @@ export class ModalMedidasPage implements OnInit {
         this.image = './assets/img/cintura_maxima.jpg'
         break
       case  'Cadera':
-        this.image = null
+        this.image = './assets/img/cadera.jpg'
         break
       case  'Cuello':
         this.image = './assets/img/cuello.jpg'

@@ -14,11 +14,15 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class PerfilPage implements OnInit {
   comparar:any = 'perfil'
   image:any;
+  objetivo:any
   genero:any
+  titulo:any
   form: FormGroup;
   formpass:FormGroup;
   imgSelected: any;
-  
+  valor: any;
+  clase:string = 'perfil'
+
   constructor(private fb: FormBuilder, private apiService:ApiFitechService,
             private ruta:NavController,public alertController: AlertController,
             private webView: WebView, private camera: Camera, 
@@ -46,6 +50,8 @@ export class PerfilPage implements OnInit {
   }
 
   segmentChanged(valor){
+    this.clase = valor.target.value
+
    this.comparar = valor.target.value
   }
 
@@ -68,7 +74,23 @@ export class PerfilPage implements OnInit {
           }else{
             this.genero = "Mujer"
           }
+
+          if(valor['user'].objective == '0'){
+            this.objetivo = "Estar en forma"
+          }
+          if(valor['user'].objective == '1'){
+            this.objetivo = "Ganar musculatura"
+          }
+          if(valor['user'].objective == '2'){
+            this.objetivo = "Adelgazar"
+          }
+
+
+
+
+          console.log("todo los valores", valor)
           this.image = valor['user'].avatar; 
+          this.titulo = valor['user'].name
          this.form.controls.avatar.setValue(valor['user'].avatar)
          this.form.controls.name.setValue(valor['user'].name)
          this.form.controls.email.setValue(valor['user'].email)
@@ -173,6 +195,11 @@ export class PerfilPage implements OnInit {
             matchingControl.setErrors(null);
         }
     }
+}
+
+obje(valor){
+  console.log(valor.target.value)
+  this.valor = valor.target.value;
 }
 
 }

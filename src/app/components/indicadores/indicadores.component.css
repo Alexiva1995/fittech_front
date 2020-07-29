@@ -104,7 +104,8 @@ ion-input {
 }
 
 ion-item {
-  --background: white;
+  color: white;
+  border: 1px solid white;
 }
 
 ion-select {

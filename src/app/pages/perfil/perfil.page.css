@@ -20,20 +20,26 @@ ion-col {
 ion-col ion-label {
   font-weight: bold;
   font-size: 1.2rem;
+  color: white;
 }
 
 ion-col ion-input {
-  background: #dcdcdc;
-  border-radius: 10px;
-  color: black;
+  border: 1px solid #dcdcdc;
+  color: white;
+  border-radius: 8px;
   margin-bottom: 1rem;
 }
 
 ion-col ion-select {
-  background: #dcdcdc;
-  border-radius: 10px;
-  color: black;
-  margin-bottom: 1rem;
+  color: white;
+  text-align: left;
+  display: contents;
+  width: 100%;
+  font-size: 17px;
+}
+
+ion-col ion-select::part(icon) {
+  color: red !important;
 }
 
 ion-col ion-avatar {
@@ -46,7 +52,7 @@ ion-col ion-avatar ion-fab-button {
   position: absolute;
   right: 0;
   bottom: 30%;
-  --background: #FFBB00;
+  --background: #EF4044;
 }
 
 ion-col ion-avatar img {
@@ -59,14 +65,22 @@ ion-buttons {
   right: 0;
 }
 
-ion-segment-button {
-  color: black;
+.perfil {
+  background-color: red;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
-ion-segment-button .active {
-  background: #ef4044;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+.indicadores {
+  background-color: red;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.medidas {
+  background-color: red;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 ion-title {
@@ -79,4 +93,18 @@ ion-title {
   font-weight: 800;
   /*   opacity: 0.7; */
   margin-bottom: 0;
+}
+
+form {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+ion-content {
+  --ion-background-color: black;
+}
+
+ion-item {
+  border: 1px solid white;
+  border-radius: 8px;
 }

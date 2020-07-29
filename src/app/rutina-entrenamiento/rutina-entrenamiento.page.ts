@@ -198,7 +198,7 @@ export class RutinaEntrenamientoPage implements OnInit {
         this.zero = 0
       }
 
-      if (this.timeLeft >= 1 && this.timeLeft < 10) {
+      if (this.timeLeft >= 1 && this.timeLeft < 5) {
         this.playSonido(1)
       }
       if (this.timeLeft > 0) {
