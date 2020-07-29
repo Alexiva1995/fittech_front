@@ -91,34 +91,33 @@ export class MedidasPage implements OnInit {
     }
     //this.convertToCm();
   }
-  decimalFormat(e: KeyboardEvent){  //evita el ingreso de caracteres no numericos
+  decimalFormat(e: KeyboardEvent, input:string){  //evita el ingreso de caracteres no numericos
     let telefono : string;
-    telefono = this.form.controls.min_waist.value;
+    telefono = this.form.controls[input].value;
  console.log(e.key);
   if(e.key == "Backspace" || e.key == "ArrowLeft" || e.key == "ArrowRight" || e.key == ","){
        return;
    }
    if(e.key == "." && telefono.includes('.')){
-    this.phoneFormatView(parseFloat(telefono).toFixed(1));
+    this.phoneFormatView(parseFloat(telefono).toFixed(1), input);
    }
-   console.log(parseFloat(telefono).toFixed(1));
    
    if(e.key == "."){
-     this.phoneFormatView(parseFloat(telefono).toFixed(1));
+     this.phoneFormatView(parseFloat(telefono).toFixed(1), input);
    }
    if(telefono.includes('.')){
-    this.phoneFormatView(parseFloat(telefono).toFixed(1));
+    this.phoneFormatView(parseFloat(telefono).toFixed(1), input);
    }
 }
 
-phoneFormatView(num:any){  //formatea la vista del número
+phoneFormatView(num:any, input:string){  //formatea la vista del número
   var multiplier = Math.pow(10, 1 );
 /*     return ; */
 /*   console.log()
   ; */
 
   console.log((Math.round(num * multiplier) / multiplier));
-   this.form.controls["min_waist"].setValue((Math.round(num * multiplier) / multiplier).toFixed(1));
+   this.form.controls[input].setValue((Math.round(num * multiplier) / multiplier).toFixed(1));
    
     // this.telefono = format;
 }
