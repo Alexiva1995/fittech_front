@@ -14,12 +14,12 @@
 
 <ion-content>
 
-  <div  class="ion-padding ion-text-center titulo2">
+  <div  class="ion-padding ion-text-left titulo2">
     Medir es <b>vital</b> para registrar tu progreso, más importante que el peso, tus medidas harán más visibles los <b>resultados</b> de tu esfuerzo y disciplina.
   </div> 
-  <ion-grid>
+  <ion-grid style="padding: 0;">
     <ion-row >
-      <ion-col  size="12">   
+      <ion-col  size="12" style="padding: 0;">   
         <div>
           <img src="assets/img/medidas.jpg"/>
         </div>   
@@ -258,20 +258,23 @@
  </ion-row>
    </ion-col>
    <div  class="ion-padding ion-text-center titulo2">
-    Estamos emocionados con el cambio que vas a tener las próximas semanas, por favor registra algunas fotos, te emocionará al momento de comparar.
+    Estamos emocionados con el cambio que vas a tener las próximas semanas, por favor registra algunas fotos, te emocionará al momento de comparar.  En tu galería quizá puedes perderla de vista, puedes tenerlas aquí y subirlas sin que se vea tu rostro.
   </div>
  </ion-row>
   <ion-row  class="ion-justify-content-center">
       <ion-col size="6">
-        <img  class="opacidad" src="assets/img/fotofrente1.png" (click)="captureImage(1)">
+        <img  class="opacidad" src="assets/img/fotofrente1.png" (click)="captureImage(1)" *ngIf="!imgSelected">
+        <img  class="opacidad" [src]="imgSelected" (click)="captureImage(1)" *ngIf="imgSelected">
         <p style="color: red;">Foto de frente</p>
       </ion-col>
       <ion-col size="6">
-        <img class="opacidad" src="assets/img/fotoperfil1.png" (click)="captureImage(2)">
+        <img class="opacidad" src="assets/img/fotoperfil1.png" (click)="captureImage(2)" *ngIf="!imgSelected2">
+        <img class="opacidad" [src]="imgSelected2" (click)="captureImage(2)" *ngIf="imgSelected2">
         <p  style="color: red;">Foto de perfil</p>
       </ion-col>
       <ion-col size="6">
-        <img class="opacidad" src="assets/img/fotoespalda1.png" (click)="captureImage(3)">
+        <img class="opacidad" src="assets/img/fotoespalda1.png" (click)="captureImage(3)" *ngIf="!imgSelected2">
+        <img class="opacidad" [src]="imgSelected3" (click)="captureImage(3)" *ngIf="imgSelected2">
         <p  style="color: red;">Foto de espalda</p>
         </ion-col>
   </ion-row>

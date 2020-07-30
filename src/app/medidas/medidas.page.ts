@@ -69,7 +69,8 @@ export class MedidasPage implements OnInit {
   
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   goTo(url: string) {
     this.ruta.navigateForward(url);
@@ -238,6 +239,7 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
+      cssClass:'my-loading'
     });
     await loading.present();
   }
