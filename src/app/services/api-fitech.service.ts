@@ -853,7 +853,7 @@ export class ApiFitechService {
 
       this.http.post(`${URL}/auth/changepassword`,data,{headers})
           .subscribe(resp=>{
-            console.log("respuesta",resp)
+            console.log("respuesta2",resp)
             resolve(true)
           },err=>{
             resolve(false)
@@ -874,7 +874,7 @@ export class ApiFitechService {
 
       this.http.post(`${URL}/auth/update-client`,data,{headers})
           .subscribe(resp=>{
-            console.log("respuesta",resp)
+            console.log("respuesta1",resp)
             resolve(true)
           },err=>{
             resolve(false)

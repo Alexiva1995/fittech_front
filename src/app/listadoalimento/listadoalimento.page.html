@@ -13,50 +13,69 @@
 <ion-content fullscreen>
   <img [src]="foods" alt="">
 
-
   <ion-item>
-    <ion-label  style="font-size: 20px;"   class="ion-text-wrap">
+    <div class="ion-padding ion-text-center titulo">
       Menú de hoy
-    </ion-label>
-    <ion-label class="ion-text-end">
-       <ion-button (click)="B_todo()"  color="danger" expand="block" fill="clear" shape="round">
-         Borrar todo
-       </ion-button>
-     </ion-label>
+    </div> 
   </ion-item>
 
-  <ion-item [hidden]="!mostraragregar" >
-    <ion-label  style="font-size: 20px;"   class="ion-text-wrap">
-      Agregar Comidas
-    </ion-label>
-    <ion-icon slot="end"  name="add-outline" (click)="agregar()"></ion-icon>
+  <ion-item lines="none">
+    <div class="contenedorMenu">
+      <div class="contenedorMenuItem"  [ngClass]="{'customtarjeta': activar}"    style="border-bottom-left-radius: 12px;border-top-left-radius: 12px;background:black;">
+        <p style="color: white; margin-top: 0;"> <br> Carbohidratos</p>
+        <ion-progress-bar class="carboP" [value]="progressBar(carbo, datosUsuario.carbo)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.carbo">
+          {{carbo.toFixed()}}/{{datosUsuario.carbo.toFixed()}}gr</p>
+      </div>    
+      <div class="contenedorMenuItem"  style="  background: #EF4044;">
+        <p style="color: white;  margin-top: 0;"> <br> Proteinas</p>
+        <ion-progress-bar  class="proteP" [value]="progressBar(protein, datosUsuario.protein)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.protein">
+          {{protein.toFixed()}}/{{datosUsuario.protein.toFixed()}}gr</p>
+      </div>
+      <div class="contenedorMenuItem"  style="border-bottom-right-radius: 12px;border-top-right-radius: 12px;background: grey;">
+        <p style="color: white;  margin-top: 0;"> <br> Grasas</p>
+        <ion-progress-bar class="grasaP" [value]="progressBar(grasa, datosUsuario.grease)"></ion-progress-bar>
+        <p style="color: white;" *ngIf="datosUsuario.grease">
+          {{grasa.toFixed()}}/{{datosUsuario.grease.toFixed()}}gr</p>
+      </div>
+    </div>
   </ion-item>
 
-  <ion-item *ngFor="let item of alimentos ; let i = index">
-    <ion-label class="ion-text-wrap" style="font-size: 18px;">
-      {{ucFirst(item.food.name)}} 
-      <ion-label class="ion-text-wrap" style="color: #ef4044;">  
-        {{item.quantity}} / {{item.food.type_measure}}
-       </ion-label>
-    </ion-label>
-    <ion-icon slot="end"  name="trash-outline" (click)="borrar(item.food_id)" class="remove"></ion-icon>
-    <ion-icon slot="end" name="create-outline" (click)="agregar()" class="edit"></ion-icon>
-  </ion-item>
+  <ion-label class="ion-text-end">
+    <ion-button  style="font-size: 18px; margin: 1rem;" (click)="B_todo()"  color="danger" expand="block" fill="clear" shape="round">
+      Borrar todo
+    </ion-button>
+  </ion-label>
 
 
-  <!-- <ion-item *ngFor="let item of alimentos">
-    <ion-label class="ion-text-wrap">
-      {{item.food.name}}
-    </ion-label>
-    <ion-buttons slot="end">
-      {{item.quantity}}
-    </ion-buttons>
-  </ion-item> -->
+  <ion-grid class="ion-text-center">
+    <ion-row>
+      <ion-col class="raya"  size="6" *ngFor="let alimento of alimentos2; let i=index">
+        <!-- cabeza -->
+        <ion-label class="ion-text-wrap" class="titlemodify"> {{alimento.food.name}} 
+        <ion-icon (click)="agregar()" name="pencil-outline" style="margin-left: 1rem;font-size: 1.1rem;color: red;"></ion-icon>
+        </ion-label>
+        <!-- input cuerpo -->
+        <ion-input placeholder="0" [value]= "alimento.quantity" inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;" readonly>
+        
+        </ion-input>
+        <!-- footer boton -->
+        <ion-segment [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = 0" mode="ios" style="margin: 0 auto;" value="unidad">
+          <ion-segment-button value="unidad" [ngClass]="{'segment-button-checked': true}">
+             <ion-label class="titulopeque">{{alimento.food.type_measure}}</ion-label>
+           </ion-segment-button>
+           <ion-segment-button value="casera" *ngIf="alimento.measure">
+            <ion-label class="titulopeque">{{alimento.food.measure}}</ion-label>
+          </ion-segment-button>
+         </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>
-
-
-<ion-footer [hidden]="mostraragregar">
+<ion-footer  class="ion-no-border">
   <ion-card style="  
   background: #EF4044;
   color: white;
@@ -64,7 +83,7 @@
   border-radius: 10px;
   text-transform: uppercase;
   margin: 0 auto;
-  font-family: 'Open Sans';" (click)="guardarMenu()">
+  font-family: 'Open Sans';" [disabled]="!form.valid" (click)="guardarMenu()">
   <h2 style="text-align: center; margin: 10px;">
    <b> Actualizar </b>
   </h2>  

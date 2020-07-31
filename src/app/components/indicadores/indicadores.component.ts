@@ -11,6 +11,9 @@ import { MensajesService } from 'src/app/services/mensajes.service';
 export class IndicadoresComponent implements OnInit {
   dato:any
   detectar:boolean = true
+  info: boolean;
+  indicador:number
+
 
   constructor(
               private service: NutricionService,
@@ -41,5 +44,13 @@ export class IndicadoresComponent implements OnInit {
     await loading.present();
   }
 
+    mostrar(valor,indicador){
+      this.indicador = indicador
+      this.info = !valor;
+  }
+
+  cerrar(){
+    this.info = false;
+  }
 
 }

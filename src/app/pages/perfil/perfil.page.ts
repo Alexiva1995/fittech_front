@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiFitechService } from 'src/app/services/api-fitech.service';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -24,11 +24,13 @@ export class PerfilPage implements OnInit {
   clase:string = 'perfil'
 
   constructor(private fb: FormBuilder, private apiService:ApiFitechService,
+            public loadingController: LoadingController,
             private ruta:NavController,public alertController: AlertController,
             private webView: WebView, private camera: Camera, 
             private service: ApiFitechService,private utilities: MensajesService,){ 
       this.form = this.fb.group({
         name:[null, Validators.required],
+        objective:[null],
         email:[null,Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
         avatar:[null]
       });
@@ -86,11 +88,9 @@ export class PerfilPage implements OnInit {
           }
 
 
-
-
-          console.log("todo los valores", valor)
           this.image = valor['user'].avatar; 
           this.titulo = valor['user'].name
+          this.form.controls.objective.setValue(valor['user'].objective)
          this.form.controls.avatar.setValue(valor['user'].avatar)
          this.form.controls.name.setValue(valor['user'].name)
          this.form.controls.email.setValue(valor['user'].email)
@@ -99,26 +99,27 @@ export class PerfilPage implements OnInit {
 
 
   async changeData(){
+    this.presentLoading()
+    console.log(this.form.value)
     const data = await this.apiService.actualizarPerfil(this.form.value)
       if(data){
-        this.utilities.notificacionUsuario("Su perfil ha sido actualizado ","dark")
-        this.getData()
+        this.changepass()
+        // this.utilities.notificacionUsuario("Su perfil ha sido actualizado ","dark")
+        // this.getData()
       }else{
         this.utilities.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
       }
   }
 
   async changepass(){
-    
-
-
     const data = await this.apiService.cambiarPassword(this.formpass.value)
       if(data){
+        this.loadingController.dismiss()
         this.utilities.notificacionUsuario("Su contraseña ha sido actualizada ","dark")
+        this.desconectar()
       }else{
         this.utilities.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
       }
-
   }
 
   seleccionarFuente() {
@@ -198,8 +199,16 @@ export class PerfilPage implements OnInit {
 }
 
 obje(valor){
-  console.log(valor.target.value)
   this.valor = valor.target.value;
+  this.form.controls.objective.setValue(this.valor)
+}
+
+
+async presentLoading() {
+  const loading = await this.loadingController.create({
+    message: 'Por favor espere...',
+  });
+  await loading.present();
 }
 
 }

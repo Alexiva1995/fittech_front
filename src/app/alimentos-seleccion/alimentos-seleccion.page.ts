@@ -24,9 +24,11 @@ export class AlimentosSeleccionPage implements OnInit {
   totalgrease: any;
   totalprotein: any;
   measurement: string = 'gr';
-  activar:boolean = true
-  today:any
+  activar:number = 0
+  today:any 
   id: any;
+  valorUnitarioGr:any=[]
+
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
@@ -62,6 +64,8 @@ export class AlimentosSeleccionPage implements OnInit {
     }
   }
 
+ 
+
   async getFoods(comida:any){
     this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
     console.log("fecha de hoy" , this.today)
@@ -84,158 +88,153 @@ export class AlimentosSeleccionPage implements OnInit {
         this.totalCarbo = this.datosUsuario.carbo;
         this.totalgrease = this.datosUsuario.grease;
         this.totalprotein = this.datosUsuario.protein;
-
       }
   }
 
 
+  calculateStats(){
+    this.carbo = 0;
+    this.grasa = 0;
+    this.protein = 0;
 
-  ucFirst(str) {
-    /*   str = str.replace(/ /g, "."); */
-         return str.substring(0, 1).toUpperCase() + str.substring(1); 
-     }
-
-   
-
-      calculateStats(){
-        this.carbo = 0;
-        this.grasa = 0;
-        this.protein = 0;
-
+    
+      this.alimentos.forEach(element => {
         
-          this.alimentos.forEach(element => {
-            
-            if(element.cantidad > 0){
-              if(element.measurement === 'casera'){
-              console.log(element);
-              console.log('medida casera')
+        if(element.cantidad > 0){
+          if(element.measurement === 'casera'){
+          console.log(element);
+          console.log('medida casera')
 
 /*               this.carbo += element.carbo*element.cantidad;
-              this.grasa += element.greases*element.cantidad;
-              this.protein += element.protein*element.cantidad; */
-              this.carbo += this.convertion(element.cant, element.carbo, element.cantidad*element.eq)
-              this.grasa += this.convertion(element.cant, element.greases, element.cantidad*element.eq)
-              this.protein += this.convertion(element.cant, element.protein, element.cantidad*element.eq)
-            }else{
-              this.carbo += this.convertion(element.cant, element.carbo, element.cantidad)
-              this.grasa += this.convertion(element.cant, element.greases, element.cantidad)
-              this.protein += this.convertion(element.cant, element.protein, element.cantidad)
-              console.log(element)
-              console.log('Aplicar la regla de 3')
-
-            }
-          }
-          });
+          this.grasa += element.greases*element.cantidad;
+          this.protein += element.protein*element.cantidad; */
+          this.carbo += this.convertion(element.cant, element.carbo, element.cantidad*element.eq)
+          this.grasa += this.convertion(element.cant, element.greases, element.cantidad*element.eq)
+          this.protein += this.convertion(element.cant, element.protein, element.cantidad*element.eq)
     
-      }
-
-      convertion(a, b, c){
-        //A es el valor unitario
-        //B es el equivalente en grasa/proteina/carbo de ese valor unitario
-        //C es la incognita a encontrar
-        let x;
-        x = b*c/a;
-        console.log(x)
-        return x;
-      }
-
-      progressBar(data, total){
-        if((data*100/total)/100 >= 1){
-          return 1;
         }else{
-          return (data*100/total)/100;
+          this.carbo += this.convertion(element.cant, element.carbo, element.cantidad)
+          this.grasa += this.convertion(element.cant, element.greases, element.cantidad)
+          this.protein += this.convertion(element.cant, element.protein, element.cantidad)
+          console.log(element)
+          console.log('Aplicar la regla de 3')
+
         }
       }
+      });
 
-      guardarMenu(){
-        let menu = {
-          "day":this.today,
-          "type_food": this.datosUsuario.type_food,
-          "total_proteins": this.protein,
-          "total_greases": this.grasa,
-          "total_carbos": this.carbo,
-          "total_calories": 0,
-          "foods": []
+  }
+
+  convertion(a, b, c){
+    //A es el valor unitario
+    //B es el equivalente en grasa/proteina/carbo de ese valor unitario
+    //C es la incognita a encontrar
+    let x;
+    x = b*c/a;
+    console.log("vaalor de la regla de 3",x)
+    return x;
+    
+  }
+
+  progressBar(data, total){
+    if((data*100/total)/100 >= 1){
+      return 1;
+    }else{
+      return (data*100/total)/100;
+    }
+  }
+
+
+  guardarMenu(){
+    let menu = {
+      "day":this.today,
+      "type_food": this.datosUsuario.type_food,
+      "total_proteins": this.protein,
+      "total_greases": this.grasa,
+      "total_carbos": this.carbo,
+      "total_calories": 0,
+      "foods": []
+    }
+
+
+
+    this.alimentos.forEach(element => {
+      if(element.cantidad > 0){
+        menu.total_calories += element.calories;
+        if(element.measurement == 'gr'){//Unidad en gramos, ml, kg etc.
+        let food = [ element.id, element.cantidad, element.type_measure]
+        menu.foods.push(food);
+        }else{//Valor unitario casero.
+        let food = [ element.id, element.cantidad]
+        menu.foods.push(food);
         }
-
-  
-
-        this.alimentos.forEach(element => {
-          if(element.cantidad > 0){
-            menu.total_calories += element.calories;
-            if(element.measurement == 'gr'){//Unidad en gramos, ml, kg etc.
-            let food = [ element.id, element.cantidad, element.type_measure]
-            menu.foods.push(food);
-            }else{//Valor unitario casero.
-            let food = [ element.id, element.cantidad]
-            menu.foods.push(food);
-            }
+      }
+    });
+    if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
+      this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
+    } else {
+        // evitar guardar vacio
+          if(!menu.foods.length){
+            this.utilities.alertaInformatica('Debe seleccionar un alimento')
+          }else{
+            this.service.storeMenu(menu).then((res) => {
+              console.log(res);
+              this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
+                this.navCtrl.navigateRoot('/bateria-alimento')
+            }).catch((err) => {
+              this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+            });
           }
-        });
-        if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
-          this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
-        } else {
-            // evitar guardar vacio
-              if(!menu.foods.length){
-                this.utilities.alertaInformatica('Debe seleccionar un alimento')
-              }else{
-                this.service.storeMenu(menu).then((res) => {
-                  console.log(res);
-                  this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
-                   this.navCtrl.navigateRoot('/bateria-alimento')
-                }).catch((err) => {
-                 this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
-                });
-              }
-        }
-          
-      }
-
-
-
-    selecionartarjeta(tipo){
-
-      switch (tipo) {
-        case 0:
-          this.activar = false
-          this.typefoods = 0
-          break;
-
-        case 1:
-          this.typefoods = 1
-         break;
-
-        case 2:
-          this.activar = false
-          this.typefoods = 2
-          break;
+    }
       
-          default:
-            break;
+  }
+
+
+  selecionartarjeta(tipo){
+    
+
+    switch (tipo) {
+      case 0:
+        this.activar = 1
+        this.typefoods = 0
+        break;
+
+      case 1:
+        this.activar = 0
+        this.typefoods = 1
+        break;
+
+      case 2:
+        this.activar = 2
+        this.typefoods = 2
+        break;
+    
+        default:
+          break;
+    }
+
+  }
+
+  calculador(){
+
+  }
+
+  change(index){
+    this.alimentos[index].cantidad = 0;
+  }
+
+
+
+  async comprobarMenu(comida:any){
+    let yesterday  = new Date(Date.now() - 86400000).toJSON().slice(0,10).replace(/-/g,'/');
+    console.log("fecha de ayer" , yesterday)
+    const data = await this.service.ListadoComida(comida,yesterday)
+      if(data == false || data['menu'] == null ){
+        return
       }
-
-    }
-
-    calculador(){
-
-    }
-
-    change(index){
-      this.alimentos[index].cantidad = 0;
-    }
-
-
-  
-    async comprobarMenu(comida:any){
-      let yesterday  = new Date(Date.now() - 86400000).toJSON().slice(0,10).replace(/-/g,'/');
-      console.log("fecha de ayer" , yesterday)
-      const data = await this.service.ListadoComida(comida,yesterday)
-        if(data == false || data['menu'] == null ){
-          return
-        }
-         this.alimentosAyer  = data
-         this.alerta(comida)
-    }
+        this.alimentosAyer  = data
+        this.alerta(comida)
+  }
 
 
     // mensaje de reanudar
@@ -295,6 +294,19 @@ export class AlimentosSeleccionPage implements OnInit {
     }
 
 
+   info(valor,valor2,valor3){
+     if(valor){
+       console.log(valor)
+       console.log(valor3)
+       console.log("activa la ayuda")
+       return
+     }
+     if(valor2){
+       console.log(valor2)
+       console.log(valor3)
+        console.log("activa la ayuda")
+     }
 
+   }
 
 }

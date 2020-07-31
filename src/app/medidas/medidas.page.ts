@@ -259,16 +259,34 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
   }
 
 
-    // mensaje de reanudar
-    // async confirmarSalida() {
-    //   const alert = await this.alertController.create({
-    //     header: 'Si finalizas aquí no contará la sesión ¿seguro quieres finalizar?',
-    //     cssClass: 'customMensaje1',
 
-    //   });
-  
-    //   await alert.present();
-    // }
+ 
+
+  async confirmarSalida() {
+    const alert = await this.alertCtrl.create({
+      header: 'Si no lo haces ahora, puedes hacerlo luego en el apartado de "medidas" dentro de tu perfil. No pierdas la posibilidad de comparar tus medidas posteriormente, cada 6 a 8 semanas te vamos a recordar para poder comparar tu progreso y cuantificarlo.',
+      cssClass: 'customMensaje1',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'cancelButton',
+          handler: (blah) => {
+             console.log(blah)
+          }
+        }, {
+          text: 'Si',
+          cssClass: 'confirmButton',
+          handler: () => {
+            this.goTo('/lineanutricional')
+          }
+        }
+      ]
+
+    });
+
+    await alert.present();
+  }
 
 
 }

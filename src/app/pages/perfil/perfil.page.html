@@ -94,11 +94,15 @@
             "
           
           [disabled]="formpass.status == 'INVALID'"
-          (click)="changepass()">
+          (click)="changeData()">
           <h4 style="margin: 10px; text-align: center;"> 
             <b>Actualizar</b>
           </h4> 
             </ion-card>
+            <!-- [disabled]="form.status == 'INVALID'"
+            (click)="changeData()"> -->
+            <!-- [disabled]="formpass.status == 'INVALID'"
+            (click)="changepass() -->
         </ion-col>
       </ion-row>
     </form>

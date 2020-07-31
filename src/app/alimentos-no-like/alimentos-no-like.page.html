@@ -22,14 +22,15 @@
   <p style="text-align: center;">
     <ion-chip style="text-transform: uppercase;"   outline="true" mode="ios" color="dark"  
     [ngClass]="getClass(i)" 
-    *ngFor="let item of alimentos | slice:0:totalalimentos ; let i = index" >
+    *ngFor="let item of alimentos; let i = index" >
       <ion-label style="font-size: 17px;"
         (click)="agrupar(item.id , i)">{{ucFirst(item.name)}}
       </ion-label>
     </ion-chip>
   </p>
+  <!-- | slice:0:totalalimentos  -->
 
-  <p style="color: #EF4044; text-align: center;" (click)="total()" *ngIf="verMas"> Ver todos</p>
+  <!-- <p style="color: #EF4044; text-align: center;" (click)="total()" *ngIf="verMas"> Ver todos</p> -->
 
 
 

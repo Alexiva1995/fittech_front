@@ -1,11 +1,11 @@
  
 <form>
   <ion-grid>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Peso</ion-label>
           <ion-item lines="none">
-            <ion-input name="peso" [(ngModel)]="medidasUser.peso" readonly></ion-input>
+            <ion-input name="peso" [(ngModel)]="medidasUser.peso" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -13,18 +13,18 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Altura</ion-label>
           <ion-item lines="none">
-            <ion-input name="altura" [(ngModel)]="medidasUser.altura" readonly></ion-input>
+            <ion-input name="altura" [(ngModel)]="medidasUser.altura" ></ion-input>
         </ion-item>
   <ion-row>
 
   </ion-row>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-row>
       <ion-col size="6" class="rightborder">
         <ion-label class="titulopeque2">Cintura minima</ion-label>
         <ion-item lines="none">
-          <ion-input name="cintura_min" [(ngModel)]="medidasUser.cintura_min" readonly ></ion-input>
+          <ion-input name="min_waist" [(ngModel)]="medidasUser.min_waist"  ></ion-input>
       </ion-item>
   <ion-row>
   </ion-row>
@@ -32,7 +32,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Cintura maxima</ion-label>
           <ion-item lines="none">
-            <ion-input name="cintura_max" [(ngModel)]="medidasUser.cintura_max" readonly></ion-input>
+            <ion-input name="max_waist" [(ngModel)]="medidasUser.max_waist" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -42,7 +42,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Cadera</ion-label>
           <ion-item lines="none">
-            <ion-input name="cadera" [(ngModel)]="medidasUser.cadera" readonly></ion-input>
+            <ion-input name="hip" [(ngModel)]="medidasUser.hip" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -50,7 +50,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Cuello</ion-label>
           <ion-item lines="none">
-            <ion-input name="cuello" [(ngModel)]="medidasUser.cuello" readonly></ion-input>
+            <ion-input name="neck" [(ngModel)]="medidasUser.neck" ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -61,7 +61,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Muslo derecho</ion-label>
           <ion-item lines="none">
-            <ion-input name="muslo_d" [(ngModel)]="medidasUser.muslo_d" readonly></ion-input>
+            <ion-input name="right_thigh" [(ngModel)]="medidasUser.right_thigh" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -69,7 +69,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Muslo izquierdo</ion-label>
           <ion-item lines="none">
-            <ion-input name="muslo_i" [(ngModel)]="medidasUser.muslo_i" readonly ></ion-input>
+            <ion-input name="left_thigh" [(ngModel)]="medidasUser.left_thigh"  ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -80,7 +80,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Brazo relajado derecho</ion-label>
           <ion-item lines="none">
-            <ion-input name="brazo_d" [(ngModel)]="medidasUser.brazo_d" readonly></ion-input>
+            <ion-input name="right_thigh" [(ngModel)]="medidasUser.right_thigh" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -88,7 +88,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Brazo relajado izquierdo</ion-label>
           <ion-item lines="none">
-            <ion-input name="brazo_i" [(ngModel)]="medidasUser.brazo_i" readonly></ion-input>
+            <ion-input name="left_thigh" [(ngModel)]="medidasUser.left_thigh" ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -99,7 +99,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Pantorrilla derecho</ion-label>
           <ion-item lines="none">
-            <ion-input name="pantorrilla_d" [(ngModel)]="medidasUser.pantorrilla_d" readonly></ion-input>
+            <ion-input name="right_arm" [(ngModel)]="medidasUser.right_arm" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -107,7 +107,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Pantorrilla izquierda</ion-label>
           <ion-item lines="none">
-            <ion-input name="pantorrilla_i" [(ngModel)]="medidasUser.pantorrilla_i" readonly></ion-input>
+            <ion-input name="left_arm" [(ngModel)]="medidasUser.left_arm" ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -118,12 +118,27 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Torax</ion-label>
           <ion-item lines="none">
-            <ion-input name="torax" [(ngModel)]="medidasUser.torax" readonly ></ion-input>
+            <ion-input name="torax" [(ngModel)]="medidasUser.torax"  ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
       </ion-col>
     </ion-row>
+      <ion-card  style="
+      width: 254px; 
+      border-radius: 10px;
+      text-transform: uppercase;
+      font-family: 'Open Sans';
+      --background:#EF4044;
+      color:white;
+      margin: 0 auto;
+      margin-bottom: 5px;
+      "
+      (click)="update()">
+    <h4 style="margin: 10px; text-align: center;"> 
+      <b>Actualizar</b>
+    </h4> 
+      </ion-card>
   </ion-grid>
 </form>
 

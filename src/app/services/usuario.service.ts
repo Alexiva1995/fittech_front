@@ -218,6 +218,7 @@ export class UsuarioService {
         data.subscribe(resp=>{
           resolve(true)
         },err=>{
+          console.log(err)
           resolve(false)
         })
        

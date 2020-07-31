@@ -93,7 +93,7 @@ ion-input {
 
 .titulopeque2 {
   opacity: 1;
-  color: red;
+  color: white;
   text-align: center;
   margin: 0 auto;
   font-size: 1.1rem;
@@ -104,11 +104,7 @@ ion-col {
 }
 
 ion-input {
-  --color: black;
-}
-
-ion-item {
-  --background: white;
+  --color: white;
 }
 
 ion-select {
