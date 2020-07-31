@@ -91,6 +91,7 @@ export class ApiFitechService {
     repeticion:null,
     id:null
   }
+  risk: any;
 
   constructor(private http:HttpClient , private storage:Storage) { }
   
@@ -298,7 +299,10 @@ export class ApiFitechService {
 
     this.http.post(`${URL}/auth/heart_rate`,data,{headers})
         .subscribe(resp=>{
-          this.latidocorazon = resp['message']
+          this.latidocorazon = resp['User'].heart_rate;
+          this.risk = resp['User'].risk;
+          console.log(resp);
+          
           resolve(true)
         })
     })
