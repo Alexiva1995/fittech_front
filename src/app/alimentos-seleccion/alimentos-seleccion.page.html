@@ -47,15 +47,13 @@
     <ion-row>
       <ion-col class="raya"  size="6" *ngFor="let alimento of alimentos | filter:typefoods; let i=index">
         <!-- cabeza -->
-        <ion-label (click)="info(alimento.measure , alimento.type_measure , alimento.measurement)" class="ion-text-wrap" style="font-weight: 600; text-transform: uppercase; display: flex;
+        <ion-label class="ion-text-wrap" style="font-weight: 600; text-transform: uppercase; display: flex;
         justify-content: center; font-size: 15px;"> {{alimento.name}} 
-        <sup> 
-          <ion-icon  *ngIf="alimento.measure == null ? true : false" 
-          name="help-circle"  style=" font-size: 1rem;  color: black;"></ion-icon>
-        </sup>
         </ion-label>
         <!-- input cuerpo -->
-        <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" (ionChange)="calculateStats()" clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
+        <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" 
+        (ionChange)="calculateStats(); calculateStats2() " 
+        clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
         <!-- footer boton -->
         <ion-segment [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = 0" mode="ios" style="margin: 0 auto;" [value]="alimento.measurement">
           <ion-segment-button value="unidad" [ngClass]="{'segment-button-checked': alimento.measure == null ? true : false}">

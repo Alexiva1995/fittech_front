@@ -125,6 +125,28 @@ export class AlimentosSeleccionPage implements OnInit {
 
   }
 
+  calculateStats2(){
+    let carbo = 0;
+    let  grasa = 0;
+    let  protein = 0;
+
+    
+      this.alimentos.forEach(element => {
+        
+        if(element.cantidad > 0){
+          if(element.measurement === 'casera'){
+          console.log('medida casera gramos')
+          carbo += this.convertion(element.cant, element.carbo, element.cantidad)
+          grasa += this.convertion(element.cant, element.greases, element.cantidad)
+          protein += this.convertion(element.cant, element.protein, element.cantidad)
+          console.log(element)
+          console.log('valores en gramos' , carbo , grasa , protein)
+        }
+      }
+      });
+
+  }
+
   convertion(a, b, c){
     //A es el valor unitario
     //B es el equivalente en grasa/proteina/carbo de ese valor unitario
