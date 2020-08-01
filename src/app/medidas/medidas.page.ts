@@ -69,7 +69,8 @@ export class MedidasPage implements OnInit {
   
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   goTo(url: string) {
     this.ruta.navigateForward(url);
@@ -202,6 +203,33 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
      });
   }
 
+  async alerta() {
+    const alert = await this.alertCtrl.create({
+      header: 'Si no lo haces ahora, puedes hacerlo luego en el apartado de "medidas" dentro de tu perfil.  No pierdas la posibilidad de comparar tus medidas posteriormente, cada 6 a 8 semanas te vamos a recordar para poder comparar tu progreso y cuantificarlo.',
+      cssClass: 'customMensaje1',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'cancelButton',
+          handler: (blah) => {
+           
+          }
+        }, {
+          text: 'Saltar',
+          cssClass: 'confirmButton',
+          handler: () => {
+            // mensaje confirmacion
+           
+          }
+        }
+      ]
+
+    });
+
+    await alert.present();
+  }
+
   seleccionarFuente() {
     return new Promise(async resolve => {
 
@@ -238,6 +266,7 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
+      cssClass:'my-loading'
     });
     await loading.present();
   }

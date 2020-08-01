@@ -275,18 +275,18 @@ async confirmation(){
 async confirmation2(){
   clearInterval(this.tiemposegundo);
   const alert = await this.alertController.create({
-    header: '¿Está seguro de terminar su entrenamiento?',
-    cssClass: 'customMensaje2',
+    header: 'La sesión ha sido pausada',
+      cssClass: 'customMensaje1',
     buttons: [
       {
-        text: 'No',
+        text: 'Continuar',
         role: 'cancel',
         cssClass: 'cancelButton',
         handler: (blah) => {
          this.timerDescanse(this.timeLeft);
         }
       }, {
-        text: 'Si',
+        text: 'Finalizar',
         cssClass: 'confirmButton',
         handler: () => {
           this.navCtrl.navigateRoot("tabs/dashboard")

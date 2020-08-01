@@ -1,42 +1,45 @@
 <ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar  >
-    <div class="cabezera">
-      <img src="assets/img/logo-app.png" class="logo">
-    </div>
-    <ion-buttons slot="start" style="position: absolute;">
-      <ion-back-button ></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-
+  <ion-toolbar>
+   
+  <div class="cabezera">
+    <img src="assets/img/logo-app.png" class="logo">
+  </div>
+</ion-toolbar>
 </ion-header>
 <ion-content>
 <ng-container *ngIf="!estiramientos">
 
 
-  <div  class="ion-padding ion-text-justify aumentartitulo">
+  <div  class="ion-padding ion-text-center aumentartitulo">
    <H2><B> ESTIRAMIENTOS</B></H2>
   </div> 
-  <div  class="ion-padding ion-text-justify">
+  <div  class="ion-padding ion-text-center">
     <h3 style="color: red;"> <b> Ahora por favor realiza estos estiramientos</b></h3>
 
   </div>   
-  <div class="ion-padding ion-text-justify">
+  <div class="ion-padding ion-text-center">
 
    Estirar siempre será importante para relajar tus músculos y hacerte más flexible, ayuda a prevenir lesiones y estrés muscular el día de mañana.
   </div>
 
   <ion-grid class="ion-padding">
-    <ion-row >
+   <ion-row >
       <ion-col  size="12">   
-        <div>
-          <ion-card style="    background: grey;color: white;" (click)="iniciar()">
-            <h2 class="ion-text-center">
-             <b> CONTINUAR</b> </h2>  
-          </ion-card>
-        </div>   
+       <ion-card style="  
+  background: grey;
+  color: white;
+  width: 286px; 
+  border-radius: 10px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  font-family: 'Open Sans';" (click)="iniciar()">
+  <h2 style="text-align: center; margin: 10px;">
+   <b> Continuar </b>
+  </h2>  
+</ion-card>  
       </ion-col>
       
-    </ion-row>
+    </ion-row> 
 
   </ion-grid>   
 </ng-container>

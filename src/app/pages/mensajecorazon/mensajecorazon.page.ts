@@ -15,26 +15,27 @@ export class MensajecorazonPage implements OnInit {
 
   ngOnInit() {
     console.log(this.ApiService.latidocorazon)
+    console.log(this.ApiService.risk)
 
-    if(this.ApiService.latidocorazon === 3){
+    if(this.ApiService.latidocorazon === 3 && this.ApiService.risk == 1){
       this.titulo = "Excelente!",
       this.mensaje ="Felicidades, tú frecuencia cardíaca está excelente según tu edad y tú género"
       // ¡Felicitaciones!
     }
 
-    if(this.ApiService.latidocorazon === 2){
+    if(this.ApiService.latidocorazon === 2 && this.ApiService.risk == 1){
       this.titulo = "Buena",
       this.mensaje ="Felicidades, tú frecuencia cardíaca en reposo es buena según tu edad y tú género."
       // ¡Estupendo! 
     }
 
-    if(this.ApiService.latidocorazon === 1){
+    if(this.ApiService.latidocorazon === 1 && this.ApiService.risk == 1){
       this.titulo = "Normal",
       this.mensaje ="Tú frecuencia cardíaca es promedio según tu edad y tú género."
       // ¡Muy bien!, 
     }
 
-    if(this.ApiService.latidocorazon === 0){
+    if(this.ApiService.latidocorazon === 0 || this.ApiService.risk > 1){
       this.titulo = "Mala",
       this.mensaje = "Tú frecuencia cardíaca está mal según tu edad y tú género."
       // Con esfuerzo todo se puede, ¡A trabajar!, 
