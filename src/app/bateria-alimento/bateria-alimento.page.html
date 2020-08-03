@@ -63,7 +63,7 @@
   <ion-grid style="padding-top: 1rem;">
     <ion-row>
       <ion-col size="6"  *ngIf="validateFood(0)">   
-         <div *ngIf="validateFood(0)" (click)="listado('Desayuno')" class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno.jpeg);">
+         <div *ngIf="validateFood(0)" (click)="listado('Desayuno')" class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno.jpg);">
             <div class="ContenedorTarjetaTitulo">
               Desayuno
             </div>
@@ -80,7 +80,7 @@
          </div>
       </ion-col>
       <ion-col size="6"  *ngIf="!validateFood(0)">   
-        <div  *ngIf="!validateFood(0)" (click)="seleccion('Desayuno')" class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno.jpeg);">
+        <div  *ngIf="!validateFood(0)" (click)="seleccion('Desayuno')" class="ContenedorTarjeta" style="background-image: url(./assets/img/desayuno.jpg);">
            <div class="ContenedorTarjetaTitulo">
              Desayuno
            </div>
@@ -91,7 +91,7 @@
         </div>
      </ion-col>
      <ion-col size="6"  *ngIf="validateFood(2)">   
-      <div *ngIf="validateFood(2)" (click)="listado('Almuerzo')"  class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo.jpeg);">
+      <div *ngIf="validateFood(2)" (click)="listado('Almuerzo')"  class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Almuerzo
          </div>
@@ -106,7 +106,7 @@
       </div>
     </ion-col>
      <ion-col size="6"  *ngIf="!validateFood(2)">   
-    <div  *ngIf="!validateFood(2)" (click)="seleccion('Almuerzo')" class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo.jpeg);">
+    <div  *ngIf="!validateFood(2)" (click)="seleccion('Almuerzo')" class="ContenedorTarjeta" style="background-image: url(./assets/img/almuerzo.jpg);">
        <div class="ContenedorTarjetaTitulo">
         Almuerzo
        </div>
@@ -117,7 +117,7 @@
     </div>
     </ion-col>
     <ion-col size="6"  *ngIf="validateFood(1)">   
-      <div *ngIf="validateFood(1)" (click)="listado('Snack')" class="ContenedorTarjeta" style="background-image: url(./assets/img/snack-grande.jpg);">
+      <div *ngIf="validateFood(1)" (click)="listado('Snack')" class="ContenedorTarjeta" style="background-image: url(./assets/img/snack.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Snack
          </div>
@@ -132,7 +132,7 @@
       </div>
      </ion-col>
      <ion-col size="6"  *ngIf="!validateFood(1)">   
-      <div (click)="seleccion('Snack')" class="ContenedorTarjeta" style="background-image: url(./assets/img/snack-grande.jpg);" >
+      <div (click)="seleccion('Snack')" class="ContenedorTarjeta" style="background-image: url(./assets/img/snack.jpg);" >
          <div class="ContenedorTarjetaTitulo">
           Snack
          </div>
@@ -143,7 +143,7 @@
       </div>
      </ion-col>
      <ion-col size="6"  *ngIf="validateFood(3)">   
-      <div *ngIf="validateFood(3)" (click)="listado('Cena')"  class="ContenedorTarjeta" style="background-image: url(./assets/img/cena.jpeg);">
+      <div *ngIf="validateFood(3)" (click)="listado('Cena')"  class="ContenedorTarjeta" style="background-image: url(./assets/img/cena.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Cena
          </div>
@@ -158,7 +158,7 @@
       </div>
      </ion-col>
      <ion-col size="6"  *ngIf="!validateFood(3)">   
-      <div *ngIf="!validateFood(3)" (click)="seleccion('Cena')" class="ContenedorTarjeta" style="background-image: url(./assets/img/cena.jpeg);">
+      <div *ngIf="!validateFood(3)" (click)="seleccion('Cena')" class="ContenedorTarjeta" style="background-image: url(./assets/img/cena.jpg);">
          <div class="ContenedorTarjetaTitulo">
           Cena
          </div>
