@@ -17,25 +17,25 @@ export class MensajecorazonPage implements OnInit {
     console.log(this.ApiService.latidocorazon)
     console.log(this.ApiService.risk)
 
-    if(this.ApiService.latidocorazon === 3 && this.ApiService.risk < 1 ){
+    if(this.ApiService.latidocorazon === 3){
       this.titulo = "Excelente!",
       this.mensaje ="Felicidades, tú frecuencia cardíaca está excelente según tu edad y tú género"
       // ¡Felicitaciones!
     }
 
-    if(this.ApiService.latidocorazon === 2 && this.ApiService.risk < 1 ){
+    if(this.ApiService.latidocorazon === 2 ){
       this.titulo = "Buena",
       this.mensaje ="Felicidades, tú frecuencia cardíaca en reposo es buena según tu edad y tú género."
       // ¡Estupendo! 
     }
 
-    if(this.ApiService.latidocorazon === 1 && this.ApiService.risk < 1 ){
+    if(this.ApiService.latidocorazon === 1){
       this.titulo = "Normal",
       this.mensaje ="Tú frecuencia cardíaca es promedio según tu edad y tú género."
       // ¡Muy bien!, 
     }
 
-    if(this.ApiService.latidocorazon === 0 || this.ApiService.risk >= 1){
+    if(this.ApiService.latidocorazon === 0 ){
       this.titulo = "Mala",
       this.mensaje = "Tú frecuencia cardíaca está mal según tu edad y tú género."
       // Con esfuerzo todo se puede, ¡A trabajar!, 
@@ -56,11 +56,20 @@ export class MensajecorazonPage implements OnInit {
       this.ruta.navigateRoot(['/tabs/dashboard'])
     }
 
-    if(this.ApiService.latidocorazon === 0 || this.ApiService.risk >= 1){
+    if(this.ApiService.latidocorazon === 0 && this.ApiService.risk > 1){
       this.ApiService.desconectarUsuario()
       this.presentAlert()
       this.ruta.navigateRoot(['/'])
+      return
     }
+
+    if(this.ApiService.latidocorazon !== 0 && this.ApiService.risk > 1){
+      this.ApiService.desconectarUsuario()
+      this.presentAlert2()
+      this.ruta.navigateRoot(['/'])
+      return
+    }
+
   }
 
 
@@ -71,6 +80,24 @@ export class MensajecorazonPage implements OnInit {
         header: 'Fittech',
         cssClass: 'customMensaje',
         message: 'Lo sentimos, lo más que queremos es ayudarte, pero no estás apto para continuar según la información de salud que nos diste, te recomendamos ir al médico, y te esperamos de vuelta pronto.',
+        buttons: [
+          {
+            text: 'Ok',
+            cssClass: 'confirmButton'
+          }
+        ]
+      });
+  
+      await alert.present();
+    }
+
+
+
+    async presentAlert2() {
+      const alert = await this.alertController.create({
+        header: 'Fittech',
+        cssClass: 'customMensaje',
+        message: 'Lo sentimos, aunque tú frecuencia cardíaca este bien tienes un riesgo alto y no estás apto para continuar según la información de salud que nos diste, te recomendamos ir al médico, y te esperamos de vuelta pronto.',
         buttons: [
           {
             text: 'Ok',

@@ -49,7 +49,13 @@ export class DashboardPage implements OnInit {
     const valor = await this.apiService.cargarNombreUsuario()
 
     // SACAR DE LA APP NO ES VALIDO
-    if(valor.heart_rate === 0 || valor.risk >= 1){
+    if(valor.heart_rate !== 0 && valor.risk > 1){
+      this.apiService.desconectarUsuario()
+      this.presentAlert2()
+      this.ruta.navigateRoot(['/'])
+    }
+
+    if(valor.heart_rate === 0 && valor.risk > 1){
       this.apiService.desconectarUsuario()
       this.presentAlert()
       this.ruta.navigateRoot(['/'])
@@ -146,6 +152,23 @@ export class DashboardPage implements OnInit {
     await alert.present();
   }
 
+  // mensaje de riesgo
+  async presentAlert2() {
+    const alert = await this.alertController.create({
+      header: 'Fittech',
+      cssClass: 'customMensaje',
+      message: 'Lo sentimos, aunque tú frecuencia cardíaca este bien tienes un riesgo alto y no estás apto para continuar según la información de salud que nos diste, te recomendamos ir al médico, y te esperamos de vuelta pronto.',
+      buttons: [
+        {
+          text: 'Ok',
+          cssClass: 'confirmButton'
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   // cargar
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -154,5 +177,7 @@ export class DashboardPage implements OnInit {
     await loading.present();
   }
     
+
+  
 
 }

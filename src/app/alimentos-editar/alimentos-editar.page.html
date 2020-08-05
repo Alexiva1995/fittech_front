@@ -44,11 +44,16 @@
 
 
   <ion-grid class="ion-text-center"> 
-    <ion-row>
+    <ion-row *ngIf="!info2">
       <ion-col class="raya"  size="6" *ngFor="let alimento of alimentos | filter:typefoods; let i=index">
         <!-- cabeza -->
         <ion-label class="ion-text-wrap" style="font-weight: 600; text-transform: uppercase; display: flex;
         justify-content: center; font-size: 15px;"> {{alimento.name}} 
+
+        <ion-icon name="help-circle" 
+        (click)="info(alimento.measurement,alimento.name,alimento.cant,alimento.carbo,alimento.greases,alimento.protein, alimento.cantidad,alimento.eq)" style="font-size: 1.25rem;"></ion-icon>
+
+
         </ion-label>
         <!-- input cuerpo -->
         <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" 
@@ -65,21 +70,32 @@
          </ion-segment>
       </ion-col>
     </ion-row>
+
+    <div class="animated fadeInLeft" *ngIf="info2">
+      <ion-grid class="my-grid">
+          <ion-row class="parent-row animated fadeInLeft">
+              <div class="container">
+                  <h5 class="titulo" style="text-align: center; color: black;">Ayuda
+                      <ion-icon style="color: black;" class="ayudad2" name="close-outline" (click)="cerrar()"></ion-icon>
+                  </h5>
+                  <p class="ion-text-center" style="color: black; font-size: 1.25rem;"><b> Consumo total de 
+                    {{nombre2}}: </b>
+                  <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> Carbohidratos: </b>
+                    {{carbo2}}</p>
+                  <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> proteínas: </b>
+                    {{proteinas2}}
+                  </p>
+                  <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> Grasas: </b>
+                    {{grasas2}}
+                  </p>
+              </div>
+  
+          </ion-row>
+      </ion-grid>
+    </div>
   </ion-grid>
 
-  <div class="animated fadeInLeft" *ngIf="info2">
-    <ion-grid class="my-grid">
-        <ion-row class="parent-row animated fadeInLeft">
-            <div class="container">
-                <h5 class="titulo" style="text-align: center; color: black;">Ayuda
-                    <ion-icon style="color: black;" class="ayudad2" name="close-outline" (click)="cerrar()"></ion-icon>
-                </h5>
-                <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> {{nombreconversion}}: </b>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse exercitationem rerum saepe! Eum, quidem suscipit!</p>
-            </div>
 
-        </ion-row>
-    </ion-grid>
-  </div>
 
 
 </ion-content>

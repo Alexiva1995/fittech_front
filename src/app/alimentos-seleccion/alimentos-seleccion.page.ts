@@ -27,7 +27,12 @@ export class AlimentosSeleccionPage implements OnInit {
   activar:number = 0
   today:any 
   id: any;
-  valorUnitarioGr:any=[]
+  info2:boolean;
+
+  nombre2:string
+  carbo2:any
+  proteinas2:any
+  grasas2:any
 
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
@@ -125,25 +130,30 @@ export class AlimentosSeleccionPage implements OnInit {
 
   }
 
-  calculateStats2(){
-    let carbo = 0;
-    let  grasa = 0;
-    let  protein = 0;
+  calcularunidaIndividual(unidad,nombre,cant1,carbo1,grasa1,proteina1,cantidad1,eq1){
+    this.carbo2 = 0;
+    this.grasas2 = 0;
+    this.proteinas2 = 0;
 
-    
-      this.alimentos.forEach(element => {
-        
-        if(element.cantidad > 0){
-          if(element.measurement === 'casera'){
-          console.log('medida casera gramos')
-          carbo += this.convertion(element.cant, element.carbo, element.cantidad)
-          grasa += this.convertion(element.cant, element.greases, element.cantidad)
-          protein += this.convertion(element.cant, element.protein, element.cantidad)
-          console.log(element)
-          console.log('valores en gramos' , carbo , grasa , protein)
-        }
-      }
-      });
+   
+          
+    if(unidad !== 'unidad'){
+      console.log('medida casera')
+      this.nombre2 = nombre
+      this.carbo2 += this.convertion(cant1, carbo1, cantidad1*eq1)
+      this.grasas2 += this.convertion(cant1, grasa1, cantidad1*eq1)
+      this.proteinas2 += this.convertion(cant1, proteina1, cantidad1*eq1)
+      console.log("total casera", this.carbo2, this.grasas2 , this.proteinas2)
+      this.info2 = !this.info2;
+    }else{
+      this.nombre2 = nombre
+      this.carbo2  += this.convertion(cant1, carbo1, cantidad1)
+      this.grasas2  += this.convertion(cant1, grasa1, cantidad1)
+      this.proteinas2 += this.convertion(cant1, proteina1, cantidad1)
+      console.log("total unidad", this.carbo2, this.grasas2 , this.proteinas2)
+      this.info2 = !this.info2;
+    }
+      
 
   }
 
@@ -153,7 +163,6 @@ export class AlimentosSeleccionPage implements OnInit {
     //C es la incognita a encontrar
     let x;
     x = b*c/a;
-    console.log("vaalor de la regla de 3",x)
     return x;
     
   }
@@ -316,19 +325,14 @@ export class AlimentosSeleccionPage implements OnInit {
     }
 
 
-   info(valor,valor2,valor3){
-     if(valor){
-       console.log(valor)
-       console.log(valor3)
-       console.log("activa la ayuda")
-       return
-     }
-     if(valor2){
-       console.log(valor2)
-       console.log(valor3)
-        console.log("activa la ayuda")
-     }
+   info(unidad,nombre,cant,carbo,grasa,proteina,cantidad,eq){
 
+      this.calcularunidaIndividual(unidad,nombre,cant,carbo,grasa,proteina,cantidad,eq)
    }
+
+   cerrar(){
+    this.info2 = false;
+  }
+
 
 }
