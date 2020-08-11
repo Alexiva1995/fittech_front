@@ -15,9 +15,11 @@ export class ModalMedidasPage implements OnInit {
   ngOnInit() {
     switch (this.nombre) {
       case 'Cintura minima':
+        this.nombre = 'Cintura mínima'
         this.image = './assets/img/cintura_minima.jpg'
         break
       case 'Cintura maxima':
+        this.nombre = 'Cintura máxima'
         this.image = './assets/img/cintura_maxima.jpg'
         break
       case  'Cadera':
@@ -38,6 +40,13 @@ export class ModalMedidasPage implements OnInit {
       case  'Brazo relajado izquierdo':
         this.image = './assets/img/brazo_relajado_izquierdo.jpg'
         break
+      case  'Brazo flexionado derecho':
+        this.image = './assets/img/brazo_flexionado_derecho.jpg'
+        break
+      case  'Brazo flexionado izquierdo':
+        this.image = './assets/img/brazo_flexionado_izquierdo.jpg'
+        break
+
       case  'Pantorrilla derecho':
         this.image = './assets/img/pantorrilla_derecha.jpg'
         break
@@ -46,6 +55,7 @@ export class ModalMedidasPage implements OnInit {
         break
 
       case  'Torax':
+        this.nombre = 'Tórax'
         this.image = './assets/img/pecho.jpg'
         break
 

@@ -35,6 +35,7 @@ export class AlimentosEditarPage implements OnInit {
   carbo2:any
   proteinas2:any
   grasas2:any
+  eq2:any
 
 
 
@@ -160,24 +161,32 @@ export class AlimentosEditarPage implements OnInit {
     this.grasas2 = 0;
     this.proteinas2 = 0;
 
-   
-          
-    if(unidad !== 'unidad'){
-      console.log('medida casera')
-      this.nombre2 = nombre
-      this.carbo2 += this.convertion(cant1, carbo1, cantidad1*eq1)
-      this.grasas2 += this.convertion(cant1, grasa1, cantidad1*eq1)
-      this.proteinas2 += this.convertion(cant1, proteina1, cantidad1*eq1)
-      console.log("total casera", this.carbo2, this.grasas2 , this.proteinas2)
-      this.info2 = !this.info2;
+    if(eq1 == null){
+      return
     }else{
       this.nombre2 = nombre
-      this.carbo2  += this.convertion(cant1, carbo1, cantidad1)
-      this.grasas2  += this.convertion(cant1, grasa1, cantidad1)
-      this.proteinas2 += this.convertion(cant1, proteina1, cantidad1)
-      console.log("total unidad", this.carbo2, this.grasas2 , this.proteinas2)
+      this.eq2 = eq1
       this.info2 = !this.info2;
     }
+  
+
+          
+    // if(unidad !== 'unidad'){
+    //   console.log('medida casera')
+    //   this.nombre2 = nombre
+    //   this.carbo2 += this.convertion(cant1, carbo1, cantidad1*eq1)
+    //   this.grasas2 += this.convertion(cant1, grasa1, cantidad1*eq1)
+    //   this.proteinas2 += this.convertion(cant1, proteina1, cantidad1*eq1)
+    //   console.log("total casera", this.carbo2, this.grasas2 , this.proteinas2)
+    //   this.info2 = !this.info2;
+    // }else{
+    //   this.nombre2 = nombre
+    //   this.carbo2  += this.convertion(cant1, carbo1, cantidad1)
+    //   this.grasas2  += this.convertion(cant1, grasa1, cantidad1)
+    //   this.proteinas2 += this.convertion(cant1, proteina1, cantidad1)
+    //   console.log("total unidad", this.carbo2, this.grasas2 , this.proteinas2)
+    //   this.info2 = !this.info2;
+    // }
       
 
   }

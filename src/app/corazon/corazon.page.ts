@@ -108,6 +108,7 @@ export class CorazonPage implements OnInit {
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
+      cssClass: 'my-loading',
     });
     await loading.present();
   }

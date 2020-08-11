@@ -10,7 +10,6 @@ import { MensajesService } from 'src/app/services/mensajes.service';
 })
 export class IndicadoresComponent implements OnInit {
   dato:any
-  detectar:boolean = true
   info: boolean;
   indicador:number
 
@@ -29,7 +28,7 @@ export class IndicadoresComponent implements OnInit {
     const valor = await this.service.indicadores()
     this.loadingController.dismiss()
       if(valor == false ){
-        this.detectar = false
+        console.log("ocuiro un error")
       }else{
         this.dato = valor
         console.log("que recibo" , valor)
@@ -39,7 +38,8 @@ export class IndicadoresComponent implements OnInit {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-      message: 'Por favor espere...',
+      message: 'Por favor espere...',      
+      cssClass: 'my-loading',
     });
     await loading.present();
   }
@@ -52,5 +52,6 @@ export class IndicadoresComponent implements OnInit {
   cerrar(){
     this.info = false;
   }
+
 
 }

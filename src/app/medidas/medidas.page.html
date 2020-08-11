@@ -46,7 +46,7 @@
    <ion-grid>
      <ion-row>
        <ion-col size="6" class="rightborder">
-         <ion-label class="titulopeque2">Cintura minima 
+         <ion-label class="titulopeque2">Cintura mínima 
            <sup> <ion-icon  (click)="modal('Cintura minima')"  name="help-circle" style="font-size: 1.25rem; color: black;"></ion-icon> </sup>
           </ion-label>
          <ion-item lines="none">
@@ -66,7 +66,7 @@
    </ion-row>
        </ion-col>
          <ion-col size="6">
-           <ion-label class="titulopeque2">Cintura maxima
+           <ion-label class="titulopeque2">Cintura máxima
             <sup> <ion-icon  (click)="modal('Cintura maxima')" name="help-circle" style="font-size: 1.25rem; color: black;"></ion-icon> </sup>
            </ion-label>
            <ion-item lines="none">
@@ -206,7 +206,51 @@
    </ion-col>
  </ion-row>
       </ion-col>
-   </ion-row> 
+     </ion-row> 
+<!-- brazo flexionado -->
+     <ion-row>
+      <ion-col size="6" class="rightborder">
+        <ion-label class="titulopeque2">Brazo flexionado derecho
+         <sup> <ion-icon name="help-circle" (click)="modal('Brazo flexionado derecho')"style="font-size: 1.25rem; color: black;"></ion-icon> </sup>
+        </ion-label>
+        <ion-item lines="none">
+          <ion-input (keyup)="decimalFormat($event, 'right_arm_flexed')" placeholder="0" clearOnEdit clearOnEdit inputmode="tel"  maxlength="5" formControlName="right_arm_flexed"></ion-input>
+      </ion-item>
+<ion-row>
+  <ion-col size="12" style="margin: 0 auto;">
+    <ion-segment (click)="change('right_arm_flexed')" mode="ios" value="Cm" formControlName="right_arm_flexed_">
+     <ion-segment-button value="Cm" >
+        <ion-label class="titulopeque">Cm</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Pulgadas">
+        <ion-label class="titulopeque">Pulgadas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-col>
+</ion-row>
+    </ion-col>
+      <ion-col size="6">
+        <ion-label class="titulopeque2">Brazo flexionado izquierdo <sup> <ion-icon name="help-circle" style="font-size: 1.25rem; color: black;" (click)="modal('Brazo flexionado izquierdo')"></ion-icon> </sup></ion-label>
+        <ion-item lines="none">
+          <ion-input (keyup)="decimalFormat($event, 'left_arm_flexed')" placeholder="0" clearOnEdit clearOnEdit inputmode="tel"  maxlength="5" formControlName="left_arm_flexed"></ion-input>
+      </ion-item>
+<ion-row>
+  <ion-col size="12" style="margin: 0 auto;">
+    <ion-segment (click)="change('left_arm_flexed')" mode="ios" value="Cm" formControlName="left_arm_flexed_">
+     <ion-segment-button value="Cm" >
+        <ion-label class="titulopeque">Cm</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Pulgadas">
+        <ion-label class="titulopeque">Pulgadas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-col>
+</ion-row>
+     </ion-col>
+    </ion-row> 
+
+
+
     <ion-row>
        <ion-col size="6" class="rightborder">
          <ion-label class="titulopeque2">Pantorrilla <br> derecha <sup>
@@ -283,13 +327,13 @@
         <p style="color: red;">Foto de frente</p>
       </ion-col>
       <ion-col size="6">
-        <img class="opacidad" src="assets/img/fotoperfil1.png" (click)="captureImage(2)" *ngIf="!imgSelected2">
+        <img class="opacidad" src="assets/img/fotoperfil1.png"  (click)="captureImage(2)" *ngIf="!imgSelected2">
         <img class="opacidad" [src]="imgSelected2" (click)="captureImage(2)" *ngIf="imgSelected2">
         <p  style="color: red;">Foto de perfil</p>
       </ion-col>
       <ion-col size="6">
-        <img class="opacidad" src="assets/img/fotoespalda1.png" (click)="captureImage(3)" *ngIf="!imgSelected2">
-        <img class="opacidad" [src]="imgSelected3" (click)="captureImage(3)" *ngIf="imgSelected2">
+        <img class="opacidad" src="assets/img/fotoespalda1.png" (click)="captureImage(3)" *ngIf="!imgSelected3">
+        <img class="opacidad" [src]="imgSelected3" (click)="captureImage(3)" *ngIf="imgSelected3">
         <p  style="color: red;">Foto de espalda</p>
         </ion-col>
   </ion-row>
@@ -322,7 +366,7 @@
 
 
       </ion-col>
-      
+
     </ion-row>
   </ion-grid>   
 

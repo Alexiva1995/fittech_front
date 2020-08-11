@@ -16,19 +16,20 @@ import { MensajesService } from '../services/mensajes.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
 import { ModalMedidasPage } from '../modal-medidas/modal-medidas.page';
+declare var window:any;
 @Component({
   selector: 'app-medidas',
   templateUrl: './medidas.page.html',
   styleUrls: ['./medidas.page.scss'],
 })
 export class MedidasPage implements OnInit {
-
+  
   form: FormGroup;
   form_: FormGroup;
   imgSelected2: any;
   imgSelected: any;
   imgUri: any;
-  imgSelected3: string;
+  imgSelected3: any;
 
   constructor(private ruta: NavController, private fb: FormBuilder, 
               private service: UsuarioService, private utilities: MensajesService, 
@@ -44,6 +45,8 @@ export class MedidasPage implements OnInit {
       left_thigh:[null,Validators.required],
       right_arm:[null, Validators.required],
       left_arm:[null,Validators.required],
+      right_arm_flexed:[null, Validators.required],
+      left_arm_flexed:[null,Validators.required],
       right_calf:[null,Validators.required],
       left_calf:[null,Validators.required],
       torax:[null, Validators.required],
@@ -59,6 +62,8 @@ export class MedidasPage implements OnInit {
       left_thigh_:['Cm',Validators.required],
       right_arm_:['Cm', Validators.required],
       left_arm_:['Cm',Validators.required],
+      right_arm_flexed_:['Cm', Validators.required],
+      left_arm_flexed_:['Cm',Validators.required],
       right_calf_:['Cm', Validators.required],
       left_calf_:['Cm',Validators.required],
       torax_:['Cm',Validators.required],
@@ -140,8 +145,13 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
 
   async measurement_record(){
     this.presentLoading()
-    this.convertToCm();
-    const data = await this.service.measurement_record(this.form.value)
+    try {
+      this.convertToCm();      
+    } catch (error) {
+      console.log(error)
+      console.log(this.form.value)
+      const data = await this.service.measurement_record(this.form.value)
+      console.log(data)
       if(data){
         this.loadingController.dismiss()
         // this.form.reset();
@@ -149,7 +159,11 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
       }else{
         this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }
+    }
+
   }
+
+
 
   async captureImage(index) {
     let st = this.camera.PictureSourceType.CAMERA;
@@ -173,28 +187,31 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
     this.camera.getPicture(options).then((imageData) => {
 
       if(index == 1){//frente
-        this.imgSelected = this.webView.convertFileSrc(imageData);
+        this.imgSelected = null
+        this.imgSelected = 'data:image/jpeg;base64,' + imageData;
         // 'data:image/jpeg;base64'
         this.form.controls.front_photo.setValue(imageData)
         this.imgUri = imageData;
         console.log("imagen" , imageData)
-        console.log("image frente",this.form)
+        console.log("image frente",this.form.controls.front_photo.value)
 
       }
       if(index == 2){//perfil
-        this.imgSelected2 = this.webView.convertFileSrc(imageData);
+        this.imgSelected2 = null;
+        this.imgSelected2 = 'data:image/jpeg;base64,' + imageData;
         this.form.controls.profile_photo.setValue(imageData)
         this.imgUri = imageData;
         console.log("imagen" , imageData)
-        console.log("image perfil",this.form)
+        console.log("image perfil",this.form.controls.profile_photo.value)
       }
 
       if(index == 3){//espalda
-        this.imgSelected3 = this.webView.convertFileSrc(imageData);
+        this.imgSelected3 = null;
+        this.imgSelected3 = 'data:image/jpeg;base64,' + imageData;
         this.form.controls.back_photo.setValue(imageData)
         this.imgUri = imageData;
         console.log("imagen" , imageData)
-        console.log("image espalda",this.form)
+        console.log("image espalda",this.form.controls.back_photo.value)
       }
       // this.form.controls['fotoPerfil'].setValue(imageData);
      }, (err) => {

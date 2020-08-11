@@ -74,20 +74,21 @@
     <div class="animated fadeInLeft" *ngIf="info2">
       <ion-grid class="my-grid">
           <ion-row class="parent-row animated fadeInLeft">
-              <div class="container">
-                  <h5 class="titulo" style="text-align: center; color: black;">Ayuda
+              <div class="container2">
+                  <h5 class="titulo2">Ayuda
                       <ion-icon style="color: black;" class="ayudad2" name="close-outline" (click)="cerrar()"></ion-icon>
                   </h5>
-                  <p class="ion-text-center" style="color: black; font-size: 1.25rem;"><b> Consumo total de 
-                    {{nombre2}}: </b>
-                  <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> Carbohidratos: </b>
-                    {{carbo2}}</p>
-                  <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> proteínas: </b>
+                  <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> 
+                     Alimento : </b>  <span style="text-transform:uppercase;"> {{nombre2}} </span> </p>
+                  <p class="ion-text-left" style="color: black; font-size: 1.25rem;">
+                    <b> Referencia de medidas: </b>  
+                    <span style="text-transform:uppercase;">{{eq2}} gr  </span>   </p>
+                  <!-- <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> proteínas: </b>
                     {{proteinas2}}
                   </p>
                   <p class="ion-text-left" style="color: black; font-size: 1.25rem;"><b> Grasas: </b>
                     {{grasas2}}
-                  </p>
+                  </p> -->
               </div>
   
           </ion-row>

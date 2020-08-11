@@ -26,6 +26,8 @@ export class MedidasComponent implements OnInit {
     left_thigh:null,
     right_arm:null,
     left_arm:null,
+    right_arm_flexed:null,
+    left_arm_flexed:null,
     right_calf:null,
     left_calf:null,
     torax:null,
@@ -56,6 +58,8 @@ export class MedidasComponent implements OnInit {
          this.medidasUser.left_thigh = valor['measurement_record'].left_thigh
          this.medidasUser.right_arm = valor['measurement_record'].right_arm
          this.medidasUser.left_arm = valor['measurement_record'].left_arm
+         this.medidasUser.right_arm_flexed = valor['measurement_record'].right_arm_flexed
+         this.medidasUser.left_arm_flexed = valor['measurement_record'].left_arm_flexed
          this.medidasUser.right_calf = valor['measurement_record'].right_calf
          this.medidasUser.left_calf = valor['measurement_record'].left_calf
          this.medidasUser.torax = valor['measurement_record'].torax
@@ -69,6 +73,7 @@ export class MedidasComponent implements OnInit {
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
+      cssClass: 'my-loading',
     });
     await loading.present();
   }

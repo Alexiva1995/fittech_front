@@ -247,8 +247,8 @@ export class RutinaEntrenamientoPage implements OnInit {
 async confirmation(){
   this.pauseTimer();
   const alert = await this.alertController.create({
-    header: '¿Está seguro de terminar su entrenamiento?',
-    cssClass: 'customMensaje2',
+    message: '<h2>Si finalizas aquí no contará la sesión<br>¿seguro quieres finalizar?</h2>',
+    cssClass: 'customMensaje1',
     buttons: [
       {
         text: 'No',

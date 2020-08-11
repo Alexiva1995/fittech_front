@@ -128,15 +128,18 @@ export class PerfilPage implements OnInit {
       const alert = await this.alertController.create({
         header: 'Seleccionar Imágen',
         message: '¿Qué desea hacer?',
+        cssClass: 'customMensaje1',
         buttons: [
           {
             text: "Tomar Foto",
+            cssClass: 'confirmButton',
             handler: () => {
               resolve(true);
             }
           },
           {
             text: "Buscar en Galería",
+            cssClass: 'confirmButton',
             handler: () => {
               resolve(false);
             }
@@ -170,6 +173,7 @@ export class PerfilPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
 
       if(index == 1){//frente
+        this.imgSelected = null
         this.imgSelected = 'data:image/jpeg;base64,' + imageData;
         // 'data:image/jpeg;base64'
         this.form.controls.avatar.setValue(this.imgSelected)
@@ -207,6 +211,7 @@ obje(valor){
 async presentLoading() {
   const loading = await this.loadingController.create({
     message: 'Por favor espere...',
+    cssClass: 'my-loading',
   });
   await loading.present();
 }
