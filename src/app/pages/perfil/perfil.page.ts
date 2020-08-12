@@ -88,7 +88,7 @@ export class PerfilPage implements OnInit {
           }
 
 
-          this.image = valor['user'].avatar; 
+          this.imgSelected = valor['user'].avatar; 
           this.titulo = valor['user'].name
           this.form.controls.objective.setValue(valor['user'].objective)
          this.form.controls.avatar.setValue(valor['user'].avatar)

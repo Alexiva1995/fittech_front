@@ -36,33 +36,35 @@ export class MedidasComponent implements OnInit {
     back_photo:null,
   }
 
+
   ngOnInit() {
     this.getData()
   }
 
   async getData(){
     this.presentLoading()
-    const valor = await this.service.obtenerUsuario()
+    const valor:any = await this.service.obtenerUsuario()
     this.loadingController.dismiss()
-      if(valor == false ){
+      if(valor == false){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
+
         console.log(valor['measurement_record'])
         //  this.medidasUser.altura = valor['user'].stature
         //  this.medidasUser.peso = valor['user'].weight
-         this.medidasUser.min_waist = valor['measurement_record'].min_waist
-         this.medidasUser.max_waist = valor['measurement_record'].max_waist
-         this.medidasUser.hip = valor['measurement_record'].hip
-         this.medidasUser.neck = valor['measurement_record'].neck
-         this.medidasUser.right_thigh = valor['measurement_record'].right_thigh
-         this.medidasUser.left_thigh = valor['measurement_record'].left_thigh
-         this.medidasUser.right_arm = valor['measurement_record'].right_arm
-         this.medidasUser.left_arm = valor['measurement_record'].left_arm
-         this.medidasUser.right_arm_flexed = valor['measurement_record'].right_arm_flexed
-         this.medidasUser.left_arm_flexed = valor['measurement_record'].left_arm_flexed
-         this.medidasUser.right_calf = valor['measurement_record'].right_calf
-         this.medidasUser.left_calf = valor['measurement_record'].left_calf
-         this.medidasUser.torax = valor['measurement_record'].torax
+         this.medidasUser.min_waist = valor.measurement_record === null ? null  : valor['measurement_record'].min_waist
+         this.medidasUser.max_waist = valor.measurement_record === null ? null  : valor['measurement_record'].max_waist
+         this.medidasUser.hip =  valor.measurement_record === null ? null  :  valor['measurement_record'].hip
+         this.medidasUser.neck = valor.measurement_record === null ? null  :   valor['measurement_record'].neck
+         this.medidasUser.right_thigh = valor.measurement_record === null ? null  : valor['measurement_record'].right_thigh
+         this.medidasUser.left_thigh = valor.measurement_record === null ? null  : valor['measurement_record'].left_thigh
+         this.medidasUser.right_arm = valor.measurement_record === null ? null  : valor['measurement_record'].right_arm
+         this.medidasUser.left_arm = valor.measurement_record === null ? null  : valor['measurement_record'].left_arm
+         this.medidasUser.right_arm_flexed = valor.measurement_record === null ? null  : valor['measurement_record'].right_arm_flexed
+         this.medidasUser.left_arm_flexed = valor.measurement_record === null ? null  : valor['measurement_record'].left_arm_flexed
+         this.medidasUser.right_calf = valor.measurement_record === null ? null  : valor['measurement_record'].right_calf
+         this.medidasUser.left_calf = valor.measurement_record === null ? null  : valor['measurement_record'].left_calf
+         this.medidasUser.torax = valor.measurement_record === null ? null  :  valor['measurement_record'].torax
          this.medidasUser.profile_photo = valor['measurement_record'].profile_photo
          this.medidasUser.front_photo = valor['measurement_record'].front_photo
          this.medidasUser.back_photo = valor['measurement_record'].back_photo
@@ -79,15 +81,27 @@ export class MedidasComponent implements OnInit {
   }
 
   async update(){
-    this.presentLoading()
-    const data = await this.usuarioService.measurement_record(this.medidasUser)
-    this.loadingController.dismiss()
-    console.log(data)
-    if(data){
-      this.utilities.notificacionUsuario('Medidas actualizado' , "dark")
-    }else{
-      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
-    }
+    
+    if( !this.medidasUser.hip || !this.medidasUser.left_arm || !this.medidasUser.left_arm_flexed ||
+        !this.medidasUser.left_calf || !this.medidasUser.left_thigh || !this.medidasUser.max_waist ||
+        !this.medidasUser.min_waist || !this.medidasUser.neck || !this.medidasUser.right_arm ||
+        !this.medidasUser.right_arm_flexed || !this.medidasUser.right_calf || !this.medidasUser.right_thigh
+        || !this.medidasUser.torax){
+
+        return
+
+        }else{
+          this.presentLoading()
+          const data = await this.usuarioService.measurement_record(this.medidasUser)
+          this.loadingController.dismiss()
+          console.log(data)
+          if(data){
+            this.utilities.notificacionUsuario('Medidas actualizado' , "dark")
+          }else{
+            this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+          }
+        }
+
   }
 
 }

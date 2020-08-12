@@ -120,10 +120,12 @@ ion-select{
   }
 
   .tituloindicador{
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    margin-left: 20px;
-    margin-right: 20px;
+    // margin-left: 20px;
+    // margin-right: 20px;
+    margin-left: 6px;
+    margin-right: 11px;
     margin-bottom: 15px;
     margin-top: 15px;
   }
@@ -131,6 +133,11 @@ ion-select{
   .tamanoindicador{
     font-size: 20px;
   }
+
+  .tamanoindicador2{
+    font-size: 15px;
+  }
+
 
   // ion-item {
   //   --highlight-color-focused:var(--ion-color-danger, #f1453d);
