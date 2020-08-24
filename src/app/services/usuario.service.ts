@@ -213,19 +213,16 @@ export class UsuarioService {
           'Content-Type':'application/json',
         }) 
         
-        let data:Observable<any> = this.http.post(`${URL}/auth/measurement_record`, record, {headers});
-
-        data.subscribe(resp=>{
+        this.http.post(`${URL}/auth/measurement_record`,record, {headers})
+        .subscribe(resp=>{
+          console.log(resp)
           resolve(true)
         },err=>{
           console.log(err)
-          resolve(false)
-        })
-       
-        
+          reject(false)
+          })
         })
   
-    
   }
   
 

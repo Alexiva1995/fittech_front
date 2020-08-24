@@ -178,6 +178,10 @@ export class DashboardPage implements OnInit {
   }
     
 
+
+  // medidas(){
+  //   this.ruta.navigateForward('medidas')
+  // }
   
 
 }

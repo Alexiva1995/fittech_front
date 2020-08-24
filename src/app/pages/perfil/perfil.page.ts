@@ -103,23 +103,36 @@ export class PerfilPage implements OnInit {
     console.log(this.form.value)
     const data = await this.apiService.actualizarPerfil(this.form.value)
       if(data){
-        this.changepass()
-        // this.utilities.notificacionUsuario("Su perfil ha sido actualizado ","dark")
-        // this.getData()
+        this.loadingController.dismiss()
+        // this.changepass()
+        this.utilities.notificacionUsuario("Su perfil ha sido actualizado ","dark")
+        this.getData()
       }else{
+        this.loadingController.dismiss()
         this.utilities.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
       }
   }
 
+  getClass(){
+    return  this.formpass.status == 'INVALID' ? 'pencil-grey' : 'pencil-red'
+  }
+
+
   async changepass(){
+      if(this.formpass.status == 'INVALID'){
+          return
+      }
+  
     const data = await this.apiService.cambiarPassword(this.formpass.value)
       if(data){
         this.loadingController.dismiss()
         this.utilities.notificacionUsuario("Su contraseña ha sido actualizada ","dark")
         this.desconectar()
       }else{
+        this.loadingController.dismiss()
         this.utilities.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
       }
+
   }
 
   seleccionarFuente() {

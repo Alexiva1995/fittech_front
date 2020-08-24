@@ -145,11 +145,7 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
 
   async measurement_record(){
     this.presentLoading()
-    try {
       this.convertToCm();      
-    } catch (error) {
-      console.log(error)
-      console.log(this.form.value)
       const data = await this.service.measurement_record(this.form.value)
       console.log(data)
       if(data){
@@ -157,10 +153,9 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
         // this.form.reset();
         this.goTo('/lineanutricional')
       }else{
+        this.loadingController.dismiss()
         this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }
-    }
-
   }
 
 
@@ -334,5 +329,7 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
     await alert.present();
   }
 
+
+  
 
 }

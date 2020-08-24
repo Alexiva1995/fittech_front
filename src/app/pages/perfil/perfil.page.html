@@ -76,11 +76,11 @@
         <ion-col size="12">
           <ion-label position="stacked">Nueva Contraseña</ion-label>
           <ion-input formControlName="password" type="password">
-            <ion-icon style="position: absolute;right: 1rem;color: red;font-size: 1.2rem;" name="pencil-outline"></ion-icon>
+            <ion-icon [ngClass]="getClass()" name="pencil-outline" (click)="changepass()">
+            </ion-icon>
           </ion-input>
           <ion-label position="stacked">Confirmar Contraseña</ion-label>
           <ion-input formControlName="repassword" type="password">
-            <ion-icon style="position: absolute;right: 1rem;color: red;font-size: 1.2rem;" name="pencil-outline"></ion-icon>
           </ion-input>
             <ion-card  style="
             width: 254px; 
@@ -93,7 +93,7 @@
             margin-bottom: 5px;
             "
           
-          [disabled]="formpass.status == 'INVALID'"
+          [disabled]="form.status == 'INVALID'"
           (click)="changeData()">
           <h4 style="margin: 10px; text-align: center;"> 
             <b>Actualizar</b>

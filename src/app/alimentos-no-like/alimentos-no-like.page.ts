@@ -66,7 +66,7 @@ export class AlimentosNoLikePage implements OnInit {
     // destructuracion del array de set a un array normal    
     this.foods = [...this.grupoAlimentos]
 
-    if(Array.isArray(this.foods)  && this.foods.length){
+    // if(Array.isArray(this.foods)  && this.foods.length){}
        console.log("array normal",this.foods)
        // esperar
        this.presentLoading()
@@ -86,10 +86,7 @@ export class AlimentosNoLikePage implements OnInit {
           }else{
            this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
           }
-    }else{
-      console.log(" array vacio")
-      return 
-    }
+    
    
   }
 
@@ -105,6 +102,7 @@ export class AlimentosNoLikePage implements OnInit {
      async presentLoading() {
       const loading = await this.loadingController.create({
         message: 'Por favor espere...',
+        cssClass: 'my-loading',
       });
       await loading.present();
     }
@@ -112,6 +110,7 @@ export class AlimentosNoLikePage implements OnInit {
     async presentLoading2() {
       const loading = await this.loadingController.create({
         message: 'Estamos calculando su menú',
+        cssClass: 'my-loading',
       });
       await loading.present();
     }
