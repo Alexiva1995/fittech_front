@@ -265,6 +265,10 @@ const routes: Routes = [
     path: 'modal-medidas',
     loadChildren: () => import('./modal-medidas/modal-medidas.module').then( m => m.ModalMedidasPageModule)
   },
+  {
+    path: 'progreso',
+    loadChildren: () => import('./progreso/progreso.module').then( m => m.ProgresoPageModule)
+  },
 
 
 

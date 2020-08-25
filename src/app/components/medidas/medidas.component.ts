@@ -3,6 +3,7 @@ import { ApiFitechService } from 'src/app/services/api-fitech.service';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { LoadingController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-medidas',
@@ -10,31 +11,36 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./medidas.component.scss'],
 })
 export class MedidasComponent implements OnInit {
+  form: FormGroup;
 
   constructor(private service: ApiFitechService, private utilities: MensajesService,
               private usuarioService: UsuarioService,
-              public loadingController: LoadingController,) { }
-  
-  medidasUser:any = {
-    // peso:null,
-    // altura:null,
-    min_waist:null,
-    max_waist:null,
-    hip:null,
-    neck:null,
-    right_thigh:null,
-    left_thigh:null,
-    right_arm:null,
-    left_arm:null,
-    right_arm_flexed:null,
-    left_arm_flexed:null,
-    right_calf:null,
-    left_calf:null,
-    torax:null,
-    profile_photo:null,
-    front_photo:null,
-    back_photo:null,
+              private fb: FormBuilder,
+              public loadingController: LoadingController,) {
+
+    this.form = this.fb.group({
+      min_waist:[null, Validators.required],
+      max_waist:[null,Validators.required],
+      hip:[null,Validators.required],
+      neck:[null,Validators.required],
+      right_thigh:[null,Validators.required],
+      left_thigh:[null,Validators.required],
+      right_arm:[null, Validators.required],
+      left_arm:[null,Validators.required],
+      right_arm_flexed:[null, Validators.required],
+      left_arm_flexed:[null,Validators.required],
+      right_calf:[null,Validators.required],
+      left_calf:[null,Validators.required],
+      torax:[null, Validators.required],
+      waist_hip:[null],
+      profile_photo:[null],
+      front_photo:[null],
+      back_photo:[null],
+    });
+              
   }
+  
+
 
 
   ngOnInit() {
@@ -52,23 +58,22 @@ export class MedidasComponent implements OnInit {
         console.log(valor['measurement_record'])
         //  this.medidasUser.altura = valor['user'].stature
         //  this.medidasUser.peso = valor['user'].weight
-         this.medidasUser.min_waist = valor.measurement_record === null ? null  : valor['measurement_record'].min_waist
-         this.medidasUser.max_waist = valor.measurement_record === null ? null  : valor['measurement_record'].max_waist
-         this.medidasUser.hip =  valor.measurement_record === null ? null  :  valor['measurement_record'].hip
-         this.medidasUser.neck = valor.measurement_record === null ? null  :   valor['measurement_record'].neck
-         this.medidasUser.right_thigh = valor.measurement_record === null ? null  : valor['measurement_record'].right_thigh
-         this.medidasUser.left_thigh = valor.measurement_record === null ? null  : valor['measurement_record'].left_thigh
-         this.medidasUser.right_arm = valor.measurement_record === null ? null  : valor['measurement_record'].right_arm
-         this.medidasUser.left_arm = valor.measurement_record === null ? null  : valor['measurement_record'].left_arm
-         this.medidasUser.right_arm_flexed = valor.measurement_record === null ? null  : valor['measurement_record'].right_arm_flexed
-         this.medidasUser.left_arm_flexed = valor.measurement_record === null ? null  : valor['measurement_record'].left_arm_flexed
-         this.medidasUser.right_calf = valor.measurement_record === null ? null  : valor['measurement_record'].right_calf
-         this.medidasUser.left_calf = valor.measurement_record === null ? null  : valor['measurement_record'].left_calf
-         this.medidasUser.torax = valor.measurement_record === null ? null  :  valor['measurement_record'].torax
-         this.medidasUser.profile_photo = valor['measurement_record'].profile_photo
-         this.medidasUser.front_photo = valor['measurement_record'].front_photo
-         this.medidasUser.back_photo = valor['measurement_record'].back_photo
-
+         this.form.controls.min_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].min_waist)
+         this.form.controls.max_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].max_waist)
+         this.form.controls.hip.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].hip)
+         this.form.controls.neck.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].neck)
+         this.form.controls.right_thigh.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].right_thigh)
+         this.form.controls.left_thigh.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].left_thigh)
+         this.form.controls.right_arm.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].right_arm)
+         this.form.controls.left_arm.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].left_arm)
+         this.form.controls.right_arm_flexed.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].right_arm_flexed)
+         this.form.controls.left_arm_flexed.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].left_arm_flexed)
+         this.form.controls.right_calf.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].right_calf)
+         this.form.controls.left_calf.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].left_calf)
+         this.form.controls.torax.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].torax)
+         this.form.controls.profile_photo.setValue(valor['measurement_record'].profile_photo)
+         this.form.controls.front_photo.setValue(valor['measurement_record'].front_photo)
+         this.form.controls.back_photo.setValue(valor['measurement_record'].back_photo)
       }
   }
 
@@ -81,26 +86,16 @@ export class MedidasComponent implements OnInit {
   }
 
   async update(){
-    
-    if( !this.medidasUser.hip || !this.medidasUser.left_arm || !this.medidasUser.left_arm_flexed ||
-        !this.medidasUser.left_calf || !this.medidasUser.left_thigh || !this.medidasUser.max_waist ||
-        !this.medidasUser.min_waist || !this.medidasUser.neck || !this.medidasUser.right_arm ||
-        !this.medidasUser.right_arm_flexed || !this.medidasUser.right_calf || !this.medidasUser.right_thigh
-        || !this.medidasUser.torax){
 
-        return
-
-        }else{
-          this.presentLoading()
-          const data = await this.usuarioService.measurement_record(this.medidasUser)
-          this.loadingController.dismiss()
-          console.log(data)
-          if(data){
-            this.utilities.notificacionUsuario('Medidas actualizado' , "dark")
-          }else{
-            this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
-          }
-        }
+    this.presentLoading()
+    const data = await this.usuarioService.measurement_record(this.form.value)
+    this.loadingController.dismiss()
+    console.log(data)
+    if(data){
+      this.utilities.notificacionUsuario('Medidas actualizado' , "dark")
+    }else{
+      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+    }
 
   }
 

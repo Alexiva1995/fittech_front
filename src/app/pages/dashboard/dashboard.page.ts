@@ -133,6 +133,11 @@ export class DashboardPage implements OnInit {
   }
 
 
+  progreso(){
+    this.ruta.navigateForward('progreso')
+  }
+
+
 
   // mensaje del corazon
 

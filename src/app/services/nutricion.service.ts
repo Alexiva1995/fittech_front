@@ -274,4 +274,27 @@ export class NutricionService {
   }
 
 
+  // listado de medidas
+  historyMeasures(){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+      // si no se envia un dato no  funciona la ruta
+      const data = {
+        valor : "ignorar"
+      }      
+      this.http.post(`http://fittech247.com/fittech/api/auth/progress`,data,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            resolve(resp['Progress'])
+          },err=>{
+            reject(false)
+          })
+      })
+  }
+
+
+
 }

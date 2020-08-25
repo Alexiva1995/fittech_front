@@ -1,5 +1,5 @@
  
-<form>
+<form [formGroup]="form">
   <ion-grid>
     <!-- <ion-row>
       <ion-col size="6" class="rightborder">
@@ -24,7 +24,7 @@
       <ion-col size="6" class="rightborder">
         <ion-label class="titulopeque2">Cintura minima</ion-label>
         <ion-item lines="none">
-          <ion-input type="number"  placeholder="0" name="min_waist" [(ngModel)]="medidasUser.min_waist"  ></ion-input>
+          <ion-input type="number"  placeholder="0" name="min_waist" formControlName="min_waist"  ></ion-input>
       </ion-item>
   <ion-row>
   </ion-row>
@@ -32,7 +32,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Cintura maxima</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0" name="max_waist" [(ngModel)]="medidasUser.max_waist" ></ion-input>
+            <ion-input type="number"  placeholder="0" name="max_waist"  formControlName="max_waist"></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -42,7 +42,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Cadera</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0"   name="hip" [(ngModel)]="medidasUser.hip" ></ion-input>
+            <ion-input type="number"  placeholder="0"   name="hip" formControlName="hip" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -50,7 +50,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Cuello</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0" name="neck" [(ngModel)]="medidasUser.neck" ></ion-input>
+            <ion-input type="number"  placeholder="0" name="neck" formControlName="neck" ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -61,7 +61,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Muslo derecho</ion-label>
           <ion-item lines="none">
-            <ion-input  type="number" placeholder="0" name="right_thigh" [(ngModel)]="medidasUser.right_thigh" ></ion-input>
+            <ion-input  type="number" placeholder="0" name="right_thigh" formControlName="right_thigh" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -69,7 +69,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Muslo izquierdo</ion-label>
           <ion-item lines="none">
-            <ion-input  type="number" placeholder="0" name="left_thigh" [(ngModel)]="medidasUser.left_thigh"  ></ion-input>
+            <ion-input  type="number" placeholder="0" name="left_thigh" formControlName="left_thigh"  ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -80,7 +80,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Brazo relajado derecho</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0" name="right_arm" [(ngModel)]="medidasUser.right_arm" ></ion-input>
+            <ion-input type="number"  placeholder="0" name="right_arm" formControlName="right_arm" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -88,7 +88,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Brazo relajado izquierdo</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0" name="left_arm" [(ngModel)]="medidasUser.left_arm" ></ion-input>
+            <ion-input type="number"  placeholder="0" name="left_arm" formControlName="left_arm" ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -101,7 +101,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Brazo flexionado derecho</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0" name="right_arm_flexed" [(ngModel)]="medidasUser.right_arm_flexed" ></ion-input>
+            <ion-input type="number"  placeholder="0" name="right_arm_flexed" formControlName="right_arm_flexed" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -109,7 +109,8 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Brazo flexionado izquierdo</ion-label>
           <ion-item lines="none">
-            <ion-input  type="number" placeholder="0" name="left_arm_flexed" [(ngModel)]="medidasUser.left_arm_flexed" ></ion-input>
+            <ion-input  type="number" placeholder="0" name="left_arm_flexed" 
+            formControlName="left_arm_flexed"></ion-input>
         </ion-item>
   <ion-row>
 
@@ -123,7 +124,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Pantorrilla derecho</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0"  name="right_calf" [(ngModel)]="medidasUser.right_calf" ></ion-input>
+            <ion-input type="number"  placeholder="0"  name="right_calf" formControlName="right_calf" ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -131,7 +132,7 @@
       <ion-col size="6">
           <ion-label class="titulopeque2">Pantorrilla izquierda</ion-label>
           <ion-item lines="none">
-            <ion-input  type="number" placeholder="0" name="left_calf" [(ngModel)]="medidasUser.left_calf" ></ion-input>
+            <ion-input  type="number" placeholder="0" name="left_calf" formControlName="left_calf" ></ion-input>
         </ion-item>
   <ion-row>
 
@@ -142,7 +143,7 @@
       <ion-col size="6" class="rightborder">
           <ion-label class="titulopeque2">Torax</ion-label>
           <ion-item lines="none">
-            <ion-input type="number"  placeholder="0" name="torax" [(ngModel)]="medidasUser.torax"  ></ion-input>
+            <ion-input type="number"  placeholder="0" name="torax" formControlName="torax"  ></ion-input>
         </ion-item>
   <ion-row>
   </ion-row>
@@ -158,7 +159,8 @@
       margin: 0 auto;
       margin-bottom: 5px;
       "
-      (click)="update()">
+      (click)="update()"
+      [disabled]="!form.valid">
     <h4   style="margin: 10px; text-align: center;"> 
       <b>Actualizar</b>
     </h4> 
