@@ -10,6 +10,13 @@ import { NutricionService } from '../services/nutricion.service';
 })
 export class ProgresoPage implements OnInit {
 
+  comparar:any = 'perfil'
+  clase:string = 'perfil'
+  valor: any;
+  valor2: any;
+
+
+
   constructor( private ruta: NavController,
               private service: NutricionService,
               public loadingController: LoadingController,
@@ -43,6 +50,26 @@ export class ProgresoPage implements OnInit {
       message: 'Por favor espere...',
     });
     await loading.present();
+  }
+
+
+
+  
+  segmentChanged(valor){
+    this.clase = valor.target.value
+
+   this.comparar = valor.target.value
+  }
+
+
+  desde(valor){
+    console.log(valor.target.value)
+    this.valor = valor.target.value;
+  }
+
+  hasta(valor){
+    console.log(valor.target.value)
+    this.valor2 = valor.target.value;
   }
 
 

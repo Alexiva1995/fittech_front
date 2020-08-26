@@ -12,82 +12,348 @@
     <img src="assets/img/logo-app.png" class="logo">
   </div>
 </ion-header>
-<ion-grid fixed>
-  <ion-row>
-    <ion-col size="4">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg" alt="">
-      <h2 class="ion-text-center ion-no-margin">Frente</h2>
-    </ion-col>
-    <ion-col size="4">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg" alt="">
-      <h2 class="ion-text-center ion-no-margin">Espalda</h2>
-    </ion-col>
-    <ion-col size="4">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg" alt="">
-      <h2 class="ion-text-center ion-no-margin">Perfil</h2>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Cintura mínima </h2>
-        <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Cintura máxima</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Cadera</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
-
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Cuello </h2>
-        <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Muslo derecho</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Muslo izquierdo</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
 
 
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Brazo relajado derecho </h2>
-        <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Brazo flexionado derecho</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Brazo flexionado izquierdo</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
-
-
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Pantorrilla derecha </h2>
-        <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Pantorrilla izquierda</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
-    <ion-col size="4">
-      <h2 class="title-measure ion-text-center ion-no-margin">Tórax</h2>
-      <p class="subtitle-measure">10</p>
-    </ion-col>
-
-
-
-  </ion-row>
-</ion-grid>
 <ion-content>
+<div class="contenedor-segment">
+  <ion-segment (ionChange)="segmentChanged($event)" scrollable color="danger" value="perfil" mode="md">
+    <ion-segment-button value="perfil" [ngClass]="{'perfil': clase == 'perfil' ? true : false}">
+      <ion-label style="color: white;">Medidas</ion-label>
+      <ion-icon name="person-outline" style="color: white;"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="indicadores" [ngClass]="{'indicadores': clase == 'indicadores' ? true : false}">
+      <ion-label style="color: white;">Fotos</ion-label>
+      <ion-icon name="image-outline" style="color: white;"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="medidas" [ngClass]="{'medidas': clase == 'medidas' ? true : false}">
+      <ion-label style="color: white;">Indicadores</ion-label>
+      <ion-icon name="body-outline" style="color: white;"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</div>
 
+  <h2 class="title">Escoge el lapso para comparar tu progreso</h2>
+
+  <div *ngIf="comparar ==='perfil' "> 
+    <div class="contenedor-fecha">
+      <ion-item lines="none" class="fecha-desde">
+          <!--22-->
+      <ion-label style="font-size: 18px;position: absolute;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;" *ngIf="!valor">Desde</ion-label>
+      <ion-select interface="action-sheet" cancel-text="salir" (ionChange)="desde($event)">
+      <ion-select-option value="0">18-25</ion-select-option>
+      <ion-select-option value="1">26-36</ion-select-option>
+      <ion-select-option value="2">36-45</ion-select-option>
+      <ion-select-option value="3">46-55</ion-select-option>
+      <ion-select-option value="4">56-65</ion-select-option>
+      <ion-select-option value="5">+65</ion-select-option>
+    </ion-select>
+      </ion-item>
+  
+      <ion-item lines="none" class="fecha-hasta">
+        <!--22-->
+    <ion-label style="font-size: 18px;position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;" *ngIf="!valor2">Hasta</ion-label>
+    <ion-select interface="action-sheet" cancel-text="salir" (ionChange)="hasta($event)">
+    <ion-select-option value="0">18-25</ion-select-option>
+    <ion-select-option value="1">26-36</ion-select-option>
+    <ion-select-option value="2">36-45</ion-select-option>
+    <ion-select-option value="3">46-55</ion-select-option>
+    <ion-select-option value="4">56-65</ion-select-option>
+    <ion-select-option value="5">+65</ion-select-option>
+  </ion-select>
+      </ion-item>
+    </div>
+    <ion-grid>
+      <!-- 1 -->
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Cintura mínima(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+         </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+         <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Cintura máxima(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+         </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+         <ion-segment-button disabled>
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled>
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+      </ion-row>
+      <!-- 2 -->
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Cadera(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+         </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+         <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button  disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Cuello(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+         </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+         <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+      </ion-row>
+      <!-- 3 -->
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Muslo derecho(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Muslo izquierdo(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+      </ion-row>
+      <!-- 4 -->
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Brazo relajado derecho(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Brazo relajado izquierdo(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+      </ion-row>
+      <!-- 5 -->
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Brazo flexionado derecho(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Brazo flexionado izquierdo(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+      </ion-row>
+      <!-- 6 -->
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Pantorrilla derecha(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Pantorrilla izquierda(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button disabled value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button disabled value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+      </ion-row>
+      <!-- 7 -->
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+          <ion-label class="titulopeque2">Tórax(cm)</ion-label>
+          <div class="contenedor-input">
+            <p class="input-custom">0</p>
+            <p class="input-custom">0</p>
+          </div>
+          
+    <ion-row>
+      <ion-col size="12" style="margin: 0 auto;">
+        <ion-segment  mode="ios">
+          <ion-segment-button value="Cm" >
+            <ion-label class="titulopeque">Ante</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Pulgadas">
+            <ion-label class="titulopeque">Despues</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+ 
 
 </ion-content>

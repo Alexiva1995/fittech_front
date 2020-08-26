@@ -12,6 +12,10 @@ ion-card h2 {
   opacity: 0.9;
 }
 
+ion-loading {
+  --spinner-color: red;
+}
+
 .aumentartitulo {
   font-size: 18px;
   font-weight: bold;
