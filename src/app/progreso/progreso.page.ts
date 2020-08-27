@@ -140,9 +140,9 @@ export class ProgresoPage implements OnInit {
       this.medidas_ante.right_calf = resultado.right_calf,
       this.medidas_ante.left_calf = resultado.left_calf,
       this.medidas_ante.torax = resultado.torax,
-      this.medidas_ante.profile_photo = resultado.profile_photo,
-      this.medidas_ante.front_photo = resultado.front_photo,
-      this.medidas_ante.back_photo = resultado.back_photo
+      this.medidas_ante.profile_photo = 'http://fittech247.com/fittech/fotos/grasa/'+resultado.profile_photo,
+      this.medidas_ante.front_photo ='http://fittech247.com/fittech/fotos/grasa/'+resultado.front_photo,
+      this.medidas_ante.back_photo = 'http://fittech247.com/fittech/fotos/grasa/'+resultado.back_photo
     }else{
       this.medidas_despues.min_waist = resultado.min_waist,
       this.medidas_despues.max_waist = resultado.max_waist,
@@ -157,9 +157,9 @@ export class ProgresoPage implements OnInit {
       this.medidas_despues.right_calf = resultado.right_calf,
       this.medidas_despues.left_calf = resultado.left_calf,
       this.medidas_despues.torax = resultado.torax,
-      this.medidas_despues.profile_photo = resultado.profile_photo,
-      this.medidas_despues.front_photo = resultado.front_photo,
-      this.medidas_despues.back_photo = resultado.back_photo
+      this.medidas_despues.profile_photo = 'http://fittech247.com/fittech/fotos/grasa/'+resultado.profile_photo,
+      this.medidas_despues.front_photo = 'http://fittech247.com/fittech/fotos/grasa/'+resultado.front_photo,
+      this.medidas_despues.back_photo = 'http://fittech247.com/fittech/fotos/grasa/'+resultado.back_photo
     }
 
   }

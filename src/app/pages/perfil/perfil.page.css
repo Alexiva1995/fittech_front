@@ -83,6 +83,12 @@ ion-buttons {
   border-top-right-radius: 12px;
 }
 
+.pago {
+  background-color: red;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
 ion-title {
   text-align: center;
 }
