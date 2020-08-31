@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, AlertController } from '@ionic/angular';
 import { MensajesService } from '../services/mensajes.service';
 import { NutricionService } from '../services/nutricion.service';
 
@@ -57,6 +57,7 @@ export class ProgresoPage implements OnInit {
 
   constructor( private ruta: NavController,
               private service: NutricionService,
+              public alertController: AlertController,
               public loadingController: LoadingController,
               private utilities: MensajesService) { }
 
@@ -78,8 +79,13 @@ export class ProgresoPage implements OnInit {
        this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
        }else{
         this.loadingController.dismiss() 
-         console.log(valor)
-         this.fechas = valor
+        if(valor === "vacio"){
+          this.presentAlert2()
+        }else{
+          this.presentAlert()
+          this.fechas = valor
+        }
+
        }
          
    }
@@ -164,5 +170,38 @@ export class ProgresoPage implements OnInit {
 
   }
 
+
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Fittech',
+      cssClass: 'customMensaje',
+      message: "Esta sección es para que puedas comparar tus resultados, si no has introducido tus medidas es súper importante que lo hagas. Luego a las 8 semanas, te invitamos a tomarlas de nuevo y poder entrar en cada pestaña de esta sección para comparar tus resultados y medir tu progreso.",
+      buttons: [
+        {
+          text: 'Ok',
+          cssClass: 'confirmButton'
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async presentAlert2() {
+    const alert = await this.alertController.create({
+      header: 'Fittech',
+      cssClass: 'customMensaje',
+      message: "Esta sección es para que puedas comparar tus resultados, no has introducido tus medidas es súper importante que lo hagas para visualizar las comparaciones.",
+      buttons: [
+        {
+          text: 'Ok',
+          cssClass: 'confirmButton'
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 }

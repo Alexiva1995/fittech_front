@@ -128,38 +128,11 @@
     <app-medidas></app-medidas>
   </div>
     
-  <!-- <div *ngIf="comparar ==='progreso' "> 
-    <ion-grid>
-    <form [formGroup]="formpass">
-      <ion-row>
-        <ion-col size="12">
-          <ion-label position="stacked">Nueva Contraseña</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
-          <ion-label position="stacked">Confirmar Contraseña</ion-label>
-          <ion-input formControlName="repassword" type="password"></ion-input>
-            <ion-card  style="
-            width: 254px; 
-            border-radius: 10px;
-            text-transform: uppercase;
-            font-family: 'Open Sans';
-            --background:#EF4044;
-            color:white;
-            margin: 0 auto;
-            margin-bottom: 5px;
-            "
-          
-          [disabled]="formpass.status == 'INVALID'"
-          (click)="changepass()">
-          <h4 style="margin: 10px; text-align: center;"> 
-            <b>Actualizar</b>
-          </h4> 
-            </ion-card>
-        </ion-col>
-      </ion-row>
-    </form>
+  <div *ngIf="comparar ==='pago' ">
+    <app-premium></app-premium>
+  </div>
 
-    </ion-grid>
-  </div> -->
+
  
 </ion-content>
 

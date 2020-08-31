@@ -288,7 +288,12 @@ export class NutricionService {
       this.http.post(`http://fittech247.com/fittech/api/auth/progress`,data,{headers})
           .subscribe(resp=>{
             console.log(resp)
-            resolve(resp['Progress'])
+            if(resp['Progress'].length > 0){
+              resolve(resp['Progress'])
+            }else{
+              resolve("vacio")
+            }
+       
           },err=>{
             reject(false)
           })

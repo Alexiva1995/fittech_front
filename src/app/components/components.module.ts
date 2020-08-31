@@ -17,6 +17,8 @@ import { BackBtnComponent } from '../back-btn/back-btn.component';
 import { IndicadoresComponent } from './indicadores/indicadores.component';
 import { MedidasComponent } from './medidas/medidas.component';
 import { ProgresoComponent } from './progreso/progreso.component';
+import { PremiumComponent } from './premium/premium.component';
+import { IndicadorescomparacionComponent } from './indicadorescomparacion/indicadorescomparacion.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { ProgresoComponent } from './progreso/progreso.component';
     IndicadoresComponent,
     BackBtnComponent,
     MedidasComponent,
-    ProgresoComponent
+    ProgresoComponent,
+    PremiumComponent,
+    IndicadorescomparacionComponent
   ],
   exports:[
     EdadComponent,
@@ -49,8 +53,9 @@ import { ProgresoComponent } from './progreso/progreso.component';
     BackBtnComponent,
     IndicadoresComponent,
     MedidasComponent,
-    ProgresoComponent
-
+    ProgresoComponent,
+    PremiumComponent,
+    IndicadorescomparacionComponent
   ],
   imports: [
     FormsModule,
