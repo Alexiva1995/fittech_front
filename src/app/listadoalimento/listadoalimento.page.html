@@ -62,10 +62,11 @@
         </ion-input>
         <!-- footer boton -->
         <ion-segment [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = 0" mode="ios" style="margin: 0 auto;" value="unidad">
-          <ion-segment-button value="unidad" [ngClass]="{'segment-button-checked': true}">
+          <ion-segment-button *ngIf="alimento.measure === 0" value="unidad" [ngClass]="{'segment-button-checked': true}">
              <ion-label class="titulopeque">{{alimento.food.type_measure}}</ion-label>
            </ion-segment-button>
-           <ion-segment-button value="casera" *ngIf="alimento.measure">
+           <ion-segment-button *ngIf="alimento.measure === 1" value="casera"
+           [ngClass]="{'segment-button-checked': true}">
             <ion-label class="titulopeque">{{alimento.food.measure}}</ion-label>
           </ion-segment-button>
          </ion-segment>

@@ -221,7 +221,7 @@ export class NutricionService {
       
       this.http.post(`${URL}/auth/ready-food`,data,{headers})
           .subscribe(resp=>{
-            console.log(resp)
+            // console.log(resp)
             resolve(resp)
           },err=>{
             reject(false)

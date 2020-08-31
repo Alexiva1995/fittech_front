@@ -202,15 +202,21 @@ export class AlimentosSeleccionPage implements OnInit {
     this.alimentos.forEach(element => {
       if(element.cantidad > 0){
         menu.total_calories += element.calories;
-        if(element.measurement == 'gr'){//Unidad en gramos, ml, kg etc.
-        let food = [ element.id, element.cantidad, element.type_measure]
+        if(element.measurement == 'unidad'){//Unidad en gramos, ml, kg etc.
+        let food = [ element.id, element.cantidad, 0]
         menu.foods.push(food);
         }else{//Valor unitario casero.
-        let food = [ element.id, element.cantidad]
-        menu.foods.push(food);
+          if(element.measure){
+            let food = [ element.id, element.cantidad , element.measure]
+            menu.foods.push(food);
+          }else{
+            let food = [ element.id, element.cantidad , element.type_measure]
+            menu.foods.push(food);
+          }
         }
       }
     });
+
     if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
       this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
     } else {

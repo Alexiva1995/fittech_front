@@ -31,7 +31,7 @@ export class ListadoalimentoPage implements OnInit {
   activar:boolean = true
   typefood:any
   form: FormGroup;
-
+ 
 
   constructor(private capturar:ActivatedRoute,
     private service: NutricionService,
@@ -77,15 +77,12 @@ switch (this.dataRecibida) {
 
 async getFoods(comida:any){
   this.today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-  console.log(this.today)
   const data:any = await this.service.ListadoComida(comida,this.today)
   if( data == false ){
     this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
     }else{
       // peticion 1
       this.alimentos2 = data['menu'].menu_food 
-      console.log("que es esto", data['menu'].menu_food[0].food)
-
       this.id = data['menu'].id
     }
     
@@ -94,11 +91,13 @@ async getFoods(comida:any){
     if(valor == false ){
     this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
     }else{
-      console.log(valor)
+      // console.log(valor)
       this.alimentos = valor['Foods']
 
       this.alimentos2.forEach(element => {
         this.alimentos.forEach( e => {
+          // aca estas inyectando los valores al array 
+            // aqui en donde deberias aplicar  la regla de 3 y luego meterlo
           if(e.measure == null){
             e['measurement'] =  'unidad';
           }else{
@@ -109,13 +108,17 @@ async getFoods(comida:any){
             e.cantidad = parseInt( element.quantity) 
           }
 
+          if(e.id == element.food_id){
+            e['convertion'] = element.measure;
+          }
+
          })
         });
 
 
 
-      console.log("this.alimenot" ,this.alimentos)
-      console.log("this.alimenot2" ,this.alimentos2)
+      console.log("this.alimento 1" ,this.alimentos)
+      console.log("this.alimenot 2" ,this.alimentos2)
 
 
       this.datosUsuario = valor['Menu'];
@@ -146,9 +149,9 @@ ucFirst(str) {
         this.alimentos.forEach(element => {
           
           if(element.cantidad > 0){
-            if(element.measurement === 'casera'){
-            console.log(element);
-            console.log('medida casera')
+            if(element.convertion === 1){
+            // console.log(element);
+            // console.log('medida casera')
 
 /*               this.carbo += element.carbo*element.cantidad;
             this.grasa += element.greases*element.cantidad;
@@ -160,8 +163,8 @@ ucFirst(str) {
             this.carbo += this.convertion(element.cant, element.carbo, element.cantidad)
             this.grasa += this.convertion(element.cant, element.greases, element.cantidad)
             this.protein += this.convertion(element.cant, element.protein, element.cantidad)
-            console.log(element)
-            console.log('Aplicar la regla de 3')
+            // console.log(element)
+            // console.log('Aplicar la regla de 3')
 
           }
         }
@@ -175,7 +178,7 @@ ucFirst(str) {
       //C es la incognita a encontrar
       let x;
       x = b*c/a;
-      console.log(x)
+      // console.log(x)
       return x;
     }
 
@@ -191,7 +194,7 @@ ucFirst(str) {
     guardarMenu(){
         // borrar todo 
       this.service.BorrarMenu(this.id).then((res) => {
-        console.log(res);
+        // console.log(res);
         this.utilities.notificacionUsuario( this.dataRecibida + ' actualizado' , "dark" );
           this.ruta.navigateRoot('/bateria-alimento')
       }).catch((err) => {
