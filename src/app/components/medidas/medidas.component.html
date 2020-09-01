@@ -1,25 +1,29 @@
  
 <form [formGroup]="form">
   <ion-grid>
-    <!-- <ion-row>
-      <ion-col size="6" class="rightborder">
-          <ion-label class="titulopeque2">Peso</ion-label>
-          <ion-item lines="none">
-            <ion-input name="peso" [(ngModel)]="medidasUser.peso" ></ion-input>
-        </ion-item>
-  <ion-row>
-  </ion-row>
-      </ion-col>
-      <ion-col size="6">
-          <ion-label class="titulopeque2">Altura</ion-label>
-          <ion-item lines="none">
-            <ion-input name="altura" [(ngModel)]="medidasUser.altura" ></ion-input>
-        </ion-item>
-  <ion-row>
+    <form [formGroup]="formpeso">
+      <ion-row>
+        <ion-col size="6" class="rightborder">
+            <ion-label class="titulopeque2">Peso<span class="unidad">(kg)</span></ion-label>
+            <ion-item lines="none">
+              <ion-input type="number"  placeholder="0" name="weight" formControlName="weight" ></ion-input>
+          </ion-item>
+    <ion-row>
+    </ion-row>
+        </ion-col>
+        <ion-col size="6">
+            <ion-label class="titulopeque2">Altura<span class="unidad">(cm)</span></ion-label>
+            <ion-item lines="none">
+              <ion-input type="number"  placeholder="0" name="stature" formControlName="stature" ></ion-input>
+          </ion-item>
+    <ion-row>
 
-  </ion-row>
-      </ion-col>
-    </ion-row> -->
+    </ion-row>
+        </ion-col>
+      </ion-row>
+  </form>
+
+
     <ion-row>
       <ion-col size="6" class="rightborder">
         <ion-label class="titulopeque2">Cintura minima <span class="unidad">(cm)</span></ion-label>
@@ -160,7 +164,7 @@
       margin-bottom: 5px;
       "
       (click)="update()"
-      [disabled]="!form.valid">
+      [disabled]="!form.valid || !formpeso.valid">
     <h4   style="margin: 10px; text-align: center;"> 
       <b>Actualizar</b>
     </h4> 

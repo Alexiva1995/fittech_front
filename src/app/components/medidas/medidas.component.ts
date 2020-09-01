@@ -11,10 +11,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./medidas.component.scss'],
 })
 export class MedidasComponent implements OnInit {
-  form: FormGroup;
+  form: FormGroup;  
+  formpeso: FormGroup;
+
 
   constructor(private service: ApiFitechService, private utilities: MensajesService,
               private usuarioService: UsuarioService,
+              private apiService:ApiFitechService,
               private fb: FormBuilder,
               public loadingController: LoadingController,) {
 
@@ -37,6 +40,12 @@ export class MedidasComponent implements OnInit {
       front_photo:[null],
       back_photo:[null],
     });
+
+
+    this.formpeso = this.fb.group({
+      weight:[null, Validators.required],
+      stature:[null,Validators.required],
+    });
               
   }
   
@@ -50,14 +59,15 @@ export class MedidasComponent implements OnInit {
   async getData(){
     this.presentLoading()
     const valor:any = await this.service.obtenerUsuario()
+    console.log(valor)
     this.loadingController.dismiss()
       if(valor == false){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
 
         console.log(valor['measurement_record'])
-        //  this.medidasUser.altura = valor['user'].stature
-        //  this.medidasUser.peso = valor['user'].weight
+        this.formpeso.controls.stature.setValue(valor['user'].stature)
+        this.formpeso.controls.weight.setValue(valor['user'].weight)
          this.form.controls.min_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].min_waist)
          this.form.controls.max_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].max_waist)
          this.form.controls.hip.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].hip)
@@ -89,6 +99,7 @@ export class MedidasComponent implements OnInit {
 
     this.presentLoading()
     const data = await this.usuarioService.measurement_record(this.form.value)
+    const data2 = await this.apiService.actualizarPerfil(this.formpeso.value)
     this.loadingController.dismiss()
     console.log(data)
     if(data){
