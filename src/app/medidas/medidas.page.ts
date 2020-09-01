@@ -70,6 +70,8 @@ export class MedidasPage implements OnInit {
       waist_hip_:['Cm',Validators.required],
         profile_photo_:[null],
         back_photo_:[null],
+        weight:['', Validators.required],
+        stature:['', Validators.required],
     });
   
   }
@@ -329,7 +331,15 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
     await alert.present();
   }
 
+  checkStature(event){
+    console.log(event);
+    
+  }
 
+  checkPeso(event){
+    console.log(event);
+    
+  }
   
 
 }
