@@ -58,7 +58,7 @@ export class Estatura2Component implements OnInit {
           this.mensaje = "introduzca un valor correcto"
         }
       }else{
-        if(!isNaN(numero.target.value) && numero.target.value.length > 2){
+        if(!isNaN(numero.target.value) && numero.target.value > 22){
           console.log(numero.target.value*2.54);
           
           if( numero.target.value*2.54 > 250 ){
@@ -67,12 +67,13 @@ export class Estatura2Component implements OnInit {
           }else{
             this.numero = numero.target.value
             this.habilitar = false
-            this.mensaje = ""
+            this.mensaje = "";
+            this.estatura_.emit(numero.target.value*2.54);
             this.habilitarboton()
-            this.estatura_.emit(numero.target.value);
           }
        }else{
-         this.habilitar = true
+         this.habilitar = true;
+         this.estatura_.emit(null);
          this.mensaje = "introduzca un valor correcto"
        }
       }
@@ -108,17 +109,18 @@ export class Estatura2Component implements OnInit {
           if( numero.target.value/2.205 > 200 ){
             this.habilitar2 = true
             this.mensaje2 = "El valor maximo es 440 Libras";
+            
           }else {
             this.numero2 = numero.target.value
             this.mensaje2 = ""
             this.habilitar2 = false    
-            this.peso2.emit(numero.target.value);
+            this.peso2.emit(numero.target.value/2.205);
             this.habilitarboton()
           }  
     
        }else{
          this.habilitar2 = true
-         this.mensaje2 = "introduzca un valor correcto"    
+         this.mensaje2 = "introduzca un valor correcto";    
        }
       }
 
