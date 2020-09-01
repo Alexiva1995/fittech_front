@@ -10,7 +10,6 @@ import { NavController, AlertController } from '@ionic/angular';
   styleUrls: ['./alimentos-editar.page.scss'],
 })
 export class AlimentosEditarPage implements OnInit {
-  
   dataRecibida:any
   alimentos:any = [];
   alimentosAyer:any = []
@@ -95,14 +94,19 @@ export class AlimentosEditarPage implements OnInit {
 
         this.alimentos2.forEach(element => {
           this.alimentos.forEach( e => {
+            
             if(e.measure == null){
               e['measurement'] =  'unidad';
             }else{
               e['measurement'] =  'gr';
             }
-
+  
             if(e.id == element.food_id){
               e.cantidad = parseInt( element.quantity) 
+            }
+  
+            if(e.id == element.food_id){
+              e['convertion'] = element.measure;
             }
 
            })
@@ -132,9 +136,9 @@ export class AlimentosEditarPage implements OnInit {
       this.alimentos.forEach(element => {
         
         if(element.cantidad > 0){
-          if(element.measurement === 'casera'){
-          console.log(element);
-          console.log('medida casera')
+          if(element.convertion === 1){
+          // console.log(element);
+          // console.log('medida casera')
 
 /*               this.carbo += element.carbo*element.cantidad;
           this.grasa += element.greases*element.cantidad;
@@ -226,12 +230,17 @@ export class AlimentosEditarPage implements OnInit {
     this.alimentos.forEach(element => {
       if(element.cantidad > 0){
         menu.total_calories += element.calories;
-        if(element.measurement == 'gr'){//Unidad en gramos, ml, kg etc.
-        let food = [ element.id, element.cantidad, element.type_measure]
+        if(element.measurement == 'unidad'){//Unidad en gramos, ml, kg etc.
+        let food = [ element.id, element.cantidad, 0]
         menu.foods.push(food);
         }else{//Valor unitario casero.
-        let food = [ element.id, element.cantidad]
-        menu.foods.push(food);
+          if(element.measure){
+            let food = [ element.id, element.cantidad , element.measure]
+            menu.foods.push(food);
+          }else{
+            let food = [ element.id, element.cantidad , element.type_measure]
+            menu.foods.push(food);
+          }
         }
       }
     });
@@ -372,6 +381,11 @@ export class AlimentosEditarPage implements OnInit {
 
    cerrar(){
     this.info2 = false;
+  }
+
+
+  removerclase(valor){
+    console.log(valor)
   }
 
   }
