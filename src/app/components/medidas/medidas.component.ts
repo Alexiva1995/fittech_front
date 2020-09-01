@@ -22,6 +22,8 @@ export class MedidasComponent implements OnInit {
               public loadingController: LoadingController,) {
 
     this.form = this.fb.group({
+      weight:[null, Validators.required],
+      stature:[null,Validators.required],
       min_waist:[null, Validators.required],
       max_waist:[null,Validators.required],
       hip:[null,Validators.required],
@@ -40,13 +42,7 @@ export class MedidasComponent implements OnInit {
       front_photo:[null],
       back_photo:[null],
     });
-
-
-    this.formpeso = this.fb.group({
-      weight:[null, Validators.required],
-      stature:[null,Validators.required],
-    });
-              
+     
   }
   
 
@@ -66,9 +62,8 @@ export class MedidasComponent implements OnInit {
       }else{
 
         console.log(valor['measurement_record'])
-        console.log(valor['user'])
-        this.formpeso.controls.stature.setValue(valor['user'].stature)
-        this.formpeso.controls.weight.setValue(valor['user'].weight)
+         this.form.controls.stature.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].stature)
+         this.form.controls.weight.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].weight)
          this.form.controls.min_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].min_waist)
          this.form.controls.max_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].max_waist)
          this.form.controls.hip.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].hip)
@@ -100,7 +95,6 @@ export class MedidasComponent implements OnInit {
 
     this.presentLoading()
     const data = await this.usuarioService.measurement_record(this.form.value)
-    const data2 = await this.apiService.actualizarPerfil(this.formpeso.value)
     this.loadingController.dismiss()
     console.log(data)
     if(data){
