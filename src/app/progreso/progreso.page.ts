@@ -16,6 +16,8 @@ export class ProgresoPage implements OnInit {
   valor2: any;
   fechas:any
   medidas_ante = {
+    imc: null,
+    ica: null,
     min_waist: null,
     max_waist:null,
     hip:null,
@@ -35,6 +37,8 @@ export class ProgresoPage implements OnInit {
     back_photo:null,
   }
   medidas_despues = {
+    imc: null,
+    ica: null,
     min_waist: null,
     max_waist:null,
     hip:null,
@@ -133,6 +137,9 @@ export class ProgresoPage implements OnInit {
     const resultado = this.fechas.find( elemento => elemento.id === parseInt(valor) );
     console.log(resultado);
     if(filtrar === "ante"){
+      this.medidas_ante.imc = resultado.imc.toFixed(2),
+      this.medidas_ante.ica = resultado.ica.toFixed(2),
+
       this.medidas_ante.min_waist = resultado.min_waist,
       this.medidas_ante.max_waist = resultado.max_waist,
       this.medidas_ante.hip = resultado.hip,
@@ -150,6 +157,9 @@ export class ProgresoPage implements OnInit {
       this.medidas_ante.front_photo ='http://fittech247.com/fittech/fotos/grasa/'+resultado.front_photo,
       this.medidas_ante.back_photo = 'http://fittech247.com/fittech/fotos/grasa/'+resultado.back_photo
     }else{
+      this.medidas_despues.imc = resultado.imc.toFixed(2),
+      this.medidas_despues.ica = resultado.ica.toFixed(2),
+
       this.medidas_despues.min_waist = resultado.min_waist,
       this.medidas_despues.max_waist = resultado.max_waist,
       this.medidas_despues.hip = resultado.hip,
