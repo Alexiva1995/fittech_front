@@ -70,7 +70,6 @@
            </ion-segment-button>
          </ion-segment>
 
-
          <ion-segment *ngIf="alimento.convertion === 1 "  [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = 0" mode="ios" style="margin: 0 auto;" value="casera" >
           <ion-segment-button value="unidad">
              <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
