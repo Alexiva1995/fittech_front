@@ -95,20 +95,18 @@ export class AlimentosEditarPage implements OnInit {
         this.alimentos2.forEach(element => {
           this.alimentos.forEach( e => {
             
-            if(e.measure == null){
-              e['measurement'] =  'unidad';
+            if(element.measure == null){
+              e['measurement'] =  'casera';
             }else{
-              e['measurement'] =  'gr';
+              e['measurement'] =  'unidad';
             }
   
             if(e.id == element.food_id){
               e.cantidad = parseInt( element.quantity) 
+              e['convertion'] = element.measure;
+              e['measurement'] =  'casera';
             }
   
-            if(e.id == element.food_id){
-              e['convertion'] = element.measure;
-            }
-
            })
           });
 
@@ -136,7 +134,7 @@ export class AlimentosEditarPage implements OnInit {
       this.alimentos.forEach(element => {
         
         if(element.cantidad > 0){
-          if(element.convertion === 1){
+          if(element.measurement === 'casera'){
           // console.log(element);
           // console.log('medida casera')
 
@@ -384,8 +382,7 @@ export class AlimentosEditarPage implements OnInit {
   }
 
 
-  removerclase(valor){
-    console.log(valor)
-  }
+
+  
 
   }
