@@ -19,6 +19,7 @@ import { MedidasComponent } from './medidas/medidas.component';
 import { ProgresoComponent } from './progreso/progreso.component';
 import { PremiumComponent } from './premium/premium.component';
 import { IndicadorescomparacionComponent } from './indicadorescomparacion/indicadorescomparacion.component';
+import { Estatura2Component } from './estatura2/estatura2.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { IndicadorescomparacionComponent } from './indicadorescomparacion/indica
     MedidasComponent,
     ProgresoComponent,
     PremiumComponent,
-    IndicadorescomparacionComponent
+    IndicadorescomparacionComponent,
+    Estatura2Component
   ],
   exports:[
     EdadComponent,
@@ -55,7 +57,8 @@ import { IndicadorescomparacionComponent } from './indicadorescomparacion/indica
     MedidasComponent,
     ProgresoComponent,
     PremiumComponent,
-    IndicadorescomparacionComponent
+    IndicadorescomparacionComponent,
+    Estatura2Component
   ],
   imports: [
     FormsModule,
