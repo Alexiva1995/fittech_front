@@ -27,7 +27,7 @@ export class ModalCorazonInfoPage implements OnInit {
 
   valor(valor){
     if(valor.target.value > 1 && valor.target.value <= 25  ) {
-      this.heart_rate = valor.target.value * 6;
+      this.heart_rate = valor.target.value * 10;
       this.escapar = true
     }else{
       this.escapar = false
@@ -36,7 +36,7 @@ export class ModalCorazonInfoPage implements OnInit {
   }
 
   salir(){
-    if(this.escapar && this.heart_rate > 10 && this.heart_rate  <= 100){
+    if(this.escapar && this.heart_rate > 0 && this.heart_rate  <= 150){
       this.usuarioservicio.latidos(this.heart_rate)
       console.log(this.usuarioservicio.condicionPersona)
       this.modalController.dismiss({
