@@ -301,7 +301,7 @@ export class ApiFitechService {
         .subscribe(resp=>{
           this.latidocorazon = resp['User'].heart_rate;
           this.risk = resp['User'].risk;
-          console.log(resp);
+          console.log("LATIDO DEL CORAZON",resp);
           
           resolve(true)
         })
