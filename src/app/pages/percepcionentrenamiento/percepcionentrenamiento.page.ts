@@ -95,7 +95,7 @@ export class PercepcionentrenamientoPage implements OnInit {
       }else{
         const validar = await this.apiService.finalizarRutinaHome(this.puntaje)
           if(validar){
-            this.ruta.navigateByUrl("estiramientos")
+            this.ruta.navigateByUrl("/tabs/dashboard")
           }else{
             this.notificacion.notificacionUsuario("Ocurrio un error, revise su conexión","primary")
           }

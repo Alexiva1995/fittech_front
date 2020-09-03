@@ -327,4 +327,24 @@ export class NutricionService {
   }
 
 
+  // lista de pagos
+  GetPrice(){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+  
+      this.http.get(`${URL}/auth/planes`,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            resolve(resp['Planes'])
+          },err=>{
+            reject(false)
+          })
+      })
+
+  }
+
+
 }

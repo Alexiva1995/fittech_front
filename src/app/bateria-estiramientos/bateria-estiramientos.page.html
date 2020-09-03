@@ -23,10 +23,11 @@
   <ion-grid class="grid1">
     <ion-row>
       <p class="ion-text-center titulo2" style="margin-top: 0; margin-bottom: 0; padding-top: 0;">Comienza en</p>
-      <p class="center">{{zero}}{{timeLeft}}</p>
+      <p class="center">0{{timeLeft}}</p>
       <p class="center do">Tu siguiente estiramiento es: </p>
       <p class="center do" style="color: red;">{{nombre || capitalize}} </p>
       <ion-col class="centerdo" size="12" style="padding: 0px;">
+        <img [src]= "video2" *ngIf="video2" alt="">
        <!--  <video autoplay loop width="100%" class="videoReproductor" poster="assets/img/videogif.gif">
           <source [src]= "video2" *ngIf="video2" type="video/mp4" />
         </video> -->

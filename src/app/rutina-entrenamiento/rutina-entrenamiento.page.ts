@@ -154,7 +154,7 @@ export class RutinaEntrenamientoPage implements OnInit {
       console.log('total', this.total);
       console.log('Rutina', this.rutinas);
       if(this.secuencia == this.stages && this.actual == this.total){
-        this.navCtrl.navigateRoot('/percepcionentrenamiento')
+        this.navCtrl.navigateRoot('/estiramientos')
       }else if (this.actual == this.total) {
         this.secuencia++;
         this.actual = 0;

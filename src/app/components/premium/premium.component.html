@@ -1,26 +1,11 @@
-<ion-card>
+<ion-card *ngFor="let item of dato">
   <ion-card-content class="tarjeta">
-    <!-- <ion-button class="btn-izquierda" color="danger" fill="outline" slot="end">Detalles</ion-button> -->
-    <p>3 meses</p>
-    <p>USD $24.99 cada 3 meses</p>
+    <ion-button class="btn-izquierda"color="danger" fill="outline" slot="end">{{item.price}}$</ion-button>
+    <p>{{item.name}}</p>
+    <p>{{item.description}}</p>
   </ion-card-content>
 </ion-card>
 
-<ion-card>
-  <ion-card-content class="tarjeta">
-    <!-- <ion-button class="btn-izquierda" color="danger" fill="outline" slot="end">Detalles</ion-button> -->
-    <p>6 meses</p>
-    <p>USD $34.99 cada 6 meses</p>
-  </ion-card-content>
-</ion-card>
-
-<ion-card>
-  <ion-card-content class="tarjeta">
-    <!-- <ion-button class="btn-izquierda" color="danger" fill="outline" slot="end">Detalles</ion-button> -->
-    <p>1 año</p>
-    <p>USD $59.99 cada años</p>
-  </ion-card-content>
-</ion-card>
 
 
 <ion-card  style="

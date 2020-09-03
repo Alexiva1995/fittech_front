@@ -746,10 +746,10 @@ export class ApiFitechService {
 
 
   finalizarRutinaHome(valor:number){
-    return new Promise( resolve => {
+    return new Promise( async resolve => {
 
       const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.token,
+        'Authorization': 'Bearer ' + await this.cargarToken(),
         'Content-Type':'application/json',
       })
       
