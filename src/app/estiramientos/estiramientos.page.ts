@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-estiramientos',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstiramientosPage implements OnInit {
   estiramientos: boolean = false;
-  constructor() { }
+  constructor( private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
   iniciar(){
-    this.estiramientos = !this.estiramientos;
+    this.navCtrl.navigateForward("/bateria-estiramientos");
   }
 }
