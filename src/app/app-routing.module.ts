@@ -269,6 +269,10 @@ const routes: Routes = [
     path: 'progreso',
     loadChildren: () => import('./progreso/progreso.module').then( m => m.ProgresoPageModule)
   },
+  {
+    path: 'bateria-estiramientos',
+    loadChildren: () => import('./bateria-estiramientos/bateria-estiramientos.module').then( m => m.BateriaEstiramientosPageModule)
+  },
 
 
 
