@@ -340,6 +340,5 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
     console.log(event);
     
   }
-  
 
 }

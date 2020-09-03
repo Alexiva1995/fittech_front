@@ -14,15 +14,18 @@ export class IndicadorescomparacionComponent implements OnInit {
   valor2: any;
 
   indicadores_ante = {
-    imc: null,
-    ica:null,
+    grasa: null,
+    proteina:null,
+    carbo:null,
     tmba:null,
     tmb:null,
     estrategia_nutricional:null,
+
   }
   indicadores_despues = {
-    imc: null,
-    ica:null,
+    grasa: null,
+    proteina:null,
+    carbo:null,
     tmba:null,
     tmb:null,
     estrategia_nutricional:null,
@@ -78,15 +81,20 @@ buscador(valor, filtrar){
   const resultado = this.fechas.find( elemento => elemento.id === parseInt(valor) );
   console.log(resultado);
   if(filtrar === "ante"){
-    this.indicadores_ante.imc = 0,
-    this.indicadores_ante.ica = 0,
+    this.indicadores_ante.grasa = resultado.total_greases,
+    this.indicadores_ante.proteina = resultado.total_protein,
+    this.indicadores_ante.carbo = resultado.total_carbo,
+
     this.indicadores_ante.tmba = resultado.tmba,
     this.indicadores_ante.tmb = resultado.tmb,
     this.indicadores_ante.estrategia_nutricional = resultado.strategy_n + '%'
 
   }else{
-    this.indicadores_despues.imc = 0,
-    this.indicadores_despues.ica = 0,
+    this.indicadores_ante.grasa = resultado.total_greases,
+    this.indicadores_ante.proteina = resultado.total_protein,
+    this.indicadores_ante.carbo = resultado.total_carbo,
+
+
     this.indicadores_despues.tmba = resultado.tmba,
     this.indicadores_despues.tmb = resultado.tmb,
     this.indicadores_despues.estrategia_nutricional = resultado.strategy_n + '%'

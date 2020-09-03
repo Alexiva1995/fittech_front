@@ -1,7 +1,7 @@
  
 <form [formGroup]="form">
   <ion-grid>
-    <form [formGroup]="formpeso">
+
       <ion-row>
         <ion-col size="6" class="rightborder">
             <ion-label class="titulopeque2">Peso<span class="unidad">(kg)</span></ion-label>
@@ -21,7 +21,7 @@
     </ion-row>
         </ion-col>
       </ion-row>
-  </form>
+
 
 
     <ion-row>
@@ -164,7 +164,7 @@
       margin-bottom: 5px;
       "
       (click)="update()"
-      [disabled]="!form.valid || !formpeso.valid">
+      [disabled]="!form.valid">
     <h4   style="margin: 10px; text-align: center;"> 
       <b>Actualizar</b>
     </h4> 
