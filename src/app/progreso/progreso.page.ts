@@ -189,7 +189,7 @@ export class ProgresoPage implements OnInit {
       message: "Esta sección es para que puedas comparar tus resultados, si no has introducido tus medidas es súper importante que lo hagas. Luego a las 8 semanas, te invitamos a tomarlas de nuevo y poder entrar en cada pestaña de esta sección para comparar tus resultados y medir tu progreso.",
       buttons: [
         {
-          text: 'Ok',
+          text: 'Continuar',
           cssClass: 'confirmButton'
         }
       ]
@@ -205,7 +205,7 @@ export class ProgresoPage implements OnInit {
       message: "Esta sección es para que puedas comparar tus resultados, no has introducido tus medidas es súper importante que lo hagas para visualizar las comparaciones.",
       buttons: [
         {
-          text: 'Ok',
+          text: 'Continuar',
           cssClass: 'confirmButton'
         }
       ]
