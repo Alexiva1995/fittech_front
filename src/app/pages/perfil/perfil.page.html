@@ -26,10 +26,14 @@
         <ion-label style="color: white;">Medidas</ion-label>
         <ion-icon name="body-outline" style="color: white;"></ion-icon>
       </ion-segment-button>
-      <ion-segment-button value="pago" [ngClass]="{'pago': clase == 'pago' ? true : false}">
+      <ion-segment-button value="imagen" [ngClass]="{'imagen': clase == 'imagen' ? true : false}">
+        <ion-label style="color: white;">Fotos</ion-label>
+        <ion-icon name="image-outline" style="color: white;"></ion-icon>
+      </ion-segment-button>
+      <!-- <ion-segment-button value="pago" [ngClass]="{'pago': clase == 'pago' ? true : false}">
         <ion-label style="color: white;">Premium</ion-label>
         <ion-icon name="card-outline" style="color: white;"></ion-icon>
-      </ion-segment-button>
+      </ion-segment-button> -->
     </ion-segment>
 
 
@@ -130,6 +134,10 @@
     
   <div *ngIf="comparar ==='pago' ">
     <app-premium></app-premium>
+  </div>
+
+  <div *ngIf="comparar ==='imagen' ">
+    <app-fotos></app-fotos>
   </div>
 
 
