@@ -14,8 +14,8 @@ export class MensajecorazonPage implements OnInit {
   constructor(private ruta:NavController,private ApiService:ApiFitechService,public alertController: AlertController) { }
 
   ngOnInit() {
-    console.log(this.ApiService.latidocorazon)
-    console.log(this.ApiService.risk)
+    console.log("mensaje latido" , this.ApiService.latidocorazon)
+    console.log("mensaje riesgo" , this.ApiService.risk)
 
     if(this.ApiService.latidocorazon === 3){
       this.titulo = "Excelente!",
@@ -56,14 +56,14 @@ export class MensajecorazonPage implements OnInit {
       this.ruta.navigateRoot(['/tabs/dashboard'])
     }
 
-    if(this.ApiService.latidocorazon === 0 && this.ApiService.risk > 1){
+    if(this.ApiService.latidocorazon === 0){
       this.ApiService.desconectarUsuario()
       this.presentAlert()
       this.ruta.navigateRoot(['/'])
       return
     }
 
-    if(this.ApiService.latidocorazon !== 0 && this.ApiService.risk > 1){
+    if(this.ApiService.risk > 1){
       this.ApiService.desconectarUsuario()
       this.presentAlert2()
       this.ruta.navigateRoot(['/'])

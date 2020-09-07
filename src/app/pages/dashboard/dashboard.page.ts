@@ -49,15 +49,16 @@ export class DashboardPage implements OnInit {
     const valor = await this.apiService.cargarNombreUsuario()
 
     // SACAR DE LA APP NO ES VALIDO
-    if(valor.heart_rate !== 0 && valor.risk > 1){
+
+    if(valor.heart_rate === 0){
       this.apiService.desconectarUsuario()
-      this.presentAlert2()
+      this.presentAlert()
       this.ruta.navigateRoot(['/'])
     }
 
-    if(valor.heart_rate === 0 && valor.risk > 1){
+    if( valor.risk > 1){
       this.apiService.desconectarUsuario()
-      this.presentAlert()
+      this.presentAlert2()
       this.ruta.navigateRoot(['/'])
     }
 

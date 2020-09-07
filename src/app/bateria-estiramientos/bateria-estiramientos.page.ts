@@ -84,6 +84,7 @@ export class BateriaEstiramientosPage implements OnInit {
   } */
 
   async startVideo() {
+    this.zero = null
     this.ready = false;
     this.setValues();
     console.log(this.rutinas);
@@ -105,11 +106,11 @@ export class BateriaEstiramientosPage implements OnInit {
   }
 
   startTimer() {
-    this.btn = true;
     this.zero = null;
+    this.btn = true;
     this.tiemposegundo = setInterval(() => {
 
-      if (this.timeLeft <= 10) {
+      if (this.timeLeft === 10) {
         console.log("activate")
         this.zero = 0
       }
@@ -165,7 +166,7 @@ export class BateriaEstiramientosPage implements OnInit {
       console.log('Actual', this.actual);
       console.log('total', this.total);
       console.log('Rutina', this.rutinas);
-      if(this.secuencia == this.stages && this.actual == this.total){
+      if(this.actual === this.total){
         this.navCtrl.navigateRoot('/percepcionentrenamiento')
       }else if (this.actual == this.total) {
         this.secuencia++;

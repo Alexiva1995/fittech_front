@@ -301,7 +301,7 @@ export class ApiFitechService {
         .subscribe(resp=>{
           this.latidocorazon = resp['User'].heart_rate;
           this.risk = resp['User'].risk;
-          console.log(resp);
+          console.log("LATIDO DEL CORAZON",resp);
           
           resolve(true)
         })
@@ -746,10 +746,10 @@ export class ApiFitechService {
 
 
   finalizarRutinaHome(valor:number){
-    return new Promise( resolve => {
+    return new Promise( async resolve => {
 
       const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.token,
+        'Authorization': 'Bearer ' + await this.cargarToken(),
         'Content-Type':'application/json',
       })
       

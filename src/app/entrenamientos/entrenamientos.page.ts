@@ -10,7 +10,8 @@ import {
 } from 'src/app/services/api-fitech.service';
 import {
   PopoverController,
-  NavController
+  NavController,
+  AlertController
 } from '@ionic/angular';
 import {
   PopinfoComponent
@@ -38,9 +39,11 @@ export class EntrenamientosPage implements OnInit {
   minutos: number
 
   ocultar = false
-  constructor(private ruta: NavController, private ApiService: ApiFitechService,
-    public popoverController: PopoverController, private notificacion: MensajesService) {
-
+  constructor(private ruta: NavController,              
+    public alertController: AlertController,
+    private ApiService: ApiFitechService,
+    public popoverController: PopoverController, 
+    private notificacion: MensajesService) {
     }
 
     // logica
@@ -176,8 +179,7 @@ export class EntrenamientosPage implements OnInit {
         this.stage2 = []
         this.stage3 = []
         console.log(this.stage1)
-        
-    
+        this.presentAlert()    
   }
 
  ucFirst(str) {
@@ -212,6 +214,23 @@ export class EntrenamientosPage implements OnInit {
 
   customTB(index, item) {
     return item.id
+  }
+
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Fittech',
+      cssClass: 'customMensaje',
+      message: "Recuerda verificar los ejercicios para saber si cuentas con él implementó requerido, si no, puedes reemplazarlo por otro tocando los °°°",
+      buttons: [
+        {
+          text: 'Continuar',
+          cssClass: 'confirmButton'
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 
