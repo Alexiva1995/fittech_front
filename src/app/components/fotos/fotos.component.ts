@@ -102,7 +102,7 @@ export class FotosComponent implements OnInit {
     this.loadingController.dismiss()
     console.log(data)
     if(data){
-      this.utilities.notificacionUsuario('Medidas actualizado' , "dark")
+      this.utilities.notificacionUsuario('Fotos actualizado' , "dark")
     }else{
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
     }
