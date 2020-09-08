@@ -221,17 +221,17 @@ export class AlimentosSeleccionPage implements OnInit {
       this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
     } else {
         // evitar guardar vacio
-          if(!menu.foods.length){
-            this.utilities.alertaInformatica('Debe seleccionar un alimento')
-          }else{
-            this.service.storeMenu(menu).then((res) => {
-              console.log(res);
-              this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
-                this.navCtrl.navigateRoot('/bateria-alimento')
-            }).catch((err) => {
-              this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
-            });
-          }
+      if(!menu.foods.length){
+        this.utilities.alertaInformatica('Debe seleccionar un alimento')
+      }else{
+        this.service.storeMenu(menu).then((res) => {
+          console.log(res);
+          this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
+            this.navCtrl.navigateRoot('/bateria-alimento')
+        }).catch((err) => {
+          this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+        });
+      }
     }
       
   }

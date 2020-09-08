@@ -92,28 +92,33 @@ export class AlimentosEditarPage implements OnInit {
         console.log(valor)
         this.alimentos = valor['Foods']
 
-        this.alimentos2.forEach(element => {
-          this.alimentos.forEach( e => {
-            
-            if(element.measure == null){
-              e['measurement'] =  'casera';
-            }else{
-              e['measurement'] =  'unidad';
-            }
-  
-            if(e.id == element.food_id){
-              e.cantidad = parseInt( element.quantity) 
-              e['convertion'] = element.measure;
-              e['measurement'] =  'casera';
-            }
-  
-           })
-          });
+      // Compara si existe el registro y crea un registro dentro del array para identificar
+      // asigna de forma correcta si es casero o unidad
+      this.alimentos2.forEach(element => {
+        this.alimentos.forEach( e => {
+          
+          if(e.measure == null){
+            e['measurement'] =  'casera';
+          }else{
+            e['measurement'] =  'unidad';
+          }
 
+          if(e.id == element.food_id){
+            e.cantidad = parseInt( element.quantity) 
+            e['convertion'] = element.measure;
+          }
+
+          if(e.convertion == 1){
+            e.measurement = "casera"
+          }else{
+          e.measurement = "unidad"
+          }
+
+          })
+      });
 
         console.log("this.alimenot" ,this.alimentos)
         console.log("this.alimenot2" ,this.alimentos2)
-
 
         this.datosUsuario = valor['Menu'];
         this.totalCarbo = this.datosUsuario.carbo;
@@ -248,6 +253,7 @@ export class AlimentosEditarPage implements OnInit {
       this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
     } else {
         // evitar guardar vacio
+        console.log(menu)
           if(!menu.foods.length){
             this.utilities.alertaInformatica('Debe seleccionar un alimento')
           }else{

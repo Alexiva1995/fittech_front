@@ -94,8 +94,8 @@ export class ListadoalimentoPage implements OnInit {
         });
       });
 
-      console.log("this.alimento 1", this.alimentos);
-      console.log("this.alimenot 2", this.alimentos2);
+      console.log("LISTA DE MENU", this.alimentos);
+      console.log("MENU DE HOY", this.alimentos2);
       this.datosUsuario = valor["Menu"];
       this.totalCarbo = this.datosUsuario.carbo;
       this.totalgrease = this.datosUsuario.grease;
