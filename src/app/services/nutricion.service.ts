@@ -315,7 +315,7 @@ export class NutricionService {
           .subscribe(resp=>{
             console.log(resp)
             if(resp['Progress_food'].length > 0){
-              resolve(resp['Progress_food'])
+              resolve(resp)
             }else{
               resolve("vacio")
             }

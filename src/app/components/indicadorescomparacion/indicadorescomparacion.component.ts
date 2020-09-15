@@ -14,18 +14,18 @@ export class IndicadorescomparacionComponent implements OnInit {
   valor2: any;
 
   indicadores_ante = {
-    grasa: null,
-    proteina:null,
-    carbo:null,
+    ica: null,
+    imc:null,
+    perimetro_cintura:null,
     tmba:null,
     tmb:null,
     estrategia_nutricional:null,
 
   }
   indicadores_despues = {
-    grasa: null,
-    proteina:null,
-    carbo:null,
+    ica: null,
+    imc:null,
+    perimetro_cintura:null,
     tmba:null,
     tmb:null,
     estrategia_nutricional:null,
@@ -50,8 +50,45 @@ export class IndicadorescomparacionComponent implements OnInit {
      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
      }else{
       this.loadingController.dismiss() 
-      this.fechas = valor
-      console.log(valor)
+      // this.fechas = valor
+      const fecha1 =  valor['Progress']
+      const fecha2 =  valor['Progress_food']
+      const arraytemp:any = []
+        
+      console.log(valor['Progress_food'])
+
+      // comparamos los dos array y encontramos fechas similares
+      let i = 1
+      fecha1.forEach(element => {
+          fecha2.forEach(e => {
+              if(e.created_at.slice(0, 10) === element.created_at.slice(0, 10) ){    
+                // se crean objectos con las fechas similares
+                const object ={
+                  "id":i++,
+                  "created_at":element.created_at.slice(0, 10),
+                  "ica": element.ica,
+                  "imc": element.imc,
+                  "perimetro_cintura": element.perimetro_cintura,
+                  "estrategia_nutricional": e.strategy_n,
+                  "tmb": e.tmb,
+                }
+                arraytemp.push(object)
+              }
+          });
+      });
+      console.log("nuevo array", arraytemp)
+      // se filtra los objectos repetidos producido por las iteracciones
+      const filteredArr = arraytemp.reduce((acc, current) => {
+        const x = acc.find(item => item.created_at === current.created_at);
+        if (!x) {
+          return acc.concat([current]);
+        } else {
+          return acc;
+        }
+      }, []);
+      //  se obtiene el nuevo listado
+      console.log("filtrado",filteredArr)
+       this.fechas = filteredArr
      } 
  }
 
@@ -81,23 +118,23 @@ buscador(valor, filtrar){
   const resultado = this.fechas.find( elemento => elemento.id === parseInt(valor) );
   console.log(resultado);
   if(filtrar === "ante"){
-    this.indicadores_ante.grasa = resultado.total_greases,
-    this.indicadores_ante.proteina = resultado.total_protein,
-    this.indicadores_ante.carbo = resultado.total_carbo,
+    this.indicadores_ante.ica = resultado.ica.toFixed(2),
+    this.indicadores_ante.imc = resultado.imc.toFixed(2),
+    this.indicadores_ante.perimetro_cintura = resultado.perimetro_cintura,
 
     this.indicadores_ante.tmba = resultado.tmba,
     this.indicadores_ante.tmb = resultado.tmb,
-    this.indicadores_ante.estrategia_nutricional = resultado.strategy_n + '%'
+    this.indicadores_ante.estrategia_nutricional = resultado.estrategia_nutricional + '%'
 
   }else{
-    this.indicadores_ante.grasa = resultado.total_greases,
-    this.indicadores_ante.proteina = resultado.total_protein,
-    this.indicadores_ante.carbo = resultado.total_carbo,
+    this.indicadores_despues.ica = resultado.ica.toFixed(2),
+    this.indicadores_despues.imc = resultado.imc.toFixed(2),
+    this.indicadores_despues.perimetro_cintura = resultado.perimetro_cintura,
 
 
     this.indicadores_despues.tmba = resultado.tmba,
     this.indicadores_despues.tmb = resultado.tmb,
-    this.indicadores_despues.estrategia_nutricional = resultado.strategy_n + '%'
+    this.indicadores_despues.estrategia_nutricional = resultado.estrategia_nutricional + '%'
   }
 
 }

@@ -221,7 +221,7 @@ export class EntrenamientosPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Fittech',
       cssClass: 'customMensaje',
-      message: "Recuerda verificar los ejercicios para saber si cuentas con él implementó requerido, si no, puedes reemplazarlo por otro tocando los °°°",
+      message: "Recuerda verificar los ejercicios para saber si cuentas con el implemento requerido, sino, puedes reemplazarlo por otro tocando los °°°",
       buttons: [
         {
           text: 'Continuar',
