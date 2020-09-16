@@ -273,6 +273,10 @@ const routes: Routes = [
     path: 'bateria-estiramientos',
     loadChildren: () => import('./bateria-estiramientos/bateria-estiramientos.module').then( m => m.BateriaEstiramientosPageModule)
   },
+  {
+    path: 'tutorial-alimentacion',
+    loadChildren: () => import('./tutorial-alimentacion/tutorial-alimentacion.module').then( m => m.TutorialAlimentacionPageModule)
+  },
 
 
 
