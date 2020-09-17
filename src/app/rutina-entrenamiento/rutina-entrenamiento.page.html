@@ -56,13 +56,22 @@
 
 <ng-container *ngIf="status == 'rutina'">
 
-<video #myVideo  playsinline class="videoReproductor"
-width="100%"
-loop
-muted="muted" 
-poster="assets/img/videogif.gif">
-  <source [src]= "video" *ngIf="video" />
-</video>
+  <ion-fab *ngIf="identificador == 'derecha'"  horizontal="end" vertical="center" slot="fixed">
+    <ion-badge color="danger">Derecha</ion-badge>
+  </ion-fab>
+
+  <ion-fab *ngIf="identificador == 'izquierda'" horizontal="start" vertical="center" slot="fixed">
+    <ion-badge color="danger">Izquierda</ion-badge>
+  </ion-fab>
+
+
+  <video #myVideo  playsinline class="videoReproductor"
+  width="100%"
+  loop
+  muted="muted" 
+  poster="assets/img/videogif.gif">
+    <source [src]= "video" *ngIf="video" />
+  </video>
 
 <!-- #F4F3F1 -->
 

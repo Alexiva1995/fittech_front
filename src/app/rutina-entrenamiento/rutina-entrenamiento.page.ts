@@ -23,6 +23,7 @@ export class RutinaEntrenamientoPage implements OnInit {
   @ViewChild('myVideo', {static: false}) txtVideo: ElementRef;
   rutinas: any = [];
   status = 'rutina';
+  identificador:any;
   secuencia = 1;
   actual = 0;
   total: number;
@@ -43,6 +44,8 @@ export class RutinaEntrenamientoPage implements OnInit {
   ready: boolean;
   pausarApp:any
   ReanudarAPP:any
+  arraytemp:any = []
+
   constructor(private service: RutinasService, private navCtrl: NavController,public platform: Platform,
               public alertController: AlertController) {
 
@@ -59,11 +62,30 @@ export class RutinaEntrenamientoPage implements OnInit {
 
   async ngOnInit() {
     this.data = await this.service.getRutina();
+
+    const array1 = this.data['exercises']
+
+      array1.forEach(element => {
+
+        if(element.side > 1){
+          const objetoClonado = Object.assign({}, element);
+          objetoClonado.mostrar = 'derecha'
+          const objetoClonado2 = Object.assign({}, element);
+          objetoClonado2.mostrar = 'izquierda'
+          this.arraytemp.push(objetoClonado)
+          this.arraytemp.push(objetoClonado2)
+        }else{
+          this.arraytemp.push(element)
+        }
+
+      });
+    
+      console.log(this.arraytemp)
     this.setValues();
     this.startVideo();
   }
   setValues() {
-    this.rutinas = this.data['exercises'].filter(value => value.stage === this.secuencia);
+    this.rutinas = this.arraytemp.filter(value => value.stage === this.secuencia);
     this.final = this.data['exercises'].length;
     this.total = this.rutinas.length;
     this.stages = this.data['stages'];
@@ -76,9 +98,12 @@ export class RutinaEntrenamientoPage implements OnInit {
   async startVideo() {
     this.ready = false;
     this.setValues();
+    this.identificador = this.rutinas[this.actual].mostrar
+
     this.video = `http://fittech247.com/fittech/videos/${this.rutinas[this.actual].cod}/${this.rutinas[this.actual].url}`
     console.log(this.video)
     this.mostrar = true;
+
     this.timeLeft = this.data['ratio_w'];
     var b = setInterval(() => {
       console.log(this.txtVideo.nativeElement.readyState)
