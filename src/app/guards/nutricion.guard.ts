@@ -20,6 +20,7 @@ export class NutricionGuard implements CanActivate {
     const nutricion = await this.service.cargarnutricion()
     
         if(nutricion === 'activado' || comprobar['food_measures']!=null){
+            this.navCtrl.navigateForward('/tutorial-alimentacion');
             console.log("puede pasar")
             return true;
         }else{

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tutorial-alimento-paso4',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TutorialAlimentoPaso4Component implements OnInit {
 
-  constructor() { }
+  constructor(private ruta:NavController) { }
 
   ngOnInit() {}
+
+  go(){
+    this.ruta.navigateForward('bateria-alimento')
+  }
 
 }
