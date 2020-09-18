@@ -79,7 +79,8 @@ export class AlimentosNoLikePage implements OnInit {
             this.loadingController.dismiss()
               if(validar2){
                  this.apiService.guardarnutricion()
-                 this.ruta.navigateForward(['/bateria-alimento'])
+                //  this.ruta.navigateForward(['/bateria-alimento'])
+                 this.ruta.navigateForward(['/tutorial-alimentacion'])
               }else{
                this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
               }
