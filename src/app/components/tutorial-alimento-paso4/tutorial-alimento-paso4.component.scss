@@ -157,3 +157,13 @@
     background: black;
     color: white;
   }
+
+  .videoReproductor{
+    object-fit: cover; 
+    // width: 100%; 
+    // height: 16em;
+    // @include telefono-responsivo(){
+    //     height:auto;
+    //     object-fit: fill;
+    // }
+  }

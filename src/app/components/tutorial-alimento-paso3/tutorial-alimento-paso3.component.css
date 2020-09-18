@@ -127,3 +127,7 @@ ion-item {
   background: black;
   color: white;
 }
+
+.videoReproductor {
+  object-fit: cover;
+}
