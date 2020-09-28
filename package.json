@@ -60,7 +60,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^13.13.5",
     "codelyzer": "^5.0.0",
-    "cordova-android": "^9.0.0",
+    "cordova-android": "^8.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.3",
