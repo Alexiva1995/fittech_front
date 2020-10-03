@@ -16,6 +16,7 @@ import { MensajesService } from '../services/mensajes.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
 import { ModalMedidasPage } from '../modal-medidas/modal-medidas.page';
+import { ApiFitechService } from '../services/api-fitech.service';
 declare var window:any;
 @Component({
   selector: 'app-medidas',
@@ -33,6 +34,7 @@ export class MedidasPage implements OnInit {
 
   constructor(private ruta: NavController, private fb: FormBuilder, 
               private service: UsuarioService, private utilities: MensajesService, 
+              private apiservice: ApiFitechService,
               public loadingController: LoadingController,private camera: Camera, 
               public modalController: ModalController,
               private webView: WebView, private alertCtrl: AlertController) {
@@ -77,6 +79,23 @@ export class MedidasPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getData()
+  }
+
+
+  async getData(){
+    this.presentLoading()
+    const valor:any = await this.apiservice.obtenerUsuario()
+    console.log(valor)
+    this.loadingController.dismiss()
+      if(valor == false){
+      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+      }else{
+
+        console.log(valor['measurement_record'])
+         this.form.controls.stature.setValue(valor['measurement_record'].stature)
+         this.form.controls.weight.setValue(valor['measurement_record'].weight)
+      }
   }
 
   goTo(url: string) {
@@ -332,14 +351,14 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
     await alert.present();
   }
 
-  checkStature(event){
-    console.log(event);
-    this.form.controls.stature.setValue(event)
-  }
+  // checkStature(event){
+  //   console.log(event);
+  //   this.form.controls.stature.setValue(event)
+  // }
 
-  checkPeso(event){
-    console.log(event);
-    this.form.controls.weight.setValue(event)
-  }
+  // checkPeso(event){
+  //   console.log(event);
+  //   this.form.controls.weight.setValue(event)
+  // }
 
 }

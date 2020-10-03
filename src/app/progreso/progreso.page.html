@@ -43,8 +43,10 @@
       width: 100%;
       margin: 0 auto;
       text-align: center;" *ngIf="!valor">Desde</ion-label>
-      <ion-select interface="action-sheet"  cancel-text="salir" (ionChange)="desde($event)">
-      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">{{item.created_at}} </ion-select-option>
+      <ion-select [interfaceOptions]="customActionSheetOptions"  interface="action-sheet"
+       cancel-text="salir" (ionChange)="desde($event)">
+      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">
+      {{item.created_at | slice: 0:10 }} </ion-select-option>
     </ion-select>
       </ion-item>
   
@@ -54,8 +56,9 @@
     width: 100%;
     margin: 0 auto;
     text-align: center;" *ngIf="!valor2">Hasta</ion-label>
-    <ion-select interface="action-sheet" cancel-text="salir" (ionChange)="hasta($event)">
-      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">{{item.created_at}} </ion-select-option>
+    <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" cancel-text="salir" (ionChange)="hasta($event)">
+      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">
+      {{item.created_at | slice: 0:10 }} </ion-select-option>
   </ion-select>
       </ion-item>
     </div>
@@ -397,8 +400,9 @@
       width: 100%;
       margin: 0 auto;
       text-align: center;" *ngIf="!valor">Desde</ion-label>
-      <ion-select interface="action-sheet"  cancel-text="salir" (ionChange)="desde($event)">
-      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">{{item.created_at}} </ion-select-option>
+      <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet"  cancel-text="salir" (ionChange)="desde($event)">
+      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">
+      {{item.created_at | slice: 0:10}} </ion-select-option>
     </ion-select>
       </ion-item>
   
@@ -408,8 +412,9 @@
     width: 100%;
     margin: 0 auto;
     text-align: center;" *ngIf="!valor2">Hasta</ion-label>
-    <ion-select interface="action-sheet" cancel-text="salir" (ionChange)="hasta($event)">
-      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">{{item.created_at}} </ion-select-option>
+    <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" cancel-text="salir" (ionChange)="hasta($event)">
+      <ion-select-option *ngFor="let item of fechas; let i=index" value="{{item.id}}">
+      {{item.created_at | slice: 0:10}} </ion-select-option>
   </ion-select>
       </ion-item>
     </div>
@@ -469,5 +474,5 @@
   <div *ngIf="comparar ==='medidas' "> 
     <app-indicadorescomparacion></app-indicadorescomparacion>
   </div>
- 
+  
 </ion-content>

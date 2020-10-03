@@ -58,6 +58,10 @@ export class ProgresoPage implements OnInit {
     back_photo:null,
   }
 
+  customActionSheetOptions: any = {
+    cssClass: 'progress-class',
+  };
+
 
   constructor( private ruta: NavController,
               private service: NutricionService,
