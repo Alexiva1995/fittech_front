@@ -41,6 +41,9 @@ export class BateriaEstiramientosPage implements OnInit {
   ready: boolean;
   pausarApp:any
   ReanudarAPP:any
+  arraytemp:any = []
+  identificador:any;
+
   constructor(private service: RutinasService, 
               private navCtrl: NavController,
               public platform: Platform,
@@ -60,23 +63,33 @@ export class BateriaEstiramientosPage implements OnInit {
 
   async ngOnInit() {
     this.rutinas = await this.service.getEstiramientos();
-    this.rutinas = this.rutinas['Estiramiento'];
+    // CODIGO QUE REPITE CICLO
+    const array1 = this.rutinas['Estiramiento']
+
+    array1.forEach(element => {
+
+      if(element.side > 1){
+        const objetoClonado = Object.assign({}, element);
+        objetoClonado.mostrar = 'derecha'
+        const objetoClonado2 = Object.assign({}, element);
+        objetoClonado2.mostrar = 'izquierda'
+        this.arraytemp.push(objetoClonado)
+        this.arraytemp.push(objetoClonado2)
+      }else{
+        this.arraytemp.push(element)
+      }
+
+    });
+    
+    console.log(this.arraytemp)
+
     this.setValues();
     this.startVideo();
   }
   async setValues() {
-      this.service.getEstiramientos().then((result) => {
-      this.rutinas = result;
-  
-    this.rutinas = this.rutinas['Estiramiento'];
-    console.log(this.rutinas);
-    
-    this.final = this.rutinas.length;
-    this.total = this.rutinas.length;
+    this.final = this.arraytemp.length;
+    this.total = this.arraytemp.length;
     this.stages = this.data['stages'];
-  }).catch((err) => {
-      
-  });;
   }
 
 /*   atras(){
@@ -87,8 +100,9 @@ export class BateriaEstiramientosPage implements OnInit {
     this.zero = null
     this.ready = false;
     this.setValues();
-    console.log(this.rutinas);
-    this.rutinas =this.rutinas;
+    this.identificador = this.arraytemp[this.actual].mostrar
+
+    this.rutinas =this.arraytemp;
     this.video = `http://fittech247.com/fittech/videos/Estiramientos/${this.rutinas[this.actual].link}`
     console.log(this.video)
     this.mostrar = true;

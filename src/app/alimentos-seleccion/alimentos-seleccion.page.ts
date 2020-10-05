@@ -186,7 +186,7 @@ export class AlimentosSeleccionPage implements OnInit {
   }
 
 
-  guardarMenu(){
+  async guardarMenu(){
     let menu = {
       "day":this.today,
       "type_food": this.datosUsuario.type_food,
@@ -218,7 +218,42 @@ export class AlimentosSeleccionPage implements OnInit {
     });
 
     if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
-      this.utilities.alertaInformatica('Los alimentos seleccionados exceden los valores permitidos para esta comida')
+      // si excen los alimentos 
+      const alert = await this.alertController.create({
+        message: '<h2>Los alimentos seleccionados exceden los valores permitidos para esta comida, ¿aun así deseas continuar?</h2>',
+        cssClass: 'customMensaje1',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel',
+            cssClass: 'cancelButton',
+            handler: (blah) => {
+             return
+            }
+          }, {
+            text: 'Si',
+            cssClass: 'confirmButton',
+            handler: () => {
+            
+              if(!menu.foods.length){
+                this.utilities.alertaInformatica('Debe seleccionar un alimento')
+              }else{
+                this.service.storeMenu(menu).then((res) => {
+                  console.log(res);
+                  this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
+                    this.navCtrl.navigateRoot('/bateria-alimento')
+                }).catch((err) => {
+                  this.utilities.alertaInformatica('Error al guardar '+ this.dataRecibida)
+                });
+              }
+  
+            }
+          }
+        ]
+    
+      });
+    
+      await alert.present();
     } else {
         // evitar guardar vacio
       if(!menu.foods.length){
@@ -349,6 +384,10 @@ export class AlimentosSeleccionPage implements OnInit {
    cerrar(){
     this.info2 = false;
   }
+
+
+
+
 
 
 }
