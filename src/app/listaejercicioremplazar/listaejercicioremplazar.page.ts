@@ -1,33 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { PopremplazarComponent } from '../components/popremplazar/popremplazar.component';
-import { PopoverController } from '@ionic/angular';
-import { ApiFitechService } from '../services/api-fitech.service';
+import { Component, OnInit } from "@angular/core";
+import { PopremplazarComponent } from "../components/popremplazar/popremplazar.component";
+import { PopoverController } from "@ionic/angular";
+import { ApiFitechService } from "../services/api-fitech.service";
 
 @Component({
-  selector: 'app-listaejercicioremplazar',
-  templateUrl: './listaejercicioremplazar.page.html',
-  styleUrls: ['./listaejercicioremplazar.page.scss'],
+  selector: "app-listaejercicioremplazar",
+  templateUrl: "./listaejercicioremplazar.page.html",
+  styleUrls: ["./listaejercicioremplazar.page.scss"],
 })
 export class ListaejercicioremplazarPage implements OnInit {
-  serie = {}
-  constructor( public popoverController: PopoverController,private ApiService:ApiFitechService) { }
+  serie = {};
+  constructor(
+    public popoverController: PopoverController,
+    private ApiService: ApiFitechService
+  ) {}
 
   ngOnInit() {
-    this.serie =  this.ApiService.rutinaListadoRemplazar
-    console.log(this.serie)
+    this.serie = this.ApiService.rutinaListadoRemplazar;
+    console.log(this.serie);
   }
 
-  async mostrarpop(evento,id){
- 
+  async mostrarpop(evento, id, exercise) {
     const popover = await this.popoverController.create({
-      component:PopremplazarComponent,
-      showBackdrop:false,
-      event:evento,
+      component: PopremplazarComponent,
+      showBackdrop: false,
+      event: evento,
+      componentProps: {
+        exercise: JSON.stringify(exercise),
+      },
     });
-      console.log("ID DEL NUEVO EJERCICIO en el listado",id)
-      this.ApiService.asignarNuevoEjercicio(id)
-    await popover.present()
+    this.ApiService.asignarNuevoEjercicio(id);
+    await popover.present();
   }
-
-
 }

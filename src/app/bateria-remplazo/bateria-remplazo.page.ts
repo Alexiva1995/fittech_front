@@ -1,54 +1,43 @@
+import { NavController } from "@ionic/angular";
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiFitechService } from "../services/api-fitech.service";
-
 @Component({
-  selector: "app-bateria",
-  templateUrl: "./bateria.page.html",
-  styleUrls: ["./bateria.page.scss"],
+  selector: "app-bateria-remplazo",
+  templateUrl: "./bateria-remplazo.page.html",
+  styleUrls: ["./bateria-remplazo.page.scss"],
 })
-export class BateriaPage implements OnInit {
+export class BateriaRemplazoPage implements OnInit {
   @ViewChild("myVideo", { static: false }) txtVideo: ElementRef;
   mostrar: boolean = true;
-
-  constructor(
-    private capturar: ActivatedRoute,
-    private ruta: Router,
-    private ApiService: ApiFitechService
-  ) {}
-  dataRecibida: any;
-  nombre;
+  exercise: any;
+  name;
   repeticion;
   timeLeft: number;
   tiemposegundo;
   buscador: any;
-  encontrar: any;
+  results: any;
   video: any;
   poster: any;
   zero: any;
+  constructor(
+    private route: ActivatedRoute,
+    private navCtrl: NavController,
+    private ApiService: ApiFitechService
+  ) {}
+
   ngOnInit() {
-    this.dataRecibida = this.capturar.snapshot.paramMap.get("id");
-
-    //Carga el nombre del ejercicio
-    this.nombre = this.ApiService.demostracionEjercicio.nombre;
-    //carga la serie de ejericios
-    this.buscador = this.ApiService.rutina;
-    //haya el ejercicio
-    this.encontrar = this.buscador.find((value) => {
-      return value.name == this.nombre;
+    this.route.queryParams.subscribe((params) => {
+      this.exercise = JSON.parse(params["data"]);
+      this.name = this.exercise.name;
+      this.video = `http://fittech247.com/fittech/videos/${this.exercise.cod}/${this.exercise.url}`;
+      this.timeLeft = this.ApiService.ratio;
+      this.startTimer();
     });
-
-    // los videos
-    this.video = `http://fittech247.com/fittech/videos/${this.encontrar.cod}/${this.encontrar.url}`;
-
-    //tiempo del ejericio
-    this.timeLeft = this.ApiService.ratio;
-
-    this.startTimer();
   }
 
   atras() {
-    this.ruta.navigateByUrl("entrenamientos");
+    this.navCtrl.pop();
     this.pauseVideo();
   }
 
@@ -80,7 +69,6 @@ export class BateriaPage implements OnInit {
 
   videoEnd() {
     this.mostrar = false;
-    // this.txtVideo.nativeElement.currentTime = 1;
     clearInterval(this.tiemposegundo);
     this.timeLeft = this.repeticion;
     this.zero = null;
@@ -88,11 +76,6 @@ export class BateriaPage implements OnInit {
 
   //CONOMETRO
   startTimer() {
-    // if(this.timeLeft = 0){
-    //   this.minuto--
-    //   this.timeLeft = 60
-    // }
-
     this.tiemposegundo = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
@@ -119,7 +102,6 @@ export class BateriaPage implements OnInit {
 
   // mayuscula
   ucFirst(str) {
-    /*   str = str.replace(/ /g, "."); */
     return str.substring(0, 1).toUpperCase() + str.substring(1);
   }
 }
