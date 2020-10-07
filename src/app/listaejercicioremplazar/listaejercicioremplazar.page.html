@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/tabs/dashboard"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <img src="assets/img/logo-app.png" class="imagenmodificada">    
+      <img src="assets/img/logo-app.png" class="imagenmodificada">
     </ion-buttons>
     <ion-title class="ion-text-center" mode="ios">Lista de ejercicio</ion-title>
   </ion-toolbar>
@@ -12,7 +12,7 @@
 
 <ion-content fullscreen>
   <ion-list>
-      <p class="ion-text-center"> Selecione un ejercicio que le guste  </p>
+    <p class="ion-text-center"> Selecione un ejercicio que le guste </p>
 
 
     <ion-item *ngFor="let ejercicio of serie">
@@ -24,16 +24,16 @@
         <h2> {{ejercicio.name}} </h2>
       </ion-label>
       <ion-buttons slot="end">
-        <ion-button (click)="mostrarpop($event,ejercicio.id)">
-          <ion-icon slot="start" md="ellipsis-horizontal"></ion-icon>   
+        <ion-button (click)="mostrarpop($event,ejercicio.id, ejercicio)">
+          <ion-icon slot="start" md="ellipsis-horizontal"></ion-icon>
         </ion-button>
       </ion-buttons>
 
-  </ion-item>
-  
-  
-  
-</ion-list>
+    </ion-item>
+
+
+
+  </ion-list>
 
 </ion-content>
 
