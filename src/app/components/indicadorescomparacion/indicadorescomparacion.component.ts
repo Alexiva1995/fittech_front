@@ -31,6 +31,10 @@ export class IndicadorescomparacionComponent implements OnInit {
     estrategia_nutricional:null,
   }
 
+    customActionSheetOptions: any = {
+    cssClass: 'progress-class',
+  };
+
   constructor(private ruta: NavController,
     private service: NutricionService,
     public alertController: AlertController,
