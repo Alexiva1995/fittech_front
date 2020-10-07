@@ -68,7 +68,7 @@ export class BateriaEstiramientosPage implements OnInit {
 
     array1.forEach(element => {
 
-      if(element.side > 1){
+      if(element.side < 2){
         const objetoClonado = Object.assign({}, element);
         objetoClonado.mostrar = 'derecha'
         const objetoClonado2 = Object.assign({}, element);

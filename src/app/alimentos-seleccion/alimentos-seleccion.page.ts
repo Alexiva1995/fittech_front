@@ -87,8 +87,10 @@ export class AlimentosSeleccionPage implements OnInit {
           element['cantidad'] = null;
           if(element.measure == null){
             element['measurement'] =  'casera';
+            element['convertion'] =  1;
           }else{
             element['measurement'] =  'unidad';
+            element['convertion'] =  0;
           }
         });
         this.datosUsuario = valor['Menu'];
@@ -96,6 +98,8 @@ export class AlimentosSeleccionPage implements OnInit {
         this.totalgrease = this.datosUsuario.grease;
         this.totalprotein = this.datosUsuario.protein;
       }
+
+      console.log("valor de la comida",  this.alimentos)
   }
 
 
@@ -207,10 +211,10 @@ export class AlimentosSeleccionPage implements OnInit {
         menu.foods.push(food);
         }else{//Valor unitario casero.
           if(element.measure){
-            let food = [ element.id, element.cantidad , element.measure]
+            let food = [ element.id, element.cantidad , 1]
             menu.foods.push(food);
           }else{
-            let food = [ element.id, element.cantidad , element.type_measure]
+            let food = [ element.id, element.cantidad , 1]
             menu.foods.push(food);
           }
         }
@@ -259,6 +263,8 @@ export class AlimentosSeleccionPage implements OnInit {
       if(!menu.foods.length){
         this.utilities.alertaInformatica('Debe seleccionar un alimento')
       }else{
+        console.log(menu);
+
         this.service.storeMenu(menu).then((res) => {
           console.log(res);
           this.utilities.notificacionUsuario( this.dataRecibida + ' guardado' , "dark" );
