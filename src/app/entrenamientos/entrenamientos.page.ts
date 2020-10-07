@@ -181,25 +181,26 @@ export class EntrenamientosPage implements OnInit {
     this.ruta.navigateForward("calentamiento-info");
   }
 
-  async mostrarpop(evento, nombre, repeticion, id) {
+  async mostrarpop(evento, excersice) {
     const popover = await this.popoverController.create({
       component: PopinfoComponent,
       showBackdrop: false,
       event: evento,
       componentProps: {
-        name: nombre,
-        repeticion: repeticion,
-        id: id,
+        excersice: excersice,
       },
     });
 
-    console.log("ID VIEJO", id);
-    this.ApiService.ejerciciodemostrado(nombre, repeticion, id);
+    this.ApiService.ejerciciodemostrado(
+      excersice.name,
+      excersice.repetition,
+      excersice.id
+    );
 
     await popover.present();
   }
 
-  customTB(index, item) {
+  customTB(item) {
     return item.id;
   }
 
