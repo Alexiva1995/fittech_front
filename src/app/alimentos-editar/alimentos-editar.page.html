@@ -71,11 +71,10 @@
          </ion-segment>
 
          <ion-segment *ngIf="alimento.convertion === 1 "  [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = null" mode="ios" style="margin: 0 auto;" value="casera" >
-          <ion-segment-button value="unidad">
+          <ion-segment-button value="unidad" [ngClass]="{'segment-button-checked': alimento.measure == null ? true : false}">
              <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
            </ion-segment-button>
            <ion-segment-button  value="casera"  
-           [ngClass]="{'segment-button-checked': alimento.measure == null ? true : false}"
             *ngIf="alimento.measure" >
              <ion-label class="titulopeque">{{alimento.measure}}</ion-label>
            </ion-segment-button>
