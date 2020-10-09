@@ -14,7 +14,7 @@ export class TutorialAlimentoPaso4Component implements OnInit {
   video4:any
 
   ngOnInit() {
-    this.video2 = `http://fittech247.com/fittech/videos/Tutoriales/t2.mp4`
+    this.video2 = `http://fittech247.com/fittech/videos/Tutoriales/t5.mp4`
     this.video3 = `http://fittech247.com/fittech/videos/Tutoriales/t3.mp4`
     this.video4 = `http://fittech247.com/fittech/videos/Tutoriales/t4.mp4`
   }
