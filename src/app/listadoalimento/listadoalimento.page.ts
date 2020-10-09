@@ -145,50 +145,23 @@ export class ListadoalimentoPage implements OnInit {
       if (element.cantidad > 0) {
         console.log(element);
 
-        if (element.convertion === 1) {
-          // console.log(element);
-          // console.log('medida casera')
-
-          /*               this.carbo += element.carbo*element.cantidad;
-            this.grasa += element.greases*element.cantidad;
-            this.protein += element.protein*element.cantidad; */
+        if (element.convertion === 1 && element.eq != null) {
+          console.log(element);
+          console.log("cantidad",element.cantidad);
+          console.log("eq",element.eq);
+          console.log('medida casera')
           console.log("Convirtiendo con regla de 3");
 
-          this.carbo += this.convertion(
-            element.cant,
-            element.carbo,
-            element.cantidad * element.eq
-          );
-          this.grasa += this.convertion(
-            element.cant,
-            element.greases,
-            element.cantidad * element.eq
-          );
-          this.protein += this.convertion(
-            element.cant,
-            element.protein,
-            element.cantidad * element.eq
-          );
+          this.carbo += this.convertion( element.cant, element.carbo, element.cantidad * element.eq);
+          this.grasa += this.convertion(element.cant,element.greases,element.cantidad * element.eq);
+          this.protein += this.convertion(element.cant,element.protein,element.cantidad * element.eq);
         } else {
           console.log("Convirtiendo con regla de 3 en el else");
-
-          this.carbo += this.convertion(
-            element.cant,
-            element.carbo,
-            element.cantidad
-          );
-          this.grasa += this.convertion(
-            element.cant,
-            element.greases,
-            element.cantidad
-          );
-          this.protein += this.convertion(
-            element.cant,
-            element.protein,
-            element.cantidad
-          );
-          // console.log(element)
-          // console.log('Aplicar la regla de 3')
+          this.carbo += this.convertion(element.cant, element.carbo,element.cantidad);
+          this.grasa += this.convertion(element.cant,element.greases,element.cantidad);
+          this.protein += this.convertion(element.cant,element.protein,element.cantidad);
+          console.log(element)
+          console.log('Aplicar la regla de 3')
         }
       }
       //console.log("No convirtio nada");

@@ -139,7 +139,7 @@ export class AlimentosEditarPage implements OnInit {
       this.alimentos.forEach(element => {
         
         if(element.cantidad > 0){
-          if(element.measurement === 'casera'){
+          if(element.measurement === 'casera' && element.eq != null){
           // console.log(element);
           // console.log('medida casera')
 

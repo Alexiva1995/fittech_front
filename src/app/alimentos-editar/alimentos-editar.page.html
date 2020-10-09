@@ -55,31 +55,45 @@
 
 
         </ion-label>
-        <!-- input cuerpo -->
-        <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" 
-        (ionChange)="calculateStats();" 
-        clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
-        <!-- footer boton -->
-        <ion-segment  *ngIf="alimento.convertion !==1"   [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = null" mode="ios" style="margin: 0 auto;" value="unidad" >
-          <ion-segment-button value="unidad"
-           [ngClass]="{'segment-button-checked': alimento.measure == null ? true : false}">
-             <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
-           </ion-segment-button>
-           <ion-segment-button  value="casera" *ngIf="alimento.measure">
-             <ion-label class="titulopeque">{{alimento.measure || alimento.food.type_measure}}</ion-label>
-           </ion-segment-button>
-         </ion-segment>
 
-         <ion-segment *ngIf="alimento.convertion === 1 "  [(ngModel)]="alimento.measurement" (ionChange)="alimento.cantidad = null" mode="ios" style="margin: 0 auto;" value="casera" >
-          <ion-segment-button value="unidad">
-             <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
-           </ion-segment-button>
-           <ion-segment-button  value="casera"  
-           [ngClass]="{'segment-button-checked': alimento.measure == null ? true : false}"
-            *ngIf="alimento.measure" >
-             <ion-label class="titulopeque">{{alimento.measure || alimento.food.type_measure}}</ion-label>
-           </ion-segment-button>
-         </ion-segment>
+        <!-- input cuerpo -->
+        <div *ngIf="alimento.convertion !==1">
+          <ion-input placeholder="0" [(ngModel)]="alimento.cantidad" 
+          (ionChange)="calculateStats();" 
+          clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
+          <!-- footer boton UNIDAD-->
+          <ion-segment   [(ngModel)]="alimento.measurement" 
+          (ionChange)="alimento.cantidad = null" mode="ios" style="margin: 0 auto;" value="unidad" >
+            <ion-segment-button value="unidad" 
+            [ngClass]="{'segment-button-checked': alimento.measure == null ? true : false}">
+              <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
+            </ion-segment-button>
+            <ion-segment-button    value="casera"  >
+              <ion-label class="titulopeque">{{alimento.measure}}</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+        <!-- footer boton CASERA-->
+        <!-- input cuerpo -->
+        <div *ngIf="alimento.convertion ===1">
+          <ion-input placeholder="0" 
+          [(ngModel)]="alimento.cantidad" 
+          [(ngModel)]="alimento.measurement"
+          (ionChange)="calculateStats();" 
+          clearOnEdit  inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;"></ion-input>
+          <!-- footer boton UNIDAD-->
+          <ion-segment  *ngIf="alimento.convertion === 1"  
+          (ionChange)="alimento.cantidad = null" 
+            mode="ios" style="margin: 0 auto;" value="unidad" >
+            <ion-segment-button value="unidad">
+              <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+
+
+
+
       </ion-col>
     </ion-row>
 
