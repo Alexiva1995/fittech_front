@@ -68,7 +68,7 @@
             [ngClass]="{'segment-button-checked': alimento.measure == null ? true : false}">
               <ion-label class="titulopeque">{{alimento.type_measure}}</ion-label>
             </ion-segment-button>
-            <ion-segment-button    value="casera"  >
+            <ion-segment-button    value="casera"  *ngIf="alimento.measure">
               <ion-label class="titulopeque">{{alimento.measure}}</ion-label>
             </ion-segment-button>
           </ion-segment>
