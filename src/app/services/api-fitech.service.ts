@@ -238,6 +238,10 @@ export class ApiFitechService {
     await this.storage.set('examenresistencia',resistencia)
   }
 
+  async guardartutorial(valor:boolean){
+    await this.storage.set('tutorial',valor)
+  }
+
 
   async guardarexamenCapacidad(capacidad:string){
     await this.storage.set('examencapacidad',capacidad)
@@ -275,6 +279,10 @@ export class ApiFitechService {
 
   cargarExamenFuerza(){
     return this.storage.get('examenfuerza')
+  }
+
+   cargarTutorial(){
+    return this.storage.get('tutorial')
   }
 
   cargarExamenCapacidad(){

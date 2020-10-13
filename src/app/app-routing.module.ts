@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { LoginGuard } from "./guards/login.guard";
 import { NutricionGuard } from "./guards/nutricion.guard";
+import { TutorialGuard } from "./guards/tutorial.guard";
+
 const routes: Routes = [
   {
     path: "home",
@@ -464,6 +466,7 @@ const routes: Routes = [
       import("./tutorial-alimentacion/tutorial-alimentacion.module").then(
         (m) => m.TutorialAlimentacionPageModule
       ),
+      canActivate: [TutorialGuard],
   },
   {
     path: "bateria-remplazo/:id",

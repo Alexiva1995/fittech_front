@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NutricionService } from '../services/nutricion.service';
 import { MensajesService } from '../services/mensajes.service';
 import { NavController, AlertController } from '@ionic/angular';
+import { ApiFitechService } from '../services/api-fitech.service';
 
 @Component({
   selector: 'app-alimentos-seleccion',
@@ -39,6 +40,7 @@ export class AlimentosSeleccionPage implements OnInit {
   constructor(private capturar:ActivatedRoute,
               private service: NutricionService,
               private utilities: MensajesService,
+              private apiService:ApiFitechService,
               public alertController: AlertController,
               private navCtrl: NavController) { }
 
@@ -392,7 +394,10 @@ export class AlimentosSeleccionPage implements OnInit {
   }
 
 
-
+  tutorial(){
+    this.apiService.guardartutorial(false)
+    this.navCtrl.navigateForward('tutorial-alimentacion')
+  }
 
 
 

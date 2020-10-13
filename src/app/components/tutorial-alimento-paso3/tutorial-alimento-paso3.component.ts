@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { ApiFitechService } from 'src/app/services/api-fitech.service';
 
 @Component({
   selector: 'app-tutorial-alimento-paso3',
@@ -7,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TutorialAlimentoPaso3Component implements OnInit {
   video1:any
-  constructor() { }
+  pasar:any;
+
+  constructor(private apiService:ApiFitechService,private ruta:NavController) { }
 
   ngOnInit() {
     this.video1 = `http://fittech247.com/fittech/videos/Tutoriales/t1.mp4`
+  }
+
+
+  saltar(){
+    this.apiService.guardartutorial(true)
+    this.ruta.navigateRoot(['/bateria-alimento'])
   }
 
 }

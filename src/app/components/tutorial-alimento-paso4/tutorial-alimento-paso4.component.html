@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-buttons slot="start" (click)="go()">
-      <!-- <ion-back-button defaultHref="/bateria-alimento"></ion-back-button> -->
+    <!-- <ion-buttons slot="start" (click)="go()">
+      <ion-back-button defaultHref="/bateria-alimento"></ion-back-button> 
       <ion-icon name="checkmark-outline" style="font-size: 24px; margin-left: 20px;"   ></ion-icon>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <img src="assets/img/logo-app.png" class="imagenmodificada">    
+    </ion-buttons> -->
+    <ion-buttons slot="end" (click)="saltar()">
+      Saltar 
     </ion-buttons>
     <ion-title class="ion-text-center" mode="ios">Alimentación</ion-title>
   </ion-toolbar>
@@ -24,7 +24,7 @@
   </div>
 
 
-  <video width="100%"  class="videoReproductor" controls poster="assets/img/gif-logo2-video.gif">
+  <video width="100%"  class="videoReproductor2" controls poster="assets/img/gif-logo2-video.gif">
     <source [src]= "video2" type="video/mp4" />
   </video>
 

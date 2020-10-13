@@ -54,7 +54,7 @@
       <ion-col class="raya"  size="6" *ngFor="let alimento of alimentos2; let i=index">
         <!-- cabeza -->
         <ion-label class="ion-text-wrap" class="titlemodify"> {{alimento.food.name}} 
-        <ion-icon (click)="agregar()" name="pencil-outline" style="margin-left: 1rem;font-size: 1.1rem;color: red;"></ion-icon>
+        <ion-icon (click)="agregar()" name="create-sharp" style="margin-left: 1rem;font-size: 1.1rem;color: red;"></ion-icon>
         </ion-label>
         <!-- input cuerpo -->
         <ion-input placeholder="0" [value]= "alimento.quantity" inputmode="numeric" maxlength="3" style="margin: 0 auto;text-align: center;" readonly>
