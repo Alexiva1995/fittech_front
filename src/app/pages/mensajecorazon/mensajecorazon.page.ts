@@ -65,10 +65,10 @@ export class MensajecorazonPage implements OnInit {
 
     if (this.ApiService.latidocorazon === 0) {
       //this.ApiService.desconectarUsuario();
-      this.presentAlert();
+      // this.presentAlert();
       //this.ruta.navigateRoot(["/"]);
       this.ruta.navigateRoot(["/tabs/dashboard"]);
-      return;
+      // return;
     }
 
     if (this.ApiService.risk > 1) {
