@@ -129,5 +129,5 @@ ion-item {
 }
 
 .videoReproductor {
-  object-fit: cover;
+  object-fit: fill;
 }

@@ -129,10 +129,11 @@ ion-item {
 }
 
 .videoReproductor {
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .videoReproductor2 {
-  height: 100%;
   object-fit: fill;
+  width: 100%    !important;
+  height: 95%   !important;
 }
