@@ -100,4 +100,10 @@ export class BateriaAlimentoPage implements OnInit {
   }
 
 
+  tutorial() {
+    this.serviceUser.guardartutorial(false);
+    this.ruta.navigateForward("tutorial-alimentacion");
+  }
+
+
 }

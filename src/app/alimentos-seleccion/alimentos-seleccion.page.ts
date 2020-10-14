@@ -40,7 +40,6 @@ export class AlimentosSeleccionPage implements OnInit {
     private capturar: ActivatedRoute,
     private service: NutricionService,
     private utilities: MensajesService,
-    private apiService: ApiFitechService,
     public alertController: AlertController,
     private navCtrl: NavController
   ) {}
@@ -245,11 +244,11 @@ export class AlimentosSeleccionPage implements OnInit {
       // si excen los alimentos
       const alert = await this.alertController.create({
         message:
-          "<h2>Los alimentos seleccionados exceden los valores permitidos para esta comida, ¿aun así deseas continuar?</h2>",
+          "<h2> Estar muy por encima de lo que necesitas puede alejarte de tus objetivos, pero si solo te has pasado un poco, omite el mensaje.</h2>",
         cssClass: "customMensaje1",
         buttons: [
           {
-            text: "No",
+            text: "Volver",
             role: "cancel",
             cssClass: "cancelButton",
             handler: (blah) => {
@@ -257,7 +256,7 @@ export class AlimentosSeleccionPage implements OnInit {
             },
           },
           {
-            text: "Si",
+            text: "Siguiente",
             cssClass: "confirmButton",
             handler: () => {
               if (!menu.foods.length) {
@@ -422,8 +421,5 @@ export class AlimentosSeleccionPage implements OnInit {
     this.info2 = false;
   }
 
-  tutorial() {
-    this.apiService.guardartutorial(false);
-    this.navCtrl.navigateForward("tutorial-alimentacion");
-  }
+
 }

@@ -16,6 +16,11 @@
 <ion-content>
   <div style="padding-bottom: 0;"   class="ion-padding ion-text-left titulo">
     Resumen Nutricional
+
+    <ion-fab style="padding-top: 0.5rem;" (click)="tutorial()" horizontal="end" vertical="top" slot="fixed">
+      <ion-badge color="danger">Tutorial</ion-badge>
+    </ion-fab>
+
   </div> 
 
   <div  *ngIf="nombre" class="ion-padding ion-text-left titulo2">
