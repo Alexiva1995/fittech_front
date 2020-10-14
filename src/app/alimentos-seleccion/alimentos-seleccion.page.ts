@@ -226,18 +226,18 @@ export class AlimentosSeleccionPage implements OnInit {
     if (this.carbo > this.datosUsuario.carbo || this.grasa > this.datosUsuario.grease || this.protein > this.datosUsuario.protein) {
       // si excen los alimentos 
       const alert = await this.alertController.create({
-        message: '<h2>Los alimentos seleccionados exceden los valores permitidos para esta comida, ¿aun así deseas continuar?</h2>',
+        message: '<h2>Estar muy por encima de lo que necesitas puede alejarte de tus objetivos, pero si solo te has pasado un poco, omite el mensaje.</h2>',
         cssClass: 'customMensaje1',
         buttons: [
           {
-            text: 'No',
+            text: 'volver',
             role: 'cancel',
             cssClass: 'cancelButton',
             handler: (blah) => {
              return
             }
           }, {
-            text: 'Si',
+            text: 'Siguiente',
             cssClass: 'confirmButton',
             handler: () => {
             
