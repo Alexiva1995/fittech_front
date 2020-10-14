@@ -36,7 +36,7 @@
             <p style="color: white;">{{carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}gr</p>
           </ng-container>
           <ng-container *ngIf=" carbo > totalFoods.total_carbo ">
-            <p style="color: white;"> {{totalFoods.total_carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}  gr</p>
+            <p style="color: white;"> {{carbo.toFixed()}}/{{totalFoods.total_carbo.toFixed()}}  gr</p>
           </ng-container>
       </div>
       <div class="contenedorMenuItem" style="  background: #EF4044;">
@@ -46,7 +46,7 @@
             <p style="color: white;">{{protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}gr</p>
           </ng-container>
           <ng-container *ngIf=" protein > totalFoods.total_protein ">
-            <p style="color: white;">{{totalFoods.total_protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}gr</p>
+            <p style="color: white;">{{protein.toFixed()}}/{{totalFoods.total_protein.toFixed()}}gr</p>
           </ng-container>
       </div>
       <div class="contenedorMenuItem" style="border-bottom-right-radius: 12px;border-top-right-radius: 12px;background: grey;">
@@ -56,7 +56,7 @@
               <p style="color: white;">{{grasa.toFixed()}}/{{totalFoods.total_greases.toFixed()}}gr</p>
             </ng-container>
             <ng-container *ngIf=" grasa > totalFoods.total_greases ">
-              <p style="color: white;">{{totalFoods.total_greases}}/{{totalFoods.total_greases}}gr</p>
+              <p style="color: white;">{{grasa.toFixed()}}/{{totalFoods.total_greases.toFixed()}}gr</p>
             </ng-container>
         </div>
     </div>

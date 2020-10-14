@@ -241,7 +241,7 @@ export class AlimentosEditarPage implements OnInit {
     }
   }
 
-  guardarMenu() {
+  async guardarMenu() {
     let menu = {
       menu_id: this.id,
       type_food: this.comidaenviar,
@@ -262,10 +262,10 @@ export class AlimentosEditarPage implements OnInit {
         } else {
           //Valor unitario casero.
           if (element.measure) {
-            let food = [element.id, element.cantidad, element.measure];
+            let food = [element.id, element.cantidad, 1];
             menu.foods.push(food);
           } else {
-            let food = [element.id, element.cantidad, element.type_measure];
+            let food = [element.id, element.cantidad, 1];
             menu.foods.push(food);
           }
         }
@@ -277,9 +277,59 @@ export class AlimentosEditarPage implements OnInit {
       this.grasa > this.datosUsuario.grease ||
       this.protein > this.datosUsuario.protein
     ) {
-      this.utilities.alertaInformatica(
-        "Los alimentos seleccionados exceden los valores permitidos para esta comida"
-      );
+        
+            // si excen los alimentos
+            const alert = await this.alertController.create({
+              message:
+                "<h2> Estar muy por encima de lo que necesitas puede alejarte de tus objetivos, pero si solo te has pasado un poco, omite el mensaje.</h2>",
+              cssClass: "customMensaje1",
+              buttons: [
+                {
+                  text: "Volver",
+                  role: "cancel",
+                  cssClass: "cancelButton",
+                  handler: (blah) => {
+                    return;
+                  },
+                },
+                {
+                  text: "Siguiente",
+                  cssClass: "confirmButton",
+                  handler: () => {
+                    if (!menu.foods.length) {
+                      this.utilities.alertaInformatica(
+                        "Debe seleccionar un alimento"
+                      );
+                    } else {
+                      this.service
+                        .ActualizarComida(menu)
+                        .then((res) => {
+                          console.log(res);
+                          this.utilities.notificacionUsuario(
+                            this.dataRecibida + " guardado",
+                            "dark"
+                          );
+                          this.navCtrl.navigateRoot("/bateria-alimento");
+                        })
+                        .catch((err) => {
+                          this.utilities.alertaInformatica(
+                            "Error al guardar " + this.dataRecibida
+                          );
+                        });
+                    }
+                  },
+                },
+              ],
+            });
+      
+            await alert.present();
+
+
+
+
+
+
+
     } else {
       // evitar guardar vacio
       console.log(menu);
