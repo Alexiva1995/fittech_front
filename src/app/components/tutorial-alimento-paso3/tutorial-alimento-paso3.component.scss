@@ -167,11 +167,15 @@
 
   // ajustar imagen de carga a video
 .videoReproductor{
-  object-fit: fill; 
-  // width: 100%; 
-  // height: 16em;
-  // @include telefono-responsivo(){
-  //     height:auto;
-  //     object-fit: fill;
-  // }
+  object-fit: cover; 
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper{
+  width: 100%;
+  min-width: 100%;
+  height: 445px;
+  max-height: 445px;
+  overflow: hidden;
 }

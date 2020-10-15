@@ -129,5 +129,15 @@ ion-item {
 }
 
 .videoReproductor {
-  object-fit: fill;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  min-width: 100%;
+  height: 445px;
+  max-height: 445px;
+  overflow: hidden;
 }
