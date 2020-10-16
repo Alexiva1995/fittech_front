@@ -16,4 +16,8 @@ export class EstiramientosPage implements OnInit {
   iniciar(){
     this.navCtrl.navigateForward("/bateria-estiramientos");
   }
+
+  saltar(){
+    this.navCtrl.navigateForward("/percepcionentrenamiento");
+  }
 }
