@@ -53,9 +53,9 @@ export class MedidasPage implements OnInit {
       left_calf:[null,Validators.required],
       torax:[null, Validators.required],
       waist_hip:[null],
-      profile_photo:[null,Validators.required],
-      front_photo:[null,Validators.required],
-      back_photo:[null,Validators.required],
+      profile_photo:[null,Validators.required], 
+      front_photo:[null,Validators.required],   
+      back_photo:[null,Validators.required],    
       min_waist_:['Cm', Validators.required],
       max_waist_:['Cm',Validators.required],
       hip_:['Cm',Validators.required],
@@ -91,10 +91,9 @@ export class MedidasPage implements OnInit {
       if(valor == false){
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
-
-        console.log(valor['measurement_record'])
-         this.form.controls.stature.setValue(valor['measurement_record'].stature)
-         this.form.controls.weight.setValue(valor['measurement_record'].weight)
+         console.log(valor['user'])
+         this.form.controls.stature.setValue(valor['user'].stature)
+         this.form.controls.weight.setValue(valor['user'].weight)
       }
   }
 
