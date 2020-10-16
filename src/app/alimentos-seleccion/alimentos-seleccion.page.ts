@@ -244,7 +244,7 @@ export class AlimentosSeleccionPage implements OnInit {
       // si excen los alimentos
       const alert = await this.alertController.create({
         message:
-          "<h2> Estar muy por encima de lo que necesitas puede alejarte de tus objetivos, pero si solo te has pasado un poco, omite el mensaje.</h2>",
+          "<h2>Los valores seleccionados exceden los requerimientos según tus objetivos, estar muy por encima puede alejarte de ellos<br><br>¿Deseas continuar?</h2>",
         cssClass: "customMensaje1",
         buttons: [
           {

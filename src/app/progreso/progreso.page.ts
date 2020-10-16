@@ -206,7 +206,7 @@ export class ProgresoPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Fittech',
       cssClass: 'customMensaje',
-      message: "Esta sección es para que puedas comparar tus resultados, no has introducido tus medidas es súper importante que lo hagas para visualizar las comparaciones.",
+      message: "Esta sección es para que puedas comparar tus resultados, si no has introducido tus medidas es súper importante que lo hagas para visualizar las comparaciones.",
       buttons: [
         {
           text: 'Continuar',
