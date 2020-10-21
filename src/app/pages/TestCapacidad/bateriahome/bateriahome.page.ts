@@ -215,7 +215,10 @@ export class BateriahomePage implements OnInit {
   }
 
 
-
+  // cierra la subcripcion
+  ionViewWillLeave(){
+     this.audio.pause()
+  }
 
 
 
