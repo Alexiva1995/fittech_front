@@ -126,3 +126,8 @@ ion-select {
   font-size: 14px;
   opacity: 0.6;
 }
+
+.img-size {
+  width: 150px !important;
+  height: 150px !important;
+}
