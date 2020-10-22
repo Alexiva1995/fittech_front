@@ -384,17 +384,17 @@
       <ion-row class="ion-justify-content-center">
         <ion-col size="6">
           <img class="opacidad" src="assets/img/fotofrente1.png" (click)="captureImage(1)" *ngIf="!imgSelected">
-          <img class="opacidad" [src]="imgSelected" (click)="captureImage(1)" *ngIf="imgSelected">
+          <img class="img-size" [src]="imgSelected" (click)="captureImage(1)" *ngIf="imgSelected">
           <p style="color: red;">Foto de frente</p>
         </ion-col>
         <ion-col size="6">
           <img class="opacidad" src="assets/img/fotoperfil1.png" (click)="captureImage(2)" *ngIf="!imgSelected2">
-          <img class="opacidad" [src]="imgSelected2" (click)="captureImage(2)" *ngIf="imgSelected2">
+          <img  class="img-size" [src]="imgSelected2" (click)="captureImage(2)" *ngIf="imgSelected2">
           <p style="color: red;">Foto de perfil</p>
         </ion-col>
         <ion-col size="6">
           <img class="opacidad" src="assets/img/fotoespalda1.png" (click)="captureImage(3)" *ngIf="!imgSelected3">
-          <img class="opacidad" [src]="imgSelected3" (click)="captureImage(3)" *ngIf="imgSelected3">
+          <img  class="img-size" [src]="imgSelected3" (click)="captureImage(3)" *ngIf="imgSelected3">
           <p style="color: red;">Foto de espalda</p>
         </ion-col>
 
