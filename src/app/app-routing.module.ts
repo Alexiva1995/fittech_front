@@ -474,7 +474,11 @@ const routes: Routes = [
       import("./bateria-remplazo/bateria-remplazo.module").then(
         (m) => m.BateriaRemplazoPageModule
       ),
+  },  {
+    path: 'tienda',
+    loadChildren: () => import('./tienda/tienda.module').then( m => m.TiendaPageModule)
   },
+
 ];
 
 @NgModule({
