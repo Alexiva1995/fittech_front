@@ -478,6 +478,10 @@ const routes: Routes = [
     path: 'tienda',
     loadChildren: () => import('./tienda/tienda.module').then( m => m.TiendaPageModule)
   },
+  {
+    path: 'tienda-productos',
+    loadChildren: () => import('./tienda-productos/tienda-productos.module').then( m => m.TiendaProductosPageModule)
+  },
 
 ];
 
