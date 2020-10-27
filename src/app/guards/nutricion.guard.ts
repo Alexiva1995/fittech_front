@@ -14,19 +14,26 @@ export class NutricionGuard implements CanActivate {
 ) { }
 
   async canActivate() {
+    //Validamos que exista la nutricion en el usuario
     const comprobar = await this.service.obtenerUsuario()
-
-    //Validamos que exista la nutricion 
+    //Validamos que exista la nutricion en el cache
     const nutricion = await this.service.cargarnutricion()
-    
-        if(nutricion === 'activado' || comprobar['food_measures']!=null){
-            this.navCtrl.navigateForward('/tutorial-alimentacion');
-            console.log("puede pasar")
-            return true;
-        }else{
-          this.navCtrl.navigateForward('/actividad');
-          return false;
-        }
+    //Validamos que exista el test home
+    const validar = await this.service.obtenerRutinaHome()
+
+    if(validar == true){
+      if(nutricion === 'activado' || comprobar['food_measures'] !== null){
+        this.navCtrl.navigateForward('/tutorial-alimentacion');
+          return true;
+      }else{
+        this.navCtrl.navigateForward('/actividad');
+        return true;
+      }
+
+    }else{
+       return false;
+    }
+
 }
   
 }

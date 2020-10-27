@@ -29,7 +29,7 @@
               ${{item.price}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button  class="btn-comprar">
+            <ion-button  class="btn-comprar" (click)="sendProduct(item.id)">
               Comprar
             </ion-button>
           </ion-card-content>

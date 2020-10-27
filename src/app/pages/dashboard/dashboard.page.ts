@@ -105,6 +105,7 @@ export class DashboardPage implements OnInit {
   
         if(this.ExamenCliente === 2){
           const validar = await this.apiService.obtenerRutinaHome()
+          console.log(validar)
 
           if(validar == true){
             this.apiService.verificarLugar(this.ExamenCliente)
@@ -125,12 +126,28 @@ export class DashboardPage implements OnInit {
 
   async nutricion(){
     
-    const data = await this.apiService.cargarnutricion()
-      if(data  === 'activado' || this.week['food_measures']!= null){
-        // this.ruta.navigateForward('bateria-alimento')
-        this.ruta.navigateForward('tutorial-alimentacion')
-      }else{
-        this.ruta.navigateForward('actividad')
+    const validar = await this.apiService.obtenerRutinaHome()
+    //Validamos que exista la nutricion en el cache
+    const nutricion = await this.apiService.cargarnutricion()
+    //Validamos que exista el test home
+    const comprobar = await this.apiService.obtenerUsuario()
+
+      if(validar == true){
+        if(nutricion === 'activado' || comprobar['food_measures'] !== null){
+          this.ruta.navigateForward('/tutorial-alimentacion')
+            return;
+        }else{
+          this.ruta.navigateForward('/actividad');
+          return;
+        }
+      }
+
+      if(validar == false){
+        this.notificacion.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
+      }
+
+      if(validar === "examen"){
+        this.notificacion.notificacionUsuario("Debes realizar el test para poder empezar tu plan nutricional","danger")
       }
   }
 

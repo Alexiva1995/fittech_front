@@ -47,4 +47,26 @@ export class TiendaProductosPage implements OnInit {
     });
   }
 
+  async sendProduct(id){
+    this.presentLoading()
+    const valor = await this.service.sendProducts(id)
+      if(valor == false ){
+        this.loadingController.dismiss()
+      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+      }else{
+        this.loadingController.dismiss()
+         console.log("redirigir",valor)
+      }
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+      cssClass: 'my-loading',
+    });
+    await loading.present();
+  }
+
+
+
 }

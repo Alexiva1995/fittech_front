@@ -30,4 +30,25 @@ export class TiendaService {
         })
     }
 
+  // listado de productos
+    sendProducts(id){
+      return new Promise( async (resolve, reject)  => {
+        const headers = new HttpHeaders({
+          'Authorization': 'Bearer ' + await this.service.cargarToken(),
+          'Content-Type':'application/json',
+        })
+          // si no se envia un dato no  funciona la ruta
+        const data = {
+          product_id : id
+        } 
+  
+        this.http.post(`http://fittech247.com/fittech/api/auth/pay-products`,data,{headers})
+            .subscribe(resp=>{
+              resolve(resp)
+            },err=>{
+              reject(false)
+            })
+        })
+    }
+
 }

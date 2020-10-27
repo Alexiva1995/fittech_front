@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'eye',
-        loadChildren: () => import('../rutina/rutina.module').then( m => m.RutinaPageModule)
+        loadChildren: () => import('../../tienda/tienda.module').then( m => m.TiendaPageModule)
 
       },
       {
