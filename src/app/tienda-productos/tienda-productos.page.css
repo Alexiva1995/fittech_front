@@ -12,6 +12,11 @@
   overflow: hidden;
 }
 
+.imagenmodificada {
+  width: 50px;
+  height: 50px;
+}
+
 ion-col {
   display: table;
   height: 200px;
@@ -58,11 +63,6 @@ ion-col ion-avatar ion-fab-button {
 ion-col ion-avatar img {
   width: 120px;
   height: 120px;
-}
-
-ion-buttons {
-  position: absolute;
-  right: 0;
 }
 
 .perfil {
@@ -142,4 +142,36 @@ ion-item {
   color: white;
   margin: 0 auto;
   margin-top: 1rem;
+}
+
+.card {
+  width: 144px;
+  height: 250px;
+  background: #232323;
+}
+
+.center-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  width: 101px;
+  height: 80px;
+}
+
+.btn-comprar {
+  --border-radius: 10px;
+  height: 30px;
+  display: block;
+  text-align: center;
+  --background: #EF4044;
+}
+
+.sub-card {
+  color: #E6E6E6;
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+  width: 112px;
+  height: 52px;
 }

@@ -24,11 +24,11 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-card class="card">
-          <img src="assets/img/smartpro.png" class="center-img" />
+      <ion-col size="6" *ngFor="let item of tienda">
+        <ion-card class="card" (click)="go(item)">
+          <img src="http://fittech247.com/fittech/imagenes/Aliados/{{item.id}}.png" class="center-img" />
           <ion-card-header>
-            <ion-card-title style="color: white; font-size: 18px;text-align: center;">Suplementación</ion-card-title>
+            <ion-card-title style="color: white; font-size: 18px;text-align: center;">{{item.name}}</ion-card-title>
           </ion-card-header>
         </ion-card>
       </ion-col>
