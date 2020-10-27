@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { MensajesService } from '../services/mensajes.service';
 import { TiendaService } from '../services/tienda.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 
 @Component({
   selector: 'app-tienda-productos',
@@ -18,6 +20,7 @@ export class TiendaProductosPage implements OnInit {
   constructor( private service: TiendaService,
               private route: ActivatedRoute,
               public loadingController: LoadingController,
+              private iab: InAppBrowser,
               private utilities: MensajesService,) {
                 this.route.queryParams.subscribe(params => {
                   this.productos = JSON.parse(params["shop"]);
@@ -55,7 +58,8 @@ export class TiendaProductosPage implements OnInit {
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
         this.loadingController.dismiss()
-         console.log("redirigir",valor)
+        const page = "https://smartpronutrition.com/supplements-shop/"
+        this.iab.create(page,'_blank')
       }
   }
 

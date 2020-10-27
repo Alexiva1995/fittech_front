@@ -26,6 +26,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { TwoDigitDecimaNumberDirective } from './decimals.directive';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 var firebaseConfig = {
@@ -64,6 +65,7 @@ var firebaseConfig = {
     SplashScreen,
     Camera,
     WebView,
+    InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     PreviewAnyFile
   ],
