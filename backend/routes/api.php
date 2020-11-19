@@ -73,5 +73,9 @@ Route::group(['prefix' => 'auth'], function () {
 		Route::post('progress', 'UserController@progress');
 		//Route::get('exercise/{r}/{ei}/{e}/{o}', 'ExerciseHomeController@exercise');
 		Route::post('stretching', 'ExerciseHomeController@stretching');
+
+		//Tienda Fittech
+		Route::post('products', 'ProductController@index');
+		Route::post('pay-products', 'ProductController@pay');
 	});
 });
