@@ -91,6 +91,7 @@ export class ApiFitechService {
     repeticion:null,
     id:null
   }
+  risk: any;
 
   constructor(private http:HttpClient , private storage:Storage) { }
   
@@ -121,6 +122,7 @@ export class ApiFitechService {
           chest_pains : persona.dolorPecho,
           cardiac_pathologies : persona.patologiaCardiaca,
           unusual_fatigue : persona.fatiga,
+          renal_insufficiency : persona.insuficiencia_renal,
           none:persona.noEnfermedad
         }
   
@@ -165,6 +167,7 @@ export class ApiFitechService {
           chest_pains : persona.dolorPecho,
           cardiac_pathologies : persona.patologiaCardiaca,
           unusual_fatigue : persona.fatiga,
+          renal_insufficiency : persona.insuficiencia_renal,
           none:persona.noEnfermedad
         }
   
@@ -235,13 +238,17 @@ export class ApiFitechService {
     await this.storage.set('examenresistencia',resistencia)
   }
 
+  async guardartutorial(valor:boolean){
+    await this.storage.set('tutorial',valor)
+  }
+
 
   async guardarexamenCapacidad(capacidad:string){
     await this.storage.set('examencapacidad',capacidad)
   }
 
-  async guardaractividad(actividad:string){
-    await this.storage.set('actividad',actividad)
+  async guardarnutricion(){
+    await this.storage.set('nutricion',"activado")
   }
 
   /*Actualziar storgae */
@@ -274,11 +281,15 @@ export class ApiFitechService {
     return this.storage.get('examenfuerza')
   }
 
+   cargarTutorial(){
+    return this.storage.get('tutorial')
+  }
+
   cargarExamenCapacidad(){
     return this.storage.get('examencapacidad')
   }
-  cargaractividad(){
-    return this.storage.get('actividad')
+  cargarnutricion(){
+    return this.storage.get('nutricion')
   }
 
   
@@ -296,7 +307,10 @@ export class ApiFitechService {
 
     this.http.post(`${URL}/auth/heart_rate`,data,{headers})
         .subscribe(resp=>{
-          this.latidocorazon = resp['message']
+          this.latidocorazon = resp['User'].heart_rate;
+          this.risk = resp['User'].risk;
+          console.log("LATIDO DEL CORAZON",resp);
+          
           resolve(true)
         })
     })
@@ -319,6 +333,7 @@ export class ApiFitechService {
       early_death : persona.muerte_prematura,
       high_blood_pressure : persona.presion_corazon,
       diabetes : persona.diabete_corazon,
+      renal_insufficiency : persona.insuficiencia_renal,
       none : persona.ninguna,
     }
 
@@ -739,10 +754,10 @@ export class ApiFitechService {
 
 
   finalizarRutinaHome(valor:number){
-    return new Promise( resolve => {
+    return new Promise( async resolve => {
 
       const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.token,
+        'Authorization': 'Bearer ' + await this.cargarToken(),
         'Content-Type':'application/json',
       })
       
@@ -761,12 +776,12 @@ export class ApiFitechService {
       })
   }
 
-  obtenerUsuario(){
+   obtenerUsuario(){
 
-    return new Promise( resolve => {
+    return new Promise( async resolve => {
 
       const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.token,
+        'Authorization': 'Bearer ' + await this.cargarToken() ,
         'Content-Type':'application/json',
       })
 
@@ -784,7 +799,7 @@ export class ApiFitechService {
   }
 
   desconectarUsuario(){
-    this.storage.clear()
+    this.storage.clear();
   }
 
   obtenerCalentamiento(){
@@ -838,5 +853,46 @@ export class ApiFitechService {
       })
   }
 
+  cambiarPassword(data:any){
+
+    return new Promise( async resolve => {
+
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.cargarToken() ,
+        'Content-Type':'application/json',
+      })
+
+
+      this.http.post(`${URL}/auth/changepassword`,data,{headers})
+          .subscribe(resp=>{
+            console.log("respuesta2",resp)
+            resolve(true)
+          },err=>{
+            resolve(false)
+          })
+      })
+
+  }
+
+  actualizarPerfil(data:any){
+
+    return new Promise( async resolve => {
+
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.cargarToken() ,
+        'Content-Type':'application/json',
+      })
+
+
+      this.http.post(`${URL}/auth/update-client`,data,{headers})
+          .subscribe(resp=>{
+            console.log("respuesta1",resp)
+            resolve(true)
+          },err=>{
+            resolve(false)
+          })
+      })
+
+  }
 
 }

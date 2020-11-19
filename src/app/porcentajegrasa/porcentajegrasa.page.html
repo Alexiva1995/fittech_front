@@ -11,240 +11,90 @@
       <img src="assets/img/logo-app.png" class="logo">
     </div>
 </ion-header>
+<ion-progress-bar color="danger" [value]="progressBar()"></ion-progress-bar>
 
 <ion-content>
   <div  class="ion-padding ion-text-center titulo">
-    DÉJANOS CONOCER UN ESTIMADO DE TU PORCENTAJE GRASO
+    Déjanos conocer un estimado de tu porcentaje graso 
   </div> 
   <ion-grid>
     <ion-row >
       <ion-col  size="12">   
 
        
-          <ion-slides  [options]="slideOpts" #slide class="animated fadeIn delay-1s">
+          <ion-slides (ionSlideDidChange)="carrusel()"  [options]="slideOpts" #slide class="animated fadeIn delay-1s">
+            <ion-fab vertical="center"  horizontal="end" slot="fixed" >
+              <ion-fab-button color="dark" (click)="siguiente()" size="small">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+            <ion-fab vertical="center"  horizontal="start" slot="fixed" >
+              <ion-fab-button color="dark" (click)="atras()" size="small">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
             <ng-container *ngIf="genero == 1">
                 <ion-slide>
-              <img src="assets/img/3-7.jpg"/>      
-              <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
+                  <img src="assets/img/3-7.jpg"  [ngClass]="{'border': cambiarborder == 1 }"/>      
                 </ion-slide>
                 <ion-slide>
-              <img src="assets/img/8-10.jpg"/>
-              <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                <ion-fab-button color="dark" (click)="atras()" size="small">
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
+                  <img src="assets/img/8-10.jpg" [ngClass]="{'border': cambiarborder == 2}" />
+                </ion-slide>
+                <ion-slide>
+                  <img src="assets/img/11-13.jpg" [ngClass]="{'border': cambiarborder == 3}" />
+                </ion-slide>
+                <ion-slide>
+              <img src="assets/img/14-16.jpg"    [ngClass]="{'border': cambiarborder == 4}"/>
+                </ion-slide>
+                <ion-slide>
+              <img src="assets/img/17-24.jpg" [ngClass]="{'border': cambiarborder == 5}"/>
               
+                </ion-slide>
+                <ion-slide>
+              <img src="assets/img/25-30.jpg" [ngClass]="{'border': cambiarborder == 6}"/>
+
+                </ion-slide>
+                <ion-slide>
+              <img src="assets/img/31-40.jpg" [ngClass]="{'border': cambiarborder == 7}"/>
               
-              <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
                 </ion-slide>
                 <ion-slide>
-              <img src="assets/img/11-13.jpg"/>
-              <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                <ion-fab-button color="dark" (click)="atras()" size="small">
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-
-              <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-                </ion-slide>
-                <ion-slide>
-              <img src="assets/img/14-16.jpg"/>
-              <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                <ion-fab-button color="dark" (click)="atras()" size="small">
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-
-              <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-                </ion-slide>
-                <ion-slide>
-              <img src="assets/img/17-24.jpg"/>
-              <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                <ion-fab-button color="dark" (click)="atras()" size="small">
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-              
-
-              <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-                </ion-slide>
-                <ion-slide>
-              <img src="assets/img/25-30.jpg"/>
-              <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                <ion-fab-button color="dark" (click)="atras()" size="small">
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-
-
-              <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-                </ion-slide>
-                <ion-slide>
-              <img src="assets/img/31-40.jpg"/>
-              <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                <ion-fab-button color="dark" (click)="atras()" size="small">
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-              
-              <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-                </ion-slide>
-                <ion-slide>
-                <img src="assets/img/+40.jpg"/>
-                <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="atras()" size="small">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
+                <img src="assets/img/+40.jpg" [ngClass]="{'border': cambiarborder == 8}"/>
                 
                 </ion-slide>
             </ng-container>
             <ng-container *ngIf="genero == 0">
               <ion-slide>
-                <img src="assets/img/6-9w.jpg"/>      
-                <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
+                <img src="assets/img/6-9w.jpg" [ngClass]="{'border': cambiarborder == 1 }"/>      
                   </ion-slide>
                   <ion-slide>
-                <img src="assets/img/9-12w.jpg"/>
-                <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="atras()" size="small">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
-                
-                
-                <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
+                <img src="assets/img/9-12w.jpg" [ngClass]="{'border': cambiarborder == 2 }"/>
                   </ion-slide>
                   <ion-slide>
-                <img src="assets/img/13-15w.jpg"/>
-                <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="atras()" size="small">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
-  
-                <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
+                <img src="assets/img/13-15w.jpg" [ngClass]="{'border': cambiarborder == 3 }"/>
                   </ion-slide>
                   <ion-slide>
-                <img src="assets/img/16-20w.jpg"/>
-                <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="atras()" size="small">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
-  
-                <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
+                <img src="assets/img/16-20w.jpg" [ngClass]="{'border': cambiarborder == 4 }"/>
+
                   </ion-slide>
                   <ion-slide>
-                    <img src="assets/img/21-25w.jpg"/>
-                    <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                      <ion-fab-button color="dark" (click)="atras()" size="small">
-                        <ion-icon name="arrow-back-outline"></ion-icon>
-                      </ion-fab-button>
-                    </ion-fab>
+                    <img src="assets/img/21-25w.jpg" [ngClass]="{'border': cambiarborder == 5 }"/>
       
-                    <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                      <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                        <ion-icon name="arrow-forward-outline"></ion-icon>
-                      </ion-fab-button>
-                    </ion-fab>
                   </ion-slide>
                   <ion-slide>
-                <img src="assets/img/26-30w.jpg"/>
-                <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="atras()" size="small">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
-                
+                <img src="assets/img/26-30w.jpg" [ngClass]="{'border': cambiarborder == 6 }"/>
+
+                  </ion-slide>
+                  <ion-slide>
+                <img src="assets/img/31-35w.jpg" [ngClass]="{'border': cambiarborder == 7 }"/>
   
-                <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
                   </ion-slide>
                   <ion-slide>
-                <img src="assets/img/31-35w.jpg"/>
-                <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="atras()" size="small">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
-  
-  
-                <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
+                <img src="assets/img/35-45w.jpg" [ngClass]="{'border': cambiarborder == 8 }"/>
+
                   </ion-slide>
                   <ion-slide>
-                <img src="assets/img/35-45w.jpg"/>
-                <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="atras()" size="small">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
-                
-                <ion-fab vertical="center"  horizontal="end" slot="fixed" >
-                  <ion-fab-button color="dark" (click)="siguiente()" size="small">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab>
-                  </ion-slide>
-                  <ion-slide>
-                  <img src="assets/img/+46w.jpg"/>
-                  <ion-fab vertical="center"  horizontal="start" slot="fixed" >
-                    <ion-fab-button color="dark" (click)="atras()" size="small">
-                      <ion-icon name="arrow-back-outline"></ion-icon>
-                    </ion-fab-button>
-                  </ion-fab>
+                  <img src="assets/img/+46w.jpg" [ngClass]="{'border': cambiarborder == 9 }"/>
                   
                   </ion-slide>
             </ng-container>
@@ -253,31 +103,32 @@
       <!--   </div>  -->  
       </ion-col>
     </ion-row>
-  </ion-grid>  
-  <ion-grid class="ion-padding">
+  </ion-grid>
+
+  <ion-grid style="margin-top:-20px">
     <ion-row>
       <ion-col size="12" class="text-percent">
     <ng-container *ngIf="genero == 1">
       <ng-container *ngIf="contador == '1'">
-        Grasa Corporal: 3% a 7% 
+        Grasa Corporal: 3 a 7% 
       </ng-container>
       <ng-container *ngIf="contador == '2'">
-        Grasa Corporal: 8% a 10% 
+        Grasa Corporal: 8 a 10% 
       </ng-container>
       <ng-container *ngIf="contador == '3'">
-        Grasa Corporal: 11% a 13% 
+        Grasa Corporal: 11 a 13% 
       </ng-container>
       <ng-container *ngIf="contador == '4'">
-        Grasa Corporal: 14% a 16% 
+        Grasa Corporal: 14 a 16% 
       </ng-container>
       <ng-container *ngIf="contador == '5'">
-        Grasa Corporal: 17% a 24% 
+        Grasa Corporal: 17 a 24% 
       </ng-container>
       <ng-container *ngIf="contador == '6'">
-        Grasa Corporal: 25% a 30% 
+        Grasa Corporal: 25 a 30% 
       </ng-container>
       <ng-container *ngIf="contador == '7'">
-        Grasa Corporal: 31% a 40% 
+        Grasa Corporal: 31 a 40% 
       </ng-container>
       <ng-container *ngIf="contador == '8'">
         Grasa Corporal: +40% 
@@ -315,26 +166,28 @@
  
       </ion-col>
     </ion-row>
-    <ion-row >
-      <ion-col  size="12">   
+  </ion-grid>
 
-        <ion-card  style="
-        width: 286px; 
-        border-radius: 10px;
-        text-transform: uppercase;
-        font-family: 'Open Sans';
-        --background:#EF4044;
-        color:white;
-        ">
-      <h2 style="margin: 10px; text-align: center;" (click)="goTo('/medidas')"> 
-       <b> 
-         SIGUIENTE </b></h2> 
-     </ion-card>
-
-
-      </ion-col>
-      
-    </ion-row>
+  <ion-grid style="margin-top:60px">
+    <ion-row>
+        <ion-col size="12">   
+  
+          <ion-card  style="
+          width: 286px; 
+          border-radius: 10px;
+          text-transform: uppercase;
+          font-family: 'Open Sans';
+          --background:#EF4044;
+          color:white;
+          ">
+        <h2 style="margin: 10px; text-align: center;" (click)="goTo('/medidas')"> 
+         <b> 
+           SIGUIENTE </b></h2> 
+       </ion-card>
+  
+  
+        </ion-col>     
+      </ion-row>
   </ion-grid>
 
 </ion-content>

@@ -21,51 +21,41 @@ export class LineanutricionalPage implements OnInit {
               private service: NutricionService,
               private utilities: MensajesService) { 
     this.formNutrition = this.fb.group({
-      name: ['', Validators.required],
+      feeding_type: ['', Validators.required],
     });
   }
 
   ngOnInit() {
+   
   } 
 
     show(id){
+      console.log(id)
       switch (id) {
         case 0:
           {
-            this.option1 = true;
-            this.option2 = false;
-            this.option3 = false;
-            this.option4 = false;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(0);
+             this.updateTypeFood()
             break;
         }
         case 1:
           {
-            this.option1 = false;
-            this.option2 = true;
-            this.option3 = false;
-            this.option4 = false;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(1);
+             this.updateTypeFood()
             break;
         }
 
         case 2:
           {
-            this.option1 = false;
-            this.option2 = false;
-            this.option3 = true;
-            this.option4 = false;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(2);
+             this.updateTypeFood()
             break;
         }
 
         case 3:
           {
-            this.option4 = true;
-            this.option1 = false;
-            this.option2 = false;
-            this.option3 = false;
-             this.formNutrition.controls.name.setValue(id);
+             this.formNutrition.controls.feeding_type.setValue(3);
+             this.updateTypeFood()
             break;
         }
       }

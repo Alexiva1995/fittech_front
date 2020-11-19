@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AlimentosSeleccionPageRoutingModule } from './alimentos-seleccion-routing.module';
 
 import { AlimentosSeleccionPage } from './alimentos-seleccion.page';
+import { PipesModule } from '../pipes/pipe.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AlimentosSeleccionPageRoutingModule
+    AlimentosSeleccionPageRoutingModule,
+    PipesModule
   ],
   declarations: [AlimentosSeleccionPage]
 })

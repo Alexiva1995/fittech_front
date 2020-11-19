@@ -1,7 +1,22 @@
 <ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" style="    padding: 0px !important;
+    margin: 0px !important;">
+      <ion-fab  horizontal="start" slot="fixed" class="animated fadeInUp delay-2s" *ngIf="status != 'descanso'">
+        <ion-fab-button style="--background:#ef4044" (click)="confirmation()" size="small">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <ion-fab  horizontal="start" slot="fixed" class="animated fadeInUp delay-2s" *ngIf="status == 'descanso'">
+        <ion-fab-button style="--background:#ef4044" (click)="confirmation2()" size="small">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-buttons>
   <div class="cabezera">
     <img src="assets/img/logo-app.png" class="logo">
   </div>
+</ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="status == 'descanso'" style="--background:black;">
@@ -41,13 +56,22 @@
 
 <ng-container *ngIf="status == 'rutina'">
 
-<video #myVideo  playsinline class="videoReproductor"
-width="100%"
-loop
-muted="muted" 
-poster="assets/img/videogif.gif">
-  <source [src]= "video" *ngIf="video" />
-</video>
+  <ion-fab style="top: 45%;" *ngIf="identificador == 'derecha'"  horizontal="end" vertical="center" slot="fixed">
+    <ion-badge color="danger">Derecha</ion-badge>
+  </ion-fab>
+
+  <ion-fab  style="top: 45%;" *ngIf="identificador == 'izquierda'" horizontal="start" vertical="center" slot="fixed">
+    <ion-badge color="danger">Izquierda</ion-badge>
+  </ion-fab>
+
+
+  <video #myVideo  playsinline class="videoReproductor"
+  width="100%"
+  loop
+  muted="muted" 
+  poster="assets/img/videogif.gif">
+    <source [src]= "video" *ngIf="video" />
+  </video>
 
 <!-- #F4F3F1 -->
 

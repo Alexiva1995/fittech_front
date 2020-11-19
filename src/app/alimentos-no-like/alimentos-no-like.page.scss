@@ -123,3 +123,16 @@ ion-select{
   ion-list{
       padding: 0 !important;
   }
+
+  .selecionado{
+    color: white;
+    background: red;
+  }
+
+  ion-chip{
+    background: none;
+  }
+
+  ion-chip:focus{
+    background: none;
+  }

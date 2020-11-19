@@ -13,6 +13,10 @@ ion-card{
   
    }
 
+   ion-loading{
+    --spinner-color	:red;
+   }
+
 .aumentartitulo{
  font-size: 18px;
  font-weight: bold;
@@ -62,7 +66,7 @@ ion-content{
   .titulo2{
     text-align: center;
     font-size: 18px;
-    font-weight: bold;
+    // font-weight: bold;
     opacity: 0.7;
   }
   h2 {
@@ -93,7 +97,10 @@ ion-input {
     color: red;
     text-align: center;
     margin: 0 auto;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
 }   
 ion-col{
     text-align: center;
@@ -119,4 +126,14 @@ ion-select{
     font-weight: bold;
   /*   opacity: 0.7; */
     margin-bottom: 20px;
+  }
+
+  .opacidad{
+    opacity: 0.5;
+  }
+
+
+  .img-size{
+    width: 155px !important;
+    height: 150px !important;
   }

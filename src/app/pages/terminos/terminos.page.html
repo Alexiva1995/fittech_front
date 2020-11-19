@@ -62,8 +62,8 @@
         </ion-col>
         <ion-col  size="12">      
           <ion-item lines="none">
-            <div class="ion-text-wrap letra">
-              *Acepto los <b>Terminos y las condiciones</b> y la <b>politica de privacidad</b> de fittech
+            <div class="ion-text-wrap letra" style="z-index: 999999;">
+              *Acepto los <b (click)="VisualizarPDF('http://fittech247.com/fittech/pdf/TERMINOS-Y-CONDICIONES-FITTECH.pdf')">términos  y las condiciones</b> y la <b (click)="VisualizarPDF('http://fittech247.com/fittech/pdf/POLITICA-DE-TRATAMIENTO-FITTECH.pdf')">política  de privacidad</b> de fittech
             </div>
             <ion-checkbox  
             name="selected" 
@@ -72,14 +72,15 @@
           </ion-item>
         </ion-col>
         <ion-col  size="12">      
-          <div class="ion-text-center letra">
-           <a href="">TÉRMINOS Y CONDICIONES DE USO DE LA APLICACIÓN MÓVIL FITTECH</a>
-          </div>
+       <!--    <div class="ion-text-center letra">
+            <p style="color:  #E5141A; font-weight: 600; text-decoration: underline;"
+             >TÉRMINOS Y CONDICIONES DE USO DE LA APLICACIÓN MÓVIL FITTECH</p>
+          </div> -->
         </ion-col>
         <ion-col  size="12">      
-          <div class="ion-text-center letra">
-           <a href="">POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES FITTECH</a>
-          </div>
+         <!--  <div class="ion-text-center letra">
+            <p   style="color:  #E5141A; font-weight: 600; text-decoration: underline;">POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES FITTECH</p>
+          </div> -->
         </ion-col>
 
       </ion-row>

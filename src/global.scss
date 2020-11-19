@@ -63,19 +63,82 @@
    color: red;
  }
 }
-
-.customMensaje1{
+.customMensaje2{
    h2{
       text-align: center;
+      margin: 0 auto;
+      display: block;
    }
    button.confirmButton{
      color: red;
+     text-align: center;
+    margin: 0 auto;
+    display: block;
    }
    button.cancelButton{
       color: black;
+      text-align: center;
+    margin: 0 auto;
+    display: block;
+    }
+}
+.uploadmessage{
+   h2{
+      text-align: center;
+   }
+   div{
+      text-align: center;
+   }
+   .btn_alert{
+     color: red;
+   }
+}
+.customMensaje1{
+   h2{
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+      color: black;
+      font-size: 17px;
+   }
+
+   div{
+      text-align: center;
+   }
+
+   button.confirmButton{
+     color: red;
+     text-align: center;
+    margin: 0 auto;
+    display: block;
+   }
+   button.cancelButton{
+      color: black;
+      text-align: center;
+    margin: 0 auto;
+    display: block;
     }
   }
 
+  .customMensaje2{
+   h2{
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+   }
+   button.confirmButton{
+     color: red;
+     text-align: center;
+    margin: 0 auto;
+    display: block;
+   }
+   button.cancelButton{
+      color: red;
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+    }
+  }
 
   ion-loading.custom-loading {
    --spinner-color:red;	
@@ -89,3 +152,24 @@
 *{
    font-family: 'Oswald', sans-serif;
 }
+
+// MODAL DE PEDIDOS
+// modal
+.medida-modal .modal-wrapper{
+   transition: all ease .3s;
+   --height: 70% !important;
+   --width:80% !important;
+   --border-radius:15px;
+   // position: absolute;
+}
+
+.my-loading {
+   --spinner-color: red;
+ }
+
+
+ .progress-class .action-sheet-group {
+    button{
+       font-weight: bold !important;
+    }
+ }
