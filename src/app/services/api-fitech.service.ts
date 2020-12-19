@@ -183,7 +183,7 @@ export class ApiFitechService {
   Registrar(persona: any) {
     console.log(persona);
     if (persona.password.length > 1) {
-      return new Promise((resolve) => {
+      return new Promise(async (resolve) => {
         const data = {
           email: persona.correo,
           password: persona.password,
@@ -208,10 +208,10 @@ export class ApiFitechService {
           cardiac_pathologies: persona.patologiaCardiaca,
           unusual_fatigue: persona.fatiga,
           none: persona.noEnfermedad,
-          pushToken: localStorage.getItem("pushToken"),
-          pushIdToken: localStorage.getItem("pushIdToken"),
+          pushToken:  await this.storage.get('pushToken'),
+          pushIdToken: await this.storage.get('pushIdToken')
         };
-
+        console.log(data)
         this.http.post(`${URL}/auth/register`, data).subscribe(
           (resp) => {
             // this.token =  resp['access_token']
@@ -276,6 +276,8 @@ export class ApiFitechService {
       const data = {
         email: persona.email,
         password: persona.password,
+        pushToken:123,
+        pushIdToken:456
       };
 
       this.http.post(`${URL}/auth/login`, data).subscribe(
@@ -882,9 +884,9 @@ export class ApiFitechService {
   }
 
   obtenerUsuario() {
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
       const headers = new HttpHeaders({
-        Authorization: "Bearer " + this.token,
+        Authorization: "Bearer " + await this.cargarToken(),
         "Content-Type": "application/json",
       });
 

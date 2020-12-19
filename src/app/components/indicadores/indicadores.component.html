@@ -7,7 +7,7 @@
     <ion-row *ngIf="!info">
     <ion-col size="12">
       <ion-item lines="none">
-        <ion-icon name="help-circle" (click)="mostrar(info, 0)" style="font-size: 1.25rem; color: white;"></ion-icon>
+        <ion-icon name="alert-circle" (click)="mostrar(info, 0)" style="font-size: 1.25rem; color: white;"></ion-icon>
         <p class="tituloindicador">IMC  =</p>
         <ion-label class="tamanoindicador" *ngIf="dato.imc !== null">
           {{dato.imc}}
@@ -18,7 +18,7 @@
 
     <ion-col size="12">
       <ion-item lines="none">
-        <ion-icon name="help-circle"  (click)="mostrar(info, 1)" style="font-size: 1.25rem; color: white;"></ion-icon>
+        <ion-icon name="alert-circle"  (click)="mostrar(info, 1)" style="font-size: 1.25rem; color: white;"></ion-icon>
         <p class="tituloindicador">ICA  =</p>
         <ion-label class="tamanoindicador" *ngIf="dato.ica !== null">{{dato.ica}}</ion-label>
         <ion-label class="tamanoindicador2 ion-text-wrap" *ngIf="dato.ica == null">Debe ingresar sus medidas</ion-label>
@@ -27,7 +27,7 @@
 
     <ion-col size="12">
       <ion-item lines="none">
-        <ion-icon name="help-circle"  (click)="mostrar(info,2)" style="font-size: 1.25rem; color: white;"></ion-icon>
+        <ion-icon name="alert-circle"  (click)="mostrar(info,2)" style="font-size: 1.25rem; color: white;"></ion-icon>
         <p class="tituloindicador">Perímetro de cintura =</p>
         <ion-label class="tamanoindicador" *ngIf="dato.Perimetro_Cintura !== null">{{dato.Perimetro_Cintura}}</ion-label>
         <ion-label class="tamanoindicador2 ion-text-wrap" *ngIf="dato.Perimetro_Cintura === null">Debe ingresar sus medidas</ion-label>
@@ -37,7 +37,7 @@
 
     <ion-col size="12">
       <ion-item lines="none">
-        <ion-icon name="help-circle" (click)="mostrar(info,3)" style="font-size: 1.25rem; color: white;"></ion-icon>
+        <ion-icon name="alert-circle" (click)="mostrar(info,3)" style="font-size: 1.25rem; color: white;"></ion-icon>
         <p class="tituloindicador">TBMA  =</p>
         <ion-label class="tamanoindicador" *ngIf="dato.tmb !== null">{{dato.tmb}} calorías</ion-label>
         <ion-label class="tamanoindicador2 ion-text-wrap" *ngIf="dato.tmb === null">
@@ -50,7 +50,7 @@
 
     <ion-col size="12">
       <ion-item lines="none">
-        <ion-icon name="help-circle"  (click)="mostrar(info,4)" style="font-size: 1.25rem; color: white;"></ion-icon>
+        <ion-icon name="alert-circle"  (click)="mostrar(info,4)" style="font-size: 1.25rem; color: white;"></ion-icon>
         <p class="tituloindicador">Estrategia nutricional  =</p>
         <ion-label class="tamanoindicador" *ngIf="dato.Estrategia_N !== null">{{dato.Estrategia_N}}%</ion-label>
         <ion-label class="tamanoindicador2 ion-text-wrap" *ngIf="dato.Estrategia_N === null">

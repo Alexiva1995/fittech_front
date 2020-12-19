@@ -164,19 +164,25 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
   }
 
   async measurement_record(){
-    // console.log(this.form.value)
-    this.presentLoading()
-      this.convertToCm();      
-      const data = await this.service.measurement_record(this.form.value)
-      console.log(data)
-      if(data){
-        this.loadingController.dismiss()
-        // this.form.reset();
-        this.goTo('/lineanutricional')
-      }else{
-        this.loadingController.dismiss()
-        this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
-      }
+
+    if (!this.forms.valid){
+      this.confirmarSalida()
+    }else{
+      // console.log(this.form.value)
+      this.presentLoading()
+        this.convertToCm();      
+        const data = await this.service.measurement_record(this.form.value)
+        console.log(data)
+        if(data){
+          this.loadingController.dismiss()
+          // this.form.reset();
+          this.goTo('/lineanutricional')
+        }else{
+          this.loadingController.dismiss()
+          this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+        }
+    }
+
   }
 
 

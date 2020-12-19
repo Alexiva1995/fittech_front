@@ -12,6 +12,7 @@ import { Platform } from "@ionic/angular";
 import { Observable } from "rxjs";
 //facebook
 import { Facebook, FacebookLoginResponse } from "@ionic-native/facebook/ngx";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "app-login",
@@ -38,7 +39,9 @@ export class LoginPage implements OnInit {
     private gplus: GooglePlus,
     public fb: Facebook,
     public alertController: AlertController,
-    private platform: Platform
+    private platform: Platform,
+    private storage: Storage
+
   ) {
     this.logeado = this.afAuth.authState;
   }
