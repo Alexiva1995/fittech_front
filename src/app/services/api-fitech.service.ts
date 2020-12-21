@@ -180,10 +180,11 @@ export class ApiFitechService {
 
   constructor(private http: HttpClient, private storage: Storage) {}
 
-  Registrar(persona: any) {
-    console.log(persona);
+  async Registrar(persona: any) {
+    const token1 = await this.storage.get('pushToken')
+    const token2 = await this.storage.get('pushIdToken')
     if (persona.password.length > 1) {
-      return new Promise(async (resolve) => {
+      return new Promise((resolve) => {
         const data = {
           email: persona.correo,
           password: persona.password,
@@ -208,8 +209,8 @@ export class ApiFitechService {
           cardiac_pathologies: persona.patologiaCardiaca,
           unusual_fatigue: persona.fatiga,
           none: persona.noEnfermedad,
-          pushToken:  await this.storage.get('pushToken'),
-          pushIdToken: await this.storage.get('pushIdToken')
+          pushToken: token1,
+          pushIdToken: token2
         };
         console.log(data)
         this.http.post(`${URL}/auth/register`, data).subscribe(
@@ -271,13 +272,15 @@ export class ApiFitechService {
     }
   }
 
-  Login(persona: any) {
+  async Login(persona: any) {
+    const token1 = await this.storage.get('pushToken')
+    const token2 = await this.storage.get('pushIdToken')
     return new Promise((resolve) => {
       const data = {
         email: persona.email,
         password: persona.password,
-        pushToken:123,
-        pushIdToken:456
+        pushToken:token1,
+        pushIdToken:token2
       };
 
       this.http.post(`${URL}/auth/login`, data).subscribe(

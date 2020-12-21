@@ -40,7 +40,7 @@ export class AppComponent {
         .inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification)
         .endInit();
       this.oneSignal.getIds().then(async (identity) => {
-        console.log(identity);
+        console.log("tokens onesingal",identity);
         this.storage.set("pushToken", identity.pushToken)
         this.storage.set("pushIdToken", identity.userId)
       });
