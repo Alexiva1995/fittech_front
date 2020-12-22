@@ -482,6 +482,10 @@ const routes: Routes = [
     path: 'tienda-productos',
     loadChildren: () => import('./tienda-productos/tienda-productos.module').then( m => m.TiendaProductosPageModule)
   },
+  {
+    path: 'tutorial-planes',
+    loadChildren: () => import('./tutorial-planes/tutorial-planes.module').then( m => m.TutorialPlanesPageModule)
+  },
 
 ];
 

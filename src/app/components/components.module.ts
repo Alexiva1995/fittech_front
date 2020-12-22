@@ -25,7 +25,10 @@ import { TutorialAlimentoPaso1Component } from './tutorial-alimento-paso1/tutori
 import { TutorialAlimentoPaso2Component } from './tutorial-alimento-paso2/tutorial-alimento-paso2.component';
 import { TutorialAlimentoPaso3Component } from './tutorial-alimento-paso3/tutorial-alimento-paso3.component';
 import { TutorialAlimentoPaso4Component } from './tutorial-alimento-paso4/tutorial-alimento-paso4.component';
-
+import { TutorialPlanesPaso1Component } from './tutorial-planes-paso1/tutorial-planes-paso1.component';
+import { TutorialPlanesPaso2Component } from './tutorial-planes-paso2/tutorial-planes-paso2.component';
+import { TutorialPlanesPaso3Component } from './tutorial-planes-paso3/tutorial-planes-paso3.component';
+import { TutorialPlanesPaso4Component } from './tutorial-planes-paso4/tutorial-planes-paso4.component';
 
 @NgModule({
   entryComponents:[
@@ -52,6 +55,10 @@ import { TutorialAlimentoPaso4Component } from './tutorial-alimento-paso4/tutori
     TutorialAlimentoPaso2Component,
     TutorialAlimentoPaso3Component,
     TutorialAlimentoPaso4Component,
+    TutorialPlanesPaso1Component,
+    TutorialPlanesPaso2Component,
+    TutorialPlanesPaso3Component,
+    TutorialPlanesPaso4Component
   ],
   exports:[
     EdadComponent,
@@ -74,6 +81,10 @@ import { TutorialAlimentoPaso4Component } from './tutorial-alimento-paso4/tutori
     TutorialAlimentoPaso2Component,
     TutorialAlimentoPaso3Component,
     TutorialAlimentoPaso4Component,
+    TutorialPlanesPaso1Component,
+    TutorialPlanesPaso2Component,
+    TutorialPlanesPaso3Component,
+    TutorialPlanesPaso4Component
   ],
   imports: [
     FormsModule,
