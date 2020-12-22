@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tutorial-planes',
@@ -14,9 +14,13 @@ export class TutorialPlanesPage implements OnInit {
     speed: 400
   };
   
-  constructor() { }
+  constructor(private ruta:NavController) { }
 
   ngOnInit() {
+  }
+
+  omitir(){
+    this.ruta.navigateRoot(['/tabs/dashboard'])
   }
 
 }

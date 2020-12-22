@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tutorial-planes-paso4',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TutorialPlanesPaso4Component implements OnInit {
 
-  constructor() { }
+  constructor(private ruta:NavController) { }
 
   ngOnInit() {}
-
+  omitir(){
+    this.ruta.navigateRoot(['/'])
+  }
 }
