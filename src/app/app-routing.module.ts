@@ -486,6 +486,10 @@ const routes: Routes = [
     path: 'tutorial-planes',
     loadChildren: () => import('./tutorial-planes/tutorial-planes.module').then( m => m.TutorialPlanesPageModule)
   },
+  {
+    path: 'planes-pagos',
+    loadChildren: () => import('./planes-pagos/planes-pagos.module').then( m => m.PlanesPagosPageModule)
+  },
 
 ];
 
