@@ -14,11 +14,15 @@
 
         <ion-slides pager="true"   #slide [options]="slideOpts">
 
-            <ion-slide>
+            <ion-slide *ngFor="let item of dato">
   
-              <ion-card class="card-custom">
-                <div class="card-title">Free trial</div>
-                <div><span class="card-body">GRATIS</span> <br> <span class="card-subtitle">7 días</span>  </div>
+              <ion-card class="card-custom" >
+                <div class="card-title">{{item.name}}</div>
+                <div><span class="card-body">
+                  {{item.price === 0 ? 'Gratis' : item.price}}</span> <br> 
+                  <span class="card-subtitle">
+                    {{item.description}}</span> 
+                 </div>
                 <div class="card-footer">
                   <ion-button expand="block" shape="round" class="custombtn">
                      Eligir 
@@ -28,21 +32,9 @@
   
             </ion-slide>
 
-            <ion-slide>
+
   
-              <ion-card class="card-custom">
-                <div class="card-title">Plan Mensual</div>
-                <div><span class="card-body">$9.99</span> <br> <span class="card-subtitle">$0.3 Diarios</span>  </div>
-                <div class="card-footer">
-                  <ion-button expand="block" shape="round" class="custombtn">
-                     Eligir 
-                  </ion-button>
-                </div>
-              </ion-card>
-  
-            </ion-slide>
-  
-            <ion-slide>
+            <!-- <ion-slide>
   
               <ion-card class="card-custom" style="background: linear-gradient(19deg, rgba(140,136,136,1) 0%, rgba(0,0,0,1) 100%);"> 
                 <div class="card-title" style="color: white;">Plan Trismestral</div>
@@ -54,7 +46,7 @@
                 </div>
               </ion-card>
   
-            </ion-slide>
+            </ion-slide> -->
   
         </ion-slides>
  
