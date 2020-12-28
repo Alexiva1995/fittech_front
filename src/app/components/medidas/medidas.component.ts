@@ -62,8 +62,9 @@ export class MedidasComponent implements OnInit {
       }else{
 
         console.log(valor['measurement_record'])
-         this.form.controls.stature.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].stature)
-         this.form.controls.weight.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].weight)
+        console.log(valor['user'].stature)
+         this.form.controls.stature.setValue(valor.measurement_record === null ? valor['user'].stature  : valor['measurement_record'].stature)
+         this.form.controls.weight.setValue(valor.measurement_record === null ?  valor['user'].weight  : valor['measurement_record'].weight)
          this.form.controls.min_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].min_waist)
          this.form.controls.max_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].max_waist)
          this.form.controls.hip.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].hip)

@@ -474,7 +474,23 @@ const routes: Routes = [
       import("./bateria-remplazo/bateria-remplazo.module").then(
         (m) => m.BateriaRemplazoPageModule
       ),
+  },  {
+    path: 'tienda',
+    loadChildren: () => import('./tienda/tienda.module').then( m => m.TiendaPageModule)
   },
+  {
+    path: 'tienda-productos',
+    loadChildren: () => import('./tienda-productos/tienda-productos.module').then( m => m.TiendaProductosPageModule)
+  },
+  {
+    path: 'tutorial-planes',
+    loadChildren: () => import('./tutorial-planes/tutorial-planes.module').then( m => m.TutorialPlanesPageModule)
+  },
+  {
+    path: 'planes-pagos',
+    loadChildren: () => import('./planes-pagos/planes-pagos.module').then( m => m.PlanesPagosPageModule)
+  },
+
 ];
 
 @NgModule({

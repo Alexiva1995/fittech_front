@@ -28,7 +28,7 @@ export class ModalEmailPage implements OnInit {
     if(this.registrar.contra !=null && this.registrar.contra.length > 2){
       console.log("es igual")
     }else{
-      this.mensajeservice.alertaInformatica('Por favor introduzca una contraseña mayor a 2 digitos')
+      this.mensajeservice.alertaInformatica('Por favor introduzca un password mayor a 2 digitos')
       this.registrar.contra = null
       this.registrar.recontra = null
       // break rompes la continuacion 
@@ -43,7 +43,7 @@ export class ModalEmailPage implements OnInit {
               salir:true
             });
         }else{
-          this.mensajeservice.alertaInformatica('La contraseña no coincide')
+          this.mensajeservice.alertaInformatica('El password no coincide')
           this.registrar.contra = null
           this.registrar.recontra = null
           return
@@ -79,12 +79,12 @@ export class ModalEmailPage implements OnInit {
          if(valor){
            console.log("todo bien")
          }else{
-          this.mensajeservice.alertaInformatica('El correo no tiene un formato valido ')
+          this.mensajeservice.alertaInformatica('El email no tiene un formato valido ')
           this.registrar.email = null
           this.registrar.reemail = null
          }
     }else{
-      this.mensajeservice.alertaInformatica('El correo no coincide ')
+      this.mensajeservice.alertaInformatica('El email no coincide ')
       this.registrar.email = null
       this.registrar.reemail = null
     }

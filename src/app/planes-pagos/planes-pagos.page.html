@@ -1,0 +1,62 @@
+<ion-content fullscreen  class="fondo">
+  
+  <div class="titulo">
+    <h2>Empieza por todo lo alto</h2>
+  </div>
+  
+  <div class="box">
+    <p style="margin-top: 0;">Puedes hacer un free trial con todos los beneficios por una semana o comprometerte con tus resultados y tomar desde ya la decisión transformar tu estilo de vida.</p>
+  </div>
+
+  <ion-grid>
+    <ion-row style="padding: 0;">
+      <ion-col  size="12" style="padding: 0;">  
+
+        <ion-slides pager="true"   #slide [options]="slideOpts">
+
+            <ion-slide *ngFor="let item of dato">
+  
+              <ion-card class="card-custom" >
+                <div class="card-title">{{item.name}}</div>
+                <div><span class="card-body">
+                  {{item.price === 0 ? 'Gratis' : item.price}}</span> <br> 
+                  <span class="card-subtitle">
+                    {{item.description}}</span> 
+                 </div>
+                <div class="card-footer">
+                  <ion-button expand="block" shape="round" class="custombtn">
+                     Eligir 
+                  </ion-button>
+                </div>
+              </ion-card>
+  
+            </ion-slide>
+
+
+  
+            <!-- <ion-slide>
+  
+              <ion-card class="card-custom" style="background: linear-gradient(19deg, rgba(140,136,136,1) 0%, rgba(0,0,0,1) 100%);"> 
+                <div class="card-title" style="color: white;">Plan Trismestral</div>
+                <div><span class="card-body" style="color: white;">$19.99</span> <br> <span class="card-subtitle" style="color: white;">$6 Mensuales</span>  </div>
+                <div class="card-footer">
+                  <ion-button expand="block" shape="round" class="custombtn">
+                     Eligir 
+                  </ion-button>
+                </div>
+              </ion-card>
+  
+            </ion-slide> -->
+  
+        </ion-slides>
+ 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+</ion-content>
+<ion-footer class="ion-no-border">
+  <img src="assets/img/logo-app.png" class="logo">
+</ion-footer>
+
+
