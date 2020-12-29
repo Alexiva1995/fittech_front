@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { MensajesService } from '../services/mensajes.service';
 import { NutricionService } from '../services/nutricion.service';
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-planes-pagos',
@@ -13,9 +15,11 @@ export class PlanesPagosPage implements OnInit {
 
   constructor(private service: NutricionService,
     private utilities: MensajesService,
+    private ruta:NavController,
     public loadingController: LoadingController,) { }
 
   ngOnInit() {
+    registerLocaleData( es );
     this.getPremium()
   }
 
@@ -34,8 +38,42 @@ export class PlanesPagosPage implements OnInit {
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
+      cssClass: 'my-loading',
     });
     await loading.present();
   }
+
+  pago(id){
+    switch (id) {
+    case 1:
+      this.ruta.navigateRoot(['/'])
+    break;
+    
+    case 2:
+      console.log("pagar2")
+
+    break;
+    
+    case 3:
+      console.log("pagar3")
+
+    break;
+    
+    case 4:
+      console.log("pagar4")
+
+    break;
+    
+    case 5:
+      console.log("pagar5")
+
+    break;
+    
+    default:
+      break;
+    }
+
+  }
+
 
 }

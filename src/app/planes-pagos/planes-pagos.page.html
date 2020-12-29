@@ -1,5 +1,5 @@
 <ion-content fullscreen  class="fondo">
-  
+
   <div class="titulo">
     <h2>Empieza por todo lo alto</h2>
   </div>
@@ -16,37 +16,52 @@
 
             <ion-slide *ngFor="let item of dato">
   
-              <ion-card class="card-custom" >
+              <ion-card class="card-custom" *ngIf="item.duration !== 12">
                 <div class="card-title">{{item.name}}</div>
-                <div><span class="card-body">
-                  {{item.price === 0 ? 'Gratis' : item.price}}</span> <br> 
+                <div>
+                <span class="card-body" *ngIf="item.price === 0">
+                  GRATIS
+                </span>
+
+                <span class="card-body" *ngIf="item.price !== 0">
+                  {{item.price | number:'':'es'}} COP
+                </span>
+                  
+                  <br> 
                   <span class="card-subtitle">
                     {{item.description}}</span> 
                  </div>
                 <div class="card-footer">
-                  <ion-button expand="block" shape="round" class="custombtn">
-                     Eligir 
+                  <ion-button expand="block" shape="round" class="custombtn" (click)="pago(item.id)">
+                     <b>Eligir</b> 
                   </ion-button>
                 </div>
               </ion-card>
   
+              <ion-card class="card-custom2" *ngIf="item.duration === 12">
+                <div class="card-title2" >{{item.name}}</div>
+                <div>
+                <span class="card-body2" *ngIf="item.price === 0">
+                  GRATIS
+                </span>
+
+                <span class="card-body2" *ngIf="item.price !== 0">
+                  {{item.price | number:'':'es'}} COP
+                </span>
+                  
+                  <br> 
+                  <span class="card-subtitle2">
+                    {{item.description}}</span> 
+                 </div>
+                <div class="card-footer">
+                  <ion-button expand="block" shape="round" class="custombtn2" (click)="pago(item.id)">
+                     <b>Eligir</b> 
+                  </ion-button>
+                </div>
+              </ion-card>
+              
             </ion-slide>
 
-
-  
-            <!-- <ion-slide>
-  
-              <ion-card class="card-custom" style="background: linear-gradient(19deg, rgba(140,136,136,1) 0%, rgba(0,0,0,1) 100%);"> 
-                <div class="card-title" style="color: white;">Plan Trismestral</div>
-                <div><span class="card-body" style="color: white;">$19.99</span> <br> <span class="card-subtitle" style="color: white;">$6 Mensuales</span>  </div>
-                <div class="card-footer">
-                  <ion-button expand="block" shape="round" class="custombtn">
-                     Eligir 
-                  </ion-button>
-                </div>
-              </ion-card>
-  
-            </ion-slide> -->
   
         </ion-slides>
  

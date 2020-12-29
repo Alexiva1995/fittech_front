@@ -4,6 +4,18 @@ ion-slides{
     height: auto;
 }
 
+:host ::ng-deep .swiper-pagination{
+    .swiper-pagination-bullet {
+        --bullet-background: white;
+        // width: 20px ;
+        // height: 20px ;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: #EF4044;
+    } 
+}
+
 ion-content{
     --ion-background-color:black;
 }

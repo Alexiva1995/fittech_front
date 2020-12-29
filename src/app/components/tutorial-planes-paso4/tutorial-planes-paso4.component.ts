@@ -12,6 +12,6 @@ export class TutorialPlanesPaso4Component implements OnInit {
 
   ngOnInit() {}
   omitir(){
-    this.ruta.navigateRoot(['/'])
+    this.ruta.navigateRoot(['/planes-pagos'])
   }
 }

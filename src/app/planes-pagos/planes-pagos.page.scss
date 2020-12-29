@@ -1,3 +1,9 @@
+.omitir{
+    position: absolute;
+    color: #EF4044;
+    right: 2rem;
+    margin-top: 4px;
+}
 
 h2{
     color: white;
@@ -44,8 +50,25 @@ ion-slides{
     border-radius: 20px;
 }
 
+.card-custom2{
+    margin: 0;
+    width: 80%;
+    height: 42vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 20px;
+    background: linear-gradient(19deg, rgba(189,0,5,1) 0%, rgba(239,64,68,1) 100%);
+}
+
 .card-title{
     color:#EF4044;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.card-title2{
+    color:#fff;
     font-size: 25px;
     font-weight: bold;
 }
@@ -56,9 +79,21 @@ ion-slides{
     font-weight: bold;
 }
 
+.card-body2{
+    color:#fff;
+    font-size: 48px;
+    font-weight: bold;
+}
+
 .card-subtitle{
     color:#000;
     font-size: 18px;
+}
+
+.card-subtitle2{
+    color:#fff;
+    font-size: 18px;
+    opacity: 0.8;
 }
 
 ion-buttons{
@@ -69,8 +104,27 @@ ion-buttons{
 
     .custombtn{
         --background:#EF4044;
-        font-size: 12px;
+        font-size: 14px;
+        padding: 0 3rem;
+        --border-radius: 10px;
+    }
+
+    .custombtn2{
+        --background:#000;
+        font-size: 14px;
         padding: 0 3rem;
         --border-radius: 10px;
     }
       
+
+    :host ::ng-deep .swiper-pagination{
+        .swiper-pagination-bullet {
+            --bullet-background: white;
+            // width: 20px ;
+            // height: 20px ;
+        }
+    
+        .swiper-pagination-bullet-active {
+            background: #EF4044;
+        } 
+    }
