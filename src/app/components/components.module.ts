@@ -29,12 +29,12 @@ import { TutorialPlanesPaso3Component } from './tutorial-planes-paso3/tutorial-p
 import { TutorialPlanesPaso4Component } from './tutorial-planes-paso4/tutorial-planes-paso4.component';
 import { ModalInfoPage } from '../modal-info/modal-info.page';
 import { ModalInfoPageModule } from '../modal-info/modal-info.module';
-import { ModalFotosPage } from 'src/app/modal-fotos/modal-fotos.page';
-import { ModalFotosPageModule } from 'src/app/modal-fotos/modal-fotos.module';
+import { ModalFotosPage } from '../modal-fotos/modal-fotos.page';
+import { ModalFotosPageModule } from '../modal-fotos/modal-fotos.module';
 @NgModule({
   entryComponents:[
    ModalInfoPage,
-  //  ModalFotosPage
+  //  ModalFotosPage,
   ],
   declarations: [
     EdadComponent,

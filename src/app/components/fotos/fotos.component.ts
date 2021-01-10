@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ModalFotosPage } from 'src/app/modal-fotos/modal-fotos.page';
+import { ModalInfoPage } from 'src/app/modal-info/modal-info.page';
 
 @Component({
   selector: 'app-fotos',
@@ -197,13 +198,13 @@ export class FotosComponent implements OnInit {
   async modal(event){
     console.log(event)
 
-    if(event.includes("1609976752356.jpg") || null){
-      return
-    }
+    // if(event.includes("1609976752356.jpg") || null){
+    //   return
+    // }
 
 
       const modal = await this.modalController.create({
-        component: ModalFotosPage,
+        component: ModalInfoPage,
         cssClass: 'medida-modal',
         componentProps:{
           imagen: event
