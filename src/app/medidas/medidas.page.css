@@ -133,9 +133,17 @@ ion-select {
 
 .opacidad {
   opacity: 0.5;
+  max-width: 170px;
+  height: 150px;
 }
 
 .img-size {
-  width: 155px !important;
-  height: 150px !important;
+  max-width: 170px;
+  height: auto;
+}
+
+.fluid-img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
 }

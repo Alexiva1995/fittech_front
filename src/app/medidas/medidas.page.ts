@@ -70,8 +70,8 @@ export class MedidasPage implements OnInit {
       left_calf_:['Cm',Validators.required],
       torax_:['Cm',Validators.required],
       waist_hip_:['Cm',Validators.required],
-        profile_photo_:[null],
-        back_photo_:[null],
+        // profile_photo_:[null],
+        // back_photo_:[null],
         weight:['',  Validators.required],
         stature:['', Validators.required],
     });
@@ -198,7 +198,7 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
     });
 
     const options: CameraOptions = {
-      quality: 70,
+      quality: 45,
       destinationType: this.camera.DestinationType.DATA_URL,
       mediaType: this.camera.MediaType.PICTURE,
       encodingType: this.camera.EncodingType.JPEG,

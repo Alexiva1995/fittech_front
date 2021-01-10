@@ -3,8 +3,9 @@ import { ApiFitechService } from 'src/app/services/api-fitech.service';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { ModalFotosPage } from 'src/app/modal-fotos/modal-fotos.page';
 
 @Component({
   selector: 'app-fotos',
@@ -16,13 +17,13 @@ export class FotosComponent implements OnInit {
   perfil:any;
   frente:any;
   espalda:any;
-  
   constructor(private service: ApiFitechService, private utilities: MensajesService,
               private usuarioService: UsuarioService,
               private apiService:ApiFitechService,
               private fb: FormBuilder,
               private camera: Camera, 
               private alertCtrl: AlertController,
+              public modalController: ModalController,
               public loadingController: LoadingController,) {
 
     this.form = this.fb.group({
@@ -48,7 +49,7 @@ export class FotosComponent implements OnInit {
     });
      
   }
-  
+
   ngOnInit() {
     this.getData()
   }
@@ -56,12 +57,12 @@ export class FotosComponent implements OnInit {
   async getData(){
     this.presentLoading()
     const valor:any = await this.service.obtenerUsuario()
-    console.log(valor)
-    this.loadingController.dismiss()
-      if(valor == false){
+    if(valor == false){
+        this.loadingController.dismiss()
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
-        console.log(valor['measurement_record'])
+      
+        console.log(valor['measurement_record'] , "datos traido")
          this.perfil =  valor.measurement_record === null ? null  : 'http://fittech247.com/fittech/fotos/grasa/' + valor['measurement_record'].profile_photo
          this.espalda = valor.measurement_record === null ? null  :'http://fittech247.com/fittech/fotos/grasa/' + valor['measurement_record'].back_photo
          this.frente =  valor.measurement_record === null ? null  :'http://fittech247.com/fittech/fotos/grasa/' + valor['measurement_record'].front_photo
@@ -84,6 +85,7 @@ export class FotosComponent implements OnInit {
          this.form.controls.profile_photo.setValue(this.perfil)
          this.form.controls.front_photo.setValue(this.frente)
          this.form.controls.back_photo.setValue(this.espalda)
+           this.loadingController.dismiss()
       }
   }
 
@@ -121,7 +123,7 @@ export class FotosComponent implements OnInit {
     });
 
     const options: CameraOptions = {
-      quality: 70,
+      quality: 45,
       destinationType: this.camera.DestinationType.DATA_URL,
       mediaType: this.camera.MediaType.PICTURE,
       encodingType: this.camera.EncodingType.JPEG,
@@ -190,5 +192,31 @@ export class FotosComponent implements OnInit {
       await alert.present();
     });
   }
+
+
+  async modal(event){
+    console.log(event)
+
+    if(event.includes("1609976752356.jpg") || null){
+      return
+    }
+
+
+      const modal = await this.modalController.create({
+        component: ModalFotosPage,
+        cssClass: 'medida-modal',
+        componentProps:{
+          imagen: event
+        }
+      })
+    
+      await modal.present();
+    
+  }
+
+
+
+
+
 
 }

@@ -6,8 +6,6 @@ import {EdadComponent} from './edad/edad.component'
 import {EstaturaComponent} from './estatura/estatura.component'
 import {PesoComponent} from './peso/peso.component'
 import {HistorialComponent} from './historial/historial.component'
-import { ModalInfoPage } from '../modal-info/modal-info.page';
-import { ModalInfoPageModule } from '../modal-info/modal-info.module';
 import {PopinfoComponent} from './popinfo/popinfo.component'
 import { PopremplazarComponent } from './popremplazar/popremplazar.component';
 import { PopmensajeComponent } from './popmensaje/popmensaje.component';
@@ -29,10 +27,14 @@ import { TutorialPlanesPaso1Component } from './tutorial-planes-paso1/tutorial-p
 import { TutorialPlanesPaso2Component } from './tutorial-planes-paso2/tutorial-planes-paso2.component';
 import { TutorialPlanesPaso3Component } from './tutorial-planes-paso3/tutorial-planes-paso3.component';
 import { TutorialPlanesPaso4Component } from './tutorial-planes-paso4/tutorial-planes-paso4.component';
-
+import { ModalInfoPage } from '../modal-info/modal-info.page';
+import { ModalInfoPageModule } from '../modal-info/modal-info.module';
+import { ModalFotosPage } from 'src/app/modal-fotos/modal-fotos.page';
+import { ModalFotosPageModule } from 'src/app/modal-fotos/modal-fotos.module';
 @NgModule({
   entryComponents:[
-   ModalInfoPage
+   ModalInfoPage,
+  //  ModalFotosPage
   ],
   declarations: [
     EdadComponent,
@@ -92,6 +94,7 @@ import { TutorialPlanesPaso4Component } from './tutorial-planes-paso4/tutorial-p
     CommonModule,
     IonicModule,
     ModalInfoPageModule,
+    // ModalFotosPageModule
   ]
 })
 export class ComponentsModule { }

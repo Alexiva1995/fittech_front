@@ -131,7 +131,13 @@ ion-select{
   }
 
 
-  .img-size{
-    width: 150px !important;
-    height: 150px !important;
+   .img-size{
+    max-width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+
+  .fluid-img{
+    width: 100%;
+    height: 100%;
   }

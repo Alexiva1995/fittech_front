@@ -2,33 +2,60 @@
 <form [formGroup]="form">
   <ion-grid>
     <!-- Fotos Frente / Perfil  -->
-    <ion-row>
-      <ion-col size="6" class="rightborder">
-        <ion-label class="titulopeque2">Foto de frente</ion-label>
-        <img  (click)="captureImage(1)"  class="img-size" [src]="frente" alt=""
-        onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
-  <ion-row>
-  </ion-row>
-      </ion-col>
-      <ion-col size="6">
-        <ion-label class="titulopeque2">Foto de perfil</ion-label>
-        <img  (click)="captureImage(2)"  class="img-size" [src]="perfil" alt=""
-        onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
-  <ion-row>
+    <ion-row class="ion-justify-content-center" style="margin-bottom: 1rem;">
+      <ion-col size="12" >
+        <ion-label class="titulopeque2">Foto de frente
 
-  </ion-row>
-      </ion-col>
-    </ion-row>
-    <!-- Fotos espalda -->
-    <ion-row style="margin-bottom: 2rem;">
-      <ion-col size="6" offset="3">
-        <ion-label class="titulopeque2">Foto de espalda</ion-label>
-        <img  (click)="captureImage(3)"  class="img-size" [src]="espalda" alt=""
+          <sup>
+            <ion-icon (click)="modal(frente)" name="alert-circle" style="font-size: 1.25rem; color: white;">
+            </ion-icon>
+          </sup>
+
+        </ion-label>
+      <div class="img-size">
+        <img  (click)="captureImage(1)"  class="fluid-img"  [src]="frente" alt=""
         onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
-  <ion-row>
-  </ion-row>
+      </div>
       </ion-col>
     </ion-row>
+
+    <!-- Perfil  -->
+    <ion-row class="ion-justify-content-center" style="margin-bottom: 1rem;">
+      <ion-col size="12" >
+        <ion-label class="titulopeque2">Foto de perfil
+
+          <sup>
+            <ion-icon (click)="modal(perfil)" name="alert-circle" style="font-size: 1.25rem; color: white;">
+            </ion-icon>
+          </sup>
+
+        </ion-label>
+      <div class="img-size">
+         <img  (click)="captureImage(2)"  class="fluid-img" [src]="perfil" alt=""
+        onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
+      </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Fotos espalda -->
+    <ion-row style="margin-bottom: 2rem;" class="ion-justify-content-center">
+      <ion-col size="12">
+        <ion-label class="titulopeque2">Foto de espalda
+
+          <sup>
+            <ion-icon (click)="modal(espalda)" name="alert-circle" style="font-size: 1.25rem; color: white;">
+            </ion-icon>
+          </sup>
+
+        </ion-label>
+      <div class="img-size">
+        <img  (click)="captureImage(3)"  class="fluid-img" [src]="espalda" alt=""
+        onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
+      </div>
+      </ion-col>
+    </ion-row>
+
+
 
       <ion-card  style="
       width: 254px; 

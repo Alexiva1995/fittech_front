@@ -490,6 +490,10 @@ const routes: Routes = [
     path: 'planes-pagos',
     loadChildren: () => import('./planes-pagos/planes-pagos.module').then( m => m.PlanesPagosPageModule)
   },
+  {
+    path: 'modal-fotos',
+    loadChildren: () => import('./modal-fotos/modal-fotos.module').then( m => m.ModalFotosPageModule)
+  },
 
 ];
 

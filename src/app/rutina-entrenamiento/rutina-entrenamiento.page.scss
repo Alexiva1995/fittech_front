@@ -3,7 +3,25 @@
     margin: 0 auto;
     max-height: 150px;
   }
+
+  @mixin pantalla-ancha {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}
   
+.btn-top{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 65px;
+    left: 4px;
+    @include pantalla-ancha(){
+       top: 0px !important;
+    }
+}
+
+
 .cabezera{
 max-height: 150px;
     display: flex;
@@ -12,6 +30,9 @@ max-height: 150px;
     background-color: black;
     width: 100%;
     overflow: hidden;
+    @include pantalla-ancha(){
+        display: none !important;
+    }
 }
 /*fin logo*/
 
