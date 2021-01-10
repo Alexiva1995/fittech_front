@@ -14,6 +14,12 @@
   overflow: hidden;
 }
 
+@media screen and (orientation: landscape) {
+  .cabezera {
+    display: none !important;
+  }
+}
+
 /*fin logo*/
 .videoReproductor {
   object-fit: cover;
@@ -21,9 +27,10 @@
   height: 13em;
 }
 
-@media (max-width: 375px) {
+@media (max-height: 640px) {
   .videoReproductor {
-    height: 11em;
+    height: auto;
+    object-fit: fill;
   }
 }
 

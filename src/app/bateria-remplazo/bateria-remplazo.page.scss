@@ -4,6 +4,12 @@
   max-height: 150px;
 }
 
+@mixin pantalla-ancha {
+  @media screen and (orientation: landscape) {
+      @content;
+  }
+}
+
 .cabezera {
   max-height: 150px;
   display: flex;
@@ -12,6 +18,15 @@
   background-color: black;
   width: 100%;
   overflow: hidden;
+  @include pantalla-ancha(){
+    display: none !important;
+}
+}
+
+@mixin telefono-responsivo {
+  @media (max-height:640px) {
+      @content;
+  }
 }
 
 /*fin logo*/
@@ -19,13 +34,17 @@
   object-fit: cover;
   width: 100%;
   height: 13em;
-}
-
-@media (max-width: 375px) {
-  .videoReproductor {
-    height: 11em;
+  @include telefono-responsivo(){
+    height:auto;
+    object-fit: fill; 
   }
 }
+
+// @media (max-width: 375px) {
+//   .videoReproductor {
+//     height: 11em;
+//   }
+// }
 
 .contenedor {
   width: 100%;
