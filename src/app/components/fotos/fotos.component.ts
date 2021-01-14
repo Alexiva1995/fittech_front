@@ -18,6 +18,7 @@ export class FotosComponent implements OnInit {
   perfil:any;
   frente:any;
   espalda:any;
+  
   constructor(private service: ApiFitechService, private utilities: MensajesService,
               private usuarioService: UsuarioService,
               private apiService:ApiFitechService,
@@ -28,21 +29,21 @@ export class FotosComponent implements OnInit {
               public loadingController: LoadingController,) {
 
     this.form = this.fb.group({
-      weight:[null],
-      stature:[null],
-      min_waist:[null],
-      max_waist:[null],
-      hip:[null],
-      neck:[null],
-      right_thigh:[null],
-      left_thigh:[null],
-      right_arm:[null],
-      left_arm:[null],
-      right_arm_flexed:[null],
-      left_arm_flexed:[null],
-      right_calf:[null],
-      left_calf:[null],
-      torax:[null],
+      weight:[null ,Validators.required],
+      stature:[null,Validators.required],
+      min_waist:[null,Validators.required],
+      max_waist:[null,Validators.required],
+      hip:[null,Validators.required],
+      neck:[null,Validators.required],
+      right_thigh:[null,Validators.required],
+      left_thigh:[null,Validators.required],
+      right_arm:[null,Validators.required],
+      left_arm:[null,Validators.required],
+      right_arm_flexed:[null,Validators.required],
+      left_arm_flexed:[null,Validators.required],
+      right_calf:[null,Validators.required],
+      left_calf:[null,Validators.required],
+      torax:[null,Validators.required],
       waist_hip:[null],
       profile_photo:[null],
       front_photo:[null],
@@ -50,6 +51,7 @@ export class FotosComponent implements OnInit {
     });
      
   }
+
 
   ngOnInit() {
     this.getData()
@@ -100,20 +102,28 @@ export class FotosComponent implements OnInit {
 
   async update(){
 
-    this.presentLoading()
-    const data = await this.usuarioService.measurement_record(this.form.value)
-    this.loadingController.dismiss()
-    console.log(data)
-    if(data){
-      this.utilities.notificacionUsuario('Fotos actualizado' , "dark")
+    if(this.form.valid){
+      this.presentLoading()
+      const data = await this.usuarioService.measurement_record(this.form.value)
+      this.loadingController.dismiss()
+      console.log(data)
+      if(data){
+        console.log(this.form.value)
+        this.utilities.notificacionUsuario('Fotos actualizado' , "dark")
+        this.ngOnInit()
+      }else{
+        this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+      }
     }else{
-      this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
+      console.log(this.form.value)
+      this.utilities.notificacionUsuario('Debes completar las medidas para subir imágenes', 'danger')
     }
 
   }
 
 
   async captureImage(index) {
+
     let st = this.camera.PictureSourceType.CAMERA;
     await this.seleccionarFuente().then((result: boolean) => {
       if (result) {

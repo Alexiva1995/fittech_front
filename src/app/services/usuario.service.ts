@@ -221,6 +221,8 @@ export class UsuarioService {
           console.log(err)
           reject(false)
           })
+        }).catch(res=>{
+          console.log("ERROR")
         })
   
   }
