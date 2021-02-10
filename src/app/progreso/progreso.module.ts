@@ -8,14 +8,21 @@ import { ProgresoPageRoutingModule } from './progreso-routing.module';
 
 import { ProgresoPage } from './progreso.page';
 import { ComponentsModule } from '../components/components.module';
+import { ModalComparacionPage } from '../modal-comparacion/modal-comparacion.page';
+import { ModalComparacionPageModule } from '../modal-comparacion/modal-comparacion.module';
+
 
 @NgModule({
+  entryComponents:[
+    ModalComparacionPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ProgresoPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ModalComparacionPageModule
   ],
   declarations: [ProgresoPage]
 })

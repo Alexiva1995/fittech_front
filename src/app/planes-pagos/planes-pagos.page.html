@@ -16,13 +16,17 @@
           <ion-slides pager="true"   #slide [options]="slideOpts">
   
               <ion-slide *ngFor="let item of dato">
-    
+                
                 <ion-card class="card-custom" *ngIf="item.duration !== 12">
                   <div class="card-title">{{item.name}}</div>
                   <div>
-                  <span class="card-body" *ngIf="item.price === 0">
-                    Lighting Deal
-                  </span>
+                    <span class="card-body" *ngIf="item.price === 0">
+                      Gratis
+                    </span>
+                    
+                    <div class="card-desing" *ngIf="item.price === 0">
+                      Lighting deal
+                    </div>
   
                   <span class="card-body" *ngIf="item.price !== 0">
                     {{item.price | number:'':'es'}} COP

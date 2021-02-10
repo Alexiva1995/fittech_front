@@ -155,3 +155,24 @@ ion-buttons{
         text-align: center;
         display: block;
     }
+
+    @mixin telefono-responsivo {
+        @media (min-width:768px) {
+            @content;
+        }
+      }
+
+    .card-desing{
+        background-color: red;
+        color: #fff;
+        position: absolute;
+        top: 6%;
+        right: 35%;
+        transform: rotate(-46deg);
+        width: 100%;
+        padding: 3px;
+        overflow: hidden;
+        @include telefono-responsivo(){
+           display: none;
+         }
+    }

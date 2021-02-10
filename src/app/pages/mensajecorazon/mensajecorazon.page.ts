@@ -52,22 +52,22 @@ export class MensajecorazonPage implements OnInit {
 
   siguiente() {
     if (this.ApiService.latidocorazon === 3) {
-      this.ruta.navigateRoot(["/tutorial-planes"]);
+      this.ruta.navigateRoot(["/planes-pagos"]);
     }
 
     if (this.ApiService.latidocorazon === 2) {
-      this.ruta.navigateRoot(["/tutorial-planes"]);
+      this.ruta.navigateRoot(["/planes-pagos"]);
     }
 
     if (this.ApiService.latidocorazon === 1) {
-      this.ruta.navigateRoot(["/tutorial-planes"]);
+      this.ruta.navigateRoot(["/planes-pagos"]);
     }
 
     if (this.ApiService.latidocorazon === 0) {
       //this.ApiService.desconectarUsuario();
       // this.presentAlert();
       //this.ruta.navigateRoot(["/"]);
-      this.ruta.navigateRoot(["/tutorial-planes"]);
+      this.ruta.navigateRoot(["/planes-pagos"]);
       // return;
     }
 

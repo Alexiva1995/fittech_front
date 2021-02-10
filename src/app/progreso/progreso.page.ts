@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController, AlertController } from '@ionic/angular';
+import { NavController, LoadingController, AlertController, ModalController } from '@ionic/angular';
+import { ModalComparacionPage } from '../modal-comparacion/modal-comparacion.page';
 import { MensajesService } from '../services/mensajes.service';
 import { NutricionService } from '../services/nutricion.service';
 
@@ -67,6 +68,7 @@ export class ProgresoPage implements OnInit {
               private service: NutricionService,
               public alertController: AlertController,
               public loadingController: LoadingController,
+              public modalController: ModalController,
               private utilities: MensajesService) { }
 
   ngOnInit() {
@@ -216,6 +218,28 @@ export class ProgresoPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+
+
+  async modal(event){
+    console.log(event)
+
+    // if(event.includes("1609976752356.jpg") || null){
+    //   return
+    // }
+
+
+      const modal = await this.modalController.create({
+        component: ModalComparacionPage,
+        cssClass: 'medida-modal',
+        componentProps:{
+          imagen: event
+        }
+      })
+    
+      await modal.present();
+    
   }
 
 }

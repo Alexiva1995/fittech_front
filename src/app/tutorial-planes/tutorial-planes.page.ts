@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, NavController } from '@ionic/angular';
+import { ApiFitechService } from '../services/api-fitech.service';
 
 @Component({
   selector: 'app-tutorial-planes',
@@ -14,13 +15,14 @@ export class TutorialPlanesPage implements OnInit {
     speed: 400
   };
   
-  constructor(private ruta:NavController) { }
+  constructor(private ruta:NavController,private service: ApiFitechService) { }
 
   ngOnInit() {
   }
 
   omitir(){
-    this.ruta.navigateRoot(['/tabs/dashboard'])
+    this.service.ActualizarFittechApp()
+    this.ruta.navigateRoot(['/'])
   }
 
 }

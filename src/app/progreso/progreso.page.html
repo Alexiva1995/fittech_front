@@ -420,45 +420,81 @@
     </div>
     <ion-grid>
       <!-- 1 -->
-      <ion-row>
+      <ion-row style="margin-bottom: 1.5rem;">
         <ion-col size="6" class="rightborder">
-          <ion-label class="titulopeque2">Foto de frente</ion-label>
+          <ion-label class="titulopeque2">
+            <sup>
+              <ion-icon (click)="modal(medidas_ante.front_photo)" name="alert-circle" style="font-size: 1.25rem; color: tomato;">
+              </ion-icon>
+            </sup>
+            Foto de frente
+          </ion-label>
           <img  class="img-size" [src]="medidas_ante.front_photo" alt=""
           onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
         </ion-col>
 
         <ion-col size="6" class="rightborder">
-          <ion-label class="titulopeque2">Foto de frente</ion-label>
+          <ion-label class="titulopeque2">
+            Foto de frente
+            <sup>
+              <ion-icon (click)="modal(medidas_despues.front_photo)" name="alert-circle" style="font-size: 1.25rem; color: tomato;">
+              </ion-icon>
+            </sup>
+          </ion-label>
           <img class="img-size" [src]="medidas_despues.front_photo" alt=""
           onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
         </ion-col>
       </ion-row>
 
       <!-- 2 -->
-      <ion-row>
+      <ion-row style="margin-bottom: 1.5rem;">
         <ion-col size="6" class="rightborder">
-          <ion-label class="titulopeque2">Foto de perfil</ion-label>
+          <ion-label class="titulopeque2">
+            <sup>
+              <ion-icon (click)="modal(medidas_ante.profile_photo)" name="alert-circle" style="font-size: 1.25rem; color: tomato;">
+              </ion-icon>
+            </sup>
+            Foto de perfil
+          </ion-label>
           <img class="img-size" [src]="medidas_ante.profile_photo" alt=""
           onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
         </ion-col>
 
         <ion-col size="6" class="rightborder">
-          <ion-label class="titulopeque2">Foto de perfil</ion-label>
+          <ion-label class="titulopeque2">
+            Foto de perfil
+            <sup>
+              <ion-icon (click)="modal(medidas_despues.profile_photo)" name="alert-circle" style="font-size: 1.25rem; color: tomato;">
+              </ion-icon>
+            </sup>
+          </ion-label>
           <img class="img-size" [src]="medidas_despues.profile_photo" alt=""
           onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
         </ion-col>
       </ion-row>
 
       <!-- 3 -->
-      <ion-row>
+      <ion-row style="margin-bottom: 1.5rem;">
         <ion-col size="6" class="rightborder">
-          <ion-label class="titulopeque2">Foto de espalda</ion-label>
+          <ion-label class="titulopeque2">
+            <sup>
+              <ion-icon (click)="modal(medidas_ante.back_photo)" name="alert-circle" style="font-size: 1.25rem; color: tomato;">
+              </ion-icon>
+            </sup>
+            Foto de espalda
+          </ion-label>
           <img class="img-size" [src]="medidas_ante.back_photo" alt=""
           onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
         </ion-col>
 
         <ion-col size="6" class="rightborder">
-          <ion-label class="titulopeque2">Foto de espalda</ion-label>
+          <ion-label class="titulopeque2">
+            Foto de espalda
+            <sup>
+              <ion-icon (click)="modal(medidas_despues.back_photo)" name="alert-circle" style="font-size: 1.25rem; color: tomato;">
+              </ion-icon>
+            </sup>
+          </ion-label>
           <img  class="img-size" [src]="medidas_despues.back_photo" alt=""
           onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
         </ion-col>

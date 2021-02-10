@@ -14,16 +14,22 @@ export class LoginGuard implements CanActivate {
 ) { }
 
   async canActivate() {
-
     //Validamos que existe un usuario en el localstorage almacenado
     const token = await this.service.cargarToken();
-    console.log('token', token);
+    //Validamos que existe el flujo de la app
+    const tutorial = await this.service.cargarFittechApp()
+    console.log('tutorial', tutorial);
+
+    if(tutorial){
+      this.navCtrl.navigateRoot('/tutorial-planes');
+    }else{
+      if(token){
+          this.navCtrl.navigateRoot('/tabs/dashboard');
+          return false;
+      }else{
+          return true;
+      }
+    }
     
-        if(token){
-            this.navCtrl.navigateRoot('/tabs/dashboard');
-            return false;
-        }else{
-            return true;
-        }
 }
 }

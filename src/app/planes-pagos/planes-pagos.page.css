@@ -145,3 +145,21 @@ ion-buttons {
   text-align: center;
   display: block;
 }
+
+.card-desing {
+  background-color: red;
+  color: #fff;
+  position: absolute;
+  top: 6%;
+  right: 35%;
+  transform: rotate(-46deg);
+  width: 100%;
+  padding: 3px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .card-desing {
+    display: none;
+  }
+}

@@ -313,6 +313,10 @@ export class ApiFitechService {
     await this.storage.set("token", token);
   }
 
+  async guardarFittechApp() {
+    await this.storage.set("fittech", true);
+  }
+
   async guardarUsuario(usuario: string) {
     this.training = usuario["training_place"];
     this.usuario = usuario["name"];
@@ -346,6 +350,10 @@ export class ApiFitechService {
     await this.storage.set("examencapacidad", "activado");
   }
 
+  async ActualizarFittechApp() {
+    await this.storage.set("fittech", false);
+  }
+
   async ActualizarexamenResistencia() {
     await this.storage.set("examenresistencia", "activado");
   }
@@ -357,6 +365,10 @@ export class ApiFitechService {
   /*Extraer de la memoria Cache */
   cargarToken() {
     return this.storage.get("token");
+  }
+
+  cargarFittechApp() {
+    return this.storage.get("fittech");
   }
 
   cargarNombreUsuario() {

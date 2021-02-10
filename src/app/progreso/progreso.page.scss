@@ -99,8 +99,12 @@ ion-segment-button{
 
 
 .img-size{
-  height: 160px;
-  width: 225px;
+  // height: 160px;
+  // width: 225px;
+    width: auto;
+    height: auto;
+    display:block;
+     margin: 0 auto;
 }
 
 

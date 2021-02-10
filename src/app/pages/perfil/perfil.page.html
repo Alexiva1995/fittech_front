@@ -45,7 +45,7 @@
         <ion-col size="5" offset="4">
           <ion-avatar>
             <img [src]="imgSelected" (click)="captureImage(1)" onerror="this.src='https://images-na.ssl-images-amazon.com/images/I/51e6kpkyuIL._AC_SY355_.jpg'">
-            <ion-fab-button size="small">
+            <ion-fab-button size="small" (click)="captureImage(1)" >
               <ion-icon name="camera"></ion-icon>
             </ion-fab-button>
             <h1 style="margin: 0; text-align: center; color: white;">{{titulo}}</h1>

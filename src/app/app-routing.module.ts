@@ -494,6 +494,10 @@ const routes: Routes = [
     path: 'modal-fotos',
     loadChildren: () => import('./modal-fotos/modal-fotos.module').then( m => m.ModalFotosPageModule)
   },
+  {
+    path: 'modal-comparacion',
+    loadChildren: () => import('./modal-comparacion/modal-comparacion.module').then( m => m.ModalComparacionPageModule)
+  },
 
 ];
 
