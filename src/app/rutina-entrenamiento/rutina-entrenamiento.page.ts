@@ -11,6 +11,7 @@ import {
   NavController, AlertController
 } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
+import { threadId } from 'worker_threads';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class RutinaEntrenamientoPage implements OnInit {
   @ViewChild('myVideo', {static: false}) txtVideo: ElementRef;
   rutinas: any = [];
   status = 'rutina';
+  identificador:any;
   secuencia = 1;
   actual = 0;
   total: number;
@@ -34,6 +36,7 @@ export class RutinaEntrenamientoPage implements OnInit {
   mostrar: boolean = true;
   audio: HTMLAudioElement;
   sonido = "../../../assets/sonido/reloj.mp3";
+  sonido2 = "../../../assets/sonido/campana.mp3";
   imagen: string;
   data: any = [];
   final: any;
@@ -41,6 +44,8 @@ export class RutinaEntrenamientoPage implements OnInit {
   ready: boolean;
   pausarApp:any
   ReanudarAPP:any
+  arraytemp:any = []
+
   constructor(private service: RutinasService, private navCtrl: NavController,public platform: Platform,
               public alertController: AlertController) {
 
@@ -57,22 +62,48 @@ export class RutinaEntrenamientoPage implements OnInit {
 
   async ngOnInit() {
     this.data = await this.service.getRutina();
+
+    const array1 = this.data['exercises']
+
+      array1.forEach(element => {
+
+        if(element.side > 1){
+          const objetoClonado = Object.assign({}, element);
+          objetoClonado.mostrar = 'derecha'
+          const objetoClonado2 = Object.assign({}, element);
+          objetoClonado2.mostrar = 'izquierda'
+          this.arraytemp.push(objetoClonado)
+          this.arraytemp.push(objetoClonado2)
+        }else{
+          this.arraytemp.push(element)
+        }
+
+      });
+    
+      console.log(this.arraytemp)
     this.setValues();
     this.startVideo();
   }
   setValues() {
-    this.rutinas = this.data['exercises'].filter(value => value.stage === this.secuencia);
+    this.rutinas = this.arraytemp.filter(value => value.stage === this.secuencia);
     this.final = this.data['exercises'].length;
     this.total = this.rutinas.length;
     this.stages = this.data['stages'];
   }
 
+/*   atras(){
+    this.navCtrl.navigateRoot('/tabs/dashboard');
+  } */
+
   async startVideo() {
     this.ready = false;
     this.setValues();
+    this.identificador = this.rutinas[this.actual].mostrar
+
     this.video = `http://fittech247.com/fittech/videos/${this.rutinas[this.actual].cod}/${this.rutinas[this.actual].url}`
     console.log(this.video)
     this.mostrar = true;
+
     this.timeLeft = this.data['ratio_w'];
     var b = setInterval(() => {
       console.log(this.txtVideo.nativeElement.readyState)
@@ -96,8 +127,8 @@ export class RutinaEntrenamientoPage implements OnInit {
         this.zero = 0
       }
 
-      if (this.timeLeft >= 1 && this.timeLeft < 10) {
-        // this.playSonido()
+      if (this.timeLeft === 1) {
+        this.playSonido(2)
       }
 
       if (this.timeLeft > 0) {
@@ -122,13 +153,16 @@ export class RutinaEntrenamientoPage implements OnInit {
     this.txtVideo.nativeElement.play()
   }
 
-  playSonido() {
+  playSonido(valor) {
     this.audio = new Audio();
-    this.audio.src = this.sonido;
+    if(valor == 1){   
+      this.audio.src = this.sonido;
+    }else{
+      this.audio.src = this.sonido2;
+    }
     this.audio.load();
     this.audio.play();
   }
-
 
 
   siguiente() {
@@ -145,7 +179,7 @@ export class RutinaEntrenamientoPage implements OnInit {
       console.log('total', this.total);
       console.log('Rutina', this.rutinas);
       if(this.secuencia == this.stages && this.actual == this.total){
-        this.navCtrl.navigateRoot('/percepcionentrenamiento')
+        this.navCtrl.navigateRoot('/estiramientos')
       }else if (this.actual == this.total) {
         this.secuencia++;
         this.actual = 0;
@@ -173,20 +207,24 @@ export class RutinaEntrenamientoPage implements OnInit {
     }
   }
 
-  async timerDescanse() {
+  async timerDescanse(timerContinue = null) {
     this.zero = null;
     // this.imagen = `http://fittech247.com/fittech/imagenes/${this.rutinas[this.actual].cod}/${this.rutinas[this.actual].id}.jpg`;
     this.video2 = `http://fittech247.com/fittech/videos/${this.rutinas[this.actual].cod}/${this.rutinas[this.actual].url}`;
-    console.log(this.video2)
-    this.timeLeft = this.data['ratio_r'];
+    console.log(this.video2);
+    if(timerContinue){
+      this.timeLeft = timerContinue;
+    }else{
+      this.timeLeft = this.data['ratio_r'];
+    }
     this.tiemposegundo = setInterval(() => {
       if (this.timeLeft <= 10) {
         console.log("activate")
         this.zero = 0
       }
 
-      if (this.timeLeft >= 1 && this.timeLeft < 10) {
-        this.playSonido()
+      if (this.timeLeft >= 1 && this.timeLeft < 5) {
+        this.playSonido(1)
       }
       if (this.timeLeft > 0) {
         this.timeLeft--;
@@ -231,8 +269,60 @@ export class RutinaEntrenamientoPage implements OnInit {
     this.startVideo();
   }
 
+async confirmation(){
+  this.pauseTimer();
+  const alert = await this.alertController.create({
+    message: '<h2>Si finalizas aquí no contará la sesión<br>¿seguro quieres finalizar?</h2>',
+    cssClass: 'customMensaje1',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel',
+        cssClass: 'cancelButton',
+        handler: (blah) => {
+         this.playTimer();
+        }
+      }, {
+        text: 'Si',
+        cssClass: 'confirmButton',
+        handler: () => {
+          clearInterval(this.tiemposegundo);
+          this.timeLeft = -1;
+          this.navCtrl.navigateRoot("tabs/dashboard")
+        }
+      }
+    ]
 
+  });
 
+  await alert.present();
+}
+async confirmation2(){
+  clearInterval(this.tiemposegundo);
+  const alert = await this.alertController.create({
+    header: 'La sesión ha sido pausada',
+      cssClass: 'customMensaje1',
+    buttons: [
+      {
+        text: 'Continuar',
+        role: 'cancel',
+        cssClass: 'cancelButton',
+        handler: (blah) => {
+         this.timerDescanse(this.timeLeft);
+        }
+      }, {
+        text: 'Finalizar',
+        cssClass: 'confirmButton',
+        handler: () => {
+          this.navCtrl.navigateRoot("tabs/dashboard")
+        }
+      }
+    ]
+
+  });
+
+  await alert.present();
+}
 
 
   // mensaje de reanudar

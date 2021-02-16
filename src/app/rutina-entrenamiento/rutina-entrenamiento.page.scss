@@ -3,7 +3,25 @@
     margin: 0 auto;
     max-height: 150px;
   }
+
+  @mixin pantalla-ancha {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}
   
+.btn-top{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 65px;
+    left: 4px;
+    @include pantalla-ancha(){
+       top: 0px !important;
+    }
+}
+
+
 .cabezera{
 max-height: 150px;
     display: flex;
@@ -12,6 +30,9 @@ max-height: 150px;
     background-color: black;
     width: 100%;
     overflow: hidden;
+    @include pantalla-ancha(){
+        display: none !important;
+    }
 }
 /*fin logo*/
 
@@ -19,6 +40,7 @@ max-height: 150px;
     @media (max-height:640px) {
         @content;
     }
+    
   }
 
 // ajustar imagen de carga a video
@@ -37,6 +59,7 @@ max-height: 150px;
 .contenedor{
     width: 100%;
     height:100%; 
+    margin-bottom: 3rem;
  }
 
  .contenedor-cuerpo{
@@ -44,7 +67,7 @@ max-height: 150px;
      max-height: 70%;
      height:60%; 
      display: flex;
-     margin-top: .5rem;
+     margin-top: .9rem;
      justify-content: center;
      align-items: center;
      flex-direction: column;

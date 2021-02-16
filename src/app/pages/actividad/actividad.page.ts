@@ -16,7 +16,7 @@ export class ActividadPage implements OnInit {
   actividad:any;
  
   async ngOnInit() {
-    this.actividad = await this.apiService.cargaractividad()
+    // this.actividad = await this.apiService.cargaractividad()
     console.log(this.actividad)
     this.info = false;
   }

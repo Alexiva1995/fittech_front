@@ -25,26 +25,32 @@ export class ModalEmailPage implements OnInit {
 
   acceder(){
 
-    if(this.registrar.contra === this.registrar.recontra ){
+    if(this.registrar.contra !=null && this.registrar.contra.length > 2){
       console.log("es igual")
     }else{
-      this.mensajeservice.alertaInformatica('el password no coinciden ')
+      this.mensajeservice.alertaInformatica('Por favor introduzca un password mayor a 2 digitos')
       this.registrar.contra = null
       this.registrar.recontra = null
+      // break rompes la continuacion 
+      return
     }
 
     if(this.registrar.nombre !=null && this.registrar.nombre.length > 2){
       if(this.registrar.email !=null && this.registrar.email.length > 2){
-        if(this.registrar.contra !=null && this.registrar.contra.length > 2){
+        if(this.registrar.contra === this.registrar.recontra){
             this.usuarioService.registrarEmail(this.registrar)
             this.modalController.dismiss({
               salir:true
             });
         }else{
-          this.mensajeservice.alertaInformatica('Por favor introduzca una contraseña mayor a 2 digitos')
+          this.mensajeservice.alertaInformatica('El password no coincide')
+          this.registrar.contra = null
+          this.registrar.recontra = null
+          return
         }
       }else{
       this.mensajeservice.alertaInformatica('Por favor introduzca el campo del correo correctamente')
+      return
       }
     }else{
       this.mensajeservice.alertaInformatica('Por favor introduzca el campo del nombre correctamente')
@@ -73,12 +79,12 @@ export class ModalEmailPage implements OnInit {
          if(valor){
            console.log("todo bien")
          }else{
-          this.mensajeservice.alertaInformatica('formato no valido ')
+          this.mensajeservice.alertaInformatica('El email no tiene un formato valido ')
           this.registrar.email = null
           this.registrar.reemail = null
          }
     }else{
-      this.mensajeservice.alertaInformatica('el email no coinciden ')
+      this.mensajeservice.alertaInformatica('El email no coincide ')
       this.registrar.email = null
       this.registrar.reemail = null
     }

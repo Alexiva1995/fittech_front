@@ -32,3 +32,5 @@ npm-debug.log*
 debug/app-debug.apk
 debug/app-debug.apk
 debug/output.json
+/backend/vendor
+/backend/.env

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
+import { NutricionGuard } from 'src/app/guards/nutricion.guard';
 
 const routes: Routes = [
   {
@@ -19,12 +20,13 @@ const routes: Routes = [
       },
       {
         path: 'eye',
-        loadChildren: () => import('../rutina/rutina.module').then( m => m.RutinaPageModule)
+        loadChildren: () => import('../../tienda/tienda.module').then( m => m.TiendaPageModule)
 
       },
       {
         path: 'nutrition',
-        loadChildren: () => import('../comida/comida.module').then( m => m.ComidaPageModule)
+        loadChildren: () => import('../../bateria-alimento/bateria-alimento.module').then( m => m.BateriaAlimentoPageModule),
+        canActivate:[NutricionGuard]
       },
       {
         path: 'about',

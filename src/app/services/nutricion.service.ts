@@ -8,6 +8,12 @@ const URL  = environment.url
   providedIn: 'root'
 })
 export class NutricionService {
+  listadocomida={
+    desayuno:null,
+    almuerzo:null,
+    cena:null,
+    snack:null
+  }
 
   constructor(private http: HttpClient, private service: ApiFitechService) { }
   // nivel de grasa
@@ -32,19 +38,16 @@ export class NutricionService {
   }
   // tipo de alimento
   updateTypeFood(valor){
+    console.log("que se esta enviando a la ruta typefood",valor)
     return new Promise( async (resolve, reject)  => {
       const headers = new HttpHeaders({
         'Authorization': 'Bearer ' + await this.service.cargarToken(),
         'Content-Type':'application/json',
       })
-
-      const data = {
-        feeding_type : valor
-      }  
-
+  
       //      this.http.get(`${URL}/auth/routine`,{headers})
-      
-      this.http.post(`${URL}/auth/update-type-food`, data, {headers})
+
+      this.http.post(`${URL}/auth/update-type-food`, valor, {headers})
           .subscribe(resp=>{
             console.log(resp)
             resolve(true)
@@ -119,6 +122,22 @@ export class NutricionService {
 
   }
 
+  storeMenu(menu){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })   
+      this.http.post(`${URL}/auth/store-menu`, menu, {headers})
+          .subscribe(resp=>{
+            resolve(resp)
+          },err=>{
+            reject(err)
+          })
+      })
+
+  }
+
   //Calculos de indicadores
   indicadores(){
     return new Promise( async (resolve, reject)  => {
@@ -134,9 +153,12 @@ export class NutricionService {
           .subscribe(resp=>{
             resolve(resp)
           },err=>{
-            reject(false)
+            resolve(false)
           })
-      })
+      }).catch(function(e) {
+        console.log("se ejecuta el catch",e); 
+        return false
+      });
 
   }
 
@@ -183,22 +205,140 @@ export class NutricionService {
 
   }
 
-
-
-
-  storemenu(){
-    return new Promise( (resolve, reject)  => {
+  // TREA EL LISTADO DE ALIMENTOS GUARDADOS 
+  ListadoComida(comida:any,day:any){
+    return new Promise( async (resolve, reject)  => {
       const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.service.cargarToken(),
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
         'Content-Type':'application/json',
       })
 
-      //      this.http.get(`${URL}/auth/routine`,{headers})
+      // si no se envia un dato no  funciona la ruta
+      const data = {
+        type_food : comida,
+        day:day
+      }   
       
-      this.http.get(`${URL}/auth/routine`,{headers})
+      this.http.post(`${URL}/auth/ready-food`,data,{headers})
           .subscribe(resp=>{
-          
-            resolve(true)
+            // console.log(resp)
+            resolve(resp)
+          },err=>{
+            reject(false)
+          })
+      })
+
+  }
+
+  // Actualizar el LISTADO DE ALIMENTOS GUARDADOS 
+  ActualizarComida(data:any){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+ 
+      this.http.post(`${URL}/auth/update-menu`,data,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            resolve(resp)
+          },err=>{
+            reject(false)
+          })
+      })
+
+  }
+  
+  // borrar el menu
+  BorrarMenu(id:any){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+
+      // si no se envia un dato no  funciona la ruta
+      const data = {
+        menu_id: id,
+      }   
+      
+      this.http.post(`${URL}/auth/delete-menu`,data,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            resolve(resp)
+          },err=>{
+            reject(false)
+          })
+      })
+
+  }
+
+
+  // listado de medidas
+  historyMeasures(){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+      // si no se envia un dato no  funciona la ruta
+      const data = {
+        valor : "ignorar"
+      }      
+      this.http.post(`http://fittech247.com/fittech/api/auth/progress`,data,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            if(resp['Progress'].length > 0){
+              resolve(resp['Progress'])
+            }else{
+              resolve("vacio")
+            }
+       
+          },err=>{
+            reject(false)
+          })
+      })
+  }
+
+  // listado de indicadores
+  historyIndicators(){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+      // si no se envia un dato no  funciona la ruta
+      const data = {
+        valor : "ignorar"
+      }      
+      this.http.post(`http://fittech247.com/fittech/api/auth/progress`,data,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            if(resp['Progress_food'].length > 0){
+              resolve(resp)
+            }else{
+              resolve("vacio")
+            }
+        
+          },err=>{
+            reject(false)
+          })
+      })
+  }
+
+
+  // lista de pagos
+  GetPrice(){
+    return new Promise( async (resolve, reject)  => {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.service.cargarToken(),
+        'Content-Type':'application/json',
+      })
+  
+      this.http.get(`${URL}/auth/planes`,{headers})
+          .subscribe(resp=>{
+            console.log(resp)
+            resolve(resp['Planes'])
           },err=>{
             reject(false)
           })

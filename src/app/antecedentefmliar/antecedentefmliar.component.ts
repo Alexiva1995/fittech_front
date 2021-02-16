@@ -18,6 +18,7 @@ export class AntecedentefmliarComponent implements OnInit {
     presion_corazon:false,
     diabete_corazon:false,
     muerte_prematura:false,
+    insuficiencia_renal:false,
     ninguna:false
   }
   habilitar:boolean=true
@@ -32,7 +33,7 @@ export class AntecedentefmliarComponent implements OnInit {
   avanzar(){ 
     if(!this.condicionPersona.arritmia_corazon && !this.condicionPersona.ataque_corazon && !this.condicionPersona.diabete_corazon &&
       !this.condicionPersona.enfermedad_corazon &&!this.condicionPersona.muerte_prematura && !this.condicionPersona.ninguna &&
-      !this.condicionPersona.operacion_corazon &&!this.condicionPersona.presion_corazon){
+      !this.condicionPersona.operacion_corazon &&!this.condicionPersona.presion_corazon  &&!this.condicionPersona.insuficiencia_renal){
         this.habilitar = false
       }else{
        this.usuarioservicio.condicionCorazon(this.condicionPersona) 
@@ -58,6 +59,7 @@ export class AntecedentefmliarComponent implements OnInit {
       this.condicionPersona.presion_corazon=false;
       this.condicionPersona.diabete_corazon=false;
       this.condicionPersona.muerte_prematura=false;
+      this.condicionPersona.insuficiencia_renal=false;
         if(this.condicionPersona.ninguna){
           this.habilitar = false
         }else{

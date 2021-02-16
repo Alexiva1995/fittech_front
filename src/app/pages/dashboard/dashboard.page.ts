@@ -49,15 +49,16 @@ export class DashboardPage implements OnInit {
     const valor = await this.apiService.cargarNombreUsuario()
 
     // SACAR DE LA APP NO ES VALIDO
-    if(valor.heart_rate === 1){
-      this.apiService.desconectarUsuario()
-      this.presentAlert()
-      this.ruta.navigateRoot(['/'])
-    }
+  
+    // if(valor.heart_rate === 0){
+    //   this.apiService.desconectarUsuario()
+    //   this.presentAlert()
+    //   this.ruta.navigateRoot(['/'])
+    // }
 
-    if(valor.heart_rate === 0){
+    if( valor.risk > 1){
       this.apiService.desconectarUsuario()
-      this.presentAlert()
+      this.presentAlert2()
       this.ruta.navigateRoot(['/'])
     }
 
@@ -104,6 +105,7 @@ export class DashboardPage implements OnInit {
   
         if(this.ExamenCliente === 2){
           const validar = await this.apiService.obtenerRutinaHome()
+          console.log(validar)
 
           if(validar == true){
             this.apiService.verificarLugar(this.ExamenCliente)
@@ -122,8 +124,36 @@ export class DashboardPage implements OnInit {
 
     }
 
-  nutricion(){
-    this.ruta.navigateForward('actividad')
+  async nutricion(){
+    
+    const validar = await this.apiService.obtenerRutinaHome()
+    //Validamos que exista la nutricion en el cache
+    const nutricion = await this.apiService.cargarnutricion()
+    //Validamos que exista el test home
+    const comprobar = await this.apiService.obtenerUsuario()
+
+      if(validar == true){
+        if(nutricion === 'activado' || comprobar['food_measures'] !== null){
+          this.ruta.navigateForward('/tutorial-alimentacion')
+            return;
+        }else{
+          this.ruta.navigateForward('/actividad');
+          return;
+        }
+      }
+
+      if(validar == false){
+        this.notificacion.notificacionUsuario("Ocurrio un error, revise su conexión","danger")
+      }
+
+      if(validar === "examen"){
+        this.notificacion.notificacionUsuario("Debes realizar el test para poder empezar tu plan nutricional","danger")
+      }
+  }
+
+
+  progreso(){
+    this.ruta.navigateForward('progreso')
   }
 
 
@@ -146,6 +176,23 @@ export class DashboardPage implements OnInit {
     await alert.present();
   }
 
+  // mensaje de riesgo
+  async presentAlert2() {
+    const alert = await this.alertController.create({
+      header: 'Fittech',
+      cssClass: 'customMensaje',
+      message: 'Lo sentimos, aunque tú frecuencia cardíaca este bien tienes un riesgo alto y no estás apto para continuar según la información de salud que nos diste, te recomendamos ir al médico, y te esperamos de vuelta pronto.',
+      buttons: [
+        {
+          text: 'Ok',
+          cssClass: 'confirmButton'
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   // cargar
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -154,5 +201,11 @@ export class DashboardPage implements OnInit {
     await loading.present();
   }
     
+
+
+  // medidas(){
+  //   this.ruta.navigateForward('medidas')
+  // }
+  
 
 }

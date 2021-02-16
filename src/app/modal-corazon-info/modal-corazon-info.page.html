@@ -17,12 +17,12 @@
       <div></div>
       2. Haz una leve presión con los dedos si es necesario para sentir las pulsaciones.
       <div></div>
-      3. Cuando lo tengas dale clic en empezar y cuenta las pulsaciones durante esos 10 segundos.
+      3. Usa un cronómetro y cuenta tus latidos por 10 segundos.
     </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="mostrar">
-    <img src="assets/img/imagenpulso1.jpg" />
+    <img src="assets/img/pulso-carotideo.jpg" />
     <ion-card-header>
       <ion-card-title>Pulso Carotídeo</ion-card-title>
     </ion-card-header>
@@ -39,9 +39,9 @@
   </div>
 
   <ion-list lines="full" class="ion-padding ion-margin-bottom">
-    <ion-item>
-      <ion-label position="floating">Frecuencia cardíaca <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input  type="number" inputmode="numeric" (ionInput)="valor($event)" ></ion-input>
+    <ion-item >
+      <ion-label position="floating" style="color: red;" >Frecuencia cardíaca <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="number" inputmode="numeric" (ionInput)="valor($event)" ></ion-input>
     </ion-item>
   </ion-list>
 
@@ -57,7 +57,7 @@
       margin: 0 auto;
       "
    (click)="salir()">
-    <h2>
+    <h2 style="margin: 10px; text-align: center;">
       <b> Continuar </b>
     </h2> 
    </ion-card>

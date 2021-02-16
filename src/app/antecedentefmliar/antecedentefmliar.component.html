@@ -54,10 +54,12 @@
             </ion-item>
 
             <ion-item>
+              <ion-toggle color="dark"  slot="start" name="insuficiencia_renal"
+              (ionChange)="historialcorazon('option')"
+              [(ngModel)]="condicionPersona.insuficiencia_renal"></ion-toggle>
               <ion-label>Insuficiencia renal</ion-label>
-              <ion-toggle color="dark"  slot="start" name="insuficienciarenal"
-              (ionChange)="historialmedico(datoEnfermedades.insuficienciarenal)"  [(ngModel)]="datoEnfermedades.insuficienciarenal"></ion-toggle>
             </ion-item>
+
           </ion-list>
             
           

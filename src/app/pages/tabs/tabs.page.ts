@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiFitechService } from 'src/app/services/api-fitech.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -11,5 +13,6 @@ export class TabsPage implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

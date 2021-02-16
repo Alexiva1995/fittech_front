@@ -25,6 +25,21 @@ export class RutinasService {
           })
       })
   }
+  getEstiramientos(){
+    return new Promise( async resolve => {
+     const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + await this.storage.get('token'),
+        'Content-Type':'application/json',
+      })
+      this.http.post(`${this.URL}/auth/stretching`, null,{headers})
+          .subscribe(res=>{
+            console.log(res);
+            resolve(res)
+          },err=>{
+            resolve(err)
+          })
+      })
+  }
 
   getCalentamiento(){
     return new Promise( async resolve => {
