@@ -48,6 +48,18 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
+  ionViewWillEnter() {
+
+    // llamado cache
+    this.ApiService.cargarFittechApp().then(resp=>{
+      console.log("si no tiene nada , llamas" ,resp)
+      if(resp === false){
+         this.ApiService.guardarFittechApp()
+      }
+    })
+
+  }
+
   acceder() {
     if (this.login.password.length > 1 && this.login.email.length > 1) {
       this.dashboard(this.login);

@@ -14,6 +14,6 @@ export class TutorialPlanesPaso3Component implements OnInit {
   ngOnInit() {}
   omitir(){
     this.service.ActualizarFittechApp()
-    this.ruta.navigateRoot(['/'])
+    this.ruta.navigateRoot(['/login'])
   }
 }

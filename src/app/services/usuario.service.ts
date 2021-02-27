@@ -207,11 +207,13 @@ export class UsuarioService {
   }
 
   measurement_record(record){
+    console.log("que datos se esta enviando ala ruta",record)
       return new Promise( async (resolve, reject)  => {
         const headers = new HttpHeaders({
           'Authorization': 'Bearer ' + await this.service.cargarToken(),
           'Content-Type':'application/json',
         }) 
+
         
         this.http.post(`${URL}/auth/measurement_record`,record, {headers})
         .subscribe(resp=>{

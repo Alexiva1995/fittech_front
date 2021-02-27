@@ -7,6 +7,7 @@ import { LoadingController, AlertController, ModalController } from '@ionic/angu
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ModalFotosPage } from 'src/app/modal-fotos/modal-fotos.page';
 import { ModalInfoPage } from 'src/app/modal-info/modal-info.page';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-fotos',
@@ -18,7 +19,7 @@ export class FotosComponent implements OnInit {
   perfil:any;
   frente:any;
   espalda:any;
-  
+
   constructor(private service: ApiFitechService, private utilities: MensajesService,
               private usuarioService: UsuarioService,
               private apiService:ApiFitechService,
@@ -45,9 +46,9 @@ export class FotosComponent implements OnInit {
       left_calf:[null,Validators.required],
       torax:[null,Validators.required],
       waist_hip:[null],
-      profile_photo:[null],
-      front_photo:[null],
-      back_photo:[null],
+      profile_photo:[null,Validators.required],
+      front_photo:[null,Validators.required],
+      back_photo:[null,Validators.required],
     });
      
   }
@@ -69,7 +70,8 @@ export class FotosComponent implements OnInit {
          this.perfil =  valor.measurement_record === null ? null  : 'http://fittech247.com/fittech/fotos/grasa/' + valor['measurement_record'].profile_photo
          this.espalda = valor.measurement_record === null ? null  :'http://fittech247.com/fittech/fotos/grasa/' + valor['measurement_record'].back_photo
          this.frente =  valor.measurement_record === null ? null  :'http://fittech247.com/fittech/fotos/grasa/' + valor['measurement_record'].front_photo
-          
+         
+
          this.form.controls.stature.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].stature)
          this.form.controls.weight.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].weight)
          this.form.controls.min_waist.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].min_waist)
@@ -85,9 +87,11 @@ export class FotosComponent implements OnInit {
          this.form.controls.right_calf.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].right_calf)
          this.form.controls.left_calf.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].left_calf)
          this.form.controls.torax.setValue(valor.measurement_record === null ? null  : valor['measurement_record'].torax)
-         this.form.controls.profile_photo.setValue(this.perfil)
-         this.form.controls.front_photo.setValue(this.frente)
-         this.form.controls.back_photo.setValue(this.espalda)
+
+         this.form.controls.profile_photo.setValue(null)
+         this.form.controls.front_photo.setValue(null)
+         this.form.controls.back_photo.setValue(null)
+
            this.loadingController.dismiss()
       }
   }
@@ -116,7 +120,11 @@ export class FotosComponent implements OnInit {
       }
     }else{
       console.log(this.form.value)
-      this.utilities.notificacionUsuario('Debes completar las medidas para subir imágenes', 'danger')
+      if(this.form.controls.front_photo.value == null && this.form.controls.profile_photo.value == null && this.form.controls.back_photo.value == null){
+        this.utilities.notificacionUsuario('Todas las imagenes son requeridas', 'danger')
+      }else{
+        this.utilities.notificacionUsuario('Debes completar las medidas para subir imágenes', 'danger')
+      }
     }
 
   }
@@ -143,7 +151,6 @@ export class FotosComponent implements OnInit {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-
       if(index == 1){//frente
         this.frente = null
         this.frente = 'data:image/jpeg;base64,' + imageData;

@@ -5,8 +5,6 @@ import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Storage } from "@ionic/storage";
-import { ApiFitechService } from "./services/api-fitech.service";
-
 
 @Component({
   selector: "app-root",
@@ -21,9 +19,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private oneSignal: OneSignal,
     private storage: Storage,
-    private service: ApiFitechService
   ) {
-    this.loadData()
   }
 
   initializeApp() {
@@ -54,15 +50,6 @@ export class AppComponent {
 
   ngOnInit() {
     this.initializeApp();
-  }
-
-  async loadData(){
-    const comprobar = await this.service.cargarFittechApp()
-    if(comprobar === null){
-      this.service.guardarFittechApp()
-    }else{
-      return
-    }
   }
 
 

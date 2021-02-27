@@ -61,7 +61,7 @@ export class PerfilPage implements OnInit {
   desconectar(){
     // LLAMO ALA RUTA PARA DESCONECTAR Y LO FUERZO A REDIRECIONAR AL LOGIN
     this.apiService.desconectarUsuario()
-    this.ruta.navigateRoot(["/"])
+    this.ruta.navigateRoot(["/login"])
   }
 
 

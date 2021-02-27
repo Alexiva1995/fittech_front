@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { IntroGuard } from "./guards/intro.guard";
 import { LoginGuard } from "./guards/login.guard";
 import { NutricionGuard } from "./guards/nutricion.guard";
 import { TutorialGuard } from "./guards/tutorial.guard";
@@ -25,7 +26,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: "",
+    path: "login",
     loadChildren: () =>
       import("./pages/login/login.module").then((m) => m.LoginPageModule),
     canActivate: [LoginGuard],
@@ -474,7 +475,8 @@ const routes: Routes = [
       import("./bateria-remplazo/bateria-remplazo.module").then(
         (m) => m.BateriaRemplazoPageModule
       ),
-  },  {
+  },
+  {
     path: 'tienda',
     loadChildren: () => import('./tienda/tienda.module').then( m => m.TiendaPageModule)
   },
@@ -483,8 +485,9 @@ const routes: Routes = [
     loadChildren: () => import('./tienda-productos/tienda-productos.module').then( m => m.TiendaProductosPageModule)
   },
   {
-    path: 'tutorial-planes',
-    loadChildren: () => import('./tutorial-planes/tutorial-planes.module').then( m => m.TutorialPlanesPageModule)
+    path: '',
+    loadChildren: () => import('./tutorial-planes/tutorial-planes.module').then( m => m.TutorialPlanesPageModule),
+    canActivate: [IntroGuard]
   },
   {
     path: 'planes-pagos',
