@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, NavController } from '@ionic/angular';
+import { ActionSheetController, LoadingController, NavController } from '@ionic/angular';
 import { MensajesService } from '../services/mensajes.service';
 import { NutricionService } from '../services/nutricion.service';
 import es from '@angular/common/locales/es';
@@ -15,6 +15,7 @@ export class PlanesPagosPage implements OnInit {
 
   constructor(private service: NutricionService,
     private utilities: MensajesService,
+    public actionSheetController: ActionSheetController,
     private ruta:NavController,
     public loadingController: LoadingController,) { }
 
@@ -51,7 +52,7 @@ export class PlanesPagosPage implements OnInit {
     
     case 2:
       console.log("pagar2")
-
+      this.planespagos('32.000')
     break;
     
     case 3:
@@ -73,6 +74,37 @@ export class PlanesPagosPage implements OnInit {
       break;
     }
 
+  }
+
+
+
+  async planespagos(price:string) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Método de pagos',
+      cssClass: 'my-custom-class',
+      buttons: [
+{
+        text: 'Paypal',
+        icon: 'card-outline',
+        handler: () => {
+          console.log('Play clicked' , price);
+        }
+      }, {
+        text: 'PayU',
+        icon: 'card-outline',
+        handler: () => {
+          console.log('Favorite clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
 
