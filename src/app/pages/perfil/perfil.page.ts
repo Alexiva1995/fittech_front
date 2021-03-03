@@ -175,12 +175,14 @@ export class PerfilPage implements OnInit {
     });
 
     const options: CameraOptions = {
-      quality: 70,
+      quality: 60,
       destinationType: this.camera.DestinationType.DATA_URL,
       mediaType: this.camera.MediaType.PICTURE,
       encodingType: this.camera.EncodingType.JPEG,
       sourceType: st,
       allowEdit: true,
+      targetWidth: 300,
+      targetHeight: 300
     }
 
     this.camera.getPicture(options).then((imageData) => {

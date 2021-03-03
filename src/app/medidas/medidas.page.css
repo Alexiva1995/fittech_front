@@ -138,12 +138,11 @@ ion-select {
 }
 
 .img-size {
-  max-width: 170px;
-  height: auto;
+  max-width: 65%;
+  margin: 0 auto;
 }
 
 .fluid-img {
-  max-width: 100%;
-  height: auto;
-  width: auto;
+  width: 100%;
+  height: 100%;
 }

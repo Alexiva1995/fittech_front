@@ -382,14 +382,14 @@
       </ion-row>
 
       <ion-row class="ion-justify-content-center">
-        <ion-col size="6">
+        <ion-col size="12">
             <img class="opacidad" src="assets/img/fotofrente1.png" (click)="captureImage(1)" *ngIf="!imgSelected">
           <div class="img-size" *ngIf="imgSelected">
             <img class="fluid-img" [src]="imgSelected" (click)="captureImage(1)" >
           </div>
           <p style="color: red;">Foto de frente</p>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="12">
          
           <img class="opacidad" src="assets/img/fotoperfil1.png" (click)="captureImage(2)" *ngIf="!imgSelected2">
           <div class="img-size" *ngIf="imgSelected2">
@@ -397,7 +397,7 @@
           </div>
           <p style="color: red;">Foto de perfil</p>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="12">
           <img class="opacidad" src="assets/img/fotoespalda1.png" (click)="captureImage(3)" *ngIf="!imgSelected3">
           <div class="img-size" *ngIf="imgSelected3">
             <img  class="fluid-img" [src]="imgSelected3" (click)="captureImage(3)" >

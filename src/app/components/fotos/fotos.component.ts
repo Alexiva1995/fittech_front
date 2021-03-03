@@ -148,6 +148,8 @@ export class FotosComponent implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       sourceType: st,
       allowEdit: true,
+      targetWidth: 300,
+      targetHeight: 300
     }
 
     this.camera.getPicture(options).then((imageData) => {

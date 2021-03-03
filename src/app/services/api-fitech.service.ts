@@ -920,7 +920,11 @@ export class ApiFitechService {
   }
 
   desconectarUsuario() {
-    this.storage.clear();
+    this.storage.remove('token');
+    this.storage.remove('usuario');
+    this.storage.remove('examenresistencia');
+    this.storage.remove('examenfuerza');
+    this.storage.remove('examencapacidad');
   }
 
   obtenerCalentamiento() {

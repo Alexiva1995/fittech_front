@@ -28,9 +28,9 @@ export class MedidasPage implements OnInit {
   form: FormGroup;
   form_: FormGroup;
   imgSelected2: any;
-  imgSelected: any;
+  imgSelected: any ;
   imgUri: any;
-  imgSelected3: any;
+  imgSelected3: any ;
 
   constructor(private ruta: NavController, private fb: FormBuilder, 
               private service: UsuarioService, private utilities: MensajesService, 
@@ -204,6 +204,8 @@ phoneFormatView(num:any, input:string){  //formatea la vista del número
       encodingType: this.camera.EncodingType.JPEG,
       sourceType: st,
       allowEdit: true,
+      targetWidth: 300,
+      targetHeight: 300
     }
 
     this.camera.getPicture(options).then((imageData) => {
