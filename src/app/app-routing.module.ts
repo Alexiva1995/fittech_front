@@ -500,7 +500,11 @@ const routes: Routes = [
   {
     path: 'modal-comparacion',
     loadChildren: () => import('./modal-comparacion/modal-comparacion.module').then( m => m.ModalComparacionPageModule)
+  },  {
+    path: 'paypal',
+    loadChildren: () => import('./paypal/paypal.module').then( m => m.PaypalPageModule)
   },
+
 
 ];
 
