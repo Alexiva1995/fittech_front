@@ -11,6 +11,15 @@ export const environment = {
 
 };
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyBa-dl3epdWx8V5TWTKHABchWdLVDKxht4",
+  authDomain: "fittech-92682.firebaseapp.com",
+  projectId: "fittech-92682",
+  storageBucket: "fittech-92682.appspot.com",
+  messagingSenderId: "1049023810628",
+  appId: "1:1049023810628:web:33d23e3207714668400011"
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

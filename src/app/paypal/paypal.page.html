@@ -1,21 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>paypal</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Método de pago paypal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div *ngIf="!paidFor">
-    <p>Comprar tarjeta en {{product.price}}</p>
-    <p>{{product.description}}</p>
-  </div>
-
-  <div *ngIf="paidFor">
-      <p>PRODUCTO ESTA PAGADO!</p>
-  </div>
-
 <div #paypal></div>
-
 
 </ion-content>

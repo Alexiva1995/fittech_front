@@ -69,33 +69,10 @@ export class LoginPage implements OnInit {
   }
 
   googleLogin() {
-    if (this.platform.is("cordova")) {
-      this.nativegooglelogin();
-    }
+    console.log("hola")
   }
 
-  async nativegooglelogin() {
-    try {
-      const gplusUser = await this.gplus.login({
-        scopes: "",
-        webClientId:
-          "852806702714-hha82fck69qmatnl5ufm806hknfo7utf.apps.googleusercontent.com",
-        offline: true,
-      });
 
-      await this.afAuth.auth
-        .signInWithCredential(
-          await firebase.auth.GoogleAuthProvider.credential(gplusUser)
-        )
-        .then((response) => {
-          this.googleData = { email: response.user.email };
-          this.dashboard(this.googleData);
-        });
-      //aqui
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   facebookLogin() {
     this.fb

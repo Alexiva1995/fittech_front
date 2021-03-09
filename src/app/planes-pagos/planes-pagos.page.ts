@@ -4,6 +4,7 @@ import { MensajesService } from '../services/mensajes.service';
 import { NutricionService } from '../services/nutricion.service';
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-planes-pagos',
@@ -17,6 +18,7 @@ export class PlanesPagosPage implements OnInit {
     private utilities: MensajesService,
     public actionSheetController: ActionSheetController,
     private ruta:NavController,
+    private iab: InAppBrowser,
     public loadingController: LoadingController,) { }
 
   ngOnInit() {
@@ -87,13 +89,14 @@ export class PlanesPagosPage implements OnInit {
         text: 'Paypal',
         icon: 'card-outline',
         handler: () => {
-          console.log('Play clicked' , price);
+          this.ruta.navigateForward('/paypal');
         }
       }, {
         text: 'PayU',
         icon: 'card-outline',
         handler: () => {
-          console.log('Favorite clicked');
+          const page = "https://biz.payulatam.com/L0e126b6D5DFA1A/"
+          this.iab.create(page,'_blank')
         }
       }, {
         text: 'Cancel',
