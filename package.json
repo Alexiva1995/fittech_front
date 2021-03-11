@@ -87,8 +87,8 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.852806702714-hha82fck69qmatnl5ufm806hknfo7utf",
-        "PLAY_SERVICES_VERSION": "15.0.1"
+        "REVERSED_CLIENT_ID": "com.valdusoft.fittech",
+        "WEB_APPLICATION_CLIENT_ID": "1049023810628-l3p66k3cqhi62mkrqcihmsdsbqnpvln2.apps.googleusercontent.com"
       },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},

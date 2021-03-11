@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiFitechService } from "src/app/services/api-fitech.service";
-import { NavController } from "@ionic/angular";
+import { LoadingController, NavController } from "@ionic/angular";
 import { AlertController } from "@ionic/angular";
 import { MensajesService } from "src/app/services/mensajes.service";
 import * as moment from "moment";
@@ -13,6 +13,7 @@ import { Observable } from "rxjs";
 //facebook
 import { Facebook, FacebookLoginResponse } from "@ionic-native/facebook/ngx";
 import { Storage } from "@ionic/storage";
+import { UsuarioService } from "src/app/services/usuario.service";
 
 @Component({
   selector: "app-login",
@@ -31,6 +32,12 @@ export class LoginPage implements OnInit {
     pushIdToken: null,
   };
 
+ registrar = {
+    nombre:null,
+    email:null,
+    contra:'123456'
+  }
+
   constructor(
     private ApiService: ApiFitechService,
     private ruta: NavController,
@@ -40,8 +47,9 @@ export class LoginPage implements OnInit {
     public fb: Facebook,
     public alertController: AlertController,
     private platform: Platform,
-    private storage: Storage
-
+    private storage: Storage,
+    private usuarioService:UsuarioService,
+    public loadingController: LoadingController,
   ) {
     this.logeado = this.afAuth.authState;
   }
@@ -68,8 +76,25 @@ export class LoginPage implements OnInit {
     }
   }
 
-  googleLogin() {
-    console.log("hola")
+   googleLogin() {
+     this.gplus.login({}).then(async response => {
+      this.presentLoading()
+       const email = response.email
+       const name = response.displayName 
+       const validar = await this.ApiService.validarEmail(email)
+       if(validar){
+        this.loadingController.dismiss()
+        this.mensajeservice.alertaInformatica('el correo ya existe en nuestra base de datos')
+        return
+       }
+       this.loadingController.dismiss()
+       this.registrar.email = email
+       this.registrar.nombre = name
+       this.usuarioService.registrarEmail(this.registrar)
+       this.ruta.navigateForward(["/terminos"]);
+    }).catch(e => {
+        alert(JSON.stringify(e))
+    });
   }
 
 
@@ -147,4 +172,16 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
+
+
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Por favor espere...',
+      cssClass:'my-loading'
+    });
+    await loading.present();
+  }
+
+
 }

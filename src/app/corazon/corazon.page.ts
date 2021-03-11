@@ -101,6 +101,7 @@ export class CorazonPage implements OnInit {
           }
         }
       } else {
+        this.loadingController.dismiss();
         return;
       }
     }
