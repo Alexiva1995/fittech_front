@@ -108,9 +108,21 @@ export class LoginPage implements OnInit {
             "me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture)",
             []
           )
-          .then((profile) => {
-            this.facebookData = { email: profile["email"] };
-            this.dashboard(this.facebookData);
+          .then(async (profile) => { 
+            this.presentLoading()
+            const email = profile["email"]
+            const name = profile["name"]
+            const validar = await this.ApiService.validarEmail(email)
+            if(validar){
+              this.loadingController.dismiss()
+              this.mensajeservice.alertaInformatica('el correo ya existe en nuestra base de datos')
+              return
+             }
+             this.loadingController.dismiss()
+             this.registrar.email = email
+             this.registrar.nombre = name
+             this.usuarioService.registrarEmail(this.registrar)
+             this.ruta.navigateForward(["/terminos"]);
           });
       });
   }

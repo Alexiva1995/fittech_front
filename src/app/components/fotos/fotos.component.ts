@@ -120,7 +120,7 @@ export class FotosComponent implements OnInit {
       }
     }else{
       console.log(this.form.value)
-      if(this.form.controls.front_photo.value == null && this.form.controls.profile_photo.value == null && this.form.controls.back_photo.value == null){
+      if(this.form.controls.front_photo.value == null || this.form.controls.profile_photo.value == null || this.form.controls.back_photo.value == null){
         this.utilities.notificacionUsuario('Todas las imagenes son requeridas', 'danger')
       }else{
         this.utilities.notificacionUsuario('Debes completar las medidas para subir imágenes', 'danger')
