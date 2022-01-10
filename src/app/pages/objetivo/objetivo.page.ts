@@ -53,12 +53,8 @@ async openInfo(value) {
   }
 
 cerrar(valor){
-  if(valor == 1){
-    this.open_forma = false;
-  }else{
     this.info = false;
 
-  }
 }
 
 }
