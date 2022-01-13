@@ -26,8 +26,8 @@ export class LoginPage implements OnInit {
 
 
   login = {
-    email:null,
-    password:null
+    email:"",
+    password:""
   }
 
 

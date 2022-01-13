@@ -39,7 +39,7 @@ export class RegistrarInfoPage implements OnInit {
                }
 
   ngOnInit() {
-    this.emailLogin();
+    // this.emailLogin();
   }
 
   navegar(){
@@ -112,6 +112,7 @@ export class RegistrarInfoPage implements OnInit {
   }
 
   async emailLogin(){
+    console.log("Helo?")
     const modal = await this.modalController.create({
       component: ModalEmailPage
     });

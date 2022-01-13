@@ -65,6 +65,7 @@ ion-input{
   font-weight: bold;
   opacity: 0.7;
   margin-bottom: 20px;
+  color: black;
   @include telefono-responsivo(){
     margin-bottom: 0px;
     margin-top: 5px;
@@ -72,7 +73,14 @@ ion-input{
   }
 }
 
-
+.divider{
+  margin-bottom: 0 !important;
+  div{
+    margin: 15px 10%;
+    height: 1px;
+    background: black;
+  }
+}
 
 
 ion-card{

@@ -8,7 +8,7 @@
 
   <div class="contenedor">
 
-      <h2 class="titulo">¿Listo para comenzar?</h2>
+      <h2 class="titulo animated fadeIn delay-1s" >¿Listo para comenzar?</h2>
     
       <ion-grid class="my-grid  animated fadeIn delay-2s">
       <ion-row class="parent-row">
@@ -18,29 +18,22 @@
         <ion-col  size="12">      
           <ion-input type="password" placeholder="Password*" name="password" [(ngModel)]="login.password"></ion-input>
         </ion-col>
+
+        
         <ion-col  size="12">      
-
-          <!-- <ion-card style="
-            --background:#92949c;
-            width: 286px; "
-            (click)="acceder()" [disabled]="facebookhabilitar">
-            <ion-item style="--background:#92949c; color:white;">
-              <ion-icon name="mail-outline" slot="start"></ion-icon>
-              <ion-label style="font-size:14px;  font-family: 'Open Sans';text-transform: uppercase;"> Acceder con Email</ion-label>
-            </ion-item>
-          </ion-card> -->
-
-          <ion-button style="
-            width: 286px; 
-            text-transform: uppercase;
-            font-family: 'Open Sans';
-            "  color="medium"
-          (click)="acceder()" [disabled]="facebookhabilitar" class="disminuirboton">
+          
+          <ion-button (click)="acceder()" [disabled]="login.email == '' || login.password == ''" class="disminuirboton">
             <ion-icon name="mail-outline" slot="start"></ion-icon>
-            Acceder con Email
+            Iniciar Sesión
           </ion-button>
-
+          
         </ion-col>
+
+        <ion-col class="divider" size="12">
+          <div></div>
+        </ion-col>
+
+
         <ion-col  size="12">   
 
           <!-- <ion-card  style="
@@ -53,13 +46,10 @@
           </ion-item>
         </ion-card>    -->
 
-          <ion-button style="
-            width: 286px; 
-            border-radius: 10px;
-            text-transform: uppercase;
-            font-family: 'Open Sans';
-            "  color="danger" 
-            (click)="googleLogin()" [disabled]="googlehabilitar" class="disminuirboton">
+          <ion-button  
+            color="danger" 
+            (click)="googleLogin()" 
+            class="disminuirboton">
             <ion-icon src="./assets/icon/buscar.svg" slot="start"></ion-icon>
 
             Acceder con Google
@@ -78,20 +68,20 @@
           </ion-item>
         </ion-card>   -->
 
-         <ion-button style="
-            width: 286px; 
-            border-radius: 10px;
-            text-transform: uppercase;
-            font-family: 'Open Sans';
-            "  color="primary" 
-          (click)="facebookLogin()" [disabled]="facebookhabilitar" class="disminuirboton">
+         <ion-button  
+          color="primary" 
+          (click)="facebookLogin()" 
+          class="disminuirboton">
             <ion-icon name="logo-facebook" slot="start"></ion-icon>
             Acceder con Facebook
           </ion-button>
 
         </ion-col>
         <ion-col  size="12">      
-          <a href="#" style="color: black;" (click)="recuperar()">Recuperar Contraseña</a>
+          <a style="color: black;" (click)="goto('/registrar-info')">Registrarse</a>
+        </ion-col>
+        <ion-col  size="12">      
+          <a style="color: black;" (click)="recuperar()">Recuperar Contraseña</a>
         </ion-col>
       </ion-row>
       </ion-grid>      
@@ -99,11 +89,11 @@
 </ion-content>
 
 
-<ion-footer class="ion-no-border">
+<!-- <ion-footer class="ion-no-border">
   <ion-toolbar>
     <div class="piepagina ion-text-center">
       <p class="animated fadeIn delay-1s">¿Aun no posee una cuenta?</p>
       <p class="animated fadeInUp delay-2s" style="font-weight: bold;" (click)="goto('/registrar-info')">Registrarse</p>
     </div>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
