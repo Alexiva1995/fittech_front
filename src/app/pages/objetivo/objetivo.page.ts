@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController} from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 
@@ -28,9 +28,10 @@ export class ObjetivoPage implements OnInit {
   mostrar(valor){
     this.info = !valor;
 }
- 
-cerrar(){
-  this.info = false;
+
+cerrar(valor){
+    this.info = false;
+
 }
 
 }

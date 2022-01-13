@@ -13,8 +13,8 @@
   <ion-content [fullscreen]="true" slot="fixed" >
     <div class="animated fadeIn delay-1s" *ngIf="!actividad">
       <div class="animated fadeInLeft contenedor" *ngIf="!info">
-        <h2 class="titulo " *ngIf="!info">Nivel de actividad
-          <ion-icon class="ayudad" name="help-circle" (click)="mostrar(info)"></ion-icon>
+        <h2 class="titulo " *ngIf="!info">En qué nivel de actividad física consideras que estás 
+          <ion-icon class="ayudad" name="alert-circle" (click)="mostrar(info)"></ion-icon>
         </h2>
         <ion-grid class="my-grid">
           <ion-row class="parent-row">
@@ -106,11 +106,11 @@
                     <h5 class="titulo" style="text-align: center;">Ayuda
                         <ion-icon class="ayudad2" name="close-outline" (click)="cerrar()"></ion-icon>
                     </h5>
-                    <p class=".ion-text-left"><b>Sedentario:</b> No hago ejercicio, a veces 1 vez a la semana salgo a caminar.</p>
-                    <p class=".ion-text-left"><b>Ligero:</b> No hago ejercicio a veces en casa hago algunos oficios y paseo a la mascota con frecuencia.</p>
-                    <p class=".ion-text-left"><b>Moderado:</b> Hago ejercicio sin mucha intensidad 1 - 3 veces por semana.</p>
-                    <p class=".ion-text-left"><b>Activo:</b> Hago ejercicio muy activo 3 - 5 veces por semana, a veces hago algún deporte, camino mucho.</p>
-                    <p class=".ion-text-left"><b>Muy Activo:</b> Trabajo intensamente al menos 5 veces a la semana, incluso a veces puedo ejercitarme dos veces al dia. solo tengo un día o menos de descanso total.</p>
+                    <p class=".ion-text-left"><b>Sedentario:</b> Trabajo generalmente sentado, no hago casi nada de actividad física.</p>
+                    <p class=".ion-text-left"><b>Ligero:</b> En la semana ocasionalmente salgo a caminar, o realizo oficios basicos del hogar.</p>
+                    <p class=".ion-text-left"><b>Moderado:</b> Tengo intervalos de actividad/pausa en mi día a día y entreno 2 a 4 veces por semana.</p>
+                    <p class=".ion-text-left"><b>Activo:</b> Entreno 5 veces por semana y hago algo de cardio</p>
+                    <p class=".ion-text-left"><b>Muy Activo:</b> Entreno al menos 6 veces por semana, mis pausas siempre son activas, tengo más de dos años entrenando.</p>
                 </div>
   
             </ion-row>
@@ -118,8 +118,6 @@
       </div>
     </div>
 
-    <div *ngIf="actividad">
-        <p>ESTO ES UNA PRUEBA(removido brevemente)</p>
-    </div>
+
   
   </ion-content>
