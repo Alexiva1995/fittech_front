@@ -1,5 +1,5 @@
 import { Component, OnInit, Output,EventEmitter, HostListener, ViewChild, ElementRef} from '@angular/core';
-import { ModalController, IonContent } from '@ionic/angular';
+import { ModalController, IonContent, AlertController } from '@ionic/angular';
 import { ModalInfoPage } from 'src/app/modal-info/modal-info.page';
 import { NavController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -29,6 +29,7 @@ export class HistorialComponent implements OnInit {
     hipertension:0,
     hipotension:0,
     desvanecimiento:0,
+    convulsiones:0,
     diabete:0,
     infartos:0,
     soplo:0,
@@ -36,7 +37,7 @@ export class HistorialComponent implements OnInit {
     dolorPecho:0,
     fatiga:0,
     insuficiencia:0,
-    renal_insufficiency: 0,
+    insuficiencia_renal: 0,
     noEnfermedad: false
   }
 
@@ -63,10 +64,11 @@ export class HistorialComponent implements OnInit {
         this.datoEnfermedades.pulmonarcronica = 0
         this.datoEnfermedades.hipotension = 0
         this.datoEnfermedades.desvanecimiento = 0
+        this.datoEnfermedades.convulsiones = 0
         this.datoEnfermedades.diabete = 0
         this.datoEnfermedades.dolorPecho = 0
         this.datoEnfermedades.fatiga = 0
-        this.datoEnfermedades.renal_insufficiency = 0
+        this.datoEnfermedades.insuficiencia_renal = 0
         //habilitar boton
 
       }else{
@@ -102,6 +104,16 @@ export class HistorialComponent implements OnInit {
   
       }else{
         this.datoEnfermedades.desvanecimiento = 0
+      }
+
+      if(this.datoEnfermedades.convulsiones){
+        this.datoEnfermedades.convulsiones = 1
+        this.datoEnfermedades.noEnfermedad = false
+                //habilitar boton
+                this.habilitar = false
+  
+      }else{
+        this.datoEnfermedades.convulsiones = 0
       }
   
       if(this.datoEnfermedades.diabete){
@@ -258,17 +270,16 @@ export class HistorialComponent implements OnInit {
         this.datoEnfermedades.enfermedadPulmonar = 0
       }
 
-      if(this.datoEnfermedades.renal_insufficiency){
-        this.datoEnfermedades.renal_insufficiency = 1
+      if(this.datoEnfermedades.insuficiencia_renal){
+        this.datoEnfermedades.insuficiencia_renal = 1
         this.datoEnfermedades.noEnfermedad = false
-        this.datoEnfermedades.renal_insufficiency = 1
+        this.datoEnfermedades.enfermedadPulmonar = 1
           //habilitar boton
           this.habilitar = false
   
       }else{
-        this.datoEnfermedades.renal_insufficiency = 0 
-        this.datoEnfermedades.renal_insufficiency = 0
-
+        this.datoEnfermedades.hipertensionPulmonar = 0 
+        this.datoEnfermedades.enfermedadPulmonar = 0
       }
     }
     console.log(datos);
@@ -278,7 +289,7 @@ export class HistorialComponent implements OnInit {
 }
 
    
-  constructor(public modalController: ModalController , private ruta: NavController,private usuarioservicio:UsuarioService) {
+  constructor(public modalController: ModalController , private ruta: NavController,private usuarioservicio:UsuarioService, private alertController: AlertController) {
 
   }
 
@@ -298,6 +309,7 @@ export class HistorialComponent implements OnInit {
       this.datoEnfermedades.asma === 0  && 
       this.datoEnfermedades.bronquiti === 0  && 
       this.datoEnfermedades.desvanecimiento === 0  && 
+      this.datoEnfermedades.convulsiones === 0  && 
       this.datoEnfermedades.diabete === 0  && 
       this.datoEnfermedades.dolorPecho === 0  && 
       this.datoEnfermedades.enfermedadPulmonar === 0  && 
@@ -311,19 +323,42 @@ export class HistorialComponent implements OnInit {
       this.datoEnfermedades.patologiaCardiaca === 0  && 
       this.datoEnfermedades.pulmonarcronica === 0  && 
       this.datoEnfermedades.soplo === 0  && 
+      this.datoEnfermedades.insuficiencia_renal === 0  && 
       this.datoEnfermedades.taquicardia === 0 ){
       this.habilitar = true
     }else{
       this.usuarioservicio.enfermedades(this.datoEnfermedades)
-      this.siguientePantalla.emit(1);
+      // this.siguientePantalla.emit(1);
+      this.alerInfo() 
     }
 
-
-
-
-
-
    /*  this.ruta.navigateRoot(['/registrar-info']) */
+  }
+
+  async alerInfo() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Si presenta, enfermedades',
+      // subHeader: 'Subtitle',
+      message: 'Lo primero siempre es tu salud, por eso un médico debe de darte la permisividad para poder empezar a hacer actividad física adecuada a tu condición. Si te equivocaste llenando el formulario de enfermedades regresa y llénalo correctamente para poder avanzar. ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+ mostrar(){
+  this.alerInfoMedical();
+ }
+  async alerInfoMedical() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: '¿Tienes antecedentes  médicos y/o familiares?',
+      // subHeader: 'Subtitle',
+      message: 'Déjanos saber si tienes patologías o enfermedades relevantes, recuerda que debes contar con el alta médica en caso de que hayas sufrido operaciones recientes, lesiones osteoarticulares, o enfermades que te impidan realizar actividad física.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   atras(){
