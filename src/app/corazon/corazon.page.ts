@@ -78,7 +78,7 @@ export class CorazonPage implements OnInit {
             // Corazon ULTIMO PASO
             const valido = await this.ApiService.Latidos(this.UsuarioService.condicionPersona.latidos)
               if(valido){
-                // Termina espera
+                // Termina espera 
                 this.loadingController.dismiss()
                 this.ruta.navigateRoot(['/mensajecorazon'])
               }

@@ -113,7 +113,7 @@ export class RegistrarInfoPage implements OnInit {
 
   async emailLogin(){
     console.log("Helo?")
-    const modal = await this.modalController.create({
+    const modal = await this.modalController.create({ 
       component: ModalEmailPage
     });
      await modal.present();
@@ -129,6 +129,10 @@ export class RegistrarInfoPage implements OnInit {
 
   aceptar(){
     return
+  }
+
+  return(){
+    this.ruta.pop()
   }
 
 }

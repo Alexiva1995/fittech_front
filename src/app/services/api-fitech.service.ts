@@ -296,7 +296,8 @@ export class ApiFitechService {
 
     this.http.post(`${URL}/auth/heart_rate`,data,{headers})
         .subscribe(resp=>{
-          this.latidocorazon = resp['message']
+          console.log(resp)
+          this.latidocorazon = resp['User']
           resolve(true)
         })
     })
