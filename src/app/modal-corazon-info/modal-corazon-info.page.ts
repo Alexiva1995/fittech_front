@@ -39,18 +39,6 @@ export class ModalCorazonInfoPage implements OnInit {
     
   }
 
-  salir(){
-    if(this.escapar && this.heart_rate > 10 && this.heart_rate  <= 100){
-      this.usuarioservicio.latidos(this.heart_rate)
-      console.log(this.usuarioservicio.condicionPersona)
-      this.modalController.dismiss({
-        salir:true
-      });
-    }else{
-      this.mensajeservice.alertaInformatica('Por favor introduzca un valor valido')
-    }
-  }
-
   public onBlur(value: number){
 
     if (value == 0) {
