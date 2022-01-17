@@ -311,7 +311,8 @@ export class HistorialComponent implements OnInit {
       this.datoEnfermedades.patologiaCardiaca === 0  && 
       this.datoEnfermedades.pulmonarcronica === 0  && 
       this.datoEnfermedades.soplo === 0  && 
-      this.datoEnfermedades.taquicardia === 0 ){
+      this.datoEnfermedades.taquicardia === 0 && 
+      this.datoEnfermedades.renal_insufficiency === 0){
       this.habilitar = true
     }else{
       this.usuarioservicio.enfermedades(this.datoEnfermedades)
