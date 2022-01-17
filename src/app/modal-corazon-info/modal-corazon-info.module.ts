@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ModalCorazonInfoPageRoutingModule } from './modal-corazon-info-routing.module';
 
 import { ModalCorazonInfoPage } from './modal-corazon-info.page';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalCorazonInfoPageRoutingModule
+    ModalCorazonInfoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ModalCorazonInfoPage]
 })

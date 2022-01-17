@@ -14,6 +14,10 @@ export class ModalCorazonInfoPage implements OnInit {
   heart_rate:number
   escapar:boolean = false
 
+  public timesCompleted: number = 0;
+  public frecuency: number = 0;
+  public frecuencyConfirm: number = 0;
+
   constructor(public modalController: ModalController , private usuarioservicio:UsuarioService,
               private mensajeservice:MensajesService) { }
 
@@ -47,6 +51,40 @@ export class ModalCorazonInfoPage implements OnInit {
     }
   }
 
+  public onBlur(value: number){
+
+    if (value == 0) {
+      if(this.frecuency > 1 && this.frecuency <= 25  ) {
+        // this.heart_rate = this.frecuency * 6;
+        // this.escapar = true
+      }else{
+        this.mensajeservice.alertaInformatica('Por favor introduzca un valor valido')
+        this.frecuency = 0;
+      }
+      
+    } else {
+      if(this.frecuencyConfirm > 1 && this.frecuencyConfirm <= 25  ) {
+        // this.heart_rate = this.frecuencyConfirm * 6;
+        // this.escapar = true
+      }else{
+        this.mensajeservice.alertaInformatica('Por favor introduzca un valor valido')
+        this.frecuencyConfirm = 0;
+      }
+    }
+
+  }
+
+  public proceed(){
+    this.heart_rate = (this.frecuency + this.frecuencyConfirm) / 2 * 6;
+    if(this.heart_rate > 10 && this.heart_rate  <= 100){
+      this.usuarioservicio.latidos(this.heart_rate)
+      this.modalController.dismiss({
+        salir:true
+      });
+    } else {
+      this.mensajeservice.alertaInformatica('Por favor introduzca un valor valido')
+    }
+  }
 
   atras(){
     this.modalController.dismiss({
@@ -54,5 +92,8 @@ export class ModalCorazonInfoPage implements OnInit {
     });
   }
 
+  public completed(){
+    this.timesCompleted++
+  }
 
 }

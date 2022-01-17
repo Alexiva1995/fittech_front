@@ -1,0 +1,14 @@
+.grid-2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 15px;
+}
+
+ion-button{
+    margin: 15px auto 30px;
+}
+
+p{
+    color: #8d8d8d;
+}
