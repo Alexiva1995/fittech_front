@@ -18,8 +18,11 @@ export class ModalCorazonInfoPage implements OnInit {
   public frecuency: number = 0;
   public frecuencyConfirm: number = 0;
 
-  constructor(public modalController: ModalController , private usuarioservicio:UsuarioService,
-              private mensajeservice:MensajesService) { }
+  constructor(
+    public modalController: ModalController , 
+    private usuarioservicio:UsuarioService,
+    private mensajeservice:MensajesService
+  ) { }
 
   ngOnInit() {
     if(this.dato == 'cuello'){

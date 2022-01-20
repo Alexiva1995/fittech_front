@@ -16,7 +16,6 @@ export class LugarEjerciciosPage implements OnInit {
   }
 
   entrenar(valor){
-    console.log(valor)
     this.usuarioservicio.entrenar(valor)
     this.ruta.navigateForward(['/pasoinicial'])
   }

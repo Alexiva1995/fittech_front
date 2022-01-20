@@ -3,6 +3,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { ApiFitechService } from 'src/app/services/api-fitech.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { MensajesService } from 'src/app/services/mensajes.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,9 +17,13 @@ export class TerminosPage implements OnInit {
   datosCargados
 
 
-  constructor(private usuarioService:UsuarioService , private ApiService:ApiFitechService,
-    private ruta: NavController,public loadingController: LoadingController,
+  constructor(
+    private usuarioService:UsuarioService , 
+    private ApiService:ApiFitechService,
+    private ruta: NavController,
+    public loadingController: LoadingController,
     private mensajeservice:MensajesService,
+    private router: Router
     ) {
     this.datosCargados = this.usuarioService.datosPersonales
    }
@@ -32,7 +37,8 @@ export class TerminosPage implements OnInit {
     /*   const valido = await this.ApiService.Registrar(this.usuarioService.datosPersonales)
       if(valido){ */
        /*  this.loadingController.dismiss() */
-        this.ruta.navigateForward(['/home'])
+      this.router.navigate(['home'])
+        // this.ruta.navigateForward(['/home'])
      /*  }else{
         console.log("fail en el Registrado")
       } */

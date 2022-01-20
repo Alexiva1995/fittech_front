@@ -489,7 +489,6 @@ export class ApiFitechService {
 
 
   validarEmail(persona:any){
-    return new Promise( resolve => {
 
     const headers = new HttpHeaders({
       'Content-Type':'application/json',
@@ -498,18 +497,16 @@ export class ApiFitechService {
     const data = {
       email : persona
     }
-
-    this.http.post(`${URL}/auth/email-verify`,data,{headers})
-        .subscribe(resp=>{
-          if(resp["email"]== 1){
-            resolve(true)
-          }else{
-            resolve(false)
-          }
-        },err=>{
-          console.log(err)
-        })
-    })
+    return this.http.post(`${URL}/auth/email-verify`,data,{headers})
+    // .subscribe(resp=>{
+    //   if(resp["email"]== 1){
+    //     resolve(true)
+    //   }else{
+    //     resolve(false)
+    //   }
+    // },err=>{
+    //   console.log(err)
+    // })
   }
 
   ejerciciodemostrado(nombre,repeticion,id){

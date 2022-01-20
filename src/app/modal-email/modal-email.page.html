@@ -31,7 +31,7 @@
         </div>
           
         <ion-col  size="12">      
-          <ion-input (ionBlur)="checkEmail(); Email()" type="email" 
+          <ion-input (ionBlur)="checkEmail(); email()" type="email" 
           placeholder="Correo*" name="email" 
           [(ngModel)]="registrar.email"  ></ion-input>
         </ion-col>
@@ -41,7 +41,7 @@
         </div>
 
         <ion-col  size="12">      
-          <ion-input type="email" (ionBlur)="checkConfirmEmail(); Email2()" 
+          <ion-input type="email" (ionBlur)="checkConfirmEmail(); email2()" 
           placeholder="Confirmar Correo*"  name="reemail" 
           [(ngModel)]="registrar.reemail" ></ion-input >
         </ion-col>

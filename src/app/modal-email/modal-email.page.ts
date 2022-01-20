@@ -50,14 +50,22 @@ export class ModalEmailPage implements OnInit {
     this.checkConfirmPassword();
 
     if (this.valid) {
-      await this.Email();
-      this.Email2();
 
-      if (this.checkErrors()) {
-        this.usuarioService.registrarEmail(this.registrar)
-        this.modalController.dismiss({
-          salir:true
-        });
+      let valid = await this.email().then();
+
+      console.log(valid)
+
+      if (valid) {
+
+        this.email2();
+  
+        if (this.checkErrors()) {
+          this.usuarioService.registrarEmail(this.registrar)
+          this.modalController.dismiss({
+            salir:true
+          });
+        }
+
       }
 
     }
@@ -137,21 +145,44 @@ export class ModalEmailPage implements OnInit {
     )
   }
 
-  async Email(){
+  public async email(): Promise<boolean>{
 
-    const valido = await this.apiService.validarEmail(this.registrar.email)
-    if(valido){
-      this.error.email = "El correo ya está en uso"
-      return
-      // this.mensajeservice.alertaInformatica('el correo ya existe en nuestra base de datos')
-      // this.registrar.email = null
-    }else{
-      return
-    }
+    return new Promise((resolve) => {
+      this.apiService.validarEmail(this.registrar.email).subscribe((res: any) => {
+        console.log("Response", res.email)
+        let correct = res.email === 0 
+        if (correct) {
+          resolve(true);
+        } else {
+          this.error.email = "El correo ya está en uso"
+          console.log(this.error);
+          resolve(false);
+        }
+      }, () => {
+        this.mensajeservice.alertaInformatica("No se pudo realizar la conexión. Intente más tarde.");
+        resolve(false);
+      })
+
+    })
+
+    // let valid: boolean = false;
+
+    // let email: number = null;
+
+
+    // // if(valido){
+    // //   this.error.email = "El correo ya está en uso"
+    // //   return false;
+    // //   // this.mensajeservice.alertaInformatica('el correo ya existe en nuestra base de datos')
+    // //   // this.registrar.email = null
+    // // }else{
+    // //   return true;
+    // // }
+    // return await valid;
 
   }
 
-  Email2(){
+  public email2(){
     if(this.registrar.email === this.registrar.reemail && this.registrar.email.length > 2){
       let valor = this.validateEmail(this.registrar.email)
         if(valor){
