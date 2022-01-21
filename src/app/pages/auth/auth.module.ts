@@ -20,6 +20,7 @@ import { MeasurementsComponent } from './components/measurements/measurements.co
 import { MedicalHistoryComponent } from './components/medical-history/medical-history.component';
 import { FamilyHistoryComponent } from './components/family-history/family-history.component';
 import { HeartBeatModalComponent } from './components/heart-beat-modal/heart-beat-modal.component';
+import { HeartBeatResultsComponent } from './heart-beat-results/heart-beat-results.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { HeartBeatModalComponent } from './components/heart-beat-modal/heart-bea
     MeasurementsComponent,
     MedicalHistoryComponent,
     FamilyHistoryComponent,
-    HeartBeatModalComponent
+    HeartBeatModalComponent,
+    HeartBeatResultsComponent
   ],
   imports: [
     CommonModule,

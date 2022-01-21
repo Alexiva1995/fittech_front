@@ -46,7 +46,7 @@ export class HeartBeatComponent implements OnInit {
                 if(valido){
                   // Termina espera
                   this.loadingController.dismiss()
-                  this.ruta.navigateRoot(['/mensajecorazon'])
+                  this.ruta.navigateRoot(['/auth/heart-beat-results'])
                 }
               }
           }
@@ -89,20 +89,6 @@ export class HeartBeatComponent implements OnInit {
     }
 
   }
-
-  async avanzar(){
-    // this.ruta.navigateRoot(['/antecedentefamiliar'])
-
-    /* 
-    const valido = await this.ApiService.Latidos(this.UsuarioService.condicionPersona.latidos)
-    if(valido){
-     this.ruta.navigateRoot(['/antecedentefamiliar'])
-    }else{
-      return
-    }*/
-
-  }
-
 
   async presentLoading() {
     const loading = await this.loadingController.create({

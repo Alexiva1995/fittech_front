@@ -9,6 +9,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { TermsComponent } from './terms/terms.component';
 import { TrainingLocationComponent } from './training-location/training-location.component';
 import { HeartBeatComponent } from './heart-beat/heart-beat.component';
+import { HeartBeatResultsComponent } from './heart-beat-results/heart-beat-results.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: 'heart-beat',
         component: HeartBeatComponent
+      },
+      {
+        path: 'heart-beat-results',
+        component: HeartBeatResultsComponent
       },
       {
         path: '',
