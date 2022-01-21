@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'stopwatch',
@@ -13,10 +13,13 @@ export class StopwatchComponent implements OnInit {
   public active: boolean = false;
   public i: any
 
+  @Input() initialValue: number = 10;
   @Output() completed = new EventEmitter<boolean>();
   @Output() stopped = new EventEmitter<boolean>();
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.counter = this.initialValue
+  }
 
   public changeCounter(){
     this.i = setInterval(() => {
@@ -32,7 +35,7 @@ export class StopwatchComponent implements OnInit {
   }
 
   public play(){
-    this.counter = 10;
+    this.counter = this.initialValue;
     setTimeout(() => {
       this.active = !this.active
       if (this.active) {

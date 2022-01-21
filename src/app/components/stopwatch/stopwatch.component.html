@@ -2,7 +2,7 @@
   <div class="circular">
     <div class="outer"></div>
     <div class="inner"></div>
-    <div class="number">{{ counter == 10 ? counter : '0' + counter }}</div>
+    <div class="number">{{ counter >= 10 ? counter : '0' + counter }}</div>
     <div class="circle">
       <div [ngClass]="{bar: true, left: active || counter == 0}">
         <div class="progress"></div>

@@ -1,0 +1,20 @@
+<ion-fab 
+  [ngClass]="{hide: getRoute() == '/auth/login'}"
+  (click)="return()"
+  vertical="center"  
+  horizontal="start" 
+  slot="fixed" 
+  class="animated fadeInUp delay-2s" 
+>
+  <ion-fab-button style="--background:#ef4044" size="small">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-header [translucent]="true" class="ion-no-border animated fadeIn delay-1s">
+  <div class="cabezera">
+    <img src="assets/img/logo-app.png" class="logo">
+  </div>
+</ion-header>
+
+<ion-router-outlet></ion-router-outlet>
