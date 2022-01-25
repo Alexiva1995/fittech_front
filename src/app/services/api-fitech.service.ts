@@ -259,7 +259,7 @@ export class ApiFitechService {
 
   /*Extraer de la memoria Cache */
   cargarToken(){
-     return this.storage.get('token')
+    return this.storage.get('token')
   }
 
   cargarNombreUsuario(){

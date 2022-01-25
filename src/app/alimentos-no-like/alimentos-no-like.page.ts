@@ -14,10 +14,12 @@ export class AlimentosNoLikePage implements OnInit {
   grupoAlimentos = new Set()
   //array comun
   foods:any = []
-  constructor(private service: NutricionService,
-              private ruta: NavController,
-              public loadingController: LoadingController,
-              private utilities: MensajesService) { }
+  constructor(
+    private service: NutricionService,   
+    private ruta: NavController,
+    public loadingController: LoadingController,
+    private utilities: MensajesService
+  ) { }
 
    ngOnInit() {
     this.getFoods()

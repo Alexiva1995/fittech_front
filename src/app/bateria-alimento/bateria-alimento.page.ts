@@ -10,7 +10,8 @@ import { NavController } from '@ionic/angular';
 })
 export class BateriaAlimentoPage implements OnInit {
   alimentos:any;
-  constructor(private service: NutricionService,
+  constructor(
+    private service: NutricionService,
               private ruta: NavController,
               private utilities: MensajesService) { }
 
@@ -25,7 +26,7 @@ export class BateriaAlimentoPage implements OnInit {
       this.utilities.notificacionUsuario('Disculpe, Ha ocurrido un error', 'danger')
       }else{
         this.alimentos = valor
-        console.log("que recibo" , valor)
+        // console.log("que recibo" , valor)
       }
   }
 

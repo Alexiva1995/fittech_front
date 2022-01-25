@@ -9,7 +9,10 @@ const URL  = environment.url
 })
 export class NutricionService {
 
-  constructor(private http: HttpClient, private service: ApiFitechService) { }
+  constructor(
+    private http: HttpClient, 
+    private service: ApiFitechService
+  ) { }
   // nivel de grasa
   grease(valor){
     return new Promise( async (resolve, reject)  => {
