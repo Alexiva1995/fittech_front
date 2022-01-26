@@ -7,7 +7,7 @@ import { ApiFitechService } from '../services/api-fitech.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanActivate {
+export class HomeGuard implements CanActivate {
   constructor(
     private navCtrl: NavController,
     private service: ApiFitechService
@@ -18,11 +18,13 @@ export class LoginGuard implements CanActivate {
     //Validamos que existe un usuario en el localstorage almacenado
     const token = await this.service.cargarToken();
     
-    if(token){
-        this.navCtrl.navigateRoot('/tabs/dashboard');
+    if(!token){
+        this.navCtrl.navigateRoot('/auth/login');
         return false;
     }else{
-        return true;
+      const user = await this.service.getUserDataFromStorage()
+      this.service.setUserData(user)
+      return true;
     }
   }
 }

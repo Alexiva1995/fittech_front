@@ -24,6 +24,8 @@ import { File } from '@ionic-native/file/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TooltipsModule } from 'ionic-tooltips/dist';
 
 var firebaseConfig = {
   apiKey: "AIzaSyC05iYDOCHztv5ujJBlVY05SO7WURpGtc0",
@@ -42,6 +44,7 @@ var firebaseConfig = {
   entryComponents: [],
   imports: [
     BrowserModule, 
+    BrowserAnimationsModule,
     IonicModule.forRoot({hardwareBackButton: false}), 
     AppRoutingModule,
     HttpClientModule,
@@ -51,6 +54,7 @@ var firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    TooltipsModule.forRoot()
   ],
   providers: [
     GooglePlus,

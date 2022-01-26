@@ -1,14 +1,156 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
+<base-header [title]="'Perfil'"></base-header>
 
 <ion-content>
-  <!-- por lo momento se dejara asi hasta que el diseñador pase diseño del PERFIL -->
-  <div class="ion-text-center">
-     <ion-button color="primary" (click)="desconectar()" i>Desconectar</ion-button>
+
+  <div class="button-row" *ngIf="user">
+    <ion-button (click)="slides.slideTo(0); slideIndex = 0" 
+    [fill]="slideIndex == 0 ? 'solid' : 'clear'"
+    [color]="slideIndex == 0 ? 'danger' : 'dark'"
+    >
+      <div>
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span>Perfil</span>
+      </div>
+    </ion-button>
+    <ion-button (click)="slides.slideTo(1); slideIndex = 1"
+    [fill]="slideIndex == 1 ? 'solid' : 'clear'"
+    [color]="slideIndex == 1 ? 'danger' : 'dark'"
+    >
+      <div>
+        <ion-icon name="stats-chart"></ion-icon>
+        <span>Indicadores</span>
+      </div>
+    </ion-button>
+    <ion-button (click)="slides.slideTo(2); slideIndex = 2"
+    [fill]="slideIndex == 2 ? 'solid' : 'clear'"
+    [color]="slideIndex == 2 ? 'danger' : 'dark'"
+    >
+      <div>
+        <ion-icon name="options"></ion-icon>
+        <span>Medidas</span>
+      </div>
+    </ion-button>
   </div>
 
+  <div #mySlides>
+    
+    <ion-slides #slides (ionSlideDidChange)="changeSlide(slides)">
+  
+      <ng-container *ngIf="user"> 
+        <ion-slide>
+          <ng-container [ngTemplateOutlet]="slide1"></ng-container>
+        </ion-slide>
+    
+        <ion-slide>
+          <ng-container [ngTemplateOutlet]="slide2"></ng-container>
+        </ion-slide>
+    
+        <ion-slide>
+          To'o bien
+        </ion-slide>
+      </ng-container>
+  
+    </ion-slides>
+
+  </div>
 
 </ion-content>
+
+<ng-template #slide1>
+
+  <div class="profile-slide slide">
+
+    <div class="user-avatar">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-button color="danger">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </div>
+
+    <span class="input-label">NOMBRE Y APELLIDO</span>
+    <div class="profile-input">
+      <input type="text" [(ngModel)]="user.name">
+      <ion-icon color="danger" name="pencil-outline"></ion-icon>
+    </div>
+  
+    <span class="input-label">GÉNERO</span>
+    <div class="profile-input">
+      <ion-select [(ngModel)]="user.gender">
+        <ion-select-option [value]="0">Mujer</ion-select-option>
+        <ion-select-option [value]="1">Hombre</ion-select-option>
+      </ion-select>
+      <ion-icon color="danger" name="pencil-outline"></ion-icon>
+    </div>
+  
+    <span class="input-label">CORREO ELECTRÓNICO</span>
+    <div class="profile-input">
+      <input type="text" [(ngModel)]="user.email">
+      <ion-icon color="danger" name="pencil-outline"></ion-icon>
+    </div>
+
+    <span class="input-label">OBJETIVO</span>
+    <div class="profile-input">
+      <ion-select [(ngModel)]="user.objective">
+        <ion-select-option [value]="0">Estar en forma</ion-select-option>
+        <ion-select-option [value]="1">Ganar musculatura</ion-select-option>
+        <ion-select-option [value]="2">Adelgazar</ion-select-option>
+      </ion-select>
+      <ion-icon color="danger" name="pencil-outline"></ion-icon>
+    </div>
+  
+    <span class="input-label">CONTRASEÑA</span>
+    <div class="profile-input">
+      <input type="text" [(ngModel)]="password">
+      <ion-icon color="danger" name="pencil-outline"></ion-icon>
+    </div>
+  
+    <span class="input-label">REPETIR CONTRASEÑA</span>
+    <div class="profile-input">
+      <input type="text" [(ngModel)]="confirmPassword">
+      <ion-icon color="danger" name="pencil-outline"></ion-icon>
+    </div>
+
+    <span class="input-label">NUEVA CONTRASEÑA*</span>
+    <div class="profile-input">
+      <input type="text" [(ngModel)]="newPassword">
+      <ion-icon color="danger" name="pencil-outline"></ion-icon>
+    </div>
+
+    <div class="ion-text-center">
+      <ion-button color="danger">Actualizar perfil</ion-button>
+    </div>
+    
+    <div class="ion-text-center">
+      <ion-button color="danger" fill="clear" (click)="logOut()">Cerrar Sesión</ion-button>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #slide2>
+
+  <div class="slide">
+
+    <ion-item>
+      <span><strong tooltip="Hola" navTooltip>IMC</strong> = {{ user.imc }}  </span>
+    </ion-item>
+
+    <ion-item>
+      <span>ICA = {{ user.imc }}  </span>
+    </ion-item>
+
+    <ion-item>
+      <span>Perímetro de cintura = {{ user.ica }}  </span>
+    </ion-item>
+
+    <ion-item>
+      <span>TBM = {{ user.imc }}  </span>
+    </ion-item>
+
+    <ion-item>
+      <span>Estrategia Nutricional</span>
+    </ion-item>
+
+  </div>
+
+</ng-template>

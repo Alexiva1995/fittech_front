@@ -1,0 +1,101 @@
+.toolbar-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 15px;
+    ion-button{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        --border-radius: 15px 15px 0px 0px !important;
+        height: 50px;
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            ion-icon{
+                height: 25px;
+                width: 25px;
+            }
+            span{
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+.slide{
+    text-align: left;
+    width: 100%;
+}
+
+.profile-slide{
+    padding: 15px 30px 0px;
+
+    .user-avatar{
+        width: 100%;
+        text-align: center;
+        position: relative;
+        > ion-icon{
+            width: 150px;
+            height: 150px;
+        }
+        ion-button{
+            position: absolute;
+            bottom: 10px;
+            right: calc(50% - 65px);
+            --border-radius: 50% !important;
+            --padding-start: 8px;
+            --padding-end: 8px;
+        }
+    }
+
+    .input-label{
+        font-size: 10pt;
+    }
+    
+    .profile-input{
+        border: 1px solid #ffffff;
+        border-radius: 3px;
+        display: grid;
+        grid-template-columns: 1fr 25px;
+        gap: 15px;
+        padding: 5px 10px;
+        margin-bottom: 15px;
+        align-items: center;
+        input, select{
+            background: #121212;
+            outline: none;
+            border: none;
+            font-size: 10pt;
+            font-weight: 200;
+            padding: 0;
+        }
+        ion-icon{
+            height: 25px;
+            width: 25px;
+            cursor: pointer;
+        }
+        ion-select{
+            padding: 0;
+            font-size: 10pt;
+        }
+    }
+    ion-button{
+        margin-bottom: 15px;
+    }
+}
+
+.div{
+    background: #ffffff;
+    width: 100%;
+}
+
+:host{
+    --ion-background-color: #121212;
+}

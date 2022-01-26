@@ -31,16 +31,18 @@ export class LoginComponent implements OnInit {
   }
 
 
-  constructor(private ApiService:ApiFitechService,
-              private ruta: NavController,
-              private mensajeservice:MensajesService,
-              public afAuth:AngularFireAuth,
-              private gplus:GooglePlus,
-              public fb: Facebook,
-              public alertController: AlertController,
-              private platform:Platform) { 
-                this.logeado = this.afAuth.authState
-              }
+  constructor(
+    private ApiService:ApiFitechService,
+    private ruta: NavController,
+    private mensajeservice:MensajesService,
+    public afAuth:AngularFireAuth,
+    private gplus:GooglePlus,
+    public fb: Facebook,
+    public alertController: AlertController,
+    private platform:Platform
+  ) { 
+    this.logeado = this.afAuth.authState
+  }
 
   ngOnInit() {
     

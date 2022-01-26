@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {Storage} from '@ionic/storage'
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
+import { MUser } from '../models/user/user.model';
 
 const URL  = environment.url
 
@@ -86,6 +87,8 @@ export class ApiFitechService {
   idListadoRemplazar:number
   genero:number
 
+  private userData = null;
+
   demostracionEjercicio = {
     nombre: null,
     repeticion:null,
@@ -93,6 +96,18 @@ export class ApiFitechService {
   }
 
   constructor(private http:HttpClient , private storage:Storage) { }
+
+  public getUserDataFromStorage(){
+    return this.storage.get('usuario');
+  }
+
+  public getUserData(){
+    return this.userData;
+  }
+
+  public setUserData(user){
+    this.userData = user
+  }
   
   Registrar(persona:any){
     console.log(persona);
@@ -220,11 +235,12 @@ export class ApiFitechService {
     await this.storage.set('token',token)
   }
 
-  async guardarUsuario(usuario:string){
+  async guardarUsuario(usuario){
     this.training = usuario['training_place']
     this.usuario = usuario['name']
     this.IDusuario = usuario['id']
-    await this.storage.set('usuario',usuario)
+    const user = new MUser(usuario);
+    await this.storage.set('usuario',user)
   }
 
   async guardarexamenFuerza(fuerza:string){
@@ -771,11 +787,11 @@ export class ApiFitechService {
       //      this.http.get(`${URL}/auth/routine`,{headers})
       
       this.http.get(`${URL}/auth/user`,{headers})
-          .subscribe(resp=>{
-            console.log(resp)
+          .subscribe((resp) => {
+            // console.log(resp)
             resolve(resp)
-          },err=>{
-            resolve(false)
+          },() => {
+            resolve(null)
           })
       })
 
@@ -821,18 +837,17 @@ export class ApiFitechService {
       const headers = new HttpHeaders({
         'Content-Type':'application/json',
       })
-      // si no se envia un dato no  funciona la ruta
          console.log("valor enviado",valor)
       this.http.post(`${URL}/auth/reset-password`,valor,{headers})
-          .subscribe(resp=>{
-            if(resp["message"] === "Success"){
-              resolve(true)
-            }else{
-              resolve(false)
-            }
-          },err=>{
-            reject(false)
-          })
+        .subscribe(resp=>{
+          if(resp["message"] === "Success"){
+            resolve(true)
+          }else{
+            resolve(false)
+          }
+        },err=>{
+          reject(false)
+        })
       })
   }
 

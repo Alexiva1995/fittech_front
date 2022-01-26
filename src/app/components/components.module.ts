@@ -12,6 +12,7 @@ import { PopmensajeComponent } from './popmensaje/popmensaje.component';
 import { FormsModule } from '@angular/forms';
 import { BackBtnComponent } from '../back-btn/back-btn.component';
 import { StopwatchComponent } from './stopwatch/stopwatch.component';
+import { BaseHeaderComponent } from './base-header/base-header.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { StopwatchComponent } from './stopwatch/stopwatch.component';
     PopremplazarComponent,
     PopmensajeComponent,
     BackBtnComponent,
-    StopwatchComponent
+    StopwatchComponent,
+    BaseHeaderComponent
   ],
   exports:[
     EdadComponent,
@@ -34,7 +36,8 @@ import { StopwatchComponent } from './stopwatch/stopwatch.component';
     PopremplazarComponent,
     PopmensajeComponent,
     BackBtnComponent,
-    StopwatchComponent
+    StopwatchComponent,
+    BaseHeaderComponent
   ],
   imports: [
     FormsModule,
