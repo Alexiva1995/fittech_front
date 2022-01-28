@@ -23,7 +23,8 @@ export class HomeGuard implements CanActivate {
         return false;
     }else{
       const user = await this.service.getUserDataFromStorage()
-      this.service.setUserData(user)
+      await this.service.guardarToken(token);
+      await this.service.setUserData(user);
       return true;
     }
   }

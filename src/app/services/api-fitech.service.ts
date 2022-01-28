@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {Storage} from '@ionic/storage'
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { MUser } from '../models/user/user.model';
+import { MIndicator } from '../models/indicator/indicator.model';
+import { IIndicator } from '../models/indicator/indicator.interface';
+import { ApiResponse } from '../models/base-model/api-response.interface';
 
 const URL  = environment.url
 
@@ -186,10 +190,8 @@ export class ApiFitechService {
         this.http.post(`${URL}/auth/register`,data)
         .subscribe(resp=>{
             this.token =  resp['access_token']
-            console.log(this.token)
             resolve(true)
           },err =>{
-            console.log(err)
             resolve(false)
           })
       })
@@ -851,5 +853,24 @@ export class ApiFitechService {
       })
   }
 
+  public getIndicators(): Observable<ApiResponse>{
+    const headers = this.getHeaders()
+    return this.http.post<ApiResponse>(`${URL}/auth/indicators`, {}, {headers})
+    .pipe(
+      map((res) => {
+        if (res.statusCode == 200) {
+          res.data = new MIndicator(res.data);
+        }
+        return res;
+      })
+    )
+  }
+
+  private getHeaders(): HttpHeaders{
+    return new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token,
+      'Content-Type':'application/json',
+    })
+  }
 
 }

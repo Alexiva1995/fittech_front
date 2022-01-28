@@ -1,52 +1,108 @@
 <base-header [title]="'Perfil'"></base-header>
 
-<ion-content>
+<ion-content #mySlides>
 
-  <div class="button-row" *ngIf="user">
-    <ion-button (click)="slides.slideTo(0); slideIndex = 0" 
+  <!-- <div class="button-row" *ngIf="user">
+    <ion-button (click)="changeSlide(0)" 
     [fill]="slideIndex == 0 ? 'solid' : 'clear'"
-    [color]="slideIndex == 0 ? 'danger' : 'dark'"
+    [color]="slideIndex == 0 ? 'danger' : 'light'"
     >
       <div>
         <ion-icon name="person-circle-outline"></ion-icon>
         <span>Perfil</span>
       </div>
     </ion-button>
-    <ion-button (click)="slides.slideTo(1); slideIndex = 1"
+    <ion-button (click)="changeSlide(1)"
     [fill]="slideIndex == 1 ? 'solid' : 'clear'"
-    [color]="slideIndex == 1 ? 'danger' : 'dark'"
+    [color]="slideIndex == 1 ? 'danger' : 'light'"
     >
       <div>
         <ion-icon name="stats-chart"></ion-icon>
         <span>Indicadores</span>
       </div>
     </ion-button>
-    <ion-button (click)="slides.slideTo(2); slideIndex = 2"
+    <ion-button (click)="changeSlide(2)"
     [fill]="slideIndex == 2 ? 'solid' : 'clear'"
-    [color]="slideIndex == 2 ? 'danger' : 'dark'"
+    [color]="slideIndex == 2 ? 'danger' : 'light'"
     >
       <div>
         <ion-icon name="options"></ion-icon>
         <span>Medidas</span>
       </div>
     </ion-button>
-  </div>
+  </div> -->
 
-  <div #mySlides>
+  <ion-slides [options]="slideOptions" class="buttons-slides" #buttonSlides>
+
+    <ion-slide>
+      <ion-button (click)="changeSlide(0, buttonSlides)" 
+      [fill]="slideIndex == 0 ? 'solid' : 'clear'"
+      [color]="slideIndex == 0 ? 'danger' : 'light'"
+      >
+        <div>
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <span>Perfil</span>
+        </div>
+      </ion-button>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-button (click)="changeSlide(1, buttonSlides)"
+      [fill]="slideIndex == 1 ? 'solid' : 'clear'"
+      [color]="slideIndex == 1 ? 'danger' : 'light'"
+      >
+        <div>
+          <ion-icon name="stats-chart"></ion-icon>
+          <span>Indicadores</span>
+        </div>
+      </ion-button>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-button (click)="changeSlide(2, buttonSlides)"
+      [fill]="slideIndex == 2 ? 'solid' : 'clear'"
+      [color]="slideIndex == 2 ? 'danger' : 'light'"
+      >
+        <div>
+          <ion-icon name="options"></ion-icon>
+          <span>Medidas</span>
+        </div>
+      </ion-button>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-button (click)="changeSlide(3, buttonSlides)"
+      [fill]="slideIndex == 3 ? 'solid' : 'clear'"
+      [color]="slideIndex == 3 ? 'danger' : 'light'"
+      >
+        <div>
+          <ion-icon name="camera"></ion-icon>
+          <span>Fotos</span>
+        </div>
+      </ion-button>
+    </ion-slide>
+
+  </ion-slides>
+
+  <div class="slide-content">
     
-    <ion-slides #slides (ionSlideDidChange)="changeSlide(slides)">
+    <ion-slides #slides>
   
       <ng-container *ngIf="user"> 
         <ion-slide>
-          <ng-container [ngTemplateOutlet]="slide1"></ng-container>
+          <ng-container *ngIf="slideIndex == 0" [ngTemplateOutlet]="slide1"></ng-container>
         </ion-slide>
     
         <ion-slide>
-          <ng-container [ngTemplateOutlet]="slide2"></ng-container>
+          <ng-container *ngIf="slideIndex == 1" [ngTemplateOutlet]="slide2"></ng-container>
         </ion-slide>
     
         <ion-slide>
-          To'o bien
+          <ng-container *ngIf="slideIndex == 2" [ngTemplateOutlet]="slide3"></ng-container>
+        </ion-slide>
+
+        <ion-slide>
+          <ng-container *ngIf="slideIndex == 3" [ngTemplateOutlet]="slide4"></ng-container>
         </ion-slide>
       </ng-container>
   
@@ -58,7 +114,7 @@
 
 <ng-template #slide1>
 
-  <div class="profile-slide slide">
+  <div class="profile-slide slide animated" [ngClass]="{slideInLeft: enterClass, slideInRight: !enterClass}">
 
     <div class="user-avatar">
       <ion-icon name="person-circle-outline"></ion-icon>
@@ -123,33 +179,174 @@
     <div class="ion-text-center">
       <ion-button color="danger" fill="clear" (click)="logOut()">Cerrar Sesión</ion-button>
     </div>
+
   </div>
 
 </ng-template>
 
 <ng-template #slide2>
 
-  <div class="slide">
+  <div class="slide animated" *ngIf="indicator" [ngClass]="{slideInLeft: enterClass, slideInRight: !enterClass}">
 
-    <ion-item>
-      <span><strong tooltip="Hola" navTooltip>IMC</strong> = {{ user.imc }}  </span>
+    <ion-item class="indicator">
+      <span>
+        <strong (click)="showPopover()">IMC
+          <ion-button>
+            <ion-icon name="help"></ion-icon>
+          </ion-button>
+        </strong> 
+        <span class="separator"> = </span> {{ indicator.imc }}
+      </span>
     </ion-item>
 
-    <ion-item>
-      <span>ICA = {{ user.imc }}  </span>
+    <ion-item class="indicator">
+      <span>
+        <strong (click)="showPopover()">ICA
+          <ion-button>
+            <ion-icon name="help"></ion-icon>
+          </ion-button>
+        </strong> 
+        <span class="separator"> = </span> {{ indicator.ica ? indicator.ica : '- - - -' }}
+      </span>
     </ion-item>
 
-    <ion-item>
-      <span>Perímetro de cintura = {{ user.ica }}  </span>
+    <ion-item class="indicator">
+      <span>
+        <strong (click)="showPopover()">Perímetro de cintura
+          <ion-button>
+            <ion-icon name="help"></ion-icon>
+          </ion-button>
+        </strong> 
+        <span class="separator"> = </span> {{ indicator.waistPerimeter ? indicator.waistPerimeter : '- - - -' }}
+      </span>
     </ion-item>
 
-    <ion-item>
-      <span>TBM = {{ user.imc }}  </span>
+    <ion-item class="indicator">
+      <span>
+        <strong (click)="showPopover()">TBM
+          <ion-button>
+            <ion-icon name="help"></ion-icon>
+          </ion-button>
+        </strong> 
+        <span class="separator"> = </span> {{ indicator.tmb ? indicator.tmb : '- - - -' }}
+      </span>
     </ion-item>
 
-    <ion-item>
-      <span>Estrategia Nutricional</span>
+    <ion-item class="indicator">
+      <span>
+        <strong (click)="showPopover()">Estrategia nutricional
+          <ion-button>
+            <ion-icon name="help"></ion-icon>
+          </ion-button>
+        </strong> 
+        <span class="separator"> = </span> {{ indicator.strategy ? indicator.strategy : '- - - -' }}
+      </span>
     </ion-item>
+
+  </div>
+
+</ng-template>
+
+<ng-template #slide3>
+
+  <div class="slide slide-3 animated" [ngClass]="{slideInLeft: enterClass, slideInRight: !enterClass}">
+
+    <p>Escoge el lapso del cual quieres saber tu progreso</p>
+
+    <div class="grid-2">
+
+      <div>
+        <p>Desde:</p>
+        <ion-select>
+          <ion-select-option>Fecha N°1</ion-select-option>
+          <ion-select-option>Fecha N°2</ion-select-option>
+          <ion-select-option>Fecha N°3</ion-select-option>
+          <ion-select-option>Fecha N°4</ion-select-option>
+          <ion-select-option>Fecha N°5</ion-select-option>
+        </ion-select>
+      </div>
+
+      <div>
+        <p>Hasta:</p>
+        <ion-select>
+          <ion-select-option>Fecha N°1</ion-select-option>
+          <ion-select-option>Fecha N°2</ion-select-option>
+          <ion-select-option>Fecha N°3</ion-select-option>
+          <ion-select-option>Fecha N°4</ion-select-option>
+          <ion-select-option>Fecha N°5</ion-select-option>
+        </ion-select>
+      </div>
+
+    </div>
+
+    <div class="measures-container">
+
+      <measure [title]="'Peso (kg)'"></measure>
+      <measure [title]="'Altura (cm)'"></measure>
+
+      <measure [title]="'Cintura minima (cm)'"></measure>
+      <measure [title]="'Cintura máxima (cm)'"></measure>
+      
+      <measure [title]="'Cadera (cm)'"></measure>
+      <measure [title]="'Cuello (cm)'"></measure>
+      
+      <measure [title]="'Muslo izquierdo (cm)'"></measure>
+      <measure [title]="'Muslo derecho (cm)'"></measure>
+
+      <measure [title]="'Brazo relajado izquierdo (cm)'"></measure>
+      <measure [title]="'Brazo relajado derecho (cm)'"></measure>
+
+      <measure [title]="'Pantorrilla izquierda (cm)'"></measure>
+      <measure [title]="'Pantorrilla derecha (cm)'"></measure>
+
+      <measure [title]="'Tórax (cm)'" [last]="true"></measure>
+
+      <div class="divider"></div>
+
+    </div>
+
+  </div>
+
+</ng-template>
+
+<ng-template #slide4>
+
+  <div class="slide slide-3">
+    
+    <p>Escoge el lapso del cual quieres saber tu progreso</p>
+
+    <div>
+      <p>Sección del cuerpo:</p>
+      <ion-select>
+        <ion-select-option>Fecha N°1</ion-select-option>
+        <ion-select-option>Fecha N°2</ion-select-option>
+        <ion-select-option>Fecha N°3</ion-select-option>
+        <ion-select-option>Fecha N°4</ion-select-option>
+        <ion-select-option>Fecha N°5</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div>
+      <p>Desde:</p>
+      <ion-select>
+        <ion-select-option>Fecha N°1</ion-select-option>
+        <ion-select-option>Fecha N°2</ion-select-option>
+        <ion-select-option>Fecha N°3</ion-select-option>
+        <ion-select-option>Fecha N°4</ion-select-option>
+        <ion-select-option>Fecha N°5</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div>
+      <p>Hasta:</p>
+      <ion-select>
+        <ion-select-option>Fecha N°1</ion-select-option>
+        <ion-select-option>Fecha N°2</ion-select-option>
+        <ion-select-option>Fecha N°3</ion-select-option>
+        <ion-select-option>Fecha N°4</ion-select-option>
+        <ion-select-option>Fecha N°5</ion-select-option>
+      </ion-select>
+    </div>
 
   </div>
 

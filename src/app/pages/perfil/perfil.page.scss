@@ -3,11 +3,26 @@
     justify-content: space-between;
 }
 
+.slide-content{
+    padding-top: 50px;
+}
+
 .button-row{
+    
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    
+}
+
+.buttons-slides{
+    position: fixed;
+    top: 41px;
+    width: 100%;
+    z-index: 10;
     margin-top: 15px;
+    background: #121212;
     ion-button{
+        width: 100%;
         display: flex;
         flex-direction: column;
         margin: 0;
@@ -32,6 +47,35 @@
 .slide{
     text-align: left;
     width: 100%;
+    padding: 15px;
+}
+
+.slide-3{
+    padding: 15px 30px;
+    font-size: 12pt;
+    > p{
+        text-align: center;
+    }
+    ion-select{
+        border: 1px solid #ffffff;
+        height: 38px;
+        border-radius: 3px;
+    }
+    .measures-container{
+        position: relative;
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 15px;
+        .divider{
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            top: 0;
+            background: #ffffff;
+            left: calc(50% - 0.5px);
+        }
+    }
 }
 
 .profile-slide{
@@ -96,6 +140,31 @@
     width: 100%;
 }
 
+.indicator{
+    strong{
+        position: relative;
+        ion-button{
+            --border-radius: 50%;
+            --padding-start: 0px;
+            --padding-end: 0px;
+            height: 12px;
+            width: 12px;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            ion-icon{
+                height: 10px;
+                width: 10px;
+            }
+        }
+    }
+    .separator{
+        padding: 0 15px;
+    }
+}
+
 :host{
     --ion-background-color: #121212;
+    --ion-text-color: #ffffff;
+    --ion-text-color-rgb: 255,255,255;
 }
