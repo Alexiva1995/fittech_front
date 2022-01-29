@@ -1,36 +1,20 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomeGuard } from './guards/home.guard';
 import { LoginGuard } from './guards/login.guard';
 const routes: Routes = [
-  { path: 'home', loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)},
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthModule ),
+    canActivate:[LoginGuard]
+  },
   {
     path: 'objetivo',
     loadChildren: () => import('./pages/objetivo/objetivo.module').then( m => m.ObjetivoPageModule)
   },
   {
-    path: 'pasoinicial',
-    loadChildren: () => import('./pages/pasoinicial/pasoinicial.module').then( m => m.PasoinicialPageModule)
-  },
-  {
-    path: '',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
-    canActivate:[LoginGuard]
-  },
-  {
-    path: 'terminos',
-    loadChildren: () => import('./pages/terminos/terminos.module').then( m => m.TerminosPageModule)
-  },
-  {
-    path: 'registrar-info',
-    loadChildren: () => import('./registrar-info/registrar-info.module').then( m => m.RegistrarInfoPageModule)
-  },
-  {
     path: 'experiencia',
     loadChildren: () => import('./pages/experiencia/experiencia.module').then( m => m.ExperienciaPageModule)
-  },
-  {
-    path: 'lugar-ejercicios',
-    loadChildren: () => import('./pages/lugar-ejercicios/lugar-ejercicios.module').then( m => m.LugarEjerciciosPageModule)
   },
   {
     path: 'actividad',
@@ -39,10 +23,6 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'corazon',
-    loadChildren: () => import('./corazon/corazon.module').then( m => m.CorazonPageModule)
   },
   {
     path: 'antecedentefamiliar',
@@ -93,8 +73,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+    path: 'tabs', 
+    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
+    canActivate: [HomeGuard]
   },
   {
     path: 'test-resistencia',
@@ -252,6 +233,11 @@ const routes: Routes = [
     path: 'alimentos-seleccion/:id',
     loadChildren: () => import('./alimentos-seleccion/alimentos-seleccion.module').then( m => m.AlimentosSeleccionPageModule)
   },
+  {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
+  }
 
 
 ];
