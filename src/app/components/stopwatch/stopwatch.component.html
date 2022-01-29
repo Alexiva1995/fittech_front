@@ -1,0 +1,20 @@
+<div class="base">
+  <div class="circular">
+    <div class="outer"></div>
+    <div class="inner"></div>
+    <div class="number">{{ counter >= 10 ? counter : '0' + counter }}</div>
+    <div class="circle">
+      <div [ngClass]="{bar: true, left: active || counter == 0}">
+        <div class="progress"></div>
+      </div>
+      <div [ngClass]="{bar: true, right: active || counter == 0}">
+        <div class="progress"></div>
+      </div>
+    </div>
+  </div>
+  
+  <ion-button color="dark" (click)="play()">
+    <b style="margin-right: 10px;">Empezar</b>
+    <img [src]="'assets/icon/' + (active ? 'stop' : 'play') + '.png'" alt="">
+  </ion-button>
+</div>
