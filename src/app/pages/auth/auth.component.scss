@@ -1,0 +1,37 @@
+.cabezera{
+    max-height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: black;
+    width: 100%;
+    overflow: hidden;
+}
+
+.logo{
+    margin: 0 auto;
+    max-height: 150px;
+}
+
+.content{
+    padding-top: 150px;
+}
+
+ion-fab{
+    position: fixed;
+    top: 75px;    
+}
+
+.hide{
+    display: none;
+}
+
+:host{
+    /** primary **/
+  --ion-color-primary: #3b5998;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3b5998;
+  --ion-color-primary-tint: #3b5998;
+}
