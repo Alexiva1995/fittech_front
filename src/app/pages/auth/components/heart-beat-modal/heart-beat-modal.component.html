@@ -1,0 +1,134 @@
+<ion-buttons slot="start">
+  <ion-fab vertical="center" style="margin-top:1.25rem;"  horizontal="start" slot="fixed" class="animated fadeInUp delay-2s" >
+   <ion-fab-button style="--background:#ef4044" (click)="atras()" size="small">
+     <ion-icon name="arrow-back-outline"></ion-icon>
+   </ion-fab-button>
+ </ion-fab>
+</ion-buttons>
+
+<ion-content>
+  <div class="animated fadeIn delay-1s">
+    <div class="animated fadeInLeft contenedor" *ngIf="!info">
+      <h2 class="titulo " *ngIf="!info"> Pulso radial
+        <ion-icon class="ayudad" name="help-circle-outline" (click)="visualizar(info)"></ion-icon>
+      </h2>
+
+      <!-- <ion-card *ngIf="!mostrar">
+        <img src="assets/img/imagenpulso2.jpg" />
+        <ion-card-header>
+          <ion-card-title>Pulso radial</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-text-justify">
+          1. Ubica los dedos índice y medio cerca de la base del pulgar.
+          <div></div>
+          2. Haz una leve presión con los dedos si es necesario para sentir las pulsaciones.
+          <div></div>
+          3. Cuando lo tengas dale clic en empezar y cuenta las pulsaciones durante esos 10 segundos.
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="mostrar">
+        <img src="assets/img/imagenpulso1.jpg" />
+        <ion-card-header>
+          <ion-card-title>Pulso Carotídeo</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Colocar los dedos indices y corazón suavemente hasta sentir la arteria carotída de cualquier de los dos lados del cuello, en el espacio situado entre la tráquea y el musculo esternacleidomastoide(derecho o izquierdo), bajo
+          la mandibula.
+        </ion-card-content>
+      </ion-card> -->
+
+      <stopwatch (completed)="completed()"></stopwatch>
+
+      <div class="ion-padding">
+        <b>Total de pulsaciones en 10 segundos:</b>
+    <!-- Contar los latidos por 10 segundo <b>y nosotros calculáremos tus latidos
+    por minutos.</b> -->
+  </div>
+
+  <ion-list lines="full" class="ion-padding ion-margin-bottom">
+    <!-- <div class="grid-2"> -->
+      <ion-item>
+        <ion-label position="floating">Frecuencia cardíaca <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input  
+        type="number" 
+        inputmode="numeric" 
+        (ionBlur)="onBlur(0)"
+        [disabled]="timesCompleted < 1"
+        [(ngModel)]="frecuency"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <p>
+          Repite el paso anterior para estar seguros de que contaste bien, si el resultado 
+          es muy diferente, realizarlo de nuevo.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Confirmar frecuencia<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input  
+        type="number" 
+        inputmode="numeric" 
+        (ionBlur)="onBlur(1)"
+        [disabled]="timesCompleted < 2"
+        [(ngModel)]="frecuencyConfirm"
+        ></ion-input>
+      </ion-item>
+      <!-- </div> -->
+    </ion-list>
+
+    <div class="flex-center">
+      <ion-button 
+      color="dark"
+      (click)="proceed()"
+      [disabled]="(!(frecuency > 1 && frecuency <= 25) 
+      || !(frecuencyConfirm > 1 && frecuencyConfirm <= 25))"
+      >
+      Continuar
+    </ion-button>
+  </div>
+
+</div>
+
+<div class="animated fadeInLeft" *ngIf="info">
+  <ion-grid class="my-grid">
+    <ion-row class="parent-row animated fadeInLeft">
+      <div class="container">
+        <h5 class="titulo" style="text-align: center;">Pulso radial
+            <ion-icon class="ayudad2" name="close-outline" (click)="cerrar()"></ion-icon>
+        </h5>
+        <img src="assets/img/imagenpulso2.jpg" />
+        <p class=".ion-text-left"><b> 1:</b> Ubica los dedos índice y medio cerca de la base del pulgar.</p>
+        <p class=".ion-text-left"><b>2:</b> Haz una leve presión con los dedos si es necesario para sentir las pulsaciones.</p>
+        <p class=".ion-text-left"><b> 3:</b> Cuando lo tengas dale clic en empezar y cuenta las pulsaciones durante esos 10 segundos.</p>
+      
+      </div>
+
+    </ion-row>
+  </ion-grid>
+</div>
+
+</div>
+
+
+  
+</ion-content>
+
+
+<!-- <ion-footer class="contenedor">
+  <ion-toolbar >
+    <ion-buttons slot="end"  (click)="acceder()">
+      <ion-button id="changeText" >
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="start" (click)="atras()" >
+      <ion-button id="changeText" >
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->
