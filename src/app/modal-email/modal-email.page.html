@@ -22,39 +22,59 @@
       <ion-grid class="my-grid">
       <ion-row class="parent-row">
         <ion-col size="12">      
-          <ion-input type="text" placeholder="Nombre*" 
+          <ion-input type="text" (ionBlur)="checkName()" placeholder="Nombre*" 
            name="nombre" [(ngModel)]="registrar.nombre" required></ion-input>
         </ion-col>
 
+        <div class="error" *ngIf="error.name != ''">
+          <p>{{ error.name }}</p>
+        </div>
+          
         <ion-col  size="12">      
-          <ion-input (ionBlur)="Email($event)" type="email" placeholder="Email*" name="email" 
+          <ion-input (ionBlur)="checkEmail(); email()" type="email" 
+          placeholder="Correo*" name="email" 
           [(ngModel)]="registrar.email"  ></ion-input>
         </ion-col>
-        <ion-col  size="12">      
-          <ion-input type="email" placeholder="Confirmar Email*"  name="reemail" 
-          [(ngModel)]="registrar.reemail" ></ion-input >
-        </ion-col>
-        
-        <ion-col  size="12">      
-          <ion-input type="Password" (ionFocus)="Email2()"	placeholder="Password*" name="contra" 
-          [(ngModel)]="registrar.contra" required></ion-input>
-        </ion-col>
-        <ion-col  size="12">      
-          <ion-input type="Password" placeholder="Confirmar Password*" name="recontra" 
-          [(ngModel)]="registrar.recontra" required></ion-input>
-        </ion-col>
+
+        <div class="error" *ngIf="error.email != ''">
+          <p>{{ error.email }}</p>
+        </div>
 
         <ion-col  size="12">      
-          <ion-card  style="
-            width: 286px; 
-            border-radius: 10px;
-            text-transform: uppercase;
-            font-family: 'Open Sans';
-            "
+          <ion-input type="email" (ionBlur)="checkConfirmEmail(); email2()" 
+          placeholder="Confirmar Correo*"  name="reemail" 
+          [(ngModel)]="registrar.reemail" ></ion-input >
+        </ion-col>
+
+        <div class="error" *ngIf="error.confirmEmail != ''">
+          <p>{{ error.confirmEmail }}</p>
+        </div>
+
+        <ion-col  size="12">      
+          <ion-input type="Password" (ionBlur)="checkPassword()" placeholder="Contraseña*" name="contra" 
+          [(ngModel)]="registrar.contra" required></ion-input>
+        </ion-col>
+
+        <div class="error" *ngIf="error.pass != ''">
+          <p>{{ error.pass }}</p>
+        </div>
+        
+        <ion-col  size="12">      
+          <ion-input type="Password" (ionBlur)="checkConfirmPassword()" placeholder="Confirmar Contraseña*" name="recontra" 
+          [(ngModel)]="registrar.recontra" required></ion-input>
+        </ion-col>
+        
+        <div class="error" *ngIf="error.confirmPass != ''">
+          <p>{{ error.confirmPass }}</p>
+        </div>
+
+        <ion-col  size="12">      
+          <ion-card 
+          [disabled]="sending || !checkErrors() || empty()"
           color="dark"
-         (click)="acceder()">
+          (click)="acceder()">
           <h2 style="margin: 10px;">
-            <b> Acceder </b>
+            <b style="color: #ffffff!important;"> Acceder </b>
           </h2> 
          </ion-card>
         </ion-col>

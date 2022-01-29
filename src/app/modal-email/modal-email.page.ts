@@ -11,76 +11,186 @@ import { MensajesService } from '../services/mensajes.service';
 })
 export class ModalEmailPage implements OnInit {
   registrar = {
-    nombre:null,
-    email:null,
-    contra:null,
-    reemail:null,
-    recontra:null
+    nombre:"",
+    email:"",
+    contra:"",
+    reemail:"",
+    recontra:""
   }
-  constructor(private usuarioService:UsuarioService,public modalController: ModalController ,
-              private apiService:ApiFitechService,  private mensajeservice:MensajesService) { }
+  constructor(
+    private usuarioService:UsuarioService,
+    public modalController: ModalController,
+    private apiService:ApiFitechService,  
+    private mensajeservice:MensajesService) { }
 
   ngOnInit() {
   }
 
-  acceder(){
+  public error = {
+    name: "",
+    email: "",
+    confirmEmail: "",
+    pass: "",
+    confirmPass: ""
+  }
 
-    if(this.registrar.contra === this.registrar.recontra ){
-      console.log("es igual")
-    }else{
-      this.mensajeservice.alertaInformatica('el password no coinciden ')
-      this.registrar.contra = null
-      this.registrar.recontra = null
+  private valid: boolean = false;
+
+  public sending: boolean = false;
+
+  async acceder(){
+
+    this.valid = true;
+    this.sending = true;
+
+    this.checkName();
+    this.checkEmail();
+    this.checkConfirmEmail();
+    this.checkPassword();
+    this.checkConfirmPassword();
+
+    if (this.valid) {
+
+      let valid = await this.email().then();
+
+      console.log(valid)
+
+      if (valid) {
+
+        this.email2();
+  
+        if (this.checkErrors()) {
+          this.usuarioService.registrarEmail(this.registrar)
+          this.modalController.dismiss({
+            salir:true
+          });
+        }
+
+      }
+
     }
 
-    if(this.registrar.nombre !=null && this.registrar.nombre.length > 2){
-      if(this.registrar.email !=null && this.registrar.email.length > 2){
-        if(this.registrar.contra !=null && this.registrar.contra.length > 2){
-            this.usuarioService.registrarEmail(this.registrar)
-            this.modalController.dismiss({
-              salir:true
-            });
-        }else{
-          this.mensajeservice.alertaInformatica('Por favor introduzca una contraseña mayor a 2 digitos')
+    this.sending = false;
+
+  }
+
+  checkName(){
+    if (this.registrar.nombre !=null && this.registrar.nombre.length > 2) {
+      this.error.name = ""
+    } else {
+      this.valid = false;
+      this.error.name = "Por favor introduzca un nombre valido"
+    }
+  }
+
+  checkEmail(){
+    if (this.registrar.email !=null && this.registrar.email.length > 2) {
+      this.error.email = ""
+    } else {
+      this.valid = false;
+      this.error.email = "Por favor introduzca un correo valido"
+    }
+    if (this.registrar.reemail != "") {
+      this.checkConfirmEmail()
+    }
+  }
+
+  checkConfirmEmail(){
+    if (this.registrar.email == this.registrar.reemail) {
+      this.error.confirmEmail = ""
+    } else {
+      this.valid = false;
+      this.error.confirmEmail = "Los correos no coinciden"
+    }
+  }
+
+  checkPassword(){
+    if (this.registrar.contra !=null && this.registrar.contra.length > 2) {
+      this.error.pass = ""
+    } else {
+      this.valid = false;
+      this.error.pass = "Por favor introduzca una contraseña valida"
+    }
+    if (this.registrar.recontra != "") {
+      this.checkConfirmPassword();
+    }
+  }
+
+  checkConfirmPassword(){
+    if(this.registrar.contra === this.registrar.recontra ){
+      this.error.confirmPass = ""
+    }else{
+      this.valid = false;
+      this.error.confirmPass = "Las contraseñas no coinciden"
+    }
+  }
+
+  checkErrors(): boolean{
+    return (
+      (this.error.name == "" && 
+      this.error.email == "" && 
+      this.error.confirmEmail == "" &&
+      this.error.pass == "" &&
+      this.error.confirmPass == "")
+    )
+  }
+
+  empty(): boolean{
+    return (
+      (this.registrar.nombre == "" && 
+      this.registrar.email == "" && 
+      this.registrar.reemail == "" &&
+      this.registrar.contra == "" &&
+      this.error.confirmPass == "")
+    )
+  }
+
+  public async email(): Promise<boolean>{
+
+    return new Promise((resolve) => {
+      this.apiService.validarEmail(this.registrar.email).subscribe((res: any) => {
+        console.log("Response", res.email)
+        let correct = res.email === 0 
+        if (correct) {
+          resolve(true);
+        } else {
+          this.error.email = "El correo ya está en uso"
+          console.log(this.error);
+          resolve(false);
         }
-      }else{
-      this.mensajeservice.alertaInformatica('Por favor introduzca el campo del correo correctamente')
+      }, () => {
+        this.mensajeservice.alertaInformatica("No se pudo realizar la conexión. Intente más tarde.");
+        resolve(false);
+      })
+
+    })
+
+    // let valid: boolean = false;
+
+    // let email: number = null;
+
+
+    // // if(valido){
+    // //   this.error.email = "El correo ya está en uso"
+    // //   return false;
+    // //   // this.mensajeservice.alertaInformatica('el correo ya existe en nuestra base de datos')
+    // //   // this.registrar.email = null
+    // // }else{
+    // //   return true;
+    // // }
+    // return await valid;
+
+  }
+
+  public email2(){
+    if(this.registrar.email === this.registrar.reemail && this.registrar.email.length > 2){
+      let valor = this.validateEmail(this.registrar.email)
+        if(valor){
+        }else{
+        this.error.email = "Formato de correo invalido"
       }
     }else{
-      this.mensajeservice.alertaInformatica('Por favor introduzca el campo del nombre correctamente')
-      return
-    }
-
-
-  }
-
-  async Email(valor:any){
-
-    const valido = await this.apiService.validarEmail(valor.target.value)
-    if(valido){
-      this.mensajeservice.alertaInformatica('el correo ya existe en nuestra base de datos')
-      this.registrar.email = null
-    }else{
-      console.log("aprobado email")
-    }
-
-  }
-
-  Email2(){
-    let valor
-    if(this.registrar.email === this.registrar.reemail){
-       valor = this.validateEmail(this.registrar.email)
-         if(valor){
-           console.log("todo bien")
-         }else{
-          this.mensajeservice.alertaInformatica('formato no valido ')
-          this.registrar.email = null
-          this.registrar.reemail = null
-         }
-    }else{
-      this.mensajeservice.alertaInformatica('el email no coinciden ')
-      this.registrar.email = null
-      this.registrar.reemail = null
+      this.error.confirmEmail = "Los correos no coinciden"
     }
 
   }
